@@ -30,9 +30,11 @@ class ImageServiceBus
   end
 
   def get_images(query, count = 3, target_resolution = '1080p')
+    puts "    🔍 ImageServiceBus: Getting #{count} images for query '#{query}'"
     results = []
     available_clients = @clients.keys.to_a
     @used_clients.clear
+    
     count.times do |i|
       unused_clients = available_clients - @used_clients.to_a
       if unused_clients.empty?
@@ -42,19 +44,35 @@ class ImageServiceBus
       end
       selected_client = unused_clients.sample
       @used_clients.add(selected_client)
-      @logger.info("Attempting to get image #{i + 1} using #{selected_client}")
+      puts "    🔍 ImageServiceBus: Using client #{selected_client} for image #{i + 1}"
+      
       begin
+        puts "    🔍 ImageServiceBus: About to call search_images on #{selected_client}"
+        puts "    🔍 ImageServiceBus: Client class: #{@clients[selected_client].class}"
+        puts "    🔍 ImageServiceBus: Query: '#{query}', Resolution: '#{target_resolution}'"
+        
+        # Add a small delay to avoid rate limiting
+        sleep(0.5) if i > 0
+        
+        puts "    🔍 ImageServiceBus: Calling search_images now..."
         result = @clients[selected_client].search_images(query, target_resolution)
+        puts "    🔍 ImageServiceBus: Got result: #{result.class}"
+        
         if result && !result[:images].empty?
           results << result
-          @logger.info("Successfully got #{result[:images].length} images from #{selected_client}")
+          puts "    ✅ ImageServiceBus: Successfully got #{result[:images].length} images from #{selected_client}"
         else
-          @logger.warn("No results from #{selected_client}")
+          puts "    ⚠️  ImageServiceBus: No results from #{selected_client}"
         end
       rescue => e
-        @logger.error("Error with #{selected_client}: #{e.message}")
+        puts "    ❌ ImageServiceBus: Error with #{selected_client}: #{e.message}"
+        puts "    ❌ ImageServiceBus: Error class: #{e.class}"
+        puts "    ❌ ImageServiceBus: Error backtrace: #{e.backtrace.first(10)}"
+        puts "    ❌ ImageServiceBus: Error location: #{e.backtrace.first}"
       end
     end
+    
+    puts "    🔍 ImageServiceBus: Returning #{results.length} results"
     results
   end
 

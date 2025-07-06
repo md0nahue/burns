@@ -296,19 +296,13 @@ class S3Service
       filename = File.basename(audio_file_path)
       s3_key = "projects/#{project_id}/audio/#{filename}"
       
-      # Upload to S3
+      # Upload to S3 with minimal metadata
       bucket = @s3_resource.bucket(bucket_name)
       obj = bucket.object(s3_key)
       
       obj.put(
         body: audio_content,
-        content_type: 'audio/mpeg', # Adjust based on file type
-        metadata: {
-          'original-filename' => filename,
-          'project-id' => project_id,
-          'upload-timestamp' => timestamp,
-          'file-size' => File.size(audio_file_path).to_s
-        }
+        content_type: 'audio/mpeg'
       )
       
       # Generate presigned URL for access
@@ -327,6 +321,92 @@ class S3Service
       
     rescue => e
       puts "❌ Error uploading audio file: #{e.message}"
+      { success: false, error: e.message }
+    end
+  end
+
+  # Upload project manifest to S3
+  # @param project_id [String] Project identifier
+  # @param manifest [Hash] Project manifest data
+  # @param bucket_name [String] S3 bucket name (optional)
+  # @return [Hash] Upload result
+  def upload_project_manifest(project_id, manifest, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    puts "📤 Uploading project manifest: #{project_id}"
+    
+    begin
+      # Generate S3 key
+      manifest_key = "projects/#{project_id}/manifest.json"
+      
+      # Upload to S3
+      bucket = @s3_resource.bucket(bucket_name)
+      obj = bucket.object(manifest_key)
+      
+      obj.put(
+        body: JSON.pretty_generate(manifest),
+        content_type: 'application/json',
+        metadata: {
+          'project-id' => project_id,
+          'upload-timestamp' => Time.now.iso8601,
+          'manifest-version' => '1.0'
+        }
+      )
+      
+      # Generate presigned URL for access
+      presigned_url = obj.presigned_url(:get, expires_in: 3600)
+      
+      puts "✅ Project manifest uploaded: s3://#{bucket_name}/#{manifest_key}"
+      
+      {
+        success: true,
+        manifest_key: manifest_key,
+        manifest_url: "s3://#{bucket_name}/#{manifest_key}",
+        presigned_url: presigned_url,
+        project_id: project_id
+      }
+      
+    rescue => e
+      puts "❌ Error uploading project manifest: #{e.message}"
+      { success: false, error: e.message }
+    end
+  end
+
+  # Get project manifest from S3
+  # @param project_id [String] Project identifier
+  # @param bucket_name [String] S3 bucket name (optional)
+  # @return [Hash] Manifest data
+  def get_project_manifest(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    puts "📥 Getting project manifest: #{project_id}"
+    
+    begin
+      # Generate S3 key
+      manifest_key = "projects/#{project_id}/manifest.json"
+      
+      # Get from S3
+      bucket = @s3_resource.bucket(bucket_name)
+      obj = bucket.object(manifest_key)
+      
+      # Check if object exists
+      unless obj.exists?
+        return { success: false, error: "Project manifest not found" }
+      end
+      
+      # Get manifest content
+      manifest_content = obj.get.body.read
+      manifest = JSON.parse(manifest_content)
+      
+      puts "✅ Project manifest retrieved: s3://#{bucket_name}/#{manifest_key}"
+      
+      {
+        success: true,
+        manifest: manifest,
+        manifest_key: manifest_key,
+        project_id: project_id
+      }
+      
+    rescue => e
+      puts "❌ Error getting project manifest: #{e.message}"
       { success: false, error: e.message }
     end
   end
@@ -399,6 +479,39 @@ class S3Service
       response.body
     else
       raise "Failed to download image: HTTP #{response.code}"
+    end
+  end
+
+  # Download video from S3 to local path
+  # @param s3_key [String] S3 key of the video
+  # @param local_path [String] Local path to save the video
+  # @return [Hash] Download result
+  def download_video(s3_key, local_path)
+    puts "📥 Downloading video from S3: #{s3_key}"
+    
+    begin
+      bucket_name = Config::AWS_CONFIG[:s3_bucket]
+      bucket = @s3_resource.bucket(bucket_name)
+      obj = bucket.object(s3_key)
+      
+      # Create directory if it doesn't exist
+      require 'fileutils'
+      FileUtils.mkdir_p(File.dirname(local_path))
+      
+      # Download the video
+      obj.download_file(local_path)
+      
+      puts "✅ Video downloaded successfully: #{local_path}"
+      {
+        success: true,
+        local_path: local_path,
+        file_size: File.size(local_path),
+        s3_key: s3_key
+      }
+      
+    rescue => e
+      puts "❌ Error downloading video: #{e.message}"
+      { success: false, error: e.message }
     end
   end
 end 

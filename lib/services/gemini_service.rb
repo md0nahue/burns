@@ -1,6 +1,7 @@
 require 'net/http'
 require 'json'
 require 'securerandom'
+require 'digest'
 
 class GeminiService
   GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta'
@@ -21,25 +22,31 @@ class GeminiService
   def analyze_content_for_images(segments, options = {})
     puts "🧠 Analyzing content for image generation using Gemini..."
     
-    # Group segments into logical chunks for analysis
-    chunks = group_segments_into_chunks(segments, options[:chunk_duration] || 30)
-    
-    analyzed_chunks = []
-    
-    chunks.each_with_index do |chunk, index|
-      puts "  Analyzing chunk #{index + 1}/#{chunks.length} (#{chunk[:duration].round(1)}s)"
-      
-      # Analyze this chunk
-      analysis = analyze_chunk(chunk, options)
-      
-      # Distribute image queries across segments in this chunk
-      enriched_segments = distribute_image_queries(chunk[:segments], analysis[:image_queries])
-      
-      analyzed_chunks.concat(enriched_segments)
+    # Check for cached analysis
+    cache_file = get_cache_file_path(segments, options)
+    if File.exist?(cache_file)
+      puts "    📁 Using cached content analysis from: #{cache_file}"
+      cached_data = JSON.parse(File.read(cache_file), symbolize_names: true)
+      return cached_data
     end
     
-    puts "✅ Content analysis completed: #{analyzed_chunks.length} segments processed"
-    analyzed_chunks
+    # Build a single comprehensive prompt for all segments
+    prompt = build_batch_analysis_prompt(segments, options)
+    
+    puts "  📝 Analyzing #{segments.length} segments in a single request..."
+    
+    # Make single API request
+    response = make_gemini_request(prompt)
+    
+    # Parse the response
+    parsed_response = parse_batch_analysis_response(response, segments)
+    
+    # Cache the analysis result
+    puts "    💾 Caching content analysis to: #{cache_file}"
+    File.write(cache_file, JSON.pretty_generate(parsed_response))
+    
+    puts "✅ Content analysis completed: #{parsed_response.length} segments processed"
+    parsed_response
   end
 
   # Analyze a single chunk of audio content
@@ -49,7 +56,10 @@ class GeminiService
   def analyze_chunk(chunk, options = {})
     prompt = build_analysis_prompt(chunk, options)
     
-    response = make_gemini_request(prompt)
+    # Add delay between requests to avoid rate limiting
+    sleep(1) if options[:rate_limit]
+    
+    response = make_gemini_request_with_retry(prompt)
     
     # Parse the response
     parsed_response = parse_analysis_response(response)
@@ -74,6 +84,18 @@ class GeminiService
   end
 
   private
+
+  # Generate cache file path for content analysis
+  # @param segments [Array] Audio segments
+  # @param options [Hash] Analysis options
+  # @return [String] Cache file path
+  def get_cache_file_path(segments, options)
+    # Create a hash of the segments and options to generate a unique cache key
+    content_hash = Digest::MD5.hexdigest(segments.to_json + options.to_json)
+    cache_dir = 'cache'
+    Dir.mkdir(cache_dir) unless Dir.exist?(cache_dir)
+    "#{cache_dir}/gemini_analysis_#{content_hash}.json"
+  end
 
   # Group segments into logical chunks for analysis
   # @param segments [Array] Audio segments
@@ -196,6 +218,28 @@ class GeminiService
     PROMPT
 
     prompt
+  end
+
+  # Make Gemini API request with retry logic for rate limiting
+  # @param prompt [String] Prompt to send
+  # @param max_retries [Integer] Maximum number of retries
+  # @return [Hash] API response
+  def make_gemini_request_with_retry(prompt, max_retries = 3)
+    retries = 0
+    
+    begin
+      make_gemini_request(prompt)
+    rescue => e
+      if e.message.include?('429') && retries < max_retries
+        retries += 1
+        wait_time = 2 ** retries # Exponential backoff: 2, 4, 8 seconds
+        puts "    ⏳ Rate limited, retrying in #{wait_time} seconds... (attempt #{retries}/#{max_retries})"
+        sleep(wait_time)
+        retry
+      else
+        raise e
+      end
+    end
   end
 
   # Make request to Gemini API
@@ -382,9 +426,96 @@ class GeminiService
     segments.each_with_index do |segment, index|
       # Assign queries based on segment position
       query_index = index % image_queries.length
-      segment[:image_query] = image_queries[query_index]
+      # Preserve all original segment data and add image queries
+      segment.merge!({
+        image_queries: [image_queries[query_index]],
+        has_images: true
+      })
     end
     
     segments
+  end
+
+  # Build a single comprehensive prompt for all segments
+  # @param segments [Array] Transcribed audio segments
+  # @param options [Hash] Analysis options
+  # @return [String] Formatted prompt
+  def build_batch_analysis_prompt(segments, options)
+    context = options[:context] || "content analysis"
+    style = options[:style] || "realistic, high-quality"
+    
+    # Calculate total duration
+    total_duration = segments.sum { |s| (s[:end_time] || s['end'] || 0) - (s[:start_time] || s['start'] || 0) }
+    
+    prompt = <<~PROMPT
+      You are an expert at analyzing spoken content and determining what images would best illustrate the narrative.
+
+      CONTEXT: This is a #{context} that has been transcribed from audio.
+
+      AUDIO SEGMENTS (Total Duration: #{total_duration.round(1)} seconds):
+    PROMPT
+
+    segments.each_with_index do |segment, index|
+      start_time = segment[:start_time] || segment['start'] || 0
+      end_time = segment[:end_time] || segment['end'] || 0
+      text = segment[:text] || segment['text'] || ''
+      
+      prompt += <<~SEGMENT
+        Segment #{index + 1} (#{start_time.round(1)}s - #{end_time.round(1)}s): "#{text.strip}"
+      SEGMENT
+    end
+
+    prompt += <<~PROMPT
+      TASK: Analyze this content and generate 3-5 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
+
+      REQUIREMENTS:
+      - Generate queries that are specific and descriptive
+      - Focus on visual elements mentioned or implied in the text
+      - Consider the emotional tone and context
+      - Avoid generic terms, be specific about objects, scenes, or concepts
+      - Each query should be 2-6 words maximum
+      - Prioritize queries that would work well for Ken Burns effects (landscapes, objects, people, etc.)
+
+      RESPONSE FORMAT (JSON only):
+      {
+        "image_queries": [
+          "specific visual query 1",
+          "specific visual query 2",
+          "specific visual query 3"
+        ],
+        "primary_theme": "brief description of main theme",
+        "visual_style": "#{style}",
+        "total_duration": #{total_duration.round(1)}
+      }
+
+      Generate only the JSON response, no other text.
+    PROMPT
+
+    prompt
+  end
+
+  # Parse batch analysis response from Gemini
+  # @param response [Hash] Gemini API response
+  # @param segments [Array] Transcribed audio segments
+  # @return [Array] Enriched segments with image queries
+  def parse_batch_analysis_response(response, segments)
+    content = response.dig('candidates', 0, 'content', 'parts', 0, 'text')
+    
+    return segments unless content
+    
+    begin
+      # Try to parse as JSON
+      parsed = JSON.parse(content.strip, symbolize_names: true)
+      image_queries = parsed[:image_queries] || []
+      
+      # Distribute queries across segments
+      enriched_segments = distribute_image_queries(segments, image_queries)
+      
+      enriched_segments
+    rescue JSON::ParserError
+      # Fallback: try to extract queries from text
+      fallback_queries = extract_queries_from_text(content)
+      distribute_image_queries(segments, fallback_queries)
+    end
   end
 end 

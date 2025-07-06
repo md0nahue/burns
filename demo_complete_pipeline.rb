@@ -3,7 +3,12 @@
 require_relative 'lib/pipeline/video_generator'
 require_relative 'config/services'
 
-# Demo script for complete Ken Burns video generation pipeline
+# ⚠️  DEPRECATED - DO NOT USE THIS SCRIPT FOR PRODUCTION ⚠️
+# This demo script is outdated and contains bugs. 
+# Use process_audio_pipeline.rb instead for actual audio processing.
+# 
+# This file is kept for reference only and may not work correctly.
+# The current, working pipeline is in process_audio_pipeline.rb
 puts "🎬 Burns - Complete Ken Burns Video Generation Pipeline Demo"
 puts "=" * 60
 

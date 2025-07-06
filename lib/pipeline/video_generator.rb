@@ -2,6 +2,7 @@ require_relative '../services/whisper_service'
 require_relative '../services/gemini_service'
 require_relative '../services/s3_service'
 require_relative '../services/lambda_service'
+require_relative '../services/local_video_service'
 require_relative 'audio_processor'
 require_relative 'content_analyzer'
 require_relative 'image_generator'
@@ -14,6 +15,7 @@ class VideoGenerator
     @gemini_service = GeminiService.new
     @s3_service = S3Service.new
     @lambda_service = LambdaService.new
+    @local_video_service = LocalVideoService.new
     @audio_processor = AudioProcessor.new
     @content_analyzer = ContentAnalyzer.new
     @image_generator = ImageGenerator.new
@@ -40,36 +42,43 @@ class VideoGenerator
         return { success: false, error: "Audio processing failed: #{transcription_result[:error]}" }
       end
       
-      # Step 2: Analyze content and generate image queries
-      puts "\n🧠 Step 2: Analyzing content and generating image queries..."
-      analysis_result = analyze_content(project_id, transcription_result[:segments])
-      
-      unless analysis_result[:success]
-        return { success: false, error: "Content analysis failed: #{analysis_result[:error]}" }
-      end
-      
-      # Step 3: Generate images for each segment
-      puts "\n🖼️  Step 3: Generating images for segments..."
-      image_result = generate_images(project_id, analysis_result[:segments])
+      # Step 2: Generate images for each segment
+      puts "\n🖼️  Step 2: Generating images for segments..."
+      image_result = generate_images(project_id, transcription_result[:segments])
       
       unless image_result[:success]
         return { success: false, error: "Image generation failed: #{image_result[:error]}" }
       end
       
-      # Step 4: Create project manifest
-      puts "\n📋 Step 4: Creating project manifest..."
-      manifest_result = create_project_manifest(project_id, transcription_result, analysis_result, image_result)
+      # Step 3: Create project manifest
+      puts "\n📋 Step 3: Creating project manifest..."
+      manifest_result = create_project_manifest(project_id, transcription_result, image_result)
       
       unless manifest_result[:success]
         return { success: false, error: "Manifest creation failed: #{manifest_result[:error]}" }
       end
       
-      # Step 5: Generate final video
-      puts "\n🎥 Step 5: Generating final Ken Burns video..."
+      # Step 4: Generate final video
+      puts "\n🎥 Step 4: Generating final Ken Burns video..."
       video_result = generate_final_video(project_id, options)
       
       unless video_result[:success]
         return { success: false, error: "Video generation failed: #{video_result[:error]}" }
+      end
+      
+      # Save completed video to local completed folder
+      audio_basename = File.basename(audio_file_path, File.extname(audio_file_path))
+      completed_video_path = "completed/#{audio_basename}_ken_burns_video.mp4"
+      
+      # Copy video from S3 to local completed folder if available
+      if video_result[:video_s3_key] && @s3_service
+        begin
+          puts "📥 Downloading completed video to: #{completed_video_path}"
+          @s3_service.download_video(video_result[:video_s3_key], completed_video_path)
+          puts "✅ Video saved to: #{completed_video_path}"
+        rescue => e
+          puts "⚠️  Could not download video to local folder: #{e.message}"
+        end
       end
       
       # Success response
@@ -78,10 +87,11 @@ class VideoGenerator
         project_id: project_id,
         video_url: video_result[:video_url],
         video_s3_key: video_result[:video_s3_key],
+        local_video_path: completed_video_path,
         duration: video_result[:duration],
         resolution: video_result[:resolution],
         fps: video_result[:fps],
-        segments_count: analysis_result[:segments].length,
+        segments_count: transcription_result[:segments].length,
         images_generated: image_result[:total_images],
         generated_at: video_result[:generated_at]
       }
@@ -125,46 +135,22 @@ class VideoGenerator
       # Upload audio file to S3
       audio_s3_key = @s3_service.upload_audio_file(audio_file_path, project_id)
       
+      # Analyze content and generate image queries
+      puts "  📊 Analyzing content and generating queries..."
+      analysis = @content_analyzer.analyze_for_images(audio_result)
+      
       {
         success: true,
-        segments: audio_result[:segments],
+        segments: analysis[:segments] || audio_result[:segments],
         audio_file: audio_s3_key,
         duration: audio_result[:duration],
-        language: 'en' # Default language
+        language: 'en', # Default language
+        analysis_metrics: analysis[:analysis_metrics],
+        total_image_queries: analysis[:total_image_queries]
       }
       
     rescue => e
       { success: false, error: "Audio processing error: #{e.message}" }
-    end
-  end
-
-  # Analyze content and generate image queries
-  # @param project_id [String] Project identifier
-  # @param segments [Array] Audio segments
-  # @return [Hash] Analysis result
-  def analyze_content(project_id, segments)
-    puts "  📊 Analyzing content and generating queries..."
-    
-    begin
-      # Analyze content and generate image queries
-      analysis = @content_analyzer.analyze_segments(segments)
-      
-      unless analysis[:success]
-        return { success: false, error: "Content analysis failed: #{analysis[:error]}" }
-      end
-      
-      # Distribute queries across segments
-      segments_with_queries = @content_analyzer.distribute_queries(segments, analysis[:queries])
-      
-      {
-        success: true,
-        segments: segments_with_queries,
-        total_queries: analysis[:queries].length,
-        analysis_summary: analysis[:summary]
-      }
-      
-    rescue => e
-      { success: false, error: "Content analysis error: #{e.message}" }
     end
   end
 
@@ -182,16 +168,12 @@ class VideoGenerator
         puts "    📝 Processing segment: #{segment[:id]}"
         
         # Generate images for this segment
-        image_result = @image_generator.generate_images_for_segment(segment, project_id)
+        image_result = @image_generator.generate_images_for_segment(segment, { project_id: project_id })
         
-        if image_result[:success]
-          segment[:generated_images] = image_result[:images]
-          total_images += image_result[:images].length
-          puts "      ✅ Generated #{image_result[:images].length} images"
-        else
-          puts "      ❌ Failed to generate images: #{image_result[:error]}"
-          segment[:generated_images] = []
-        end
+        # Update segment with generated images
+        segment.merge!(image_result)
+        total_images += image_result[:generated_images].length
+        puts "      ✅ Generated #{image_result[:generated_images].length} images"
       end
       
       {
@@ -208,10 +190,9 @@ class VideoGenerator
   # Create project manifest
   # @param project_id [String] Project identifier
   # @param transcription_result [Hash] Transcription result
-  # @param analysis_result [Hash] Analysis result
   # @param image_result [Hash] Image generation result
   # @return [Hash] Manifest creation result
-  def create_project_manifest(project_id, transcription_result, analysis_result, image_result)
+  def create_project_manifest(project_id, transcription_result, image_result)
     puts "  📋 Creating project manifest..."
     
     begin
@@ -222,7 +203,6 @@ class VideoGenerator
         duration: transcription_result[:duration],
         language: transcription_result[:language],
         segments: image_result[:segments],
-        analysis_summary: analysis_result[:analysis_summary],
         total_images: image_result[:total_images],
         status: 'ready_for_video_generation'
       }
@@ -241,37 +221,43 @@ class VideoGenerator
     end
   end
 
-  # Generate final video using Lambda (concurrent approach)
+  # Generate final video using local video service
   # @param project_id [String] Project identifier
   # @param options [Hash] Video generation options
   # @return [Hash] Video generation result
   def generate_final_video(project_id, options)
-    puts "  🎥 Generating final video using concurrent Lambda processing..."
+    puts "  🎥 Generating final video using local video service..."
     
     begin
-      # Get segments from manifest
-      manifest = @s3_service.get_project_manifest(project_id)
-      return { success: false, error: "Could not get project manifest" } unless manifest[:success]
+      # Get project manifest
+      manifest_result = @s3_service.get_project_manifest(project_id)
       
-      segments = manifest[:manifest]['segments']
-      
-      # Use concurrent processing for better performance
-      video_result = @lambda_service.generate_video_segments_concurrently(
-        project_id, 
-        segments, 
-        options.merge(total_segments: segments.length)
-      )
-      
-      if video_result[:success]
-        puts "    ✅ Concurrent video generation completed"
-        puts "    📹 Video URL: #{video_result[:video_url]}"
-        puts "    ⏱️  Duration: #{video_result[:duration]} seconds"
-        puts "    ⚡ Processed #{segments.length} segments concurrently"
-      else
-        puts "    ❌ Concurrent video generation failed: #{video_result[:error]}"
+      unless manifest_result[:success]
+        return { success: false, error: "Failed to get project manifest: #{manifest_result[:error]}" }
       end
       
-      video_result
+      # Generate video using local video service
+      video_result = @local_video_service.generate_video(project_id, manifest_result[:manifest])
+      
+      if video_result[:success]
+        puts "    ✅ Local video generation completed"
+        puts "    📹 Video path: #{video_result[:video_path]}"
+        puts "    ⏱️  Duration: #{video_result[:duration]} seconds"
+        puts "    ⚡ Processed #{video_result[:segments_count]} segments"
+        
+        # Convert local result to match expected format
+        {
+          success: true,
+          video_url: "file://#{video_result[:video_path]}",
+          video_s3_key: nil, # Local video, not in S3
+          duration: video_result[:duration],
+          resolution: video_result[:resolution],
+          fps: video_result[:fps],
+          generated_at: video_result[:generated_at]
+        }
+      else
+        { success: false, error: "Video generation failed: #{video_result[:error]}" }
+      end
       
     rescue => e
       { success: false, error: "Video generation error: #{e.message}" }

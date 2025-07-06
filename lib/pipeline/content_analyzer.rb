@@ -32,7 +32,7 @@ class ContentAnalyzer
     puts "  📊 Total segments: #{enriched_segments.length}"
     puts "  🖼️  Segments with images: #{enhanced_result[:segments_with_images]}"
     puts "  🔍 Total image queries: #{enhanced_result[:total_image_queries]}"
-    puts "  📈 Average confidence: #{analysis_metrics[:average_confidence].round(3)}"
+    puts "  📈 Average confidence: #{(analysis_metrics[:average_confidence] || 0).round(3)}"
     
     enhanced_result
   end
@@ -120,9 +120,28 @@ class ContentAnalyzer
   def calculate_analysis_metrics(segments)
     return {} if segments.empty?
     
+    # Ensure all segments have image_queries field
+    segments.each do |segment|
+      if segment[:image_query] && !segment[:image_queries]
+        # Convert old format to new format
+        segment[:image_queries] = [segment[:image_query]]
+        segment[:has_images] = true
+      elsif !segment[:image_queries]
+        # Initialize empty array if missing
+        segment[:image_queries] = []
+        segment[:has_images] = false
+      end
+    end
+    
     confidences = segments.map { |s| s[:confidence] }.compact
     query_counts = segments.map { |s| s[:image_queries].length }
-    durations = segments.map { |s| s[:end_time] - s[:start_time] }
+    
+    # Calculate durations with safety checks
+    durations = segments.map do |s|
+      start_time = s[:start_time] || s['start'] || 0
+      end_time = s[:end_time] || s['end'] || 0
+      end_time - start_time
+    end.compact
     
     {
       average_confidence: confidences.any? ? confidences.sum / confidences.length : 0,

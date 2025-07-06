@@ -16,15 +16,30 @@ class ImageGenerator
     segments = enhanced_result[:segments]
     generated_segments = []
     
+    puts "    🔍 ImageGenerator: Processing #{segments.length} segments"
+    
     segments.each_with_index do |segment, index|
       puts "  Generating images for segment #{index + 1}/#{segments.length}"
       
-      # Generate images for this segment
-      generated_segment = generate_images_for_segment(segment, options)
-      generated_segments << generated_segment
-      
-      # Add delay to respect rate limits
-      sleep(options[:delay] || 1) if index < segments.length - 1
+      begin
+        # Generate images for this segment
+        generated_segment = generate_images_for_segment(segment, options)
+        generated_segments << generated_segment
+        
+        # Add delay to respect rate limits
+        sleep(options[:delay] || 1) if index < segments.length - 1
+      rescue => e
+        puts "    ❌ ImageGenerator: Error processing segment #{index}: #{e.message}"
+        puts "    ❌ ImageGenerator: Error class: #{e.class}"
+        puts "    ❌ ImageGenerator: Error backtrace: #{e.backtrace.first(5)}"
+        # Continue with next segment
+        generated_segments << segment.merge({
+          generated_images: [],
+          images_generated: 0,
+          generation_success: false,
+          error: e.message
+        })
+      end
     end
     
     # Calculate generation metrics
@@ -52,7 +67,27 @@ class ImageGenerator
   # @param options [Hash] Generation options
   # @return [Hash] Segment with generated images
   def generate_images_for_segment(segment, options = {})
-    image_queries = segment[:image_queries] || []
+    puts "    📝 Processing segment: #{segment[:id]}"
+    puts "      Debug - segment keys: #{segment.keys}"
+    puts "      Debug - image_queries: #{segment[:image_queries].inspect}"
+    
+    # Normalize segment keys to symbols
+    normalized_segment = {}
+    segment.each do |key, value|
+      normalized_segment[key.to_sym] = value
+    end
+    
+    # Ensure image_queries is an array
+    image_queries = if normalized_segment[:image_queries].is_a?(Array)
+      normalized_segment[:image_queries]
+    elsif normalized_segment[:image_query]
+      [normalized_segment[:image_query]]
+    else
+      []
+    end
+    
+    puts "      Debug - final image_queries: #{image_queries.inspect}"
+    
     resolution = options[:resolution] || '1080p'
     images_per_query = options[:images_per_query] || 1
     
@@ -60,37 +95,42 @@ class ImageGenerator
     
     image_queries.each do |query|
       begin
-        puts "    Searching for: '#{query}'"
+        puts "      Searching for: '#{query}'"
         
         # Use the image service bus to get images
-        result = @image_service_bus.get_images(query, images_per_query, resolution)
+        results = @image_service_bus.get_images(query, images_per_query, resolution)
         
-        if result && result[:images] && result[:images].any?
-          # Add metadata to each image
-          enriched_images = result[:images].map do |image|
-            image.merge({
-              query: query,
-              segment_id: segment[:id],
-              start_time: segment[:start_time],
-              end_time: segment[:end_time],
-              generated_at: Time.now
-            })
+        # Process all results from different providers
+        results.each do |result|
+          if result && result[:images] && !result[:images].empty?
+            # Add metadata to each image
+            enriched_images = result[:images].map do |image|
+              image.merge({
+                query: query,
+                segment_id: normalized_segment[:id],
+                start_time: normalized_segment[:start_time],
+                end_time: normalized_segment[:end_time],
+                generated_at: Time.now
+              })
+            end
+            
+            generated_images.concat(enriched_images)
+            puts "      ✅ Found #{enriched_images.length} images from #{result[:provider]}"
           end
-          
-          generated_images.concat(enriched_images)
-          puts "    ✅ Found #{enriched_images.length} images"
-        else
-          puts "    ⚠️  No images found for query: '#{query}'"
+        end
+        
+        if generated_images.empty?
+          puts "      ⚠️  No images found for query: '#{query}'"
         end
         
       rescue => e
-        puts "    ❌ Error generating images for '#{query}': #{e.message}"
+        puts "      ❌ Error generating images for '#{query}': #{e.message}"
         # Continue with other queries
       end
     end
     
     # Update segment with generated images
-    segment.merge({
+    normalized_segment.merge({
       generated_images: generated_images,
       images_generated: generated_images.length,
       generation_success: generated_images.any?

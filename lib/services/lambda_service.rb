@@ -69,13 +69,20 @@ class LambdaService
       
       # Prepare segment tasks
       segment_tasks = segments.map.with_index do |segment, index|
+        # Debug: Check segment data
+        puts "    Debug - Segment #{index}: start_time=#{segment[:start_time]}, end_time=#{segment[:end_time]}"
+        
+        # Ensure we have valid timing data
+        start_time = segment[:start_time] || 0
+        end_time = segment[:end_time] || (start_time + 5.0) # Default 5 second duration
+        
         {
           segment_id: segment[:id],
           segment_index: index,
           images: segment[:generated_images],
-          duration: segment[:end_time] - segment[:start_time],
-          start_time: segment[:start_time],
-          end_time: segment[:end_time]
+          duration: end_time - start_time,
+          start_time: start_time,
+          end_time: end_time
         }
       end
       

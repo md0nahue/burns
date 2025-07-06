@@ -68,24 +68,24 @@ class AudioProcessor
   # @param file_path [String] Original audio file path
   # @return [Hash] Structured data
   def structure_transcription(result, file_path)
-    segments = result['segments'] || []
-    words = result['words'] || []
+    segments = result[:segments] || []
+    words = result[:words] || []
     
     # Calculate total duration
-    duration = segments.any? ? segments.last['end'] : 0
+    duration = segments.any? ? segments.last[:end_time] || segments.last['end'] : 0
     
     # Structure segments with additional metadata
     structured_segments = segments.map.with_index do |segment, index|
       {
         id: index,
-        start_time: segment['start'],
-        end_time: segment['end'],
-        text: segment['text'].strip,
-        confidence: segment['avg_logprob'],
-        no_speech_prob: segment['no_speech_prob'],
-        compression_ratio: segment['compression_ratio'],
+        start_time: segment[:start_time] || segment['start'],
+        end_time: segment[:end_time] || segment['end'],
+        text: segment[:text] || segment['text'],
+        confidence: segment[:confidence] || segment['avg_logprob'],
+        no_speech_prob: segment[:no_speech_prob] || segment['no_speech_prob'],
+        compression_ratio: segment[:compression_ratio] || segment['compression_ratio'],
         # Extract words for this segment
-        words: extract_words_for_segment(words, segment['start'], segment['end'])
+        words: extract_words_for_segment(words, segment[:start_time] || segment['start'], segment[:end_time] || segment['end'])
       }
     end
 
