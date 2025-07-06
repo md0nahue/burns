@@ -1,8 +1,8 @@
-require_relative '../services/llm_service'
+require_relative '../services/gemini_service'
 
 class ContentAnalyzer
-  def initialize(llm_service = nil)
-    @llm_service = llm_service || LLMService.new
+  def initialize(gemini_service = nil)
+    @gemini_service = gemini_service || GeminiService.new
   end
 
   # Analyze transcribed audio and generate image queries for each segment
@@ -14,8 +14,8 @@ class ContentAnalyzer
     
     segments = audio_result[:segments]
     
-    # Analyze segments for image queries
-    enriched_segments = @llm_service.analyze_content_for_images(segments, options)
+    # Analyze segments for image queries using Gemini
+    enriched_segments = @gemini_service.analyze_content_for_images(segments, options)
     
     # Calculate analysis metrics
     analysis_metrics = calculate_analysis_metrics(enriched_segments)
@@ -42,7 +42,7 @@ class ContentAnalyzer
   # @param context [Hash] Additional context
   # @return [Array] Image queries
   def analyze_single_segment(text, context = {})
-    @llm_service.generate_image_queries_for_text(text, context)
+    @gemini_service.generate_image_queries_for_text(text, context)
   end
 
   # Get analysis summary for debugging

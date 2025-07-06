@@ -3,6 +3,7 @@ require_relative 'pexels_client'
 require_relative 'pixabay_client'
 require_relative 'lorem_picsum_client'
 require_relative 'openverse_client'
+require_relative 'wikimedia_client'
 require 'logger'
 require 'set'
 
@@ -21,7 +22,8 @@ class ImageServiceBus
       pexels: PexelsClient.new(config[:pexels]),
       pixabay: PixabayClient.new(config[:pixabay]),
       lorem_picsum: LoremPicsumClient.new(config[:lorem_picsum]),
-      openverse: OpenverseClient.new(config[:openverse])
+      openverse: OpenverseClient.new(config[:openverse]),
+      wikimedia: WikimediaClient.new(config[:wikimedia])
     }
     
     @logger.info("ImageServiceBus initialized with #{@clients.keys.length} clients")

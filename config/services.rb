@@ -26,11 +26,19 @@ module Config
     openverse: {} # No API key needed
   }
 
-  # LLM Configuration for content analysis
+  # LLM Configuration for content analysis (using Gemini)
   LLM_CONFIG = {
-    provider: 'groq', # or 'openai', 'anthropic'
-    api_key: ENV['GROQ_API_KEY'],
-    model: ENV['LLM_MODEL'] || 'llama-3.1-8b-instant',
+    provider: 'gemini', # Using Gemini for LLM tasks
+    api_key: ENV['GEMINI_API_KEY'],
+    model: 'gemini-2.5-flash-lite-preview-06-17',
+    max_tokens: 2048,
+    temperature: 0.1
+  }
+
+  # Gemini Configuration
+  GEMINI_CONFIG = {
+    api_key: ENV['GEMINI_API_KEY'],
+    model: 'gemini-2.5-flash-lite-preview-06-17',
     max_tokens: 2048,
     temperature: 0.1
   }
@@ -47,6 +55,10 @@ module Config
   # Validation methods
   def self.validate_groq_config!
     raise "GROQ_API_KEY environment variable not set" unless GROQ_CONFIG[:api_key]
+  end
+
+  def self.validate_gemini_config!
+    raise "GEMINI_API_KEY environment variable not set" unless GEMINI_CONFIG[:api_key]
   end
 
   def self.validate_aws_config!
@@ -74,6 +86,8 @@ module Config
     case service_name
     when 'groq'
       GROQ_CONFIG
+    when 'gemini'
+      GEMINI_CONFIG
     when 'aws'
       AWS_CONFIG
     when 'llm'

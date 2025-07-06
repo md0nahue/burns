@@ -14,7 +14,8 @@ class TestImageServiceBus < Test::Unit::TestCase
       pexels: { api_key: ENV['PEXELS_API_KEY'] },
       pixabay: { api_key: ENV['PIXABAY_API_KEY'] },
       lorem_picsum: {},
-      openverse: {}
+      openverse: {},
+      wikimedia: {}
     }
     
     @service_bus = ImageServiceBus.new(@config)
@@ -29,19 +30,20 @@ class TestImageServiceBus < Test::Unit::TestCase
   # Test basic service bus initialization
   def test_service_bus_initialization
     assert_not_nil(@service_bus)
-    assert_equal(5, @service_bus.clients.keys.length)
+    assert_equal(6, @service_bus.clients.keys.length)
     assert_includes(@service_bus.clients.keys, :unsplash)
     assert_includes(@service_bus.clients.keys, :pexels)
     assert_includes(@service_bus.clients.keys, :pixabay)
     assert_includes(@service_bus.clients.keys, :lorem_picsum)
     assert_includes(@service_bus.clients.keys, :openverse)
+    assert_includes(@service_bus.clients.keys, :wikimedia)
   end
 
   # Test client status
   def test_client_status
     status = @service_bus.client_status
     assert_not_nil(status)
-    assert_equal(5, status.keys.length)
+    assert_equal(6, status.keys.length)
     
     status.each do |client_name, client_status|
       assert_includes([true, false], client_status[:available])
@@ -207,6 +209,33 @@ class TestImageServiceBus < Test::Unit::TestCase
       end
     else
       puts "No results from Openverse (this is normal)"
+    end
+  end
+
+  def test_wikimedia_client
+    client = @service_bus.clients[:wikimedia]
+    assert_not_nil(client)
+    
+    # Test with a public figure query
+    result = client.search_images('Albert Einstein', '1080p')
+    if result
+      assert_equal('wikimedia', result[:provider])
+      assert_not_nil(result[:images])
+      
+      if result[:images].length > 0
+        image = result[:images].first
+        assert_not_nil(image[:url])
+        assert_not_nil(image[:photographer])
+        assert_not_nil(image[:metadata])
+        assert_not_nil(image[:metadata][:license])
+        assert_not_nil(image[:metadata][:id])
+        
+        # Check that image meets minimum size requirements
+        assert(image[:width] >= 1920 || image[:height] >= 1080, 
+               "WikiMedia images should meet minimum size requirements")
+      end
+    else
+      puts "No results from WikiMedia (this is normal)"
     end
   end
 

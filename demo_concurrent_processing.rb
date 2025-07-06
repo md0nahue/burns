@@ -14,7 +14,7 @@ generator = VideoGenerator.new
 demo_options = {
   resolution: '1080p',
   fps: 24,
-  max_concurrency: 5,  # Process up to 5 segments concurrently
+  max_concurrency: nil,  # Let the system calculate optimal concurrency
   test_mode: true
 }
 
@@ -32,7 +32,7 @@ end
 
 puts "\n🚀 Starting concurrent processing demo..."
 puts "  📁 Audio file: #{audio_file}"
-puts "  ⚡ Concurrency: #{demo_options[:max_concurrency]}"
+puts "  ⚡ Concurrency: #{demo_options[:max_concurrency] || 'Auto-calculated (unlimited Lambda scaling)'}"
 puts "  ⚙️  Options: #{demo_options}"
 
 # Step 1: Process audio and generate images (same as before)
@@ -150,12 +150,13 @@ puts "=" * 50
 
 # Calculate theoretical performance improvements
 sequential_time = simulated_segments.length * 30  # Assume 30 seconds per segment
-concurrent_time = (simulated_segments.length / demo_options[:max_concurrency].to_f).ceil * 30
+optimal_concurrency = demo_options[:max_concurrency] || simulated_segments.length
+concurrent_time = (simulated_segments.length / optimal_concurrency.to_f).ceil * 30
 improvement = ((sequential_time - concurrent_time) / sequential_time.to_f * 100).round(2)
 
 puts "  📊 Performance Analysis:"
 puts "    📝 Segments: #{simulated_segments.length}"
-puts "    ⚡ Concurrency: #{demo_options[:max_concurrency]}"
+puts "    ⚡ Concurrency: #{optimal_concurrency} (unlimited Lambda scaling)"
 puts "    ⏱️  Sequential (estimated): #{sequential_time} seconds"
 puts "    ⚡ Concurrent (estimated): #{concurrent_time} seconds"
 puts "    📈 Performance improvement: #{improvement}%"
@@ -166,7 +167,7 @@ puts "STEP 5: Concurrent Architecture"
 puts "=" * 50
 
 puts "  🏗️  How concurrent processing works:"
-puts "    1. 📝 Ruby splits project into #{demo_options[:max_concurrency]} concurrent tasks"
+puts "    1. 📝 Ruby splits project into #{optimal_concurrency} concurrent tasks"
 puts "    2. 🚀 Each task invokes a separate Lambda function"
 puts "    3. 📹 Each Lambda processes one video segment independently"
 puts "    4. ⏳ Ruby waits for all segments to complete"

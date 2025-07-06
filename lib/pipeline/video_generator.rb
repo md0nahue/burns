@@ -1,5 +1,5 @@
 require_relative '../services/whisper_service'
-require_relative '../services/llm_service'
+require_relative '../services/gemini_service'
 require_relative '../services/s3_service'
 require_relative '../services/lambda_service'
 require_relative 'audio_processor'
@@ -11,7 +11,7 @@ require 'securerandom'
 class VideoGenerator
   def initialize
     @whisper_service = WhisperService.new
-    @llm_service = LLMService.new
+    @gemini_service = GeminiService.new
     @s3_service = S3Service.new
     @lambda_service = LambdaService.new
     @audio_processor = AudioProcessor.new

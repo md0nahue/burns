@@ -58,11 +58,13 @@ class LambdaService
   def generate_video_segments_concurrently(project_id, segments, options = {})
     puts "🚀 Generating video segments concurrently for project: #{project_id}"
     puts "  📝 Segments: #{segments.length}"
-    puts "  ⚡ Concurrency: #{options[:max_concurrency] || 5}"
+    
+    # Calculate optimal concurrency based on segments
+    max_concurrency = options[:max_concurrency] || calculate_optimal_concurrency(segments.length)
+    puts "  ⚡ Concurrency: #{max_concurrency} (unlimited Lambda scaling)"
     
     begin
-      # Create concurrent executor
-      max_concurrency = options[:max_concurrency] || 5
+      # Create concurrent executor - can handle unlimited Lambda invocations
       executor = Concurrent::FixedThreadPool.new(max_concurrency)
       
       # Prepare segment tasks
@@ -357,6 +359,26 @@ class LambdaService
   end
 
   private
+
+  # Calculate optimal concurrency based on segment count
+  # @param segment_count [Integer] Number of segments to process
+  # @return [Integer] Optimal concurrency level
+  def calculate_optimal_concurrency(segment_count)
+    # AWS Lambda can handle thousands of concurrent executions
+    # We can process ALL segments simultaneously if needed
+    
+    if segment_count <= 10
+      # Small projects: process all segments concurrently
+      segment_count
+    elsif segment_count <= 50
+      # Medium projects: process in batches of 25
+      [segment_count, 25].min
+    else
+      # Large projects: process in batches of 50
+      # This prevents overwhelming the Ruby thread pool
+      [segment_count, 50].min
+    end
+  end
 
   # Invoke Lambda function
   # @param payload [Hash] Function payload

@@ -27,7 +27,7 @@ class S3Service
       bucket = @s3_resource.create_bucket(
         bucket: bucket_name,
         create_bucket_configuration: {
-          location_constraint: @region
+          location_constraint: 'us-east-1'
         }
       )
 
@@ -189,7 +189,7 @@ class S3Service
       {
         success: true,
         manifest_key: manifest_key,
-        manifest_url: "s3://#{bucket_name}/#{manifest_key},
+        manifest_url: "s3://#{bucket_name}/#{manifest_key}",
         project_id: project_id
       }
       
