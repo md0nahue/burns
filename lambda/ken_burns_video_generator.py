@@ -44,6 +44,129 @@ class KenBurnsVideoGenerator:
             if not project_id:
                 return self._error_response("project_id is required")
             
+            # Check if this is segment processing or final video combination
+            if event.get('options', {}).get('segment_processing'):
+                return self._process_segment(event, context)
+            elif event.get('options', {}).get('video_combination'):
+                return self._combine_segments(event, context)
+            else:
+                return self._process_full_video(event, context)
+            
+        except Exception as e:
+            logger.error(f"Error in video generation: {str(e)}")
+            return self._error_response(f"Video generation failed: {str(e)}")
+    
+    def _process_segment(self, event: Dict[str, Any], context: Any) -> Dict[str, Any]:
+        """Process a single video segment"""
+        try:
+            project_id = event.get('project_id')
+            segment_id = event.get('segment_id')
+            images = event.get('images', [])
+            duration = event.get('duration', 0)
+            
+            logger.info(f"Processing segment {segment_id} for project {project_id}")
+            
+            # Download images for this segment
+            segment_images = []
+            for image_data in images:
+                s3_key = image_data.get('s3_key')
+                if s3_key:
+                    image_path = self._download_s3_file(s3_key, f"segment_{segment_id}_{len(segment_images)}.jpg")
+                    if image_path:
+                        segment_images.append({
+                            'path': image_path,
+                            'query': image_data.get('query'),
+                            'provider': image_data.get('provider')
+                        })
+            
+            if not segment_images:
+                return self._error_response(f"No images found for segment {segment_id}")
+            
+            # Generate segment video
+            segment_path = self._generate_segment_video(segment_images, duration)
+            
+            # Upload segment video
+            segment_s3_key = f"segments/{project_id}/{segment_id}_segment.mp4"
+            self._upload_segment_video(segment_s3_key, segment_path)
+            
+            # Clean up temporary files
+            self._cleanup_temp_files()
+            
+            logger.info(f"Segment {segment_id} completed for project {project_id}")
+            
+            return {
+                'statusCode': 200,
+                'body': json.dumps({
+                    'project_id': project_id,
+                    'segment_id': segment_id,
+                    'segment_s3_key': segment_s3_key,
+                    'duration': duration,
+                    'generated_at': datetime.now().iso8601()
+                })
+            }
+            
+        except Exception as e:
+            logger.error(f"Error processing segment: {str(e)}")
+            return self._error_response(f"Segment processing failed: {str(e)}")
+    
+    def _combine_segments(self, event: Dict[str, Any], context: Any) -> Dict[str, Any]:
+        """Combine segment videos into final video with audio"""
+        try:
+            project_id = event.get('project_id')
+            segment_results = event.get('segment_results', [])
+            
+            logger.info(f"Combining {len(segment_results)} segments for project {project_id}")
+            
+            # Download segment videos
+            segment_videos = []
+            for result in segment_results:
+                if result.get('success'):
+                    segment_s3_key = result.get('segment_s3_key')
+                    if segment_s3_key:
+                        video_path = self._download_s3_file(segment_s3_key, f"segment_{len(segment_videos)}.mp4")
+                        if video_path:
+                            segment_videos.append(video_path)
+            
+            if not segment_videos:
+                return self._error_response("No segment videos found")
+            
+            # Download original audio
+            manifest = self._download_project_manifest(project_id)
+            audio_file = self._download_audio_file(manifest.get('audio_file')) if manifest else None
+            
+            # Combine segments and add audio
+            final_video_path = self._combine_segments_with_audio(segment_videos, audio_file)
+            
+            # Upload final video
+            video_url = self._upload_final_video(project_id, final_video_path)
+            
+            # Clean up temporary files
+            self._cleanup_temp_files()
+            
+            logger.info(f"Segment combination completed for project {project_id}")
+            
+            return {
+                'statusCode': 200,
+                'body': json.dumps({
+                    'project_id': project_id,
+                    'video_url': video_url,
+                    'video_s3_key': f"videos/{project_id}_final_video.mp4",
+                    'generated_at': datetime.now().iso8601(),
+                    'duration': self._get_video_duration(final_video_path),
+                    'resolution': DEFAULT_RESOLUTION,
+                    'fps': DEFAULT_FPS
+                })
+            }
+            
+        except Exception as e:
+            logger.error(f"Error combining segments: {str(e)}")
+            return self._error_response(f"Segment combination failed: {str(e)}")
+    
+    def _process_full_video(self, event: Dict[str, Any], context: Any) -> Dict[str, Any]:
+        """Process full video (legacy method for backward compatibility)"""
+        try:
+            project_id = event.get('project_id')
+            
             # Download project manifest
             manifest = self._download_project_manifest(project_id)
             if not manifest:
@@ -65,7 +188,7 @@ class KenBurnsVideoGenerator:
             # Clean up temporary files
             self._cleanup_temp_files()
             
-            logger.info(f"Video generation completed for project {project_id}")
+            logger.info(f"Full video generation completed for project {project_id}")
             
             return {
                 'statusCode': 200,
@@ -81,8 +204,8 @@ class KenBurnsVideoGenerator:
             }
             
         except Exception as e:
-            logger.error(f"Error in video generation: {str(e)}")
-            return self._error_response(f"Video generation failed: {str(e)}")
+            logger.error(f"Error in full video generation: {str(e)}")
+            return self._error_response(f"Full video generation failed: {str(e)}")
     
     def _download_project_manifest(self, project_id: str) -> Dict[str, Any]:
         """Download and parse project manifest from S3"""
@@ -318,6 +441,144 @@ class KenBurnsVideoGenerator:
             logger.error(f"Error applying Ken Burns effect: {str(e)}")
             # Return original clip if effect fails
             return image_clip.set_duration(duration)
+    
+    def _generate_segment_video(self, images: List[Dict[str, Any]], duration: float) -> str:
+        """Generate a single segment video from images"""
+        try:
+            if not images:
+                raise Exception("No images provided for segment")
+            
+            # Calculate timing for each image
+            image_count = len(images)
+            image_duration = duration / image_count
+            
+            clips = []
+            
+            for i, image_data in enumerate(images):
+                image_path = image_data['path']
+                
+                if not os.path.exists(image_path):
+                    continue
+                
+                # Load image
+                image_clip = ImageClip(image_path)
+                
+                # Apply Ken Burns effect
+                ken_burns_clip = self._apply_ken_burns_effect(image_clip, image_duration)
+                
+                clips.append(ken_burns_clip)
+            
+            if not clips:
+                raise Exception("No video clips created for segment")
+            
+            # Concatenate image clips
+            segment_video = concatenate_videoclips(clips)
+            
+            # Set video properties
+            segment_video = segment_video.set_fps(DEFAULT_FPS)
+            segment_video = segment_video.resize(DEFAULT_RESOLUTION)
+            
+            # Export segment video
+            output_path = os.path.join(self.temp_dir, 'segment_video.mp4')
+            segment_video.write_videofile(
+                output_path,
+                codec='libx264',
+                temp_audiofile=os.path.join(self.temp_dir, 'temp-segment-audio.m4a'),
+                remove_temp=True,
+                verbose=False,
+                logger=None
+            )
+            
+            # Clean up video clips
+            for clip in clips:
+                clip.close()
+            segment_video.close()
+            
+            logger.info(f"Segment video generated successfully: {output_path}")
+            return output_path
+            
+        except Exception as e:
+            logger.error(f"Error generating segment video: {str(e)}")
+            raise
+    
+    def _combine_segments_with_audio(self, segment_videos: List[str], audio_file: str) -> str:
+        """Combine segment videos and add original audio"""
+        try:
+            # Load segment video clips
+            video_clips = []
+            for video_path in segment_videos:
+                if os.path.exists(video_path):
+                    clip = VideoFileClip(video_path)
+                    video_clips.append(clip)
+            
+            if not video_clips:
+                raise Exception("No valid segment videos found")
+            
+            # Concatenate all segments
+            final_video = concatenate_videoclips(video_clips)
+            
+            # Add audio if available
+            if audio_file and os.path.exists(audio_file):
+                audio_clip = AudioFileClip(audio_file)
+                
+                # Trim audio to match video duration
+                if audio_clip.duration > final_video.duration:
+                    audio_clip = audio_clip.subclip(0, final_video.duration)
+                
+                final_video = final_video.set_audio(audio_clip)
+            
+            # Set video properties
+            final_video = final_video.set_fps(DEFAULT_FPS)
+            final_video = final_video.resize(DEFAULT_RESOLUTION)
+            
+            # Export final video
+            output_path = os.path.join(self.temp_dir, 'final_video.mp4')
+            final_video.write_videofile(
+                output_path,
+                codec='libx264',
+                audio_codec='aac',
+                temp_audiofile=os.path.join(self.temp_dir, 'temp-audio.m4a'),
+                remove_temp=True,
+                verbose=False,
+                logger=None
+            )
+            
+            # Clean up video clips
+            for clip in video_clips:
+                clip.close()
+            final_video.close()
+            
+            logger.info(f"Final video with audio generated successfully: {output_path}")
+            return output_path
+            
+        except Exception as e:
+            logger.error(f"Error combining segments with audio: {str(e)}")
+            raise
+    
+    def _upload_segment_video(self, s3_key: str, video_path: str) -> str:
+        """Upload segment video to S3"""
+        try:
+            s3_client.upload_file(
+                video_path,
+                self.bucket_name,
+                s3_key,
+                ExtraArgs={
+                    'ContentType': 'video/mp4',
+                    'Metadata': {
+                        'video_type': 'segment',
+                        'generated_at': datetime.now().iso8601()
+                    }
+                }
+            )
+            
+            video_url = f"s3://{self.bucket_name}/{s3_key}"
+            logger.info(f"Segment video uploaded: {video_url}")
+            
+            return video_url
+            
+        except Exception as e:
+            logger.error(f"Error uploading segment video: {str(e)}")
+            raise
     
     def _upload_final_video(self, project_id: str, video_path: str) -> str:
         """Upload final video to S3"""

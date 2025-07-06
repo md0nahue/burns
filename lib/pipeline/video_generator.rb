@@ -243,23 +243,34 @@ class VideoGenerator
     end
   end
 
-  # Generate final video using Lambda
+  # Generate final video using Lambda (concurrent approach)
   # @param project_id [String] Project identifier
   # @param options [Hash] Video generation options
   # @return [Hash] Video generation result
   def generate_final_video(project_id, options)
-    puts "  🎥 Generating final video using Lambda..."
+    puts "  🎥 Generating final video using concurrent Lambda processing..."
     
     begin
-      # Invoke Lambda function for video generation
-      video_result = @lambda_service.generate_video(project_id, options)
+      # Get segments from manifest
+      manifest = @s3_service.get_project_manifest(project_id)
+      return { success: false, error: "Could not get project manifest" } unless manifest[:success]
+      
+      segments = manifest[:manifest]['segments']
+      
+      # Use concurrent processing for better performance
+      video_result = @lambda_service.generate_video_segments_concurrently(
+        project_id, 
+        segments, 
+        options.merge(total_segments: segments.length)
+      )
       
       if video_result[:success]
-        puts "    ✅ Video generation completed"
+        puts "    ✅ Concurrent video generation completed"
         puts "    📹 Video URL: #{video_result[:video_url]}"
         puts "    ⏱️  Duration: #{video_result[:duration]} seconds"
+        puts "    ⚡ Processed #{segments.length} segments concurrently"
       else
-        puts "    ❌ Video generation failed: #{video_result[:error]}"
+        puts "    ❌ Concurrent video generation failed: #{video_result[:error]}"
       end
       
       video_result
