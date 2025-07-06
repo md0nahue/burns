@@ -278,6 +278,59 @@ class S3Service
     end
   end
 
+  # Upload audio file to S3
+  # @param audio_file_path [String] Path to audio file
+  # @param project_id [String] Project identifier
+  # @param bucket_name [String] S3 bucket name (optional)
+  # @return [Hash] Upload result
+  def upload_audio_file(audio_file_path, project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    puts "📤 Uploading audio file: #{File.basename(audio_file_path)}"
+    
+    begin
+      # Read audio file
+      audio_content = File.read(audio_file_path)
+      
+      # Generate S3 key
+      timestamp = Time.now.strftime('%Y%m%d_%H%M%S')
+      filename = File.basename(audio_file_path)
+      s3_key = "projects/#{project_id}/audio/#{filename}"
+      
+      # Upload to S3
+      bucket = @s3_resource.bucket(bucket_name)
+      obj = bucket.object(s3_key)
+      
+      obj.put(
+        body: audio_content,
+        content_type: 'audio/mpeg', # Adjust based on file type
+        metadata: {
+          'original-filename' => filename,
+          'project-id' => project_id,
+          'upload-timestamp' => timestamp,
+          'file-size' => File.size(audio_file_path).to_s
+        }
+      )
+      
+      # Generate presigned URL for access
+      presigned_url = obj.presigned_url(:get, expires_in: 3600)
+      
+      puts "✅ Audio file uploaded: s3://#{bucket_name}/#{s3_key}"
+      
+      {
+        success: true,
+        s3_key: s3_key,
+        s3_url: "s3://#{bucket_name}/#{s3_key}",
+        presigned_url: presigned_url,
+        filename: filename,
+        file_size: File.size(audio_file_path)
+      }
+      
+    rescue => e
+      puts "❌ Error uploading audio file: #{e.message}"
+      { success: false, error: e.message }
+    end
+  end
+
   private
 
   # Configure bucket settings after creation

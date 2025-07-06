@@ -54,6 +54,11 @@ check_aws_credentials() {
     log_success "AWS credentials configured"
 }
 
+# Source zprofile to load AWS credentials and role
+if [ -f "$HOME/.zprofile" ]; then
+    source "$HOME/.zprofile"
+fi
+
 # Create S3 bucket
 create_s3_bucket() {
     log_info "Creating S3 bucket: $BUCKET_NAME"
@@ -61,10 +66,17 @@ create_s3_bucket() {
     if aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
         log_warning "Bucket $BUCKET_NAME already exists"
     else
-        aws s3api create-bucket \
-            --bucket "$BUCKET_NAME" \
-            --region "$REGION" \
-            --create-bucket-configuration LocationConstraint="$REGION"
+        # For us-east-1, don't specify LocationConstraint
+        if [ "$REGION" = "us-east-1" ]; then
+            aws s3api create-bucket \
+                --bucket "$BUCKET_NAME" \
+                --region "$REGION"
+        else
+            aws s3api create-bucket \
+                --bucket "$BUCKET_NAME" \
+                --region "$REGION" \
+                --create-bucket-configuration LocationConstraint="$REGION"
+        fi
         log_success "S3 bucket created: $BUCKET_NAME"
     fi
     
@@ -109,17 +121,28 @@ create_iam_role() {
 }
 EOF
     
-    # Create role
-    aws iam create-role \
-        --role-name "$LAMBDA_ROLE_NAME" \
-        --assume-role-policy-document file:///tmp/trust-policy.json
+    # Check if role exists
+    if aws iam get-role --role-name "$LAMBDA_ROLE_NAME" &>/dev/null; then
+        log_warning "IAM role $LAMBDA_ROLE_NAME already exists. Updating trust policy."
+        aws iam update-assume-role-policy \
+            --role-name "$LAMBDA_ROLE_NAME" \
+            --policy-document file:///tmp/trust-policy.json
+    else
+        aws iam create-role \
+            --role-name "$LAMBDA_ROLE_NAME" \
+            --assume-role-policy-document file:///tmp/trust-policy.json
+    fi
     
-    # Attach basic Lambda execution policy
+    # Attach basic Lambda execution policy (idempotent)
     aws iam attach-role-policy \
         --role-name "$LAMBDA_ROLE_NAME" \
-        --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole || true
     
-    log_success "IAM role created: $LAMBDA_ROLE_NAME"
+    # Wait for IAM role propagation
+    log_info "Waiting for IAM role propagation..."
+    sleep 10
+    
+    log_success "IAM role ready: $LAMBDA_ROLE_NAME"
 }
 
 # Create IAM policy for S3 access
@@ -148,17 +171,35 @@ create_iam_policy() {
 }
 EOF
     
-    # Create policy
-    aws iam create-policy \
-        --policy-name "$LAMBDA_POLICY_NAME" \
-        --policy-document file:///tmp/policy-document.json
+    # Check if policy exists
+    if aws iam get-policy --policy-arn "arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/$LAMBDA_POLICY_NAME" &>/dev/null; then
+        log_warning "IAM policy $LAMBDA_POLICY_NAME already exists. Updating policy document."
+        # Get the policy version
+        POLICY_VERSION=$(aws iam get-policy --policy-arn "arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/$LAMBDA_POLICY_NAME" --query 'Policy.DefaultVersionId' --output text)
+        # Create new version
+        aws iam create-policy-version \
+            --policy-arn "arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/$LAMBDA_POLICY_NAME" \
+            --policy-document file:///tmp/policy-document.json \
+            --set-as-default
+        # Delete old version if it exists
+        if [ "$POLICY_VERSION" != "v1" ]; then
+            aws iam delete-policy-version \
+                --policy-arn "arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/$LAMBDA_POLICY_NAME" \
+                --version-id "$POLICY_VERSION" || true
+        fi
+    else
+        # Create new policy
+        aws iam create-policy \
+            --policy-name "$LAMBDA_POLICY_NAME" \
+            --policy-document file:///tmp/policy-document.json
+    fi
     
-    # Attach policy to role
+    # Attach policy to role (idempotent)
     aws iam attach-role-policy \
         --role-name "$LAMBDA_ROLE_NAME" \
-        --policy-arn "arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/$LAMBDA_POLICY_NAME"
+        --policy-arn "arn:aws:iam::$(aws sts get-caller-identity --query Account --output text):policy/$LAMBDA_POLICY_NAME" || true
     
-    log_success "IAM policy created and attached"
+    log_success "IAM policy ready and attached"
 }
 
 # Create Lambda function (placeholder)

@@ -114,25 +114,23 @@ class VideoGenerator
         return { success: false, error: "Audio file not found: #{audio_file_path}" }
       end
       
-      # Transcribe audio using Whisper
-      transcription = @whisper_service.transcribe_file(audio_file_path)
+      # Process audio file using AudioProcessor
+      puts "    🎤 Processing audio with AudioProcessor..."
+      audio_result = @audio_processor.process_audio(audio_file_path)
       
-      unless transcription[:success]
-        return { success: false, error: "Transcription failed: #{transcription[:error]}" }
+      unless audio_result[:segments]
+        return { success: false, error: "Audio processing failed: no segments returned" }
       end
-      
-      # Process transcription into segments
-      segments = @audio_processor.process_transcription(transcription[:segments])
       
       # Upload audio file to S3
       audio_s3_key = @s3_service.upload_audio_file(audio_file_path, project_id)
       
       {
         success: true,
-        segments: segments,
+        segments: audio_result[:segments],
         audio_file: audio_s3_key,
-        duration: transcription[:duration],
-        language: transcription[:language]
+        duration: audio_result[:duration],
+        language: 'en' # Default language
       }
       
     rescue => e

@@ -18,12 +18,12 @@ class ImageServiceBus
     
     # Initialize API clients
     @clients = {
-      unsplash: UnsplashClient.new(config[:unsplash]),
-      pexels: PexelsClient.new(config[:pexels]),
-      pixabay: PixabayClient.new(config[:pixabay]),
-      lorem_picsum: LoremPicsumClient.new(config[:lorem_picsum]),
-      openverse: OpenverseClient.new(config[:openverse]),
-      wikimedia: WikimediaClient.new(config[:wikimedia])
+      unsplash: UnsplashClient.new(config[:unsplash] || {}),
+      pexels: PexelsClient.new(config[:pexels] || {}),
+      pixabay: PixabayClient.new(config[:pixabay] || {}),
+      lorem_picsum: LoremPicsumClient.new(config[:lorem_picsum] || {}),
+      openverse: OpenverseClient.new(config[:openverse] || {}),
+      wikimedia: WikimediaClient.new(config[:wikimedia] || {})
     }
     
     @logger.info("ImageServiceBus initialized with #{@clients.keys.length} clients")

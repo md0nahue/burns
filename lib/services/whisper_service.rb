@@ -44,6 +44,14 @@ class WhisperService
   def transcribe(file_path, options = {})
     validate_file!(file_path)
     
+    # Check for cached response
+    cache_file = get_cache_file_path(file_path)
+    if File.exist?(cache_file)
+      puts "    📁 Using cached transcription from: #{cache_file}"
+      cached_data = JSON.parse(File.read(cache_file))
+      return parse_response(cached_data, options[:response_format] || 'verbose_json')
+    end
+    
     model = options[:model] || 'whisper-large-v3-turbo'
     language = options[:language]
     prompt = options[:prompt]
@@ -67,7 +75,13 @@ class WhisperService
     request.body = body
 
     response = make_request(request, uri)
-    parse_response(response, response_format)
+    response_data = parse_response(response, response_format)
+    
+    # Cache the response
+    puts "    💾 Caching transcription to: #{cache_file}"
+    File.write(cache_file, JSON.pretty_generate(response_data))
+    
+    response_data
   end
 
   # Translate audio file to English text
@@ -132,6 +146,16 @@ class WhisperService
 
   private
 
+  # Generate cache file path for transcription
+  # @param file_path [String] Path to audio file
+  # @return [String] Cache file path
+  def get_cache_file_path(file_path)
+    base_name = File.basename(file_path, File.extname(file_path))
+    cache_dir = 'cache'
+    Dir.mkdir(cache_dir) unless Dir.exist?(cache_dir)
+    "#{cache_dir}/#{base_name}.json"
+  end
+
   def build_multipart_body(file_path, model, language, prompt, response_format, 
                           timestamp_granularities, temperature, boundary, translation: false)
     body = []
@@ -179,12 +203,13 @@ class WhisperService
     end
     
     # Add timestamp granularities for verbose_json
-    if response_format == 'verbose_json' && !timestamp_granularities.empty?
-      body << "--#{boundary}"
-      body << "Content-Disposition: form-data; name=\"timestamp_granularities\""
-      body << ""
-      body << JSON.generate(timestamp_granularities)
-    end
+    # Note: Groq API doesn't support timestamp_granularities, so we skip it
+    # if response_format == 'verbose_json' && !timestamp_granularities.empty?
+    #   body << "--#{boundary}"
+    #   body << "Content-Disposition: form-data; name=\"timestamp_granularities\""
+    #   body << ""
+    #   body << JSON.generate(timestamp_granularities)
+    # end
     
     body << "--#{boundary}--"
     body.join("\r\n")
@@ -215,11 +240,33 @@ class WhisperService
   end
 
   def parse_response(response, response_format)
+    # Handle both HTTP response objects and cached Hash data
+    data = if response.is_a?(Net::HTTPResponse)
+      JSON.parse(response.body)
+    else
+      response # Already a Hash from cache
+    end
+    
     case response_format
     when 'json', 'verbose_json'
-      JSON.parse(response.body)
+      # Return standardized format expected by pipeline
+      {
+        success: true,
+        text: data['text'],
+        segments: data['segments'] || [],
+        duration: data['duration'],
+        language: data['language'],
+        task: data['task']
+      }
     when 'text'
-      { 'text' => response.body.strip }
+      { 
+        success: true,
+        text: data['text'] || data,
+        segments: [],
+        duration: nil,
+        language: nil,
+        task: 'transcribe'
+      }
     else
       raise "Unsupported response format: #{response_format}"
     end
