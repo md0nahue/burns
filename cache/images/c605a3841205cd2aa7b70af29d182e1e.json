@@ -1,0 +1,38 @@
+{
+  "id": 22,
+  "start_time": 106.18,
+  "end_time": 112.14,
+  "text": " I pardoned hundreds of political prisoners who had been grossly mistreated.",
+  "confidence": -0.16110931,
+  "no_speech_prob": 1.0400085e-12,
+  "compression_ratio": 1.6027397,
+  "words": [],
+  "image_queries": [
+    "official document stamp"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6358840/pexels-photo-6358840.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6358840/pexels-photo-6358840.jpeg",
+      "width": 3500,
+      "height": 2333,
+      "description": "Close-up of hands stamping a document on a wooden desk indoors.",
+      "photographer": "Anna Tarazevich",
+      "photographer_url": "https://www.pexels.com/@anntarazevich",
+      "metadata": {
+        "id": 6358840,
+        "avg_color": "#93867E",
+        "liked": false
+      },
+      "query": "official document stamp",
+      "query_index": 0,
+      "segment_id": 22,
+      "start_time": 106.18,
+      "end_time": 112.14,
+      "generated_at": "2025-07-06 20:59:08 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

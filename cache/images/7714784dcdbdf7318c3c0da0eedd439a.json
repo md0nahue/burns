@@ -1,0 +1,38 @@
+{
+  "id": 116,
+  "start_time": 576.106,
+  "end_time": 577.166,
+  "text": " I mean, it's an Orwellian.",
+  "confidence": -0.16781792,
+  "no_speech_prob": 4.480787e-12,
+  "compression_ratio": 1.7288135,
+  "words": [],
+  "image_queries": [
+    "Man giving a file"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/8872371/pexels-photo-8872371.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/8872371/pexels-photo-8872371.jpeg",
+      "width": 5527,
+      "height": 3685,
+      "description": "Two colleagues collaborate with vintage office equipment. Professional workspace setting.",
+      "photographer": "MART  PRODUCTION",
+      "photographer_url": "https://www.pexels.com/@mart-production",
+      "metadata": {
+        "id": 8872371,
+        "avg_color": "#74543F",
+        "liked": false
+      },
+      "query": "Man giving a file",
+      "query_index": 0,
+      "segment_id": 116,
+      "start_time": 576.106,
+      "end_time": 577.166,
+      "generated_at": "2025-07-06 21:00:12 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

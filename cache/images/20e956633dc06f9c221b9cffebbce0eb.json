@@ -1,0 +1,38 @@
+{
+  "id": 91,
+  "start_time": 480.846,
+  "end_time": 482.126,
+  "text": " YOU KNOW, IT'S FUNNY.",
+  "confidence": -0.5056211,
+  "no_speech_prob": 9.412537e-12,
+  "compression_ratio": 1.719697,
+  "words": [],
+  "image_queries": [
+    "people in a group looking confused"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/2422293/pexels-photo-2422293.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/2422293/pexels-photo-2422293.jpeg",
+      "width": 3600,
+      "height": 2558,
+      "description": "Three diverse professionals working and smiling at office desks, fostering teamwork and collaboration.",
+      "photographer": "Jopwell",
+      "photographer_url": "https://www.pexels.com/@jopwell",
+      "metadata": {
+        "id": 2422293,
+        "avg_color": "#4F5459",
+        "liked": false
+      },
+      "query": "people in a group looking confused",
+      "query_index": 0,
+      "segment_id": 91,
+      "start_time": 480.846,
+      "end_time": 482.126,
+      "generated_at": "2025-07-06 20:59:53 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

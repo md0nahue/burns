@@ -1,0 +1,38 @@
+{
+  "id": 48,
+  "start_time": 264.242,
+  "end_time": 268.782,
+  "text": " And I didn't know her. I still don't know her. I don't believe I ever spoke to her,",
+  "confidence": -0.079134785,
+  "no_speech_prob": 2.5043453e-12,
+  "compression_ratio": 1.6171004,
+  "words": [],
+  "image_queries": [
+    "abstract concept of legal clearance"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/983200/pexels-photo-983200.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/983200/pexels-photo-983200.jpeg",
+      "width": 3840,
+      "height": 2160,
+      "description": "Vivid abstract of glowing lava texture against dark tree bark. Perfect for nature-themed designs.",
+      "photographer": "Phil Kallahar",
+      "photographer_url": "https://www.pexels.com/@philkallahar",
+      "metadata": {
+        "id": 983200,
+        "avg_color": "#1B1A1E",
+        "liked": false
+      },
+      "query": "abstract concept of legal clearance",
+      "query_index": 0,
+      "segment_id": 48,
+      "start_time": 264.242,
+      "end_time": 268.782,
+      "generated_at": "2025-07-06 20:59:24 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

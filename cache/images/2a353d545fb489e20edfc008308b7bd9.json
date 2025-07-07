@@ -1,0 +1,38 @@
+{
+  "id": 27,
+  "start_time": 137.74,
+  "end_time": 142.52,
+  "text": " Assault in police officers, using a deadly weapon, participating in a riot, destroying government property.",
+  "confidence": -0.12560712,
+  "no_speech_prob": 1.0815735e-12,
+  "compression_ratio": 1.6109511,
+  "words": [],
+  "image_queries": [
+    "legal code text"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/18069696/pexels-photo-18069696.png?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/18069696/pexels-photo-18069696.png",
+      "width": 3840,
+      "height": 2160,
+      "description": "Abstract glass surfaces reflecting digital text create a mysterious tech ambiance.",
+      "photographer": "Google DeepMind",
+      "photographer_url": "https://www.pexels.com/@googledeepmind",
+      "metadata": {
+        "id": 18069696,
+        "avg_color": "#766E94",
+        "liked": false
+      },
+      "query": "legal code text",
+      "query_index": 0,
+      "segment_id": 27,
+      "start_time": 137.74,
+      "end_time": 142.52,
+      "generated_at": "2025-07-06 20:59:14 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

@@ -69,32 +69,52 @@ class LambdaService
       
       # Prepare segment tasks
       segment_tasks = segments.map.with_index do |segment, index|
-        # Debug: Check segment data
-        puts "    Debug - Segment #{index}: start_time=#{segment['start_time']}, end_time=#{segment['end_time']}"
+        # Normalize keys for mixed string/symbol keys
+        seg = segment.is_a?(Hash) ? segment.transform_keys(&:to_s) : segment
         
-        # Ensure we have valid timing data
-        start_time = segment['start_time']
-        end_time = segment['end_time']
-        if start_time.nil? || end_time.nil?
-          start_time = 0.0
-          end_time = 5.0
+        # Debug: Check segment data
+        puts "    Debug - Segment #{index}: id=#{seg['id']}, start_time=#{seg['start_time']}, end_time=#{seg['end_time']}"
+        
+        # Ensure we have valid timing data with safety checks
+        start_time = (seg['start_time'] || seg['start'] || 0.0).to_f
+        end_time = (seg['end_time'] || seg['end'] || 5.0).to_f
+        
+        # Ensure minimum duration
+        if end_time <= start_time
+          end_time = start_time + 3.0
         end
+        duration = end_time - start_time
         
         # Build images array for Lambda (array of {url: ...})
-        images = (segment['generated_images'] || []).map { |img| { url: img['url'] || img[:url] } }.compact
+        generated_images = seg['generated_images'] || []
+        images = generated_images.map do |img|
+          img_data = img.is_a?(Hash) ? img.transform_keys(&:to_s) : img
+          url = img_data['url'] || img_data[:url]
+          { url: url } if url && !url.empty?
+        end.compact
+        
+        # Skip segments without images
+        if images.empty?
+          puts "    Warning - Segment #{index} has no images, skipping"
+          next nil
+        end
         
         {
           project_id: project_id,
-          segment_id: segment['id'].to_s,
+          segment_id: (seg['id'] || index).to_s,
+          segment_index: index,
           images: images,
-          duration: end_time - start_time
+          duration: duration,
+          start_time: start_time,
+          end_time: end_time
         }
-      end
+      end.compact
       
-      # Submit tasks to executor
-      futures = segment_tasks.map do |task|
+      # Submit tasks to executor with better data passing
+      futures = segment_tasks.map.with_index do |task, index|
         Concurrent::Future.execute(executor: executor) do
-          generate_segment_video(project_id, task, options.merge(total_segments: segments.length))
+          enhanced_task = task.merge(segment_index: index)
+          generate_segment_video(project_id, enhanced_task, options.merge(total_segments: segment_tasks.length))
         end
       end
       
@@ -191,6 +211,9 @@ class LambdaService
       }
       
       # Invoke Lambda function for video combination
+      puts "  🔧 Payload for combination: #{payload.keys.join(', ')}"
+      puts "  📊 Segment results count: #{segment_results.length}"
+      
       response = invoke_lambda_function(payload)
       
       if response[:success]
@@ -375,6 +398,32 @@ class LambdaService
 
   private
 
+  # Generate presigned URL for S3 object
+  # @param s3_key [String] S3 object key
+  # @return [String] Presigned URL
+  def generate_presigned_url(s3_key)
+    begin
+      require_relative 's3_service'
+      s3_service = S3Service.new
+      bucket_name = Config::AWS_CONFIG[:s3_bucket]
+      
+      # Use S3 client to generate presigned URL
+      s3_client = Aws::S3::Client.new(
+        region: @region,
+        credentials: Aws::Credentials.new(
+          Config::AWS_CONFIG[:access_key_id],
+          Config::AWS_CONFIG[:secret_access_key]
+        )
+      )
+      
+      presigner = Aws::S3::Presigner.new(client: s3_client)
+      presigner.presigned_url(:get_object, bucket: bucket_name, key: s3_key, expires_in: 3600)
+    rescue => e
+      puts "    ⚠️ Failed to generate presigned URL: #{e.message}"
+      "s3://#{Config::AWS_CONFIG[:s3_bucket]}/#{s3_key}"
+    end
+  end
+
   # Calculate optimal concurrency based on segment count
   # @param segment_count [Integer] Number of segments to process
   # @return [Integer] Optimal concurrency level
@@ -422,25 +471,40 @@ class LambdaService
         # Check if there's an error in the response
         if response_body['errorMessage']
           puts "    Debug - Lambda error: #{response_body['errorMessage']}"
+          puts "    Debug - Error type: #{response_body['errorType']}"
+          puts "    Debug - Stack trace: #{response_body['stackTrace']}"
           return {
             success: false,
-            error: "Lambda function error: #{response_body['errorMessage']}"
+            error: "Lambda function error: #{response_body['errorMessage']}",
+            error_type: response_body['errorType']
           }
         end
         
-        # Success response
-        body = JSON.parse(response_body['body'])
+        # Success response - handle both string and object body formats
+        body = if response_body['body'].is_a?(String)
+          JSON.parse(response_body['body'])
+        else
+          response_body['body']
+        end
+        
+        # Generate presigned URL for video access
+        s3_key = body['video_s3_key'] || body['segment_s3_key']
+        video_url = if s3_key
+          generate_presigned_url(s3_key)
+        else
+          nil
+        end
         
         {
           success: true,
           status_code: response.status_code,
-          video_url: body['video_url'],
+          video_url: video_url,
           video_s3_key: body['video_s3_key'],
           segment_s3_key: body['segment_s3_key'],
           duration: body['duration'],
-          resolution: body['resolution'],
-          fps: body['fps'],
-          generated_at: body['generated_at'],
+          resolution: body['resolution'] || '1920x1080',
+          fps: body['fps'] || 24,
+          generated_at: Time.now.iso8601,
           project_id: body['project_id']
         }
       else
@@ -453,7 +517,16 @@ class LambdaService
         }
       end
       
+    rescue JSON::ParserError => e
+      puts "    ❌ JSON parsing error: #{e.message}"
+      puts "    ❌ Raw response: #{response.payload.read}"
+      {
+        success: false,
+        error: "Invalid JSON response from Lambda: #{e.message}"
+      }
     rescue => e
+      puts "    ❌ Lambda invocation error: #{e.message}"
+      puts "    ❌ Error class: #{e.class}"
       {
         success: false,
         error: "Lambda invocation failed: #{e.message}"

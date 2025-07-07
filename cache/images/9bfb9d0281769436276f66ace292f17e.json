@@ -1,0 +1,38 @@
+{
+  "id": 42,
+  "start_time": 228.78201,
+  "end_time": 235.722,
+  "text": " guilty, I guess. The former president was not found guilty essentially or otherwise. There was no",
+  "confidence": -0.08604036,
+  "no_speech_prob": 1.8833002e-12,
+  "compression_ratio": 1.7296296,
+  "words": [],
+  "image_queries": [
+    "Courtroom judge looking down"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5668473/pexels-photo-5668473.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "Close-up of a wooden gavel on a desk, symbolizing justice and legal authority.",
+      "photographer": "Sora Shimazaki",
+      "photographer_url": "https://www.pexels.com/@sora-shimazaki",
+      "metadata": {
+        "id": 5668473,
+        "avg_color": "#4A4C4E",
+        "liked": false
+      },
+      "query": "Courtroom judge looking down",
+      "query_index": 0,
+      "segment_id": 42,
+      "start_time": 228.78201,
+      "end_time": 235.722,
+      "generated_at": "2025-07-06 20:59:18 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

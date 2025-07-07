@@ -21,7 +21,7 @@ class VideoGenerator
     @image_generator = ImageGenerator.new
   end
 
-  # Generate complete Ken Burns video from audio file
+  # Generate complete Ken Burns video from audio file - FIXED PIPELINE FLOW
   # @param audio_file_path [String] Path to audio file
   # @param options [Hash] Generation options
   # @return [Hash] Generation result
@@ -34,93 +34,93 @@ class VideoGenerator
     puts "  ⚙️  Options: #{options}"
     
     begin
-      # Step 1: Process audio and transcribe (with cache)
-      puts "\n📝 Step 1: Processing audio and transcription..."
+      # STEP 1: TRANSCRIPTION - Get raw audio segments and text
+      puts "\n📝 Step 1: Transcribing audio to get text segments..."
       transcription_result = nil
-      if !force && @s3_service.transcription_exists?(project_id)
+      if !force && options[:cache_transcription] && @s3_service.transcription_exists?(project_id)
         puts "  💾 Using cached transcription from S3"
         transcription_result = @s3_service.get_transcription(project_id)
       else
+        puts "  🎤 Processing audio with Whisper..."
         transcription_result = process_audio(audio_file_path, project_id)
-        if transcription_result[:success]
+        if transcription_result[:success] && options[:cache_transcription]
           @s3_service.save_transcription(project_id, transcription_result)
         end
       end
-      log_artifact(project_id, 'transcription', transcription_result)
-      unless transcription_result[:success]
-        return { success: false, error: "Audio processing failed: #{transcription_result[:error]}" }
-      end
       
-      # Step 2: Analyze content and generate image queries (with cache)
-      puts "\n🎨 Step 2: Analyzing content and generating image queries..."
+      unless transcription_result[:success]
+        return { success: false, error: "Step 1 failed - Audio transcription: #{transcription_result[:error]}" }
+      end
+      puts "  ✅ Transcription complete: #{transcription_result[:segments].length} segments"
+      
+      # STEP 2: CONTENT ANALYSIS - Generate image queries from transcribed text
+      puts "\n🎨 Step 2: Analyzing text content to generate image queries..."
       analysis_result = nil
-      if !force && @s3_service.image_analysis_exists?(project_id)
-        puts "  💾 Using cached image analysis from S3"
+      if !force && options[:cache_analysis] && @s3_service.image_analysis_exists?(project_id)
+        puts "  💾 Using cached content analysis from S3"
         analysis_result = @s3_service.get_image_analysis(project_id)
       else
+        puts "  🧠 Analyzing content with Gemini to generate image queries..."
         analysis_result = analyze_content_for_images(transcription_result)
-        if analysis_result[:success]
+        if analysis_result[:success] && options[:cache_analysis]
           @s3_service.save_image_analysis(project_id, analysis_result)
         end
       end
-      log_artifact(project_id, 'gemini_analysis', analysis_result)
-      unless analysis_result[:success]
-        return { success: false, error: "Content analysis failed: #{analysis_result[:error]}" }
-      end
       
-      # Step 3: Generate images for each segment (with cache)
-      puts "\n🖼️  Step 3: Generating images for segments..."
+      unless analysis_result[:success]
+        return { success: false, error: "Step 2 failed - Content analysis: #{analysis_result[:error]}" }
+      end
+      puts "  ✅ Analysis complete: #{analysis_result[:total_image_queries]} image queries generated"
+      
+      # STEP 3: IMAGE GENERATION - Find actual images using the queries
+      puts "\n🖼️  Step 3: Generating images using the queries..."
       image_result = nil
-      if !force && @s3_service.image_generation_exists?(project_id)
+      if !force && options[:cache_images] && @s3_service.image_generation_exists?(project_id)
         puts "  💾 Using cached image generation from S3"
         image_result = @s3_service.get_image_generation(project_id)
       else
+        puts "  🔍 Searching for images using image service providers..."
         image_result = generate_images(project_id, analysis_result[:segments])
-        if image_result[:success]
+        if image_result[:success] && options[:cache_images]
           @s3_service.save_image_generation(project_id, image_result)
         end
       end
+      
       unless image_result[:success]
-        return { success: false, error: "Image generation failed: #{image_result[:error]}" }
+        return { success: false, error: "Step 3 failed - Image generation: #{image_result[:error]}" }
       end
+      puts "  ✅ Image generation complete: #{image_result[:total_images]} images found"
       
-      # Step 4: Create project manifest (with cache)
-      puts "\n📋 Step 4: Creating project manifest..."
-      manifest_result = nil
-      if !force && @s3_service.project_manifest_exists?(project_id)
-        puts "  💾 Using cached manifest from S3"
-        manifest_result = @s3_service.get_project_manifest(project_id)
-      else
-        manifest_result = create_project_manifest(project_id, transcription_result, image_result)
-        if manifest_result[:success]
-          @s3_service.save_project_manifest(project_id, manifest_result[:manifest])
-        end
-      end
-      log_artifact(project_id, 'manifest', manifest_result)
+      # STEP 4: MANIFEST CREATION - Combine everything into project manifest
+      puts "\n📋 Step 4: Creating project manifest with all data..."
+      manifest_result = create_project_manifest(project_id, transcription_result, image_result)
+      
       unless manifest_result[:success]
-        return { success: false, error: "Manifest creation failed: #{manifest_result[:error]}" }
+        return { success: false, error: "Step 4 failed - Manifest creation: #{manifest_result[:error]}" }
       end
+      puts "  ✅ Manifest created successfully"
       
-      # Step 5: Generate final video
+      # STEP 5: VIDEO GENERATION - Create final Ken Burns video
       puts "\n🎥 Step 5: Generating final Ken Burns video..."
       video_result = generate_final_video(project_id, options)
       
       unless video_result[:success]
-        return { success: false, error: "Video generation failed: #{video_result[:error]}" }
+        return { success: false, error: "Step 5 failed - Video generation: #{video_result[:error]}" }
       end
       
-      # Save completed video to local completed folder
+      # STEP 6: DOWNLOAD TO LOCAL COMPLETED FOLDER
+      puts "\n📥 Step 6: Downloading completed video to local folder..."
       audio_basename = File.basename(audio_file_path, File.extname(audio_file_path))
       completed_video_path = "completed/#{audio_basename}_ken_burns_video.mp4"
       
       # Copy video from S3 to local completed folder if available
       if video_result[:video_s3_key] && @s3_service
         begin
-          puts "📥 Downloading completed video to: #{completed_video_path}"
+          puts "  📥 Downloading completed video to: #{completed_video_path}"
           @s3_service.download_video(video_result[:video_s3_key], completed_video_path)
-          puts "✅ Video saved to: #{completed_video_path}"
+          puts "  ✅ Video saved to: #{completed_video_path}"
         rescue => e
-          puts "⚠️  Could not download video to local folder: #{e.message}"
+          puts "  ⚠️  Could not download video to local folder: #{e.message}"
         end
       end
       
@@ -141,6 +141,7 @@ class VideoGenerator
       
       puts "\n✅ Ken Burns video generation completed successfully!"
       puts "  📹 Video URL: #{result[:video_url]}"
+      puts "  📺 Local video: #{result[:local_video_path]}"
       puts "  ⏱️  Duration: #{result[:duration]} seconds"
       puts "  📐 Resolution: #{result[:resolution]}"
       puts "  🎬 Segments: #{result[:segments_count]}"
@@ -150,6 +151,7 @@ class VideoGenerator
       
     rescue => e
       puts "❌ Error in video generation: #{e.message}"
+      puts "❌ Backtrace: #{e.backtrace.first(5).join('\n  ')}"
       { success: false, error: e.message, project_id: project_id }
     end
   end

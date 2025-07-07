@@ -1,0 +1,38 @@
+{
+  "id": 74,
+  "start_time": 413.944,
+  "end_time": 419.504,
+  "text": " He said to the group, in closing, let me tell you how important I think your work is to the future of our country.",
+  "confidence": -0.1147312,
+  "no_speech_prob": 1.4440155e-12,
+  "compression_ratio": 1.6210191,
+  "words": [],
+  "image_queries": [
+    "Historic DOJ courtroom interior"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5985175/pexels-photo-5985175.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5985175/pexels-photo-5985175.jpeg",
+      "width": 6214,
+      "height": 4143,
+      "description": "A man sits in an ornate church interior, adorned with elaborate details.",
+      "photographer": "cottonbro studio",
+      "photographer_url": "https://www.pexels.com/@cottonbro",
+      "metadata": {
+        "id": 5985175,
+        "avg_color": "#807A75",
+        "liked": false
+      },
+      "query": "Historic DOJ courtroom interior",
+      "query_index": 0,
+      "segment_id": 74,
+      "start_time": 413.944,
+      "end_time": 419.504,
+      "generated_at": "2025-07-06 20:59:33 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

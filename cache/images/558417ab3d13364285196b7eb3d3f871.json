@@ -1,0 +1,38 @@
+{
+  "id": 28,
+  "start_time": 142.52,
+  "end_time": 148.6,
+  "text": " The longest sentence, 22 years, went to the former head of the so-called Proud Boys for seditious conspiracy and other charges.",
+  "confidence": -0.12560712,
+  "no_speech_prob": 1.0815735e-12,
+  "compression_ratio": 1.6109511,
+  "words": [],
+  "image_queries": [
+    "colleagues in office meeting"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32866728/pexels-photo-32866728.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32866728/pexels-photo-32866728.jpeg",
+      "width": 4080,
+      "height": 3072,
+      "description": "Group of colleagues collaborating in a modern office setting, engaging in a discussion around a laptop.",
+      "photographer": "Rashed Hossain",
+      "photographer_url": "https://www.pexels.com/@rashed-hossain-1520582336",
+      "metadata": {
+        "id": 32866728,
+        "avg_color": "#767A79",
+        "liked": false
+      },
+      "query": "colleagues in office meeting",
+      "query_index": 0,
+      "segment_id": 28,
+      "start_time": 142.52,
+      "end_time": 148.6,
+      "generated_at": "2025-07-06 20:59:15 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

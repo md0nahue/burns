@@ -1,5 +1,7 @@
 require_relative '../image_service_bus'
 require_relative '../../config'
+require 'digest'
+require 'json'
 
 class ImageGenerator
   def initialize(image_service_bus = nil)
@@ -62,7 +64,7 @@ class ImageGenerator
     final_result
   end
 
-  # Generate images for a single segment
+  # Generate images for a single segment with fallback support
   # @param segment [Hash] Audio segment with image queries
   # @param options [Hash] Generation options
   # @return [Hash] Segment with generated images
@@ -100,49 +102,75 @@ class ImageGenerator
       })
     end
     
-    # Use only the first query to get ONE image
-    query = image_queries.first
-    puts "      Searching for ONE image with query: '#{query}'"
+    # Check cache first
+    cache_key = generate_cache_key(normalized_segment, resolution)
+    cached_result = get_cached_images(cache_key)
     
-    begin
-      # Use the image service bus to get ONE image
-      results = @image_service_bus.get_images(query, 1, resolution)
-      
-      generated_images = []
-      
-      # Process results and take only the first image
-      results.each do |result|
-        if result && result[:images] && !result[:images].empty?
-          # Take only the first image from the first successful provider
-          image = result[:images].first
-          enriched_image = image.merge({
-            query: query,
-            segment_id: normalized_segment[:id],
-            start_time: normalized_segment[:start_time],
-            end_time: normalized_segment[:end_time],
-            generated_at: Time.now
-          })
-          
-          generated_images << enriched_image
-          puts "      ✅ Found ONE image from #{result[:provider]}: #{image[:url]}"
-          break # Only take the first successful result
-        end
-      end
-      
-      if generated_images.empty?
-        puts "      ⚠️  No images found for query: '#{query}'"
-      end
-      
-    rescue => e
-      puts "      ❌ Error generating image for '#{query}': #{e.message}"
+    if cached_result
+      puts "      💾 Using cached images for segment #{normalized_segment[:id]}"
+      return cached_result
     end
     
-    # Update segment with generated images (should be exactly 1 or 0)
-    normalized_segment.merge({
+    # Try all queries with fallback strategy
+    generated_images = []
+    all_queries = image_queries + (normalized_segment[:backup_queries] || [])
+    
+    puts "      Searching for ONE image with #{all_queries.length} query options"
+    
+    all_queries.each_with_index do |query, query_index|
+      next if generated_images.any? # Stop once we have an image
+      
+      puts "      Trying query #{query_index + 1}/#{all_queries.length}: '#{query}'"
+      
+      begin
+        # Use the image service bus to get ONE image
+        results = @image_service_bus.get_images(query, 1, resolution)
+        
+        # Process results and take only the first image
+        results.each do |result|
+          if result && result[:images] && !result[:images].empty?
+            # Take only the first image from the first successful provider
+            image = result[:images].first
+            
+            # Skip placeholder/low quality images
+            next if is_placeholder_image?(image)
+            
+            enriched_image = image.merge({
+              query: query,
+              query_index: query_index,
+              segment_id: normalized_segment[:id],
+              start_time: normalized_segment[:start_time],
+              end_time: normalized_segment[:end_time],
+              generated_at: Time.now
+            })
+            
+            generated_images << enriched_image
+            puts "      ✅ Found quality image from #{result[:provider]}: #{image[:url]}"
+            break # Only take the first successful result
+          end
+        end
+        
+      rescue => e
+        puts "      ❌ Error with query '#{query}': #{e.message}"
+        # Continue to next query
+      end
+    end
+    
+    if generated_images.empty?
+      puts "      ⚠️  No quality images found for any query, using emergency fallback"
+      generated_images = get_emergency_fallback_image(normalized_segment, resolution)
+    end
+    
+    # Cache the result
+    result = normalized_segment.merge({
       generated_images: generated_images,
       images_generated: generated_images.length,
       generation_success: generated_images.any?
     })
+    
+    cache_images(cache_key, result) if generated_images.any?
+    
+    result
   end
 
   # Get generation summary for debugging
@@ -216,6 +244,107 @@ class ImageGenerator
   end
 
   private
+
+  # Generate cache key for segment images
+  # @param segment [Hash] Segment data
+  # @param resolution [String] Resolution setting
+  # @return [String] Cache key
+  def generate_cache_key(segment, resolution)
+    content = "#{segment[:id]}_#{segment[:text]}_#{segment[:image_queries].join('_')}_#{resolution}"
+    Digest::MD5.hexdigest(content)
+  end
+
+  # Get cached images for segment
+  # @param cache_key [String] Cache key
+  # @return [Hash] Cached result or nil
+  def get_cached_images(cache_key)
+    cache_dir = 'cache/images'
+    require 'fileutils'
+    FileUtils.mkdir_p(cache_dir) unless Dir.exist?(cache_dir)
+    cache_file = "#{cache_dir}/#{cache_key}.json"
+    
+    return nil unless File.exist?(cache_file)
+    
+    begin
+      JSON.parse(File.read(cache_file), symbolize_names: true)
+    rescue
+      nil
+    end
+  end
+
+  # Cache images for segment
+  # @param cache_key [String] Cache key
+  # @param result [Hash] Result to cache
+  def cache_images(cache_key, result)
+    cache_dir = 'cache/images'
+    require 'fileutils'
+    FileUtils.mkdir_p(cache_dir) unless Dir.exist?(cache_dir)
+    cache_file = "#{cache_dir}/#{cache_key}.json"
+    
+    begin
+      File.write(cache_file, JSON.pretty_generate(result))
+    rescue => e
+      puts "      ⚠️ Failed to cache images: #{e.message}"
+    end
+  end
+
+  # Check if image is likely a placeholder
+  # @param image [Hash] Image data
+  # @return [Boolean] True if likely placeholder
+  def is_placeholder_image?(image)
+    url = image[:url] || image['url']
+    return true if url.nil? || url.empty?
+    
+    # Check for common placeholder patterns
+    placeholder_patterns = [
+      /placeholder/i,
+      /default/i,
+      /notfound/i,
+      /404/i,
+      /missing/i,
+      /unavailable/i
+    ]
+    
+    placeholder_patterns.any? { |pattern| url.match?(pattern) }
+  end
+
+  # Get emergency fallback image
+  # @param segment [Hash] Segment data
+  # @param resolution [String] Resolution setting
+  # @return [Array] Emergency fallback images
+  def get_emergency_fallback_image(segment, resolution)
+    # Use a high-quality stock image as emergency fallback
+    fallback_queries = [
+      "abstract background design",
+      "minimalist texture pattern",
+      "soft gradient background"
+    ]
+    
+    fallback_queries.each do |query|
+      begin
+        results = @image_service_bus.get_images(query, 1, resolution)
+        results.each do |result|
+          if result && result[:images] && !result[:images].empty?
+            image = result[:images].first
+            return [image.merge({
+              query: query,
+              query_index: 999, # Mark as emergency fallback
+              segment_id: segment[:id],
+              start_time: segment[:start_time],
+              end_time: segment[:end_time],
+              generated_at: Time.now,
+              is_fallback: true
+            })]
+          end
+        end
+      rescue
+        # Continue to next fallback
+      end
+    end
+    
+    # Ultimate fallback - return empty but mark as attempted
+    []
+  end
 
   # Calculate generation metrics
   # @param generated_segments [Array] Segments with generated images

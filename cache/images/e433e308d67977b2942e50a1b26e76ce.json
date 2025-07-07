@@ -1,0 +1,38 @@
+{
+  "id": 25,
+  "start_time": 126.04,
+  "end_time": 129.96,
+  "text": " They were not political prisoners, and it's shameful to compare them to actual political prisoners.",
+  "confidence": -0.16110931,
+  "no_speech_prob": 1.0400085e-12,
+  "compression_ratio": 1.6027397,
+  "words": [],
+  "image_queries": [
+    "professional workplace discussion"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32866728/pexels-photo-32866728.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32866728/pexels-photo-32866728.jpeg",
+      "width": 4080,
+      "height": 3072,
+      "description": "Group of colleagues collaborating in a modern office setting, engaging in a discussion around a laptop.",
+      "photographer": "Rashed Hossain",
+      "photographer_url": "https://www.pexels.com/@rashed-hossain-1520582336",
+      "metadata": {
+        "id": 32866728,
+        "avg_color": "#767A79",
+        "liked": false
+      },
+      "query": "professional workplace discussion",
+      "query_index": 0,
+      "segment_id": 25,
+      "start_time": 126.04,
+      "end_time": 129.96,
+      "generated_at": "2025-07-06 20:59:12 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

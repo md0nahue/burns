@@ -1,0 +1,38 @@
+{
+  "id": 110,
+  "start_time": 549.506,
+  "end_time": 561.446,
+  "text": " I mean, there used to be this sort of agonizing of presidents about, you know, meeting with the head of the Department of Justice, about keeping independence, not, you know, the president not influencing stuff.",
+  "confidence": -0.16781792,
+  "no_speech_prob": 4.480787e-12,
+  "compression_ratio": 1.7288135,
+  "words": [],
+  "image_queries": [
+    "White House Oval Office interior"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6238610/pexels-photo-6238610.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6238610/pexels-photo-6238610.jpeg",
+      "width": 7360,
+      "height": 4912,
+      "description": "Wide corridor in modern house with white tiled walls and floor black wooden doors and shelves for storage built in wall",
+      "photographer": "Max Vakhtbovycn",
+      "photographer_url": "https://www.pexels.com/@heyho",
+      "metadata": {
+        "id": 6238610,
+        "avg_color": "#8E8F91",
+        "liked": false
+      },
+      "query": "White House Oval Office interior",
+      "query_index": 0,
+      "segment_id": 110,
+      "start_time": 549.506,
+      "end_time": 561.446,
+      "generated_at": "2025-07-06 21:00:04 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

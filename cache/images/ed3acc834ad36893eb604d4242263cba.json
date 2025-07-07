@@ -1,0 +1,38 @@
+{
+  "id": 41,
+  "start_time": 223.04199,
+  "end_time": 228.78201,
+  "text": " he was essentially found guilty, but they said he was incompetent and therefore let's not find him",
+  "confidence": -0.08604036,
+  "no_speech_prob": 1.8833002e-12,
+  "compression_ratio": 1.7296296,
+  "words": [],
+  "image_queries": [
+    "Presidential seal on desk"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/2305765/pexels-photo-2305765.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/2305765/pexels-photo-2305765.jpeg",
+      "width": 4928,
+      "height": 3264,
+      "description": "Close-up of a vintage map of Constantinople with a cup of coffee and an old notebook, conveying a travel vibe.",
+      "photographer": "Gül Işık",
+      "photographer_url": "https://www.pexels.com/@ekrulila",
+      "metadata": {
+        "id": 2305765,
+        "avg_color": "#91887F",
+        "liked": false
+      },
+      "query": "Presidential seal on desk",
+      "query_index": 0,
+      "segment_id": 41,
+      "start_time": 223.04199,
+      "end_time": 228.78201,
+      "generated_at": "2025-07-06 20:59:17 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

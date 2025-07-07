@@ -1,0 +1,38 @@
+{
+  "id": 47,
+  "start_time": 253.382,
+  "end_time": 263.342,
+  "text": " judicial system. We had an amazing judge in Florida, and her name is Eileen Cannon.",
+  "confidence": -0.079134785,
+  "no_speech_prob": 2.5043453e-12,
+  "compression_ratio": 1.6171004,
+  "words": [],
+  "image_queries": [
+    "Abstract representation of guilt"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/4913769/pexels-photo-4913769.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/4913769/pexels-photo-4913769.jpeg",
+      "width": 5616,
+      "height": 3744,
+      "description": "A question mark drawn on foggy glass, evoking curiosity and mystery.",
+      "photographer": "Julia Filirovska",
+      "photographer_url": "https://www.pexels.com/@filirovska",
+      "metadata": {
+        "id": 4913769,
+        "avg_color": "#7B7F4B",
+        "liked": false
+      },
+      "query": "Abstract representation of guilt",
+      "query_index": 0,
+      "segment_id": 47,
+      "start_time": 253.382,
+      "end_time": 263.342,
+      "generated_at": "2025-07-06 20:59:23 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

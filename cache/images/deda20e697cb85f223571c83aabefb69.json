@@ -1,0 +1,38 @@
+{
+  "id": 23,
+  "start_time": 112.4,
+  "end_time": 122.18,
+  "text": " We removed the senior FBI officials who misdirected resources to send SWAT teams after grandmothers and J6 hostages.",
+  "confidence": -0.16110931,
+  "no_speech_prob": 1.0400085e-12,
+  "compression_ratio": 1.6027397,
+  "words": [],
+  "image_queries": [
+    "legal code text"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/18069696/pexels-photo-18069696.png?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/18069696/pexels-photo-18069696.png",
+      "width": 3840,
+      "height": 2160,
+      "description": "Abstract glass surfaces reflecting digital text create a mysterious tech ambiance.",
+      "photographer": "Google DeepMind",
+      "photographer_url": "https://www.pexels.com/@googledeepmind",
+      "metadata": {
+        "id": 18069696,
+        "avg_color": "#766E94",
+        "liked": false
+      },
+      "query": "legal code text",
+      "query_index": 0,
+      "segment_id": 23,
+      "start_time": 112.4,
+      "end_time": 122.18,
+      "generated_at": "2025-07-06 20:59:09 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

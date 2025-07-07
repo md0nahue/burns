@@ -32,44 +32,57 @@ class ImageServiceBus
   def get_images(query, count = 3, target_resolution = '1080p')
     puts "    🔍 ImageServiceBus: Getting #{count} images for query '#{query}'"
     results = []
-    available_clients = @clients.keys.to_a
-    @used_clients.clear
     
-    count.times do |i|
-      unused_clients = available_clients - @used_clients.to_a
-      if unused_clients.empty?
-        @logger.warn("All clients have been tried. Resetting used clients.")
-        @used_clients.clear
-        unused_clients = available_clients
-      end
-      selected_client = unused_clients.sample
-      @used_clients.add(selected_client)
-      puts "    🔍 ImageServiceBus: Using client #{selected_client} for image #{i + 1}"
+    # Try primary clients first (those with higher quality images)
+    primary_clients = [:unsplash, :pexels, :pixabay]
+    fallback_clients = [:openverse, :wikimedia, :lorem_picsum]
+    
+    # For a single image, try multiple providers until we get a good result
+    all_clients = primary_clients + fallback_clients
+    attempts = 0
+    max_attempts = all_clients.length * 2 # Allow retries
+    
+    while results.empty? && attempts < max_attempts
+      client_name = all_clients[attempts % all_clients.length]
+      client = @clients[client_name]
+      attempts += 1
+      
+      next unless client
+      
+      puts "    🔍 ImageServiceBus: Attempting #{client_name} (attempt #{attempts}/#{max_attempts})"
       
       begin
-        puts "    🔍 ImageServiceBus: About to call search_images on #{selected_client}"
-        puts "    🔍 ImageServiceBus: Client class: #{@clients[selected_client].class}"
-        puts "    🔍 ImageServiceBus: Query: '#{query}', Resolution: '#{target_resolution}'"
+        # Add delay for rate limiting
+        sleep(0.3) if attempts > 1
         
-        # Add a small delay to avoid rate limiting
-        sleep(0.5) if i > 0
+        result = client.search_images(query, target_resolution)
         
-        puts "    🔍 ImageServiceBus: Calling search_images now..."
-        result = @clients[selected_client].search_images(query, target_resolution)
-        puts "    🔍 ImageServiceBus: Got result: #{result.class}"
-        
-        if result && !result[:images].empty?
-          results << result
-          puts "    ✅ ImageServiceBus: Successfully got #{result[:images].length} images from #{selected_client}"
+        if result && result[:images] && !result[:images].empty?
+          # Filter out placeholder/low quality images
+          quality_images = result[:images].select { |img| is_quality_image?(img) }
+          
+          if quality_images.any?
+            filtered_result = result.merge(images: quality_images)
+            results << filtered_result
+            puts "    ✅ ImageServiceBus: Got #{quality_images.length} quality images from #{client_name}"
+            break # Success! Stop trying other clients
+          else
+            puts "    ⚠️  ImageServiceBus: #{client_name} returned only placeholder images"
+          end
         else
-          puts "    ⚠️  ImageServiceBus: No results from #{selected_client}"
+          puts "    ⚠️  ImageServiceBus: No results from #{client_name}"
         end
+        
       rescue => e
-        puts "    ❌ ImageServiceBus: Error with #{selected_client}: #{e.message}"
-        puts "    ❌ ImageServiceBus: Error class: #{e.class}"
-        puts "    ❌ ImageServiceBus: Error backtrace: #{e.backtrace.first(10)}"
-        puts "    ❌ ImageServiceBus: Error location: #{e.backtrace.first}"
+        puts "    ❌ ImageServiceBus: Error with #{client_name}: #{e.message}"
+        # Continue to next client
       end
+    end
+    
+    # If still no results, try with relaxed quality requirements
+    if results.empty?
+      puts "    🔄 ImageServiceBus: Retrying with relaxed quality requirements"
+      results = get_images_relaxed(query, target_resolution)
     end
     
     puts "    🔍 ImageServiceBus: Returning #{results.length} results"
@@ -90,5 +103,63 @@ class ImageServiceBus
       }
     end
     status
+  end
+
+  private
+
+  # Check if image meets quality requirements
+  # @param image [Hash] Image data
+  # @return [Boolean] True if image is good quality
+  def is_quality_image?(image)
+    return false unless image && image[:url]
+    
+    url = image[:url]
+    
+    # Skip placeholder patterns
+    placeholder_patterns = [
+      /placeholder/i,
+      /default/i,
+      /notfound/i,
+      /404/i,
+      /missing/i,
+      /unavailable/i,
+      /lorem/i,
+      /picsum\.photos.*\?blur/i # Skip blurred Lorem Picsum images
+    ]
+    
+    return false if placeholder_patterns.any? { |pattern| url.match?(pattern) }
+    
+    # Check minimum dimensions if available
+    if image[:width] && image[:height]
+      return false if image[:width] < 800 || image[:height] < 600
+    end
+    
+    true
+  end
+
+  # Get images with relaxed quality requirements
+  # @param query [String] Search query
+  # @param target_resolution [String] Target resolution
+  # @return [Array] Results with relaxed requirements
+  def get_images_relaxed(query, target_resolution)
+    results = []
+    
+    # Try each client once more with any result accepted
+    @clients.each do |client_name, client|
+      begin
+        result = client.search_images(query, target_resolution)
+        
+        if result && result[:images] && !result[:images].empty?
+          results << result
+          puts "    ✅ ImageServiceBus: Accepted relaxed quality from #{client_name}"
+          break # Take first available result
+        end
+        
+      rescue => e
+        puts "    ❌ ImageServiceBus: Relaxed attempt failed for #{client_name}: #{e.message}"
+      end
+    end
+    
+    results
   end
 end 

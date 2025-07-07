@@ -99,8 +99,9 @@ generation_options = {
   zoom_factor: 1.2, # Subtle zoom effect
   pan_speed: 0.5, # Slow panning
   cache_images: true, # Enable image caching to avoid duplicate API requests
-  cache_transcription: true, # Enable transcription caching
-  cache_analysis: true # Enable content analysis caching
+  cache_transcription: false, # Disable transcription caching for debugging
+  cache_analysis: false, # Disable content analysis caching for debugging
+  force: true # Force regeneration of all cached data
 }
 
 puts "\n⚙️  Generation options:"
@@ -115,6 +116,7 @@ puts "  📹 Pan Speed: #{generation_options[:pan_speed]}"
 puts "  💾 Image Caching: #{generation_options[:cache_images]}"
 puts "  💾 Transcription Caching: #{generation_options[:cache_transcription]}"
 puts "  💾 Analysis Caching: #{generation_options[:cache_analysis]}"
+puts "  🔄 Force Refresh: #{generation_options[:force]}"
 
 puts "\n" + "=" * 60
 puts "🎬 STARTING KEN BURNS VIDEO GENERATION"

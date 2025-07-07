@@ -1,0 +1,38 @@
+{
+  "id": 113,
+  "start_time": 568.926,
+  "end_time": 569.626,
+  "text": " It could be a Republican.",
+  "confidence": -0.16781792,
+  "no_speech_prob": 4.480787e-12,
+  "compression_ratio": 1.7288135,
+  "words": [],
+  "image_queries": [
+    "Passing a baton"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/12585936/pexels-photo-12585936.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/12585936/pexels-photo-12585936.jpeg",
+      "width": 5142,
+      "height": 3428,
+      "description": "Close-up of hands passing a relay baton against a bright sunny sky.",
+      "photographer": "BOOM 💥",
+      "photographer_url": "https://www.pexels.com/@boom",
+      "metadata": {
+        "id": 12585936,
+        "avg_color": "#87939F",
+        "liked": false
+      },
+      "query": "Passing a baton",
+      "query_index": 0,
+      "segment_id": 113,
+      "start_time": 568.926,
+      "end_time": 569.626,
+      "generated_at": "2025-07-06 21:00:08 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

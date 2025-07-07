@@ -1,0 +1,38 @@
+{
+  "id": 84,
+  "start_time": 453.404,
+  "end_time": 457.004,
+  "text": " We have mentions of Al Capone, Wyatt Earp, Rudy Giuliani.",
+  "confidence": -0.13661423,
+  "no_speech_prob": 8.325073e-13,
+  "compression_ratio": 1.5470383,
+  "words": [],
+  "image_queries": [
+    "Laptop with scattered papers"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6927388/pexels-photo-6927388.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6927388/pexels-photo-6927388.jpeg",
+      "width": 3000,
+      "height": 2000,
+      "description": "A workspace with a laptop, sticky notes, coins, and a coffee cup, ideal for tax planning.",
+      "photographer": "Polina Tankilevitch",
+      "photographer_url": "https://www.pexels.com/@polina-tankilevitch",
+      "metadata": {
+        "id": 6927388,
+        "avg_color": "#BBB6B4",
+        "liked": false
+      },
+      "query": "Laptop with scattered papers",
+      "query_index": 0,
+      "segment_id": 84,
+      "start_time": 453.404,
+      "end_time": 457.004,
+      "generated_at": "2025-07-06 20:59:45 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

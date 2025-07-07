@@ -1,0 +1,38 @@
+{
+  "id": 115,
+  "start_time": 570.726,
+  "end_time": 576.026,
+  "text": " You keep, I mean, the idea that there was weaponization, but now there's not going to be.",
+  "confidence": -0.16781792,
+  "no_speech_prob": 4.480787e-12,
+  "compression_ratio": 1.7288135,
+  "words": [],
+  "image_queries": [
+    "Justice Department building facade"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/208603/pexels-photo-208603.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/208603/pexels-photo-208603.jpeg",
+      "width": 2199,
+      "height": 1137,
+      "description": "Front view of a neoclassical courthouse building in Colorado with lush greenery.",
+      "photographer": "Pixabay",
+      "photographer_url": "https://www.pexels.com/@pixabay",
+      "metadata": {
+        "id": 208603,
+        "avg_color": "#8D8682",
+        "liked": false
+      },
+      "query": "Justice Department building facade",
+      "query_index": 0,
+      "segment_id": 115,
+      "start_time": 570.726,
+      "end_time": 576.026,
+      "generated_at": "2025-07-06 21:00:10 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

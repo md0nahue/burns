@@ -1,0 +1,38 @@
+{
+  "id": 76,
+  "start_time": 425.004,
+  "end_time": 427.424,
+  "text": " I salute you and I wish you well in your work.",
+  "confidence": -0.1147312,
+  "no_speech_prob": 1.4440155e-12,
+  "compression_ratio": 1.6210191,
+  "words": [],
+  "image_queries": [
+    "Vintage photo Robert Kennedy"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/14268977/pexels-photo-14268977.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/14268977/pexels-photo-14268977.jpeg",
+      "width": 3089,
+      "height": 2048,
+      "description": "A peaceful park scene with autumn trees, a bench by the river, and a fountain.",
+      "photographer": "Josh Hild",
+      "photographer_url": "https://www.pexels.com/@josh-hild-1270765",
+      "metadata": {
+        "id": 14268977,
+        "avg_color": "#7C8357",
+        "liked": false
+      },
+      "query": "Vintage photo Robert Kennedy",
+      "query_index": 0,
+      "segment_id": 76,
+      "start_time": 425.004,
+      "end_time": 427.424,
+      "generated_at": "2025-07-06 20:59:36 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

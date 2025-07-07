@@ -31,23 +31,49 @@ class GeminiService
       return cached_data
     end
     
-    # Build a single comprehensive prompt for all segments
-    prompt = build_batch_analysis_prompt(segments, options)
+    # Process segments in smaller batches to avoid API limits
+    batch_size = 10  # Process 10 segments at a time
+    all_results = []
     
-    puts "  📝 Analyzing #{segments.length} segments in a single request..."
+    puts "  📝 Analyzing #{segments.length} segments in batches of #{batch_size}..."
     
-    # Make single API request
-    response = make_gemini_request(prompt)
-    
-    # Parse the response
-    parsed_response = parse_batch_analysis_response(response, segments)
+    segments.each_slice(batch_size).with_index do |batch, batch_index|
+      puts "    🔄 Processing batch #{batch_index + 1}/#{(segments.length.to_f / batch_size).ceil} (#{batch.length} segments)"
+      
+      begin
+        # Build prompt for this batch
+        prompt = build_batch_analysis_prompt(batch, options)
+        
+        # Make API request for this batch
+        response = make_gemini_request(prompt)
+        
+        # Parse the response
+        batch_results = parse_batch_analysis_response(response, batch)
+        
+        # Add to overall results
+        all_results.concat(batch_results)
+        
+        # Add delay between batches to respect rate limits
+        sleep(2) if batch_index < (segments.length.to_f / batch_size).ceil - 1
+        
+      rescue => e
+        puts "    ❌ Error processing batch #{batch_index + 1}: #{e.message}"
+        # Add segments with fallback queries instead of failing completely
+        batch.each do |segment|
+          all_results << segment.merge({
+            image_queries: generate_fallback_queries(segment[:text] || segment['text'] || ''),
+            has_images: true
+          })
+        end
+      end
+    end
     
     # Cache the analysis result
     puts "    💾 Caching content analysis to: #{cache_file}"
-    File.write(cache_file, JSON.pretty_generate(parsed_response))
+    File.write(cache_file, JSON.pretty_generate(all_results))
     
-    puts "✅ Content analysis completed: #{parsed_response.length} segments processed"
-    parsed_response
+    puts "✅ Content analysis completed: #{all_results.length} segments processed"
+    all_results
   end
 
   # Analyze a single chunk of audio content
@@ -158,18 +184,25 @@ class GeminiService
       TASK: Analyze this content and generate 1-2 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
 
       REQUIREMENTS:
-      - Generate queries that are specific and descriptive
-      - Focus on visual elements mentioned or implied in the text
+      - Generate queries that are HIGHLY specific and descriptive
+      - Focus on concrete visual elements mentioned or implied in the text
       - Consider the emotional tone and context
       - Avoid generic terms, be specific about objects, scenes, or concepts
-      - Each query should be 2-6 words maximum
+      - Each query should be 3-8 words for better specificity
       - Prioritize queries that would work well for Ken Burns effects (landscapes, objects, people, etc.)
+      - Include backup queries that are broader but still relevant
+      - Always provide 2-3 alternative search terms per segment
 
       RESPONSE FORMAT (JSON only):
       {
         "image_queries": [
-          "specific visual query 1",
-          "specific visual query 2"
+          "highly specific primary query",
+          "specific secondary query",
+          "broader fallback query"
+        ],
+        "backup_queries": [
+          "alternative search term 1",
+          "alternative search term 2"
         ],
         "primary_theme": "brief description of main theme",
         "visual_style": "#{style}",
@@ -514,24 +547,28 @@ class GeminiService
         TASK: Analyze each segment and generate 1-2 specific image search queries for each segment that would create compelling visual accompaniment for a Ken Burns-style video effect.
 
         REQUIREMENTS:
-        - Generate 1-2 queries PER SEGMENT (not total)
-        - Generate queries that are specific and descriptive
-        - Focus on visual elements mentioned or implied in each segment's text
+        - Generate 2-3 queries PER SEGMENT PLUS backup options
+        - Generate queries that are HIGHLY specific and descriptive
+        - Focus on concrete visual elements mentioned or implied in each segment's text
         - Consider the emotional tone and context of each segment
         - Avoid generic terms, be specific about objects, scenes, or concepts
-        - Each query should be 2-6 words maximum
+        - Each query should be 3-8 words for better specificity
         - Prioritize queries that would work well for Ken Burns effects (landscapes, objects, people, etc.)
+        - Always include backup/fallback queries for each segment
+        - Provide alternative search terms that could work if primary queries fail
 
         RESPONSE FORMAT (JSON only):
         {
           "segments": [
             {
               "segment_id": 0,
-              "image_queries": ["specific query 1", "specific query 2"]
+              "image_queries": ["primary specific query", "secondary query", "fallback query"],
+              "backup_queries": ["alternative term 1", "alternative term 2"]
             },
             {
               "segment_id": 1,
-              "image_queries": ["specific query 1", "specific query 2"]
+              "image_queries": ["primary specific query", "secondary query", "fallback query"],
+              "backup_queries": ["alternative term 1", "alternative term 2"]
             }
           ],
           "primary_theme": "brief description of main theme",
@@ -573,8 +610,15 @@ class GeminiService
               query.to_s.gsub(/^["\s]*/, '').gsub(/["\s]*$/, '').gsub(/^image_queries":\s*\[?"?/, '').gsub(/"?\s*,?\s*$/, '')
             end.reject(&:empty?)
             
+            # Extract backup queries if available
+            backup_queries = segment_analysis[:backup_queries] || []
+            clean_backup_queries = backup_queries.map do |query|
+              query.to_s.gsub(/^["\s]*/, '').gsub(/["\s]*$/, '').gsub(/^backup_queries":\s*\[?"?/, '').gsub(/"?\s*,?\s*$/, '')
+            end.reject(&:empty?)
+            
             segment.merge({
               image_queries: clean_queries,
+              backup_queries: clean_backup_queries,
               has_images: clean_queries.any?
             })
           else
@@ -582,6 +626,7 @@ class GeminiService
             fallback_queries = generate_fallback_queries(segment[:text] || segment['text'] || '')
             segment.merge({
               image_queries: fallback_queries,
+              backup_queries: generate_fallback_queries(segment[:text] || segment['text'] || ''),
               has_images: true
             })
           end

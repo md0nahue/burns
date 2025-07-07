@@ -1,0 +1,38 @@
+{
+  "id": 97,
+  "start_time": 490.266,
+  "end_time": 492.806,
+  "text": " THE MEDIA TO ATTACK JUSTICE",
+  "confidence": -0.5056211,
+  "no_speech_prob": 9.412537e-12,
+  "compression_ratio": 1.719697,
+  "words": [],
+  "image_queries": [
+    "lightbulb illuminating above a head"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/7317331/pexels-photo-7317331.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/7317331/pexels-photo-7317331.jpeg",
+      "width": 4608,
+      "height": 3456,
+      "description": "A stunning neon-lit scene featuring a classical bust alongside a vintage clock, captured in Istanbul.",
+      "photographer": "Meruyert Gonullu",
+      "photographer_url": "https://www.pexels.com/@meruyert-gonullu",
+      "metadata": {
+        "id": 7317331,
+        "avg_color": "#594F3C",
+        "liked": false
+      },
+      "query": "lightbulb illuminating above a head",
+      "query_index": 0,
+      "segment_id": 97,
+      "start_time": 490.266,
+      "end_time": 492.806,
+      "generated_at": "2025-07-06 21:00:01 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

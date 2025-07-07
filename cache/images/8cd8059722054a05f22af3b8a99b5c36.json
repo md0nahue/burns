@@ -1,0 +1,38 @@
+{
+  "id": 75,
+  "start_time": 419.924,
+  "end_time": 424.644,
+  "text": " History knows no inevitability except as men surrender to their own fears of the future.",
+  "confidence": -0.1147312,
+  "no_speech_prob": 1.4440155e-12,
+  "compression_ratio": 1.6210191,
+  "words": [],
+  "image_queries": [
+    "Government building interior"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/16550604/pexels-photo-16550604.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/16550604/pexels-photo-16550604.jpeg",
+      "width": 5472,
+      "height": 3648,
+      "description": "Grand staircase with ornate design in historic government building, Belo Horizonte.",
+      "photographer": "Gabriel Ramos",
+      "photographer_url": "https://www.pexels.com/@gabrieluizramos",
+      "metadata": {
+        "id": 16550604,
+        "avg_color": "#494B46",
+        "liked": false
+      },
+      "query": "Government building interior",
+      "query_index": 0,
+      "segment_id": 75,
+      "start_time": 419.924,
+      "end_time": 424.644,
+      "generated_at": "2025-07-06 20:59:35 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}
