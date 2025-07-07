@@ -89,47 +89,55 @@ class ImageGenerator
     puts "      Debug - final image_queries: #{image_queries.inspect}"
     
     resolution = options[:resolution] || '1080p'
-    images_per_query = options[:images_per_query] || 1
     
-    generated_images = []
-    
-    image_queries.each do |query|
-      begin
-        puts "      Searching for: '#{query}'"
-        
-        # Use the image service bus to get images
-        results = @image_service_bus.get_images(query, images_per_query, resolution)
-        
-        # Process all results from different providers
-        results.each do |result|
-          if result && result[:images] && !result[:images].empty?
-            # Add metadata to each image
-            enriched_images = result[:images].map do |image|
-              image.merge({
-                query: query,
-                segment_id: normalized_segment[:id],
-                start_time: normalized_segment[:start_time],
-                end_time: normalized_segment[:end_time],
-                generated_at: Time.now
-              })
-            end
-            
-            generated_images.concat(enriched_images)
-            puts "      ✅ Found #{enriched_images.length} images from #{result[:provider]}"
-          end
-        end
-        
-        if generated_images.empty?
-          puts "      ⚠️  No images found for query: '#{query}'"
-        end
-        
-      rescue => e
-        puts "      ❌ Error generating images for '#{query}': #{e.message}"
-        # Continue with other queries
-      end
+    # Only get ONE image per segment - use the first query
+    if image_queries.empty?
+      puts "      ⚠️  No image queries for segment"
+      return normalized_segment.merge({
+        generated_images: [],
+        images_generated: 0,
+        generation_success: false
+      })
     end
     
-    # Update segment with generated images
+    # Use only the first query to get ONE image
+    query = image_queries.first
+    puts "      Searching for ONE image with query: '#{query}'"
+    
+    begin
+      # Use the image service bus to get ONE image
+      results = @image_service_bus.get_images(query, 1, resolution)
+      
+      generated_images = []
+      
+      # Process results and take only the first image
+      results.each do |result|
+        if result && result[:images] && !result[:images].empty?
+          # Take only the first image from the first successful provider
+          image = result[:images].first
+          enriched_image = image.merge({
+            query: query,
+            segment_id: normalized_segment[:id],
+            start_time: normalized_segment[:start_time],
+            end_time: normalized_segment[:end_time],
+            generated_at: Time.now
+          })
+          
+          generated_images << enriched_image
+          puts "      ✅ Found ONE image from #{result[:provider]}: #{image[:url]}"
+          break # Only take the first successful result
+        end
+      end
+      
+      if generated_images.empty?
+        puts "      ⚠️  No images found for query: '#{query}'"
+      end
+      
+    rescue => e
+      puts "      ❌ Error generating image for '#{query}': #{e.message}"
+    end
+    
+    # Update segment with generated images (should be exactly 1 or 0)
     normalized_segment.merge({
       generated_images: generated_images,
       images_generated: generated_images.length,

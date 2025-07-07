@@ -231,15 +231,13 @@ class LocalVideoService
     return nil if images.empty?
     
     if images.length == 1
-      # Single image with Ken Burns effect
-      image_path = images.first[:path]
-      create_single_image_ken_burns(image_path, duration, output_path)
+      # Single image Ken Burns effect
+      create_single_image_ken_burns(images.first[:path], duration, output_path)
     else
-      # Multiple images with transitions
-      create_multi_image_ken_burns(images, duration, output_path)
+      # If somehow we have multiple images, just use the first one
+      puts "    ⚠️  Multiple images found, using first image only"
+      create_single_image_ken_burns(images.first[:path], duration, output_path)
     end
-    
-    output_path
   end
 
   def create_single_image_ken_burns(image_path, duration, output_path)
@@ -266,66 +264,6 @@ class LocalVideoService
     
     puts "    🎥 Creating single image Ken Burns effect: #{File.basename(output_path)}"
     system(*cmd)
-  end
-
-  def create_multi_image_ken_burns(images, duration, output_path)
-    # Create a video with multiple images and transitions
-    image_duration = duration / images.length.to_f
-    
-    # Create input file list
-    input_list_path = File.join(@temp_dir, "input_list.txt")
-    File.open(input_list_path, 'w') do |f|
-      images.each do |image|
-        f.puts "file '#{image[:path]}'"
-        f.puts "duration #{image_duration}"
-      end
-      # Add the last image again to ensure proper duration
-      f.puts "file '#{images.last[:path]}'"
-    end
-    
-    # Create the video with crossfade transitions
-    filter_complex = create_multi_image_filter(images.length, image_duration)
-    
-    cmd = [
-      @ffmpeg_path,
-      "-f", "concat",
-      "-safe", "0",
-      "-i", input_list_path,
-      "-filter_complex", filter_complex,
-      "-map", "[v]",
-      "-t", duration.to_s,
-      "-c:v", "libx264",
-      "-preset", "fast",
-      "-crf", "23",
-      "-y",
-      output_path
-    ]
-    
-    puts "    🎥 Creating multi-image Ken Burns effect with #{images.length} images: #{File.basename(output_path)}"
-    system(*cmd)
-  end
-
-  def create_multi_image_filter(image_count, image_duration)
-    # Create a complex filter for multiple images with crossfade transitions
-    filters = []
-    
-    # Scale and pad all images
-    image_count.times do |i|
-      filters << "[#{i}:v]scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2[scaled#{i}]"
-    end
-    
-    # Create crossfade transitions
-    if image_count > 1
-      filters << "[scaled0][scaled1]xfade=transition=fade:duration=0.5:offset=#{image_duration - 0.5}[v1]"
-      
-      (2...image_count).each do |i|
-        filters << "[v#{i-1}][scaled#{i}]xfade=transition=fade:duration=0.5:offset=#{image_duration * i - 0.5}[v#{i}]"
-      end
-      
-      "[v#{image_count-1}]"
-    else
-      "[scaled0]"
-    end
   end
 
   def combine_segments_with_audio(segment_videos, audio_file)

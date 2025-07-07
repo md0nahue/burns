@@ -154,7 +154,7 @@ class GeminiService
       AUDIO SEGMENT (Duration: #{chunk[:duration].round(1)} seconds):
       "#{chunk[:text].strip}"
 
-      TASK: Analyze this content and generate 2-4 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
+      TASK: Analyze this content and generate 1-2 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
 
       REQUIREMENTS:
       - Generate queries that are specific and descriptive
@@ -168,8 +168,7 @@ class GeminiService
       {
         "image_queries": [
           "specific visual query 1",
-          "specific visual query 2",
-          "specific visual query 3"
+          "specific visual query 2"
         ],
         "primary_theme": "brief description of main theme",
         "visual_style": "#{style}",
@@ -379,25 +378,69 @@ class GeminiService
   # @param text [String] Text to analyze
   # @return [Array] Generated queries
   def generate_fallback_queries(text)
-    # Simple keyword extraction
+    # Create imaginative, positive, and cheerful fallback queries
+    # These are designed to be engaging and work well for Ken Burns effects
+    
+    # Positive, cheerful themes that work well for video
+    cheerful_themes = [
+      "sunny landscape",
+      "happy people",
+      "beautiful nature",
+      "inspiring architecture",
+      "vibrant colors",
+      "peaceful scenes",
+      "creative workspace",
+      "adventure travel",
+      "artistic expression",
+      "community celebration",
+      "serene landscapes",
+      "dynamic city life",
+      "natural beauty",
+      "cultural diversity",
+      "innovative technology",
+      "sustainable living",
+      "human connection",
+      "artistic creativity",
+      "urban exploration",
+      "rural tranquility"
+    ]
+    
+    # Extract some context from the text to make queries more relevant
     words = text.downcase.split(/\W+/).reject { |w| w.length < 3 }
     
-    # Count word frequency
-    word_count = Hash.new(0)
-    words.each { |word| word_count[word] += 1 }
-    
-    # Get most common words
-    common_words = word_count.sort_by { |_, count| -count }.first(10).map(&:first)
-    
-    # Generate simple queries
-    queries = []
-    common_words.each_slice(2) do |words|
-      query = words.join(' ')
-      queries << query if query.length >= 3
-      break if queries.length >= 3
+    # Look for specific themes in the text
+    if text.match(/tech|digital|computer|phone|device/i)
+      queries = ["modern technology", "innovative design", "digital lifestyle"]
+    elsif text.match(/business|work|professional|career/i)
+      queries = ["professional workspace", "business collaboration", "modern office"]
+    elsif text.match(/nature|outdoor|environment|green/i)
+      queries = ["natural landscape", "environmental beauty", "outdoor adventure"]
+    elsif text.match(/city|urban|building|architecture/i)
+      queries = ["urban architecture", "city skyline", "modern cityscape"]
+    elsif text.match(/people|human|person|community/i)
+      queries = ["diverse community", "human connection", "cultural celebration"]
+    elsif text.match(/art|creative|design|artistic/i)
+      queries = ["artistic expression", "creative workspace", "design inspiration"]
+    elsif text.match(/travel|adventure|exploration/i)
+      queries = ["adventure travel", "exploration journey", "world discovery"]
+    elsif text.match(/food|cooking|culinary/i)
+      queries = ["culinary artistry", "food culture", "gourmet experience"]
+    elsif text.match(/music|sound|audio/i)
+      queries = ["musical expression", "sound studio", "creative performance"]
+    elsif text.match(/health|wellness|fitness/i)
+      queries = ["healthy lifestyle", "wellness journey", "active living"]
+    else
+      # Default to positive, engaging themes
+      queries = cheerful_themes.sample(3)
     end
     
-    queries
+    # Ensure we have exactly 3 queries
+    queries = queries.first(3)
+    while queries.length < 3
+      queries << cheerful_themes.sample
+    end
+    
+    queries.uniq.first(3)
   end
 
   # Calculate confidence in generated queries
@@ -424,11 +467,11 @@ class GeminiService
     return segments if image_queries.empty?
     
     segments.each_with_index do |segment, index|
-      # Assign queries based on segment position
+      # Assign ONE query per segment based on segment position
       query_index = index % image_queries.length
-      # Preserve all original segment data and add image queries
+      # Preserve all original segment data and add ONE image query
       segment.merge!({
-        image_queries: [image_queries[query_index]],
+        image_queries: [image_queries[query_index]], # Only ONE query per segment
         has_images: true
       })
     end
@@ -466,7 +509,7 @@ class GeminiService
     end
 
     prompt += <<~PROMPT
-      TASK: Analyze this content and generate 3-5 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
+      TASK: Analyze this content and generate 2-3 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
 
       REQUIREMENTS:
       - Generate queries that are specific and descriptive

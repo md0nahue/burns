@@ -132,7 +132,7 @@ class LLMService
       AUDIO SEGMENT (Duration: #{chunk[:duration].round(1)} seconds):
       "#{chunk[:text].strip}"
 
-      TASK: Analyze this content and generate 2-4 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
+      TASK: Analyze this content and generate 1-2 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
 
       REQUIREMENTS:
       - Generate queries that are specific and descriptive
@@ -146,8 +146,7 @@ class LLMService
       {
         "image_queries": [
           "specific visual query 1",
-          "specific visual query 2",
-          "specific visual query 3"
+          "specific visual query 2"
         ],
         "primary_theme": "brief description of main theme",
         "visual_style": "#{style}",
@@ -344,24 +343,66 @@ class LLMService
   # @param text [String] Text content
   # @return [Array] Fallback queries
   def generate_fallback_queries(text)
-    # Simple keyword extraction
+    # Create imaginative, positive, and cheerful fallback queries
+    # These are designed to be engaging and work well for Ken Burns effects
+    
+    # Positive, cheerful themes that work well for video
+    cheerful_themes = [
+      "sunny landscape",
+      "happy people",
+      "beautiful nature",
+      "inspiring architecture",
+      "vibrant colors",
+      "peaceful scenes",
+      "creative workspace",
+      "adventure travel",
+      "artistic expression",
+      "community celebration",
+      "serene landscapes",
+      "dynamic city life",
+      "natural beauty",
+      "cultural diversity",
+      "innovative technology",
+      "sustainable living",
+      "human connection",
+      "artistic creativity",
+      "urban exploration",
+      "rural tranquility"
+    ]
+    
+    # Extract some context from the text to make queries more relevant
     words = text.downcase.split(/\W+/).reject { |w| w.length < 3 }
     
-    # Common visual keywords
-    visual_keywords = words.select do |word|
-      %w[product device phone computer car building city landscape nature person face hands].include?(word)
+    # Look for specific themes in the text
+    if text.match(/tech|digital|computer|phone|device/i)
+      queries = ["modern technology", "innovative design", "digital lifestyle"]
+    elsif text.match(/business|work|professional|career/i)
+      queries = ["professional workspace", "business collaboration", "modern office"]
+    elsif text.match(/nature|outdoor|environment|green/i)
+      queries = ["natural landscape", "environmental beauty", "outdoor adventure"]
+    elsif text.match(/city|urban|building|architecture/i)
+      queries = ["urban architecture", "city skyline", "modern cityscape"]
+    elsif text.match(/people|human|person|community/i)
+      queries = ["diverse community", "human connection", "cultural celebration"]
+    elsif text.match(/art|creative|design|artistic/i)
+      queries = ["artistic expression", "creative workspace", "design inspiration"]
+    elsif text.match(/travel|adventure|exploration/i)
+      queries = ["adventure travel", "exploration journey", "world discovery"]
+    elsif text.match(/food|cooking|culinary/i)
+      queries = ["culinary artistry", "food culture", "gourmet experience"]
+    elsif text.match(/music|sound|audio/i)
+      queries = ["musical expression", "sound studio", "creative performance"]
+    elsif text.match(/health|wellness|fitness/i)
+      queries = ["healthy lifestyle", "wellness journey", "active living"]
+    else
+      # Default to positive, engaging themes
+      queries = cheerful_themes.sample(3)
     end
     
-    # Generate simple queries
-    queries = []
-    queries << "modern technology" if text.match(/tech|device|phone|computer/i)
-    queries << "business professional" if text.match(/business|work|professional/i)
-    queries << "natural landscape" if text.match(/nature|outdoor|landscape/i)
-    queries << "urban cityscape" if text.match(/city|urban|building/i)
-    
-    # Add specific objects if found
-    visual_keywords.first(2).each do |keyword|
-      queries << keyword unless queries.include?(keyword)
+    # Ensure we have exactly 3 queries
+    queries = queries.first(3)
+    while queries.length < 3
+      queries << cheerful_themes.sample
     end
     
     queries.uniq.first(3)
@@ -392,20 +433,14 @@ class LLMService
   def distribute_image_queries(segments, image_queries)
     return segments if image_queries.empty?
     
-    # Simple distribution: assign queries to segments based on duration
-    total_duration = segments.sum { |s| s[:end_time] - s[:start_time] }
-    queries_per_segment = (image_queries.length.to_f / segments.length).ceil
-    
+    # Simple distribution: assign ONE query to each segment
     segments.map.with_index do |segment, index|
-      # Calculate which queries to assign to this segment
-      start_query_index = (index * queries_per_segment) % image_queries.length
-      end_query_index = [(start_query_index + queries_per_segment - 1), (image_queries.length - 1)].min
-      
-      assigned_queries = image_queries[start_query_index..end_query_index] || []
+      # Assign ONE query per segment based on segment position
+      query_index = index % image_queries.length
       
       segment.merge({
-        image_queries: assigned_queries,
-        has_images: assigned_queries.any?
+        image_queries: [image_queries[query_index]], # Only ONE query per segment
+        has_images: true
       })
     end
   end
