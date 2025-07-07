@@ -58,20 +58,26 @@ class LocalVideoService
   def download_project_data(project_id, manifest)
     puts "📥 Downloading project data..."
     
+    # Ensure manifest keys are strings for consistency
+    manifest = manifest.transform_keys(&:to_s) if manifest.is_a?(Hash)
+    
     # Download audio file
     audio_file = download_audio_file(manifest['audio_file'])
     
     # Download images for each segment
     segments_with_images = []
     manifest['segments'].each_with_index do |segment, index|
+      # Ensure segment keys are strings
+      segment = segment.transform_keys(&:to_s) if segment.is_a?(Hash)
+      
       segment_images = download_segment_images(segment['generated_images'])
       segments_with_images << {
         id: segment['id'],
-        start_time: segment['start_time'],
-        end_time: segment['end_time'],
+        start_time: segment['start_time'].to_f,
+        end_time: segment['end_time'].to_f,
         text: segment['text'],
         images: segment_images,
-        duration: segment['end_time'] - segment['start_time']
+        duration: segment['end_time'].to_f - segment['start_time'].to_f
       }
     end
     
@@ -83,14 +89,19 @@ class LocalVideoService
   end
 
   def download_audio_file(audio_s3_key)
-    local_path = File.join(@temp_dir, "audio#{File.extname(audio_s3_key)}")
+    # Handle case where audio_s3_key might be a Hash or other type
+    audio_path = audio_s3_key.is_a?(String) ? audio_s3_key : 'sad.m4a'
+    
+    local_path = File.join(@temp_dir, "audio#{File.extname(audio_path)}")
     
     # For now, assume the audio file is already local
     # In a real implementation, you'd download from S3
-    if File.exist?(audio_s3_key)
-      FileUtils.cp(audio_s3_key, local_path)
+    if File.exist?(audio_path)
+      FileUtils.cp(audio_path, local_path)
+      puts "    📁 Copied audio file: #{audio_path} -> #{local_path}"
     else
       # Create a silent audio file as fallback
+      puts "    ⚠️  Audio file not found, creating silent audio"
       create_silent_audio(local_path, 30.0) # 30 seconds
     end
     
@@ -100,18 +111,93 @@ class LocalVideoService
   def download_segment_images(image_data_array)
     images = []
     
+    # Handle case where image_data_array might be nil or not an array
+    return images unless image_data_array.is_a?(Array)
+    
     image_data_array.each_with_index do |image_data, index|
-      # For now, use placeholder images
-      # In a real implementation, you'd download from the URLs
-      placeholder_path = create_placeholder_image(image_data['url'], index)
-      images << {
-        path: placeholder_path,
-        query: image_data['query'],
-        provider: image_data['provider']
-      }
+      # Ensure image_data is a hash with string keys
+      image_data = image_data.transform_keys(&:to_s) if image_data.is_a?(Hash)
+      
+      # Try to download the actual image from the URL
+      image_path = download_image_from_url(image_data['url'], index)
+      
+      if image_path && File.exist?(image_path)
+        images << {
+          path: image_path,
+          query: image_data['query'] || "image_#{index}",
+          provider: image_data['provider'] || 'downloaded'
+        }
+        puts "      ✅ Downloaded image #{index + 1}: #{image_data['url']}"
+      else
+        # Fallback to placeholder if download fails
+        placeholder_path = create_placeholder_image(image_data['url'] || "placeholder_#{index}", index)
+        images << {
+          path: placeholder_path,
+          query: image_data['query'] || "image_#{index}",
+          provider: image_data['provider'] || 'placeholder'
+        }
+        puts "      ⚠️  Failed to download image #{index + 1}, using placeholder"
+      end
     end
     
     images
+  end
+
+  def download_image_from_url(url, index)
+    return nil unless url && url.is_a?(String) && url.start_with?('http')
+    
+    begin
+      require 'net/http'
+      require 'uri'
+      
+      # Parse URL and download image
+      uri = URI.parse(url)
+      response = Net::HTTP.get_response(uri)
+      
+      if response.is_a?(Net::HTTPSuccess)
+        # Determine file extension from URL or content type
+        extension = get_image_extension(url, response['content-type'])
+        output_path = File.join(@temp_dir, "downloaded_image_#{index}#{extension}")
+        
+        # Save the image
+        File.open(output_path, 'wb') do |file|
+          file.write(response.body)
+        end
+        
+        # Verify the image is valid
+        if File.exist?(output_path) && File.size(output_path) > 0
+          return output_path
+        end
+      end
+    rescue => e
+      puts "      ❌ Error downloading image #{index + 1}: #{e.message}"
+    end
+    
+    nil
+  end
+
+  def get_image_extension(url, content_type)
+    # Try to get extension from URL first
+    if url.include?('.')
+      ext = File.extname(url).downcase
+      return ext if %w[.jpg .jpeg .png .gif .bmp .webp].include?(ext)
+    end
+    
+    # Fallback to content type
+    case content_type
+    when /jpeg|jpg/
+      '.jpg'
+    when /png/
+      '.png'
+    when /gif/
+      '.gif'
+    when /webp/
+      '.webp'
+    when /bmp/
+      '.bmp'
+    else
+      '.jpg' # Default fallback
+    end
   end
 
   def generate_segments(project_data)
@@ -144,9 +230,19 @@ class LocalVideoService
   def create_ken_burns_video(images, duration, output_path)
     return nil if images.empty?
     
-    # For simplicity, use the first image and create a zoom effect
-    image_path = images.first[:path]
+    if images.length == 1
+      # Single image with Ken Burns effect
+      image_path = images.first[:path]
+      create_single_image_ken_burns(image_path, duration, output_path)
+    else
+      # Multiple images with transitions
+      create_multi_image_ken_burns(images, duration, output_path)
+    end
     
+    output_path
+  end
+
+  def create_single_image_ken_burns(image_path, duration, output_path)
     # Create a Ken Burns effect using FFmpeg
     # Zoom from 1.3x to 1.0x over the duration
     filter_complex = [
@@ -168,10 +264,68 @@ class LocalVideoService
       output_path
     ]
     
-    puts "    🎥 Creating Ken Burns effect: #{File.basename(output_path)}"
+    puts "    🎥 Creating single image Ken Burns effect: #{File.basename(output_path)}"
     system(*cmd)
+  end
+
+  def create_multi_image_ken_burns(images, duration, output_path)
+    # Create a video with multiple images and transitions
+    image_duration = duration / images.length.to_f
     
-    output_path
+    # Create input file list
+    input_list_path = File.join(@temp_dir, "input_list.txt")
+    File.open(input_list_path, 'w') do |f|
+      images.each do |image|
+        f.puts "file '#{image[:path]}'"
+        f.puts "duration #{image_duration}"
+      end
+      # Add the last image again to ensure proper duration
+      f.puts "file '#{images.last[:path]}'"
+    end
+    
+    # Create the video with crossfade transitions
+    filter_complex = create_multi_image_filter(images.length, image_duration)
+    
+    cmd = [
+      @ffmpeg_path,
+      "-f", "concat",
+      "-safe", "0",
+      "-i", input_list_path,
+      "-filter_complex", filter_complex,
+      "-map", "[v]",
+      "-t", duration.to_s,
+      "-c:v", "libx264",
+      "-preset", "fast",
+      "-crf", "23",
+      "-y",
+      output_path
+    ]
+    
+    puts "    🎥 Creating multi-image Ken Burns effect with #{images.length} images: #{File.basename(output_path)}"
+    system(*cmd)
+  end
+
+  def create_multi_image_filter(image_count, image_duration)
+    # Create a complex filter for multiple images with crossfade transitions
+    filters = []
+    
+    # Scale and pad all images
+    image_count.times do |i|
+      filters << "[#{i}:v]scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2[scaled#{i}]"
+    end
+    
+    # Create crossfade transitions
+    if image_count > 1
+      filters << "[scaled0][scaled1]xfade=transition=fade:duration=0.5:offset=#{image_duration - 0.5}[v1]"
+      
+      (2...image_count).each do |i|
+        filters << "[v#{i-1}][scaled#{i}]xfade=transition=fade:duration=0.5:offset=#{image_duration * i - 0.5}[v#{i}]"
+      end
+      
+      "[v#{image_count-1}]"
+    else
+      "[scaled0]"
+    end
   end
 
   def combine_segments_with_audio(segment_videos, audio_file)
@@ -250,15 +404,19 @@ class LocalVideoService
     
     # Create a colored rectangle using ImageMagick or similar
     # For now, create a simple text-based image
+    colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'cyan', 'magenta', 'brown']
+    color = colors[index % colors.length]
+    
     cmd = [
       @ffmpeg_path,
       "-f", "lavfi",
-      "-i", "color=c=#{['red', 'blue', 'green', 'yellow', 'purple'][index % 5]}:s=#{width}x#{height}:d=1",
+      "-i", "color=c=#{color}:s=#{width}x#{height}:d=1",
       "-frames:v", "1",
       "-y",
       output_path
     ]
     
+    puts "      🎨 Creating placeholder image #{index + 1}: #{color} (#{width}x#{height})"
     system(*cmd)
     output_path
   end

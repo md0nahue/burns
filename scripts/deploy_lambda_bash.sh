@@ -26,25 +26,52 @@ mkdir -p $DEPLOY_DIR
 
 echo "\n📦 Creating minimal deployment package..."
 
-# Copy bash script
-cp lambda/ken_burns_video_generator.sh $DEPLOY_DIR/bootstrap
+# Compile Go bootstrap and copy bash script
+echo "🔧 Compiling Go bootstrap..."
+cd lambda
+GOOS=linux GOARCH=amd64 go build -o ../$DEPLOY_DIR/bootstrap bootstrap.go
+cd ..
 chmod +x $DEPLOY_DIR/bootstrap
+cp lambda/ken_burns_video_generator.sh $DEPLOY_DIR/ken_burns_video_generator.sh
+chmod +x $DEPLOY_DIR/ken_burns_video_generator.sh
 
-# Download ffmpeg binary (much smaller than Python version)
-echo "🎥 Downloading ffmpeg binary..."
+# Create cache directory for downloads
+CACHE_DIR="cache"
+mkdir -p $CACHE_DIR
+
+# Download ffmpeg binary (cached)
+echo "🎥 Checking ffmpeg binary..."
 FFMPEG_URL="https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
+FFMPEG_CACHE="$CACHE_DIR/ffmpeg-release-amd64-static.tar.xz"
 
 cd $DEPLOY_DIR
-curl -L -o ffmpeg.tar.xz $FFMPEG_URL
+
+if [ ! -f "../$FFMPEG_CACHE" ]; then
+    echo "  📥 Downloading ffmpeg binary..."
+    curl -L -o "../$FFMPEG_CACHE" $FFMPEG_URL
+else
+    echo "  ✅ Using cached ffmpeg binary"
+fi
+
+cp "../$FFMPEG_CACHE" ffmpeg.tar.xz
 tar -xf ffmpeg.tar.xz
 cp ffmpeg-*-amd64-static/ffmpeg .
 cp ffmpeg-*-amd64-static/ffprobe .
 chmod +x ffmpeg ffprobe
 
-# Download jq binary
-echo "🔧 Downloading jq binary..."
+# Download jq binary (cached)
+echo "🔧 Checking jq binary..."
 JQ_URL="https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
-curl -L -o jq $JQ_URL
+JQ_CACHE="$CACHE_DIR/jq-linux64"
+
+if [ ! -f "../$JQ_CACHE" ]; then
+    echo "  📥 Downloading jq binary..."
+    curl -L -o "../$JQ_CACHE" $JQ_URL
+else
+    echo "  ✅ Using cached jq binary"
+fi
+
+cp "../$JQ_CACHE" jq
 chmod +x jq
 
 # Clean up ffmpeg download

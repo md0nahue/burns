@@ -1,0 +1,10 @@
+{
+  "project_id": "test-go-lambda",
+  "segment_id": "test-segment",
+  "images": [
+    {
+      "url": "https://picsum.photos/1920/1080"
+    }
+  ],
+  "duration": 5.0
+} 

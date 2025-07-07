@@ -5,6 +5,12 @@
 
 set -e
 
+# Basic debug output
+echo "DEBUG: Bash script starting" >&2
+echo "DEBUG: Current directory: $(pwd)" >&2
+echo "DEBUG: Files in current directory:" >&2
+ls -la >&2
+
 # Configuration
 BUCKET_NAME="${S3_BUCKET:-burns-videos}"
 TEMP_DIR="/tmp"
@@ -201,6 +207,19 @@ main() {
     log "Event length: ${#event}"
     log "First 100 chars: ${event:0:100}"
     
+    # Debug jq binary
+    log "Checking jq binary..."
+    if [ -f "./jq" ]; then
+        log "jq binary exists"
+        if [ -x "./jq" ]; then
+            log "jq binary is executable"
+        else
+            log "jq binary is NOT executable"
+        fi
+    else
+        log "jq binary does not exist"
+    fi
+    
     # Parse event
     local project_id=$(echo "$event" | ./jq -r '.project_id // empty')
     local segment_id=$(echo "$event" | ./jq -r '.segment_id // empty')
@@ -232,16 +251,12 @@ main() {
     fi
 }
 
-# Check if running in Lambda
-if [ -n "$AWS_LAMBDA_FUNCTION_NAME" ]; then
-    # Lambda environment - read from stdin
-    event=$(cat)
-    main "$event"
-else
-    # Local testing
-    if [ $# -eq 0 ]; then
-        echo "Usage: $0 <event_json>"
-        exit 1
-    fi
-    main "$1"
-fi 
+# Always read from stdin (called by Python bootstrap)
+log "Reading from stdin..."
+stdin_content=""
+while IFS= read -r line; do
+    log "STDIN: $line"
+    stdin_content+="$line"
+done
+event="$stdin_content"
+main "$event" 

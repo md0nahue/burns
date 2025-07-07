@@ -1,1 +1,1 @@
-{"errorType":"Runtime.ExitError","errorMessage":"RequestId: 8bc7e486-7450-40b2-aefc-46dedb0788e3 Error: Runtime exited with error: exit status 1"}
+{"statusCode":200,"body":{"duration":5,"segment_id":"test-segment","segment_s3_key":"segments/test-go-lambda/test-segment_segment.mp4"}}
