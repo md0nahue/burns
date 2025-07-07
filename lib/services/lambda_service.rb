@@ -70,26 +70,31 @@ class LambdaService
       # Prepare segment tasks
       segment_tasks = segments.map.with_index do |segment, index|
         # Debug: Check segment data
-        puts "    Debug - Segment #{index}: start_time=#{segment[:start_time]}, end_time=#{segment[:end_time]}"
+        puts "    Debug - Segment #{index}: start_time=#{segment['start_time']}, end_time=#{segment['end_time']}"
         
         # Ensure we have valid timing data
-        start_time = segment[:start_time] || 0
-        end_time = segment[:end_time] || (start_time + 5.0) # Default 5 second duration
+        start_time = segment['start_time']
+        end_time = segment['end_time']
+        if start_time.nil? || end_time.nil?
+          start_time = 0.0
+          end_time = 5.0
+        end
+        
+        # Build images array for Lambda (array of {url: ...})
+        images = (segment['generated_images'] || []).map { |img| { url: img['url'] || img[:url] } }.compact
         
         {
-          segment_id: segment[:id],
-          segment_index: index,
-          images: segment[:generated_images],
-          duration: end_time - start_time,
-          start_time: start_time,
-          end_time: end_time
+          project_id: project_id,
+          segment_id: segment['id'].to_s,
+          images: images,
+          duration: end_time - start_time
         }
       end
       
       # Submit tasks to executor
       futures = segment_tasks.map do |task|
         Concurrent::Future.execute(executor: executor) do
-          generate_segment_video(project_id, task, options)
+          generate_segment_video(project_id, task, options.merge(total_segments: segments.length))
         end
       end
       
@@ -142,6 +147,9 @@ class LambdaService
         end_time: segment_data[:end_time],
         options: options.merge(segment_processing: true)
       }
+      
+      # Debug: Check for nil values in payload
+      puts "    Debug - Payload: project_id=#{payload[:project_id]}, segment_id=#{payload[:segment_id]}, segment_index=#{payload[:segment_index]}, images=#{payload[:images].class}, duration=#{payload[:duration]}, start_time=#{payload[:start_time]}, end_time=#{payload[:end_time]}"
       
       # Invoke Lambda function for this segment
       response = invoke_lambda_function(payload)
@@ -394,6 +402,10 @@ class LambdaService
     begin
       puts "  📤 Invoking Lambda function: #{@function_name}"
       
+      # Debug: Check payload before JSON serialization
+      puts "    Debug - Payload keys: #{payload.keys.join(', ')}"
+      puts "    Debug - Payload values: #{payload.values.map(&:class).join(', ')}"
+      
       response = @lambda_client.invoke(
         function_name: @function_name,
         payload: payload.to_json,
@@ -402,9 +414,20 @@ class LambdaService
       )
       
       # Parse response
+      puts "    Debug - Response status: #{response.status_code}"
       response_body = JSON.parse(response.payload.read)
+      puts "    Debug - Response body keys: #{response_body.keys.join(', ')}"
       
       if response.status_code == 200
+        # Check if there's an error in the response
+        if response_body['errorMessage']
+          puts "    Debug - Lambda error: #{response_body['errorMessage']}"
+          return {
+            success: false,
+            error: "Lambda function error: #{response_body['errorMessage']}"
+          }
+        end
+        
         # Success response
         body = JSON.parse(response_body['body'])
         

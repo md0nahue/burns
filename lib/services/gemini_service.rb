@@ -2,6 +2,7 @@ require 'net/http'
 require 'json'
 require 'securerandom'
 require 'digest'
+require 'pry'
 
 class GeminiService
   GEMINI_API_BASE = 'https://generativelanguage.googleapis.com/v1beta'
@@ -245,6 +246,7 @@ class GeminiService
   # @param prompt [String] The prompt to send
   # @return [Hash] API response
   def make_gemini_request(prompt)
+    
     uri = URI("#{GEMINI_API_BASE}/models/#{@model}:generateContent?key=#{@api_key}")
     
     request = Net::HTTP::Post.new(uri)
@@ -508,31 +510,37 @@ class GeminiService
       SEGMENT
     end
 
-    prompt += <<~PROMPT
-      TASK: Analyze this content and generate 2-3 specific image search queries that would create compelling visual accompaniment for a Ken Burns-style video effect.
+          prompt += <<~PROMPT
+        TASK: Analyze each segment and generate 1-2 specific image search queries for each segment that would create compelling visual accompaniment for a Ken Burns-style video effect.
 
-      REQUIREMENTS:
-      - Generate queries that are specific and descriptive
-      - Focus on visual elements mentioned or implied in the text
-      - Consider the emotional tone and context
-      - Avoid generic terms, be specific about objects, scenes, or concepts
-      - Each query should be 2-6 words maximum
-      - Prioritize queries that would work well for Ken Burns effects (landscapes, objects, people, etc.)
+        REQUIREMENTS:
+        - Generate 1-2 queries PER SEGMENT (not total)
+        - Generate queries that are specific and descriptive
+        - Focus on visual elements mentioned or implied in each segment's text
+        - Consider the emotional tone and context of each segment
+        - Avoid generic terms, be specific about objects, scenes, or concepts
+        - Each query should be 2-6 words maximum
+        - Prioritize queries that would work well for Ken Burns effects (landscapes, objects, people, etc.)
 
-      RESPONSE FORMAT (JSON only):
-      {
-        "image_queries": [
-          "specific visual query 1",
-          "specific visual query 2",
-          "specific visual query 3"
-        ],
-        "primary_theme": "brief description of main theme",
-        "visual_style": "#{style}",
-        "total_duration": #{total_duration.round(1)}
-      }
+        RESPONSE FORMAT (JSON only):
+        {
+          "segments": [
+            {
+              "segment_id": 0,
+              "image_queries": ["specific query 1", "specific query 2"]
+            },
+            {
+              "segment_id": 1,
+              "image_queries": ["specific query 1", "specific query 2"]
+            }
+          ],
+          "primary_theme": "brief description of main theme",
+          "visual_style": "#{style}",
+          "total_duration": #{total_duration.round(1)}
+        }
 
-      Generate only the JSON response, no other text.
-    PROMPT
+        Generate only the JSON response, no other text. Provide image_queries for each segment.
+      PROMPT
 
     prompt
   end
@@ -544,17 +552,47 @@ class GeminiService
   def parse_batch_analysis_response(response, segments)
     content = response.dig('candidates', 0, 'content', 'parts', 0, 'text')
     
+
+    
     return segments unless content
     
     begin
       # Try to parse as JSON
       parsed = JSON.parse(content.strip, symbolize_names: true)
-      image_queries = parsed[:image_queries] || []
       
-      # Distribute queries across segments
-      enriched_segments = distribute_image_queries(segments, image_queries)
-      
-      enriched_segments
+      # Check if we have the new format with segments
+      if parsed[:segments] && parsed[:segments].is_a?(Array)
+        # New format: each segment has its own queries
+        enriched_segments = segments.map.with_index do |segment, index|
+          segment_analysis = parsed[:segments].find { |s| s[:segment_id] == index }
+          
+          if segment_analysis && segment_analysis[:image_queries]
+            # Clean up the queries - remove any malformed JSON strings
+            clean_queries = segment_analysis[:image_queries].map do |query|
+              # Remove any JSON formatting artifacts
+              query.to_s.gsub(/^["\s]*/, '').gsub(/["\s]*$/, '').gsub(/^image_queries":\s*\[?"?/, '').gsub(/"?\s*,?\s*$/, '')
+            end.reject(&:empty?)
+            
+            segment.merge({
+              image_queries: clean_queries,
+              has_images: clean_queries.any?
+            })
+          else
+            # Fallback: generate queries for this segment
+            fallback_queries = generate_fallback_queries(segment[:text] || segment['text'] || '')
+            segment.merge({
+              image_queries: fallback_queries,
+              has_images: true
+            })
+          end
+        end
+        
+        enriched_segments
+      else
+        # Old format: distribute queries across segments
+        image_queries = parsed[:image_queries] || []
+        distribute_image_queries(segments, image_queries)
+      end
     rescue JSON::ParserError
       # Fallback: try to extract queries from text
       fallback_queries = extract_queries_from_text(content)

@@ -80,7 +80,7 @@ ruby provision_aws.rb
 ```bash
 # Test individual components
 ruby test_whisper_service.rb
-ruby test_llm_service.rb
+ruby test_gemini_service.rb
 ruby test_s3_service.rb
 ruby test_lambda_service.rb
 
@@ -117,15 +117,14 @@ end
 ```ruby
 # Audio transcription
 whisper = WhisperService.new
-transcription = whisper.transcribe_file('audio.mp3')
+gemini = GeminiService.new
+image_bus = ImageServiceBus.new
 
 # Content analysis
-llm = LLMService.new
-analysis = llm.analyze_content(transcription[:segments])
+analysis = gemini.analyze_content(whisper.transcribe_file('audio.mp3')[:segments])
 
 # Image generation
-image_gen = ImageGenerator.new
-images = image_gen.generate_images_for_segment(segment, project_id)
+images = image_bus.generate_images_for_segment(segment, project_id)
 
 # S3 operations
 s3 = S3Service.new
@@ -134,15 +133,21 @@ s3.upload_file('file.jpg', 'project-123/images/')
 
 ## 🧪 Testing
 
-### Component Tests
+### Test Individual Services
 
 ```bash
-# Test individual services
+# Test Whisper (Speech-to-Text)
 ruby test_whisper_service.rb
-ruby test_llm_service.rb
-ruby test_s3_service.rb
-ruby test_lambda_service.rb
+
+# Test Gemini (Content Analysis)
+ruby test_gemini_service.rb
+
+# Test Image Services
 ruby test_image_service_bus.rb
+ruby test_wikimedia_client.rb
+
+# Test Lambda Service
+ruby test_lambda_service.rb
 ```
 
 ### Integration Tests
@@ -165,7 +170,7 @@ burns/
 ├── lib/
 │   ├── services/            # External service integrations
 │   │   ├── whisper_service.rb
-│   │   ├── llm_service.rb
+
 │   │   ├── s3_service.rb
 │   │   ├── lambda_service.rb
 │   │   └── aws_provisioner.rb

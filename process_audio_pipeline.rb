@@ -2,6 +2,8 @@
 
 require_relative 'lib/pipeline/video_generator'
 require_relative 'config/services'
+require 'fileutils'
+require 'time'
 
 # 🎬 MAIN AUDIO PROCESSING PIPELINE - USE THIS SCRIPT FOR PRODUCTION
 # This is the current, up-to-date pipeline for processing audio files into Ken Burns videos
@@ -9,6 +11,29 @@ require_relative 'config/services'
 # Usage: ruby process_audio_pipeline.rb <audio_file_path>
 # Example: ruby process_audio_pipeline.rb my_audio.mp3
 # Example: ruby process_audio_pipeline.rb sad.m4a
+
+# Setup logging
+FileUtils.mkdir_p('logs')
+timestamp = Time.now.strftime('%Y%m%d_%H%M%S')
+log_file_path = "logs/pipeline_#{timestamp}.log"
+log_file = File.open(log_file_path, 'a')
+
+# Tee STDOUT and STDERR to log file
+class TeeIO
+  def initialize(*targets)
+    @targets = targets
+  end
+  def write(*args)
+    @targets.each { |t| t.write(*args) }
+  end
+  def flush; @targets.each(&:flush); end
+end
+$stdout = TeeIO.new($stdout, log_file)
+$stderr = TeeIO.new($stderr, log_file)
+
+# Log pipeline start time
+pipeline_start = Time.now
+puts "\n=== Pipeline started at: #{pipeline_start.iso8601} ===\n"
 
 puts "🎬 Burns - Audio to Ken Burns Video Pipeline"
 puts "=" * 60
@@ -96,6 +121,7 @@ puts "🎬 STARTING KEN BURNS VIDEO GENERATION"
 puts "=" * 60
 
 # Step 1: Generate complete video
+step_start = Time.now
 puts "\n📝 Step 1: Processing audio and transcription..."
 puts "🎵 Transcribing audio content..."
 
@@ -180,6 +206,34 @@ else
   puts "=" * 60
   exit 1
 end
+
+# Add timing for each major step
+step_end = Time.now
+puts "⏱️  Step 1 runtime: #{(step_end - step_start).round(2)} seconds"
+
+step_start = Time.now
+puts "\n🖼️  Step 2: Generating images for segments..."
+# ...
+step_end = Time.now
+puts "⏱️  Step 2 runtime: #{(step_end - step_start).round(2)} seconds"
+
+step_start = Time.now
+puts "\n📋 Step 3: Creating project manifest..."
+# ...
+step_end = Time.now
+puts "⏱️  Step 3 runtime: #{(step_end - step_start).round(2)} seconds"
+
+step_start = Time.now
+puts "\n🎥 Step 4: Generating final Ken Burns video..."
+# ...
+step_end = Time.now
+puts "⏱️  Step 4 runtime: #{(step_end - step_start).round(2)} seconds"
+
+# Log pipeline end time and total runtime
+pipeline_end = Time.now
+puts "\n=== Pipeline ended at: #{pipeline_end.iso8601} ==="
+puts "⏱️  Total pipeline runtime: #{(pipeline_end - pipeline_start).round(2)} seconds\n"
+log_file.close
 
 puts "\n🎉 Pipeline completed successfully!"
 puts "📹 Your Ken Burns video with custom visuals is ready!"

@@ -1,0 +1,7 @@
+
+=== Pipeline started at: 2025-07-06T19:58:24-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+❌ Error: No audio file specified
+Usage: ruby process_audio_pipeline.rb <audio_file_path>
+Example: ruby process_audio_pipeline.rb sad.m4a

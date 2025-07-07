@@ -1,0 +1,319 @@
+
+=== Pipeline started at: 2025-07-06T19:53:54-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+✅ Found audio file: sad.m4a
+📊 File size: 17.95 MB
+
+🚀 Initializing video generator...
+🎬 Local Video Service initialized
+  📁 Temp directory: /var/folders/h6/gt987qh93hs085p28xhy8z840000gn/T/d20250706-23511-qhfe5o
+  🎥 FFmpeg path: ffmpeg
+
+⚙️  Generation options:
+  📐 Resolution: 1080p
+  🎬 FPS: 24
+  🎭 Ken Burns Effect: true
+  🔄 Smooth Transitions: true
+  ⏱️  Image Duration: 3.0s
+  🌊 Transition Duration: 1.0s
+  🔍 Zoom Factor: 1.2x
+  📹 Pan Speed: 0.5
+  💾 Image Caching: true
+  💾 Transcription Caching: true
+  💾 Analysis Caching: true
+
+============================================================
+🎬 STARTING KEN BURNS VIDEO GENERATION
+============================================================
+
+📝 Step 1: Processing audio and transcription...
+🎵 Transcribing audio content...
+🎬 Starting Ken Burns video generation
+  📁 Audio file: sad.m4a
+  🆔 Project ID: sad
+  ⚙️  Options: {:resolution=>"1080p", :fps=>24, :test_mode=>false, :ken_burns_effect=>true, :smooth_transitions=>true, :image_duration=>3.0, :transition_duration=>1.0, :zoom_factor=>1.2, :pan_speed=>0.5, :cache_images=>true, :cache_transcription=>true, :cache_analysis=>true}
+
+📝 Step 1: Processing audio and transcription...
+  💾 Using cached transcription from S3
+
+🖼️  Step 2: Generating images for segments...
+  🖼️  Generating images for segments...
+    📝 Processing segment: 0
+    📝 Processing segment: 0
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client pixabay for image 1
+    🔍 ImageServiceBus: About to call search_images on pixabay
+    🔍 ImageServiceBus: Client class: PixabayClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 20 images from pixabay
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from pixabay: https://pixabay.com/get/gc7b414e4927210c1275335c81231d6ba2238bc35eda7a88e912fb2c9b27fbe1cf9c44f7f76cf95355829c3af8056f80a_640.jpg
+      ✅ Generated 1 images
+    📝 Processing segment: 1
+    📝 Processing segment: 1
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client openverse for image 1
+    🔍 ImageServiceBus: About to call search_images on openverse
+    🔍 ImageServiceBus: Client class: OpenverseClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 2 images from openverse
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from openverse: https://live.staticflickr.com/2329/2202006927_62b2ed0d13.jpg
+      ✅ Generated 1 images
+    📝 Processing segment: 2
+    📝 Processing segment: 2
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client openverse for image 1
+    🔍 ImageServiceBus: About to call search_images on openverse
+    🔍 ImageServiceBus: Client class: OpenverseClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 2 images from openverse
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from openverse: https://live.staticflickr.com/2329/2202006927_62b2ed0d13.jpg
+      ✅ Generated 1 images
+    📝 Processing segment: 3
+    📝 Processing segment: 3
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client wikimedia for image 1
+    🔍 ImageServiceBus: About to call search_images on wikimedia
+    🔍 ImageServiceBus: Client class: WikimediaClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ⚠️  ImageServiceBus: No results from wikimedia
+    🔍 ImageServiceBus: Returning 0 results
+      ⚠️  No images found for query: 'Flamboyant man in colorful attire'
+      ✅ Generated 0 images
+    📝 Processing segment: 4
+    📝 Processing segment: 4
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client unsplash for image 1
+    🔍 ImageServiceBus: About to call search_images on unsplash
+    🔍 ImageServiceBus: Client class: UnsplashClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: NilClass
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Returning 0 results
+      ⚠️  No images found for query: 'Flamboyant man in colorful attire'
+      ✅ Generated 0 images
+    📝 Processing segment: 5
+    📝 Processing segment: 5
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client lorem_picsum for image 1
+    🔍 ImageServiceBus: About to call search_images on lorem_picsum
+    🔍 ImageServiceBus: Client class: LoremPicsumClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 5 images from lorem_picsum
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from lorem_picsum: https://picsum.photos/2560/1440?random=95
+      ✅ Generated 1 images
+    📝 Processing segment: 6
+    📝 Processing segment: 6
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client pixabay for image 1
+    🔍 ImageServiceBus: About to call search_images on pixabay
+    🔍 ImageServiceBus: Client class: PixabayClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 20 images from pixabay
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from pixabay: https://pixabay.com/get/g35cddb1506467dd69286f70697f5e8ad1de2aacb3c537c6fc8603465831de6170ce5678fd147fda3f45b0d62c0d67054_640.jpg
+      ✅ Generated 1 images
+    📝 Processing segment: 7
+    📝 Processing segment: 7
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client unsplash for image 1
+    🔍 ImageServiceBus: About to call search_images on unsplash
+    🔍 ImageServiceBus: Client class: UnsplashClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: NilClass
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Returning 0 results
+      ⚠️  No images found for query: 'Flamboyant man in colorful attire'
+      ✅ Generated 0 images
+    📝 Processing segment: 8
+    📝 Processing segment: 8
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client pixabay for image 1
+    🔍 ImageServiceBus: About to call search_images on pixabay
+    🔍 ImageServiceBus: Client class: PixabayClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 20 images from pixabay
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from pixabay: https://pixabay.com/get/gd1d41901e1edd76124476a3308f2ef6c7be982a9f4c488998794fec2d4b4463cde936fd3b255ef91ffc3f035f9e9fde6_640.jpg
+      ✅ Generated 1 images
+    📝 Processing segment: 9
+    📝 Processing segment: 9
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client unsplash for image 1
+    🔍 ImageServiceBus: About to call search_images on unsplash
+    🔍 ImageServiceBus: Client class: UnsplashClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: NilClass
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Returning 0 results
+      ⚠️  No images found for query: 'Flamboyant man in colorful attire'
+      ✅ Generated 0 images
+    📝 Processing segment: 10
+    📝 Processing segment: 10
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client wikimedia for image 1
+    🔍 ImageServiceBus: About to call search_images on wikimedia
+    🔍 ImageServiceBus: Client class: WikimediaClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ⚠️  ImageServiceBus: No results from wikimedia
+    🔍 ImageServiceBus: Returning 0 results
+      ⚠️  No images found for query: 'Flamboyant man in colorful attire'
+      ✅ Generated 0 images
+    📝 Processing segment: 11
+    📝 Processing segment: 11
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client openverse for image 1
+    🔍 ImageServiceBus: About to call search_images on openverse
+    🔍 ImageServiceBus: Client class: OpenverseClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 2 images from openverse
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from openverse: https://live.staticflickr.com/2329/2202006927_62b2ed0d13.jpg
+      ✅ Generated 1 images
+    📝 Processing segment: 12
+    📝 Processing segment: 12
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client lorem_picsum for image 1
+    🔍 ImageServiceBus: About to call search_images on lorem_picsum
+    🔍 ImageServiceBus: Client class: LoremPicsumClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: Hash
+    ✅ ImageServiceBus: Successfully got 5 images from lorem_picsum
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found ONE image from lorem_picsum: https://picsum.photos/2560/1440?random=62
+      ✅ Generated 1 images
+    📝 Processing segment: 13
+    📝 Processing segment: 13
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client unsplash for image 1
+    🔍 ImageServiceBus: About to call search_images on unsplash
+    🔍 ImageServiceBus: Client class: UnsplashClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+    🔍 ImageServiceBus: Got result: NilClass
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Returning 0 results
+      ⚠️  No images found for query: 'Flamboyant man in colorful attire'
+      ✅ Generated 0 images
+    📝 Processing segment: 14
+    📝 Processing segment: 14
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Flamboyant man in colorful attire"]
+      Debug - final image_queries: ["Flamboyant man in colorful attire"]
+      Searching for ONE image with query: 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Getting 1 images for query 'Flamboyant man in colorful attire'
+    🔍 ImageServiceBus: Using client wikimedia for image 1
+    🔍 ImageServiceBus: About to call search_images on wikimedia
+    🔍 ImageServiceBus: Client class: WikimediaClient
+    🔍 ImageServiceBus: Query: 'Flamboyant man in colorful attire', Resolution: '1080p'
+    🔍 ImageServiceBus: Calling search_images now...
+/Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-protocol-0.2.2/lib/net/protocol.rb:229:in `wait_readable': Interrupt
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-protocol-0.2.2/lib/net/protocol.rb:229:in `rbuf_fill'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-protocol-0.2.2/lib/net/protocol.rb:199:in `readuntil'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-protocol-0.2.2/lib/net/protocol.rb:209:in `readline'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http/response.rb:158:in `read_status_line'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http/response.rb:147:in `read_new'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http.rb:2420:in `block in transport_request'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http.rb:2411:in `catch'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http.rb:2411:in `transport_request'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http.rb:2384:in `request'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http.rb:2377:in `block in request'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http.rb:1632:in `start'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/net-http-0.6.0/lib/net/http.rb:2375:in `request'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/httparty-0.23.1/lib/httparty/request.rb:157:in `perform'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/httparty-0.23.1/lib/httparty.rb:621:in `perform_request'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/httparty-0.23.1/lib/httparty.rb:531:in `get'
+	from /Users/magnusfremont/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/httparty-0.23.1/lib/httparty.rb:654:in `get'
+	from /Users/magnusfremont/Desktop/burns/lib/base_image_client.rb:29:in `make_request'
+	from /Users/magnusfremont/Desktop/burns/lib/wikimedia_client.rb:30:in `search_images'
+	from /Users/magnusfremont/Desktop/burns/lib/image_service_bus.rb:58:in `block in get_images'
+	from /Users/magnusfremont/Desktop/burns/lib/image_service_bus.rb:38:in `times'
+	from /Users/magnusfremont/Desktop/burns/lib/image_service_bus.rb:38:in `get_images'
+	from /Users/magnusfremont/Desktop/burns/lib/pipeline/image_generator.rb:109:in `generate_images_for_segment'
+	from /Users/magnusfremont/Desktop/burns/lib/pipeline/video_generator.rb:196:in `block in generate_images'
+	from /Users/magnusfremont/Desktop/burns/lib/pipeline/video_generator.rb:192:in `each'
+	from /Users/magnusfremont/Desktop/burns/lib/pipeline/video_generator.rb:192:in `generate_images'
+	from /Users/magnusfremont/Desktop/burns/lib/pipeline/video_generator.rb:61:in `generate_video'
+	from process_audio_pipeline.rb:129:in `<main>'

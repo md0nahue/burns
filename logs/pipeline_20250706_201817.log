@@ -1,0 +1,484 @@
+
+=== Pipeline started at: 2025-07-06T20:18:17-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+✅ Found audio file: sad.m4a
+📊 File size: 17.95 MB
+
+🚀 Initializing video generator...
+🎬 Local Video Service initialized
+  📁 Temp directory: /var/folders/h6/gt987qh93hs085p28xhy8z840000gn/T/d20250706-25990-tu1lga
+  🎥 FFmpeg path: ffmpeg
+
+⚙️  Generation options:
+  📐 Resolution: 1080p
+  🎬 FPS: 24
+  🎭 Ken Burns Effect: true
+  🔄 Smooth Transitions: true
+  ⏱️  Image Duration: 3.0s
+  🌊 Transition Duration: 1.0s
+  🔍 Zoom Factor: 1.2x
+  📹 Pan Speed: 0.5
+  💾 Image Caching: true
+  💾 Transcription Caching: true
+  💾 Analysis Caching: true
+
+============================================================
+🎬 STARTING KEN BURNS VIDEO GENERATION
+============================================================
+
+📝 Step 1: Processing audio and transcription...
+🎵 Transcribing audio content...
+🎬 Starting Ken Burns video generation
+  📁 Audio file: sad.m4a
+  🆔 Project ID: sad
+  ⚙️  Options: {:resolution=>"1080p", :fps=>24, :test_mode=>false, :ken_burns_effect=>true, :smooth_transitions=>true, :image_duration=>3.0, :transition_duration=>1.0, :zoom_factor=>1.2, :pan_speed=>0.5, :cache_images=>true, :cache_transcription=>true, :cache_analysis=>true}
+
+📝 Step 1: Processing audio and transcription...
+  💾 Using cached transcription from S3
+
+🎨 Step 2: Analyzing content and generating image queries...
+  💾 Using cached image analysis from S3
+
+🖼️  Step 3: Generating images for segments...
+  💾 Using cached image generation from S3
+
+📋 Step 4: Creating project manifest...
+  💾 Using cached manifest from S3
+📥 Getting project manifest: sad
+✅ Project manifest retrieved: s3://burns-videos/projects/sad/manifest.json
+
+🎥 Step 5: Generating final Ken Burns video...
+  🎥 Generating final video using AWS Lambda for parallel processing...
+📥 Getting project manifest: sad
+✅ Project manifest retrieved: s3://burns-videos/projects/sad/manifest.json
+    📝 Processing 137 segments concurrently...
+🚀 Generating video segments concurrently for project: sad
+  📝 Segments: 137
+  ⚡ Concurrency: 50 (unlimited Lambda scaling)
+    Debug - Segment 0: start_time=0, end_time=5.28
+    Debug - Segment 1: start_time=5.28, end_time=11.6
+    Debug - Segment 2: start_time=12.08, end_time=18.14
+    Debug - Segment 3: start_time=18.14, end_time=25.54
+    Debug - Segment 4: start_time=25.54, end_time=27.54
+    Debug - Segment 5: start_time=27.86, end_time=28.72
+    Debug - Segment 6: start_time=28.84, end_time=31.66
+    Debug - Segment 7: start_time=31.66, end_time=32.44
+    Debug - Segment 8: start_time=32.58, end_time=34.78
+    Debug - Segment 9: start_time=34.86, end_time=36.38
+    Debug - Segment 10: start_time=36.72, end_time=37.66
+    Debug - Segment 11: start_time=37.74, end_time=38.4
+    Debug - Segment 12: start_time=38.78, end_time=40.56
+    Debug - Segment 13: start_time=40.62, end_time=41.22
+    Debug - Segment 14: start_time=41.32, end_time=42.74
+    Debug - Segment 15: start_time=43.52, end_time=46.98
+    Debug - Segment 16: start_time=47.5, end_time=48.2
+    Debug - Segment 17: start_time=48.26, end_time=48.94
+    Debug - Segment 18: start_time=48.94, end_time=50.72
+    Debug - Segment 19: start_time=50.94, end_time=52.6
+    Debug - Segment 20: start_time=52.7, end_time=53.8
+    Debug - Segment 21: start_time=53.8, end_time=55.14
+    Debug - Segment 22: start_time=55.14, end_time=56.68
+    Debug - Segment 23: start_time=56.68, end_time=58.02
+    Debug - Segment 24: start_time=58.02, end_time=58.68
+    Debug - Segment 25: start_time=58.68, end_time=60.52
+    Debug - Segment 26: start_time=61.06, end_time=67.78
+    Debug - Segment 27: start_time=68.04, end_time=69.58
+    Debug - Segment 28: start_time=70.32, end_time=71.54
+    Debug - Segment 29: start_time=71.76, end_time=73.46
+    Debug - Segment 30: start_time=74.02, end_time=75.32
+    Debug - Segment 31: start_time=75.5, end_time=77.06
+    Debug - Segment 32: start_time=77.46, end_time=79.2
+    Debug - Segment 33: start_time=79.26, end_time=81.88
+    Debug - Segment 34: start_time=82.16, end_time=84.96
+    Debug - Segment 35: start_time=84.96, end_time=85.96
+    Debug - Segment 36: start_time=85.96, end_time=86.96
+    Debug - Segment 37: start_time=86.96, end_time=87.96
+    Debug - Segment 38: start_time=87.96, end_time=88.96
+    Debug - Segment 39: start_time=88.96, end_time=90.96
+    Debug - Segment 40: start_time=90.96, end_time=93.96
+    Debug - Segment 41: start_time=93.96, end_time=94.96
+    Debug - Segment 42: start_time=94.96, end_time=95.96
+    Debug - Segment 43: start_time=95.96, end_time=96.96
+    Debug - Segment 44: start_time=96.96, end_time=102.96
+    Debug - Segment 45: start_time=102.96, end_time=103.96
+    Debug - Segment 46: start_time=103.96, end_time=104.96
+    Debug - Segment 47: start_time=104.96, end_time=105.96
+    Debug - Segment 48: start_time=105.96, end_time=106.96
+    Debug - Segment 49: start_time=106.96, end_time=107.96
+    Debug - Segment 50: start_time=107.96, end_time=109.96
+    Debug - Segment 51: start_time=109.96, end_time=110.96
+    Debug - Segment 52: start_time=110.96, end_time=111.96
+    Debug - Segment 53: start_time=111.96, end_time=113.96
+    Debug - Segment 54: start_time=113.96, end_time=117.72
+    Debug - Segment 55: start_time=119.42, end_time=124.74
+    Debug - Segment 56: start_time=128.06, end_time=130.06
+    Debug - Segment 57: start_time=130.2, end_time=138.5
+    Debug - Segment 58: start_time=138.5, end_time=158.04001
+    Debug - Segment 59: start_time=162.56, end_time=171.68001
+    Debug - Segment 60: start_time=171.68001, end_time=175.7
+    Debug - Segment 61: start_time=176.44, end_time=178.72
+    Debug - Segment 62: start_time=179.3, end_time=186.16
+    Debug - Segment 63: start_time=186.16, end_time=188.36
+    Debug - Segment 64: start_time=188.86, end_time=192.36
+    Debug - Segment 65: start_time=193.52, end_time=197.14
+    Debug - Segment 66: start_time=197.14, end_time=201.34
+    Debug - Segment 67: start_time=201.68001, end_time=206.06
+    Debug - Segment 68: start_time=206.06, end_time=211.36
+    Debug - Segment 69: start_time=216.92001, end_time=220.96
+    Debug - Segment 70: start_time=220.96, end_time=227.44
+    Debug - Segment 71: start_time=227.44, end_time=235.66
+    Debug - Segment 72: start_time=235.66, end_time=242.44
+    Debug - Segment 73: start_time=242.44, end_time=248.3
+    Debug - Segment 74: start_time=248.3, end_time=255.1
+    Debug - Segment 75: start_time=255.1, end_time=265
+    Debug - Segment 76: start_time=265.38, end_time=271.94
+    Debug - Segment 77: start_time=272.41998, end_time=280.84
+    Debug - Segment 78: start_time=280.84, end_time=283.47998
+    Debug - Segment 79: start_time=283.47998, end_time=287.8
+    Debug - Segment 80: start_time=287.8, end_time=291.24
+    Debug - Segment 81: start_time=291.24, end_time=292.12
+    Debug - Segment 82: start_time=292.12, end_time=292.6
+    Debug - Segment 83: start_time=292.6, end_time=302.6
+    Debug - Segment 84: start_time=306.04, end_time=312.76
+    Debug - Segment 85: start_time=312.76, end_time=319.72
+    Debug - Segment 86: start_time=319.72, end_time=326.92
+    Debug - Segment 87: start_time=326.92, end_time=333.96002
+    Debug - Segment 88: start_time=333.96002, end_time=340.2
+    Debug - Segment 89: start_time=340.2, end_time=346.6
+    Debug - Segment 90: start_time=346.6, end_time=353.22
+    Debug - Segment 91: start_time=353.22, end_time=361.14
+    Debug - Segment 92: start_time=361.14, end_time=367.82
+    Debug - Segment 93: start_time=367.82, end_time=374.88
+    Debug - Segment 94: start_time=374.88, end_time=379.04
+    Debug - Segment 95: start_time=404.88, end_time=410.40002
+    Debug - Segment 96: start_time=410.40002, end_time=414.48
+    Debug - Segment 97: start_time=414.48, end_time=420.24
+    Debug - Segment 98: start_time=420.24, end_time=423.44
+    Debug - Segment 99: start_time=423.44, end_time=428.48
+    Debug - Segment 100: start_time=428.48, end_time=436.88
+    Debug - Segment 101: start_time=436.88, end_time=451.69998
+    Debug - Segment 102: start_time=451.69998, end_time=452.62
+    Debug - Segment 103: start_time=452.91998, end_time=455.12
+    Debug - Segment 104: start_time=455.46, end_time=459.13998
+    Debug - Segment 105: start_time=459.5, end_time=460.13998
+    Debug - Segment 106: start_time=460.4, end_time=462.34
+    Debug - Segment 107: start_time=462.5, end_time=465.28
+    Debug - Segment 108: start_time=466.16, end_time=467.03998
+    Debug - Segment 109: start_time=467.68, end_time=469.18
+    Debug - Segment 110: start_time=469.18, end_time=471.36
+    Debug - Segment 111: start_time=471.4, end_time=476.4
+    Debug - Segment 112: start_time=477.88, end_time=478.76
+    Debug - Segment 113: start_time=478.76, end_time=484.52
+    Debug - Segment 114: start_time=484.84, end_time=488.03998
+    Debug - Segment 115: start_time=488.76, end_time=495.56
+    Debug - Segment 116: start_time=495.88, end_time=497.88
+    Debug - Segment 117: start_time=497.88, end_time=505.52
+    Debug - Segment 118: start_time=505.9, end_time=512.2
+    Debug - Segment 119: start_time=512.77997, end_time=517.7
+    Debug - Segment 120: start_time=521.12, end_time=524.92
+    Debug - Segment 121: start_time=524.92, end_time=530.38
+    Debug - Segment 122: start_time=530.38, end_time=536.26
+    Debug - Segment 123: start_time=536.26, end_time=542.98
+    Debug - Segment 124: start_time=542.98, end_time=547.83997
+    Debug - Segment 125: start_time=547.83997, end_time=549.04
+    Debug - Segment 126: start_time=549.04, end_time=549.58
+    Debug - Segment 127: start_time=549.58, end_time=550.58
+    Debug - Segment 128: start_time=550.58, end_time=551.8
+    Debug - Segment 129: start_time=551.8, end_time=554.6
+    Debug - Segment 130: start_time=554.6, end_time=557.88
+    Debug - Segment 131: start_time=557.88, end_time=560.04
+    Debug - Segment 132: start_time=560.04, end_time=565.8
+    Debug - Segment 133: start_time=566.44, end_time=570.12
+    Debug - Segment 134: start_time=570.92, end_time=577.95996
+    Debug - Segment 135: start_time=577.95996, end_time=586.86
+    Debug - Segment 136: start_time=588.26, end_time=595.14
+  ⏳ Waiting for 137 segments to complete...
+    ❌ Error processing segment 1: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 2: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 3: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 4: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 6: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 8: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 9: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 10: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 11: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 14: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 15: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 16: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 17: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 18: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 20: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 22: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 23: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 24: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 26: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 27: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 28: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 29: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 30: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 31: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 33: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 34: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 35: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 36: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 37: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 38: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 39: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 40: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 41: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 42: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 43: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 44: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 55: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 56: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 57: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 58: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 59: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 60: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 61: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 45: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 46: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 48: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 0: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 5: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 7: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 12: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 13: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 66: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 51: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 52: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 19: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 21: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 53: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 25: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 32: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 54: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 47: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 49: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 62: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 88: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 50: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 67: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 68: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 96: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 70: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 71: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 72: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 73: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 74: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 75: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 76: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 78: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 79: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 80: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 81: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 106: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 82: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 83: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 63: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 84: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 109: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 110: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 91: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 111: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 112: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 113: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 94: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 114: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 95: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 115: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 116: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 117: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 98: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 99: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 103: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 125: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 126: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 127: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 107: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 128: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 85: undefined method `+' for nil:NilClasss
+    ❌ Error processing segment 129: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 119: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 120: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 121: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 130: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 131: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 104: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 132: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 86: undefined method `+' for nil:NilClasss
+    ❌ Error processing segment 118: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 123: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 133: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 86: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 135: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 64: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 65: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 89: undefined method `+' for nil:NilClass    ❌ Error processing segment 90: undefined method `+' for nil:NilClass
+
+    ❌ Error processing segment 92: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 93: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 69: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 97: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 100: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 101: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 77: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 102: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 122: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 124: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 105: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 108: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 85: undefined method `+' for nil:NilClass
+    ❌ Error processing segment 87: undefined method `+' for nil:NilClass
+❌ 137 segments failed to process
+  ❌ Segment 0: undefined method `+' for nil:NilClass
+  ❌ Segment 1: undefined method `+' for nil:NilClass
+  ❌ Segment 2: undefined method `+' for nil:NilClass
+  ❌ Segment 3: undefined method `+' for nil:NilClass
+  ❌ Segment 4: undefined method `+' for nil:NilClass
+  ❌ Segment 5: undefined method `+' for nil:NilClass
+  ❌ Segment 6: undefined method `+' for nil:NilClass
+  ❌ Segment 7: undefined method `+' for nil:NilClass
+  ❌ Segment 8: undefined method `+' for nil:NilClass
+  ❌ Segment 9: undefined method `+' for nil:NilClass
+  ❌ Segment 10: undefined method `+' for nil:NilClass
+  ❌ Segment 11: undefined method `+' for nil:NilClass
+  ❌ Segment 12: undefined method `+' for nil:NilClass
+  ❌ Segment 13: undefined method `+' for nil:NilClass
+  ❌ Segment 14: undefined method `+' for nil:NilClass
+  ❌ Segment 15: undefined method `+' for nil:NilClass
+  ❌ Segment 16: undefined method `+' for nil:NilClass
+  ❌ Segment 17: undefined method `+' for nil:NilClass
+  ❌ Segment 18: undefined method `+' for nil:NilClass
+  ❌ Segment 19: undefined method `+' for nil:NilClass
+  ❌ Segment 20: undefined method `+' for nil:NilClass
+  ❌ Segment 21: undefined method `+' for nil:NilClass
+  ❌ Segment 22: undefined method `+' for nil:NilClass
+  ❌ Segment 23: undefined method `+' for nil:NilClass
+  ❌ Segment 24: undefined method `+' for nil:NilClass
+  ❌ Segment 25: undefined method `+' for nil:NilClass
+  ❌ Segment 26: undefined method `+' for nil:NilClass
+  ❌ Segment 27: undefined method `+' for nil:NilClass
+  ❌ Segment 28: undefined method `+' for nil:NilClass
+  ❌ Segment 29: undefined method `+' for nil:NilClass
+  ❌ Segment 30: undefined method `+' for nil:NilClass
+  ❌ Segment 31: undefined method `+' for nil:NilClass
+  ❌ Segment 32: undefined method `+' for nil:NilClass
+  ❌ Segment 33: undefined method `+' for nil:NilClass
+  ❌ Segment 34: undefined method `+' for nil:NilClass
+  ❌ Segment 35: undefined method `+' for nil:NilClass
+  ❌ Segment 36: undefined method `+' for nil:NilClass
+  ❌ Segment 37: undefined method `+' for nil:NilClass
+  ❌ Segment 38: undefined method `+' for nil:NilClass
+  ❌ Segment 39: undefined method `+' for nil:NilClass
+  ❌ Segment 40: undefined method `+' for nil:NilClass
+  ❌ Segment 41: undefined method `+' for nil:NilClass
+  ❌ Segment 42: undefined method `+' for nil:NilClass
+  ❌ Segment 43: undefined method `+' for nil:NilClass
+  ❌ Segment 44: undefined method `+' for nil:NilClass
+  ❌ Segment 45: undefined method `+' for nil:NilClass
+  ❌ Segment 46: undefined method `+' for nil:NilClass
+  ❌ Segment 47: undefined method `+' for nil:NilClass
+  ❌ Segment 48: undefined method `+' for nil:NilClass
+  ❌ Segment 49: undefined method `+' for nil:NilClass
+  ❌ Segment 50: undefined method `+' for nil:NilClass
+  ❌ Segment 51: undefined method `+' for nil:NilClass
+  ❌ Segment 52: undefined method `+' for nil:NilClass
+  ❌ Segment 53: undefined method `+' for nil:NilClass
+  ❌ Segment 54: undefined method `+' for nil:NilClass
+  ❌ Segment 55: undefined method `+' for nil:NilClass
+  ❌ Segment 56: undefined method `+' for nil:NilClass
+  ❌ Segment 57: undefined method `+' for nil:NilClass
+  ❌ Segment 58: undefined method `+' for nil:NilClass
+  ❌ Segment 59: undefined method `+' for nil:NilClass
+  ❌ Segment 60: undefined method `+' for nil:NilClass
+  ❌ Segment 61: undefined method `+' for nil:NilClass
+  ❌ Segment 62: undefined method `+' for nil:NilClass
+  ❌ Segment 63: undefined method `+' for nil:NilClass
+  ❌ Segment 64: undefined method `+' for nil:NilClass
+  ❌ Segment 65: undefined method `+' for nil:NilClass
+  ❌ Segment 66: undefined method `+' for nil:NilClass
+  ❌ Segment 67: undefined method `+' for nil:NilClass
+  ❌ Segment 68: undefined method `+' for nil:NilClass
+  ❌ Segment 69: undefined method `+' for nil:NilClass
+  ❌ Segment 70: undefined method `+' for nil:NilClass
+  ❌ Segment 71: undefined method `+' for nil:NilClass
+  ❌ Segment 72: undefined method `+' for nil:NilClass
+  ❌ Segment 73: undefined method `+' for nil:NilClass
+  ❌ Segment 74: undefined method `+' for nil:NilClass
+  ❌ Segment 75: undefined method `+' for nil:NilClass
+  ❌ Segment 76: undefined method `+' for nil:NilClass
+  ❌ Segment 77: undefined method `+' for nil:NilClass
+  ❌ Segment 78: undefined method `+' for nil:NilClass
+  ❌ Segment 79: undefined method `+' for nil:NilClass
+  ❌ Segment 80: undefined method `+' for nil:NilClass
+  ❌ Segment 81: undefined method `+' for nil:NilClass
+  ❌ Segment 82: undefined method `+' for nil:NilClass
+  ❌ Segment 83: undefined method `+' for nil:NilClass
+  ❌ Segment 84: undefined method `+' for nil:NilClass
+  ❌ Segment 85: undefined method `+' for nil:NilClass
+  ❌ Segment 86: undefined method `+' for nil:NilClass
+  ❌ Segment 87: undefined method `+' for nil:NilClass
+  ❌ Segment 88: undefined method `+' for nil:NilClass
+  ❌ Segment 89: undefined method `+' for nil:NilClass
+  ❌ Segment 90: undefined method `+' for nil:NilClass
+  ❌ Segment 91: undefined method `+' for nil:NilClass
+  ❌ Segment 92: undefined method `+' for nil:NilClass
+  ❌ Segment 93: undefined method `+' for nil:NilClass
+  ❌ Segment 94: undefined method `+' for nil:NilClass
+  ❌ Segment 95: undefined method `+' for nil:NilClass
+  ❌ Segment 96: undefined method `+' for nil:NilClass
+  ❌ Segment 97: undefined method `+' for nil:NilClass
+  ❌ Segment 98: undefined method `+' for nil:NilClass
+  ❌ Segment 99: undefined method `+' for nil:NilClass
+  ❌ Segment 100: undefined method `+' for nil:NilClass
+  ❌ Segment 101: undefined method `+' for nil:NilClass
+  ❌ Segment 102: undefined method `+' for nil:NilClass
+  ❌ Segment 103: undefined method `+' for nil:NilClass
+  ❌ Segment 104: undefined method `+' for nil:NilClass
+  ❌ Segment 105: undefined method `+' for nil:NilClass
+  ❌ Segment 106: undefined method `+' for nil:NilClass
+  ❌ Segment 107: undefined method `+' for nil:NilClass
+  ❌ Segment 108: undefined method `+' for nil:NilClass
+  ❌ Segment 109: undefined method `+' for nil:NilClass
+  ❌ Segment 110: undefined method `+' for nil:NilClass
+  ❌ Segment 111: undefined method `+' for nil:NilClass
+  ❌ Segment 112: undefined method `+' for nil:NilClass
+  ❌ Segment 113: undefined method `+' for nil:NilClass
+  ❌ Segment 114: undefined method `+' for nil:NilClass
+  ❌ Segment 115: undefined method `+' for nil:NilClass
+  ❌ Segment 116: undefined method `+' for nil:NilClass
+  ❌ Segment 117: undefined method `+' for nil:NilClass
+  ❌ Segment 118: undefined method `+' for nil:NilClass
+  ❌ Segment 119: undefined method `+' for nil:NilClass
+  ❌ Segment 120: undefined method `+' for nil:NilClass
+  ❌ Segment 121: undefined method `+' for nil:NilClass
+  ❌ Segment 122: undefined method `+' for nil:NilClass
+  ❌ Segment 123: undefined method `+' for nil:NilClass
+  ❌ Segment 124: undefined method `+' for nil:NilClass
+  ❌ Segment 125: undefined method `+' for nil:NilClass
+  ❌ Segment 126: undefined method `+' for nil:NilClass
+  ❌ Segment 127: undefined method `+' for nil:NilClass
+  ❌ Segment 128: undefined method `+' for nil:NilClass
+  ❌ Segment 129: undefined method `+' for nil:NilClass
+  ❌ Segment 130: undefined method `+' for nil:NilClass
+  ❌ Segment 131: undefined method `+' for nil:NilClass
+  ❌ Segment 132: undefined method `+' for nil:NilClass
+  ❌ Segment 133: undefined method `+' for nil:NilClass
+  ❌ Segment 134: undefined method `+' for nil:NilClass
+  ❌ Segment 135: undefined method `+' for nil:NilClass
+  ❌ Segment 136: undefined method `+' for nil:NilClass
+
+============================================================
+❌ VIDEO GENERATION FAILED
+============================================================
+Error: Video generation failed: Lambda video generation failed: Some segments failed to process
+
+🔧 Troubleshooting tips:
+  • Check your API keys are properly configured
+  • Ensure AWS services are accessible
+  • Verify the audio file is in a supported format
+  • Check network connectivity
+  • Try running with test_mode: true for debugging
+============================================================

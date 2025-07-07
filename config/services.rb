@@ -12,7 +12,7 @@ module Config
     access_key_id: ENV['AWS_ACCESS_KEY_ID'],
     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
     region: ENV['AWS_REGION'] || 'us-east-1',
-    lambda_function: ENV['LAMBDA_FUNCTION'] || 'ken-burns-video-generator',
+    lambda_function: ENV['LAMBDA_FUNCTION'] || 'ken-burns-video-generator-go',
     s3_bucket: ENV['S3_BUCKET'] || 'burns-videos',
     s3_lifecycle_days: ENV['S3_LIFECYCLE_DAYS'] || 14
   }

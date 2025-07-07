@@ -1,0 +1,58 @@
+
+=== Pipeline started at: 2025-07-06T18:13:55-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+✅ Found audio file: sad.m4a
+📊 File size: 17.95 MB
+
+🚀 Initializing video generator...
+🎬 Local Video Service initialized
+  📁 Temp directory: /var/folders/h6/gt987qh93hs085p28xhy8z840000gn/T/d20250706-21819-q0307m
+  🎥 FFmpeg path: ffmpeg
+
+⚙️  Generation options:
+  📐 Resolution: 1080p
+  🎬 FPS: 24
+  🎭 Ken Burns Effect: true
+  🔄 Smooth Transitions: true
+  ⏱️  Image Duration: 3.0s
+  🌊 Transition Duration: 1.0s
+  🔍 Zoom Factor: 1.2x
+  📹 Pan Speed: 0.5
+  💾 Image Caching: true
+  💾 Transcription Caching: true
+  💾 Analysis Caching: true
+
+============================================================
+🎬 STARTING KEN BURNS VIDEO GENERATION
+============================================================
+
+📝 Step 1: Processing audio and transcription...
+🎵 Transcribing audio content...
+🎬 Starting Ken Burns video generation
+  📁 Audio file: sad.m4a
+  🆔 Project ID: burns_20250706_181356_7c19cf57
+  ⚙️  Options: {:resolution=>"1080p", :fps=>24, :test_mode=>false, :ken_burns_effect=>true, :smooth_transitions=>true, :image_duration=>3.0, :transition_duration=>1.0, :zoom_factor=>1.2, :pan_speed=>0.5, :cache_images=>true, :cache_transcription=>true, :cache_analysis=>true}
+
+📝 Step 1: Processing audio and transcription...
+❌ Error in video generation: undefined method `transcription_exists?' for #<S3Service:0x0000000106125168 @region="us-east-1", @s3_client=#<Aws::S3::Client>, @s3_resource=#<Aws::S3::Resource:0x0000000107faefd0 @client=#<Aws::S3::Client>>>
+
+      if !force && @s3_service.transcription_exists?(project_id)
+                              ^^^^^^^^^^^^^^^^^^^^^^
+
+============================================================
+❌ VIDEO GENERATION FAILED
+============================================================
+Error: undefined method `transcription_exists?' for #<S3Service:0x0000000106125168 @region="us-east-1", @s3_client=#<Aws::S3::Client>, @s3_resource=#<Aws::S3::Resource:0x0000000107faefd0 @client=#<Aws::S3::Client>>>
+
+      if !force && @s3_service.transcription_exists?(project_id)
+                              ^^^^^^^^^^^^^^^^^^^^^^
+Project ID: burns_20250706_181356_7c19cf57
+
+🔧 Troubleshooting tips:
+  • Check your API keys are properly configured
+  • Ensure AWS services are accessible
+  • Verify the audio file is in a supported format
+  • Check network connectivity
+  • Try running with test_mode: true for debugging
+============================================================

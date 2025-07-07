@@ -1,5 +1,6 @@
 require 'aws-sdk-s3'
 require 'json'
+require 'pry'
 require_relative '../../config/services'
 
 class S3Service
@@ -409,6 +410,124 @@ class S3Service
       puts "❌ Error getting project manifest: #{e.message}"
       { success: false, error: e.message }
     end
+  end
+
+  # --- Caching methods for pipeline intermediates ---
+
+  # Transcription
+  def transcription_exists?(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/transcription.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    obj.exists?
+  end
+
+  def get_transcription(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/transcription.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    return { success: false, error: 'Transcription not found' } unless obj.exists?
+    content = obj.get.body.read
+    data = JSON.parse(content, symbolize_names: true)
+    { success: true, **data }
+  rescue => e
+    { success: false, error: e.message }
+  end
+
+  def save_transcription(project_id, transcription, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/transcription.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    obj.put(body: JSON.pretty_generate(transcription), content_type: 'application/json')
+    true
+  rescue => e
+    puts "❌ Error saving transcription: #{e.message}"
+    false
+  end
+
+  # Image analysis
+  def image_analysis_exists?(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/image_analysis.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    obj.exists?
+  end
+
+  def get_image_analysis(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/image_analysis.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    return { success: false, error: 'Image analysis not found' } unless obj.exists?
+    content = obj.get.body.read
+    data = JSON.parse(content, symbolize_names: true)
+    { success: true, **data }
+  rescue => e
+    { success: false, error: e.message }
+  end
+
+  def save_image_analysis(project_id, analysis, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/image_analysis.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    obj.put(body: JSON.pretty_generate(analysis), content_type: 'application/json')
+    true
+  rescue => e
+    puts "❌ Error saving image analysis: #{e.message}"
+    false
+  end
+
+  # Image generation caching
+  def image_generation_exists?(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/image_generation.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    obj.exists?
+  end
+
+  def get_image_generation(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/image_generation.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    return { success: false, error: 'Image generation not found' } unless obj.exists?
+    content = obj.get.body.read
+    data = JSON.parse(content, symbolize_names: true)
+    { success: true, **data }
+  rescue => e
+    { success: false, error: e.message }
+  end
+
+  def save_image_generation(project_id, generation, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/image_generation.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    obj.put(body: JSON.pretty_generate(generation), content_type: 'application/json')
+    true
+  rescue => e
+    puts "❌ Error saving image generation: #{e.message}"
+    false
+  end
+
+  # Manifest
+  def project_manifest_exists?(project_id, bucket_name = nil)
+    bucket_name ||= Config::AWS_CONFIG[:s3_bucket]
+    key = "projects/#{project_id}/manifest.json"
+    bucket = @s3_resource.bucket(bucket_name)
+    obj = bucket.object(key)
+    obj.exists?
+  end
+
+  # Alias for upload_project_manifest
+  def save_project_manifest(project_id, manifest, bucket_name = nil)
+    upload_project_manifest(project_id, manifest, bucket_name)
   end
 
   private
