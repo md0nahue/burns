@@ -1,0 +1,63 @@
+{
+  "id": 2,
+  "seek": 0,
+  "start": 9.1,
+  "end": 13.38,
+  "text": " He used it as a backdrop for a speech that was largely about himself, his grievances and his",
+  "tokens": [
+    50820,
+    634,
+    1143,
+    309,
+    382,
+    257,
+    32697,
+    337,
+    257,
+    6218,
+    300,
+    390,
+    11611,
+    466,
+    3647,
+    11,
+    702,
+    49260,
+    2676,
+    293,
+    702,
+    51034
+  ],
+  "temperature": 0,
+  "avg_logprob": -0.087045915,
+  "compression_ratio": 1.6298507,
+  "no_speech_prob": 2.82679e-12,
+  "image_queries": [
+    "Names of CIA officers killed"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/12220471/pexels-photo-12220471.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/12220471/pexels-photo-12220471.jpeg",
+      "width": 3999,
+      "height": 2667,
+      "description": "Close-up of a vintage typewriter with a paper marked 'National Security', symbolizing confidentiality.",
+      "photographer": "Markus Winkler",
+      "photographer_url": "https://www.pexels.com/@markus-winkler-1430818",
+      "metadata": {
+        "id": 12220471,
+        "avg_color": "#72746F",
+        "liked": false
+      },
+      "query": "Names of CIA officers killed",
+      "query_index": 0,
+      "segment_id": 2,
+      "start_time": null,
+      "end_time": null,
+      "generated_at": "2025-07-06 21:27:39 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

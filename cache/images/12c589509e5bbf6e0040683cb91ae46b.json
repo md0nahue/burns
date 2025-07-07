@@ -1,0 +1,38 @@
+{
+  "id": 135,
+  "start_time": 619.346,
+  "end_time": 621.346,
+  "text": " NOW, WE'RE GOING TO DO IT BACK",
+  "confidence": -0.16133781,
+  "no_speech_prob": 5.751392e-12,
+  "compression_ratio": 1.5641025,
+  "words": [],
+  "image_queries": [
+    "Audience faces looking forward"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/31107769/pexels-photo-31107769.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/31107769/pexels-photo-31107769.jpeg",
+      "width": 6720,
+      "height": 4480,
+      "description": "Children gathered indoors for an event, diverse group with joyful expressions.",
+      "photographer": "Newman Photographs",
+      "photographer_url": "https://www.pexels.com/@newman-photographs-234743505",
+      "metadata": {
+        "id": 31107769,
+        "avg_color": "#59514F",
+        "liked": false
+      },
+      "query": "Audience faces looking forward",
+      "query_index": 0,
+      "segment_id": 135,
+      "start_time": 619.346,
+      "end_time": 621.346,
+      "generated_at": "2025-07-06 21:25:28 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

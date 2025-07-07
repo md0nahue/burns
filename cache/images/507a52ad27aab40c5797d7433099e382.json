@@ -1,0 +1,38 @@
+{
+  "id": 137,
+  "start_time": 622.346,
+  "end_time": 624.346,
+  "text": " I MEAN, IT'S A CHILD-LIKE VIEW.",
+  "confidence": -0.16133781,
+  "no_speech_prob": 5.751392e-12,
+  "compression_ratio": 1.5641025,
+  "words": [],
+  "image_queries": [
+    "Speaking mouth detail"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/8132779/pexels-photo-8132779.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/8132779/pexels-photo-8132779.jpeg",
+      "width": 2795,
+      "height": 1863,
+      "description": "A close-up view of a bearded man talking with hands near his face.",
+      "photographer": "Anna Pou",
+      "photographer_url": "https://www.pexels.com/@anna-pou",
+      "metadata": {
+        "id": 8132779,
+        "avg_color": "#8A736D",
+        "liked": false
+      },
+      "query": "Speaking mouth detail",
+      "query_index": 0,
+      "segment_id": 137,
+      "start_time": 622.346,
+      "end_time": 624.346,
+      "generated_at": "2025-07-06 21:34:25 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

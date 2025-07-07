@@ -1,0 +1,62 @@
+{
+  "id": 1,
+  "seek": 0,
+  "start": 3.86,
+  "end": 8.54,
+  "text": " and stood in front of a memorial wall dedicated to CIA officers killed in the line of duty.",
+  "tokens": [
+    50558,
+    293,
+    9371,
+    294,
+    1868,
+    295,
+    257,
+    24089,
+    2929,
+    8374,
+    281,
+    25143,
+    9199,
+    4652,
+    294,
+    264,
+    1622,
+    295,
+    9776,
+    13,
+    50792
+  ],
+  "temperature": 0,
+  "avg_logprob": -0.087045915,
+  "compression_ratio": 1.6298507,
+  "no_speech_prob": 2.82679e-12,
+  "image_queries": [
+    "Trump's first presidential visit CIA"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6753335/pexels-photo-6753335.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6753335/pexels-photo-6753335.jpeg",
+      "width": 5473,
+      "height": 3654,
+      "description": "Emergency medical team in discussion while a patient rests in the bedroom.",
+      "photographer": "Pavel Danilyuk",
+      "photographer_url": "https://www.pexels.com/@pavel-danilyuk",
+      "metadata": {
+        "id": 6753335,
+        "avg_color": "#9E867D",
+        "liked": false
+      },
+      "query": "Trump's first presidential visit CIA",
+      "query_index": 0,
+      "segment_id": 1,
+      "start_time": null,
+      "end_time": null,
+      "generated_at": "2025-07-06 21:27:36 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

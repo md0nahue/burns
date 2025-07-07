@@ -1,0 +1,38 @@
+{
+  "id": 116,
+  "start_time": 576.106,
+  "end_time": 577.166,
+  "text": " I mean, it's an Orwellian.",
+  "confidence": -0.16781792,
+  "no_speech_prob": 4.480787e-12,
+  "compression_ratio": 1.7288135,
+  "words": [],
+  "image_queries": [
+    "Presidential handshake with official"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/8292838/pexels-photo-8292838.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/8292838/pexels-photo-8292838.jpeg",
+      "width": 3671,
+      "height": 2447,
+      "description": "Close-up of hands signing a real estate document at a meeting table with three people.",
+      "photographer": "RDNE Stock project",
+      "photographer_url": "https://www.pexels.com/@rdne",
+      "metadata": {
+        "id": 8292838,
+        "avg_color": "#AB9796",
+        "liked": false
+      },
+      "query": "Presidential handshake with official",
+      "query_index": 0,
+      "segment_id": 116,
+      "start_time": 576.106,
+      "end_time": 577.166,
+      "generated_at": "2025-07-06 21:25:20 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

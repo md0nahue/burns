@@ -1,0 +1,38 @@
+{
+  "id": 115,
+  "start_time": 570.726,
+  "end_time": 576.026,
+  "text": " You keep, I mean, the idea that there was weaponization, but now there's not going to be.",
+  "confidence": -0.16781792,
+  "no_speech_prob": 4.480787e-12,
+  "compression_ratio": 1.7288135,
+  "words": [],
+  "image_queries": [
+    "Justice Department building exterior"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/7785095/pexels-photo-7785095.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/7785095/pexels-photo-7785095.jpeg",
+      "width": 3840,
+      "height": 2160,
+      "description": "Close-up of a Tustin police car parked near a city hall building in daylight.",
+      "photographer": "Kindel Media",
+      "photographer_url": "https://www.pexels.com/@kindelmedia",
+      "metadata": {
+        "id": 7785095,
+        "avg_color": "#939995",
+        "liked": false
+      },
+      "query": "Justice Department building exterior",
+      "query_index": 0,
+      "segment_id": 115,
+      "start_time": 570.726,
+      "end_time": 576.026,
+      "generated_at": "2025-07-06 21:25:19 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

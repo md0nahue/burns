@@ -1,0 +1,38 @@
+{
+  "id": 40,
+  "start_time": 217.182,
+  "end_time": 223.002,
+  "text": " clearances of the Biden crime family and Joe Biden himself. He didn't deserve it. In fact,",
+  "confidence": -0.08604036,
+  "no_speech_prob": 1.8833002e-12,
+  "compression_ratio": 1.7296296,
+  "words": [],
+  "image_queries": [
+    "political corruption investigation evidence"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/8369520/pexels-photo-8369520.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/8369520/pexels-photo-8369520.jpeg",
+      "width": 6609,
+      "height": 4406,
+      "description": "Detective examines a corkboard with maps and photos to solve a mystery.",
+      "photographer": "cottonbro studio",
+      "photographer_url": "https://www.pexels.com/@cottonbro",
+      "metadata": {
+        "id": 8369520,
+        "avg_color": "#756A64",
+        "liked": false
+      },
+      "query": "political corruption investigation evidence",
+      "query_index": 0,
+      "segment_id": 40,
+      "start_time": 217.182,
+      "end_time": 223.002,
+      "generated_at": "2025-07-06 21:25:02 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

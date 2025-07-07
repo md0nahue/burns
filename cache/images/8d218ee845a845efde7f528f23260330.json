@@ -1,0 +1,38 @@
+{
+  "id": 117,
+  "start_time": 577.366,
+  "end_time": 577.926,
+  "text": " Well, exactly.",
+  "confidence": -0.16781792,
+  "no_speech_prob": 4.480787e-12,
+  "compression_ratio": 1.7288135,
+  "words": [],
+  "image_queries": [
+    "Official receiving papers"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5816286/pexels-photo-5816286.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5816286/pexels-photo-5816286.jpeg",
+      "width": 4000,
+      "height": 2667,
+      "description": "Three individuals collaborating on financial documents during a business meeting.",
+      "photographer": "Antoni Shkraba Studio",
+      "photographer_url": "https://www.pexels.com/@shkrabaanthony",
+      "metadata": {
+        "id": 5816286,
+        "avg_color": "#C0BAB5",
+        "liked": false
+      },
+      "query": "Official receiving papers",
+      "query_index": 0,
+      "segment_id": 117,
+      "start_time": 577.366,
+      "end_time": 577.926,
+      "generated_at": "2025-07-06 21:25:21 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

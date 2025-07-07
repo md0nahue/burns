@@ -449,7 +449,7 @@
     "compression_ratio": 1.7296296,
     "words": [],
     "image_queries": [
-      "abstract concept of legal clearance"
+      "political corruption investigation evidence"
     ],
     "has_images": true
   },
@@ -463,7 +463,7 @@
     "compression_ratio": 1.7296296,
     "words": [],
     "image_queries": [
-      "Presidential seal on desk"
+      "Capitol building exterior daytime"
     ],
     "has_images": true
   },
@@ -477,7 +477,7 @@
     "compression_ratio": 1.7296296,
     "words": [],
     "image_queries": [
-      "Courtroom judge looking down"
+      "man found incompetent legal document"
     ],
     "has_images": true
   },
@@ -491,7 +491,7 @@
     "compression_ratio": 1.7296296,
     "words": [],
     "image_queries": [
-      "Abstract representation of guilt"
+      "lawyer presenting case in court"
     ],
     "has_images": true
   },
@@ -505,7 +505,7 @@
     "compression_ratio": 1.6171004,
     "words": [],
     "image_queries": [
-      "abstract concept of legal clearance"
+      "political corruption investigation evidence"
     ],
     "has_images": true
   },
@@ -519,7 +519,7 @@
     "compression_ratio": 1.6171004,
     "words": [],
     "image_queries": [
-      "Presidential seal on desk"
+      "Capitol building exterior daytime"
     ],
     "has_images": true
   },
@@ -533,7 +533,7 @@
     "compression_ratio": 1.6171004,
     "words": [],
     "image_queries": [
-      "Courtroom judge looking down"
+      "man found incompetent legal document"
     ],
     "has_images": true
   },
@@ -547,7 +547,7 @@
     "compression_ratio": 1.6171004,
     "words": [],
     "image_queries": [
-      "Abstract representation of guilt"
+      "lawyer presenting case in court"
     ],
     "has_images": true
   },
@@ -561,7 +561,7 @@
     "compression_ratio": 1.6171004,
     "words": [],
     "image_queries": [
-      "abstract concept of legal clearance"
+      "political corruption investigation evidence"
     ],
     "has_images": true
   },
@@ -575,7 +575,7 @@
     "compression_ratio": 1.5665236,
     "words": [],
     "image_queries": [
-      "Presidential seal on desk"
+      "Capitol building exterior daytime"
     ],
     "has_images": true
   },
@@ -789,7 +789,7 @@
     "compression_ratio": 1.5353535,
     "words": [],
     "image_queries": [
-      "Historic DOJ courtroom interior"
+      "Historic courtroom podium"
     ],
     "has_images": true
   },
@@ -817,7 +817,7 @@
     "compression_ratio": 1.5353535,
     "words": [],
     "image_queries": [
-      "Vintage photo Robert Kennedy"
+      "Vintage photo Robert F. Kennedy"
     ],
     "has_images": true
   },
@@ -831,7 +831,7 @@
     "compression_ratio": 1.5353535,
     "words": [],
     "image_queries": [
-      "Justice Department building exterior"
+      "Black and white photo RFK"
     ],
     "has_images": true
   },
@@ -845,7 +845,7 @@
     "compression_ratio": 1.6210191,
     "words": [],
     "image_queries": [
-      "Historic DOJ courtroom interior"
+      "Historic courtroom podium"
     ],
     "has_images": true
   },
@@ -873,7 +873,7 @@
     "compression_ratio": 1.6210191,
     "words": [],
     "image_queries": [
-      "Vintage photo Robert Kennedy"
+      "Vintage photo Robert F. Kennedy"
     ],
     "has_images": true
   },
@@ -887,7 +887,7 @@
     "compression_ratio": 1.6210191,
     "words": [],
     "image_queries": [
-      "Justice Department building exterior"
+      "Black and white photo RFK"
     ],
     "has_images": true
   },
@@ -901,7 +901,7 @@
     "compression_ratio": 1.6210191,
     "words": [],
     "image_queries": [
-      "Historic DOJ courtroom interior"
+      "Historic courtroom podium"
     ],
     "has_images": true
   },
@@ -927,11 +927,7 @@
     "confidence": -0.1147312,
     "no_speech_prob": 1.4440155e-12,
     "compression_ratio": 1.6210191,
-    "words": [],
-    "image_queries": [
-      "Laptop with scattered papers"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 81,
@@ -941,11 +937,7 @@
     "confidence": -0.13661423,
     "no_speech_prob": 8.325073e-13,
     "compression_ratio": 1.5470383,
-    "words": [],
-    "image_queries": [
-      "Digital data on screen"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 82,
@@ -955,11 +947,7 @@
     "confidence": -0.13661423,
     "no_speech_prob": 8.325073e-13,
     "compression_ratio": 1.5470383,
-    "words": [],
-    "image_queries": [
-      "Close-up of Norm Eisen's face"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 83,
@@ -969,11 +957,7 @@
     "confidence": -0.13661423,
     "no_speech_prob": 8.325073e-13,
     "compression_ratio": 1.5470383,
-    "words": [],
-    "image_queries": [
-      "Legal professional speaking"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 84,
@@ -983,11 +967,7 @@
     "confidence": -0.13661423,
     "no_speech_prob": 8.325073e-13,
     "compression_ratio": 1.5470383,
-    "words": [],
-    "image_queries": [
-      "Laptop with scattered papers"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 85,
@@ -997,11 +977,7 @@
     "confidence": -0.13661423,
     "no_speech_prob": 8.325073e-13,
     "compression_ratio": 1.5470383,
-    "words": [],
-    "image_queries": [
-      "Digital data on screen"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 86,
@@ -1011,11 +987,7 @@
     "confidence": -0.13661423,
     "no_speech_prob": 8.325073e-13,
     "compression_ratio": 1.5470383,
-    "words": [],
-    "image_queries": [
-      "Close-up of Norm Eisen's face"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 87,
@@ -1025,11 +997,7 @@
     "confidence": -0.13661423,
     "no_speech_prob": 8.325073e-13,
     "compression_ratio": 1.5470383,
-    "words": [],
-    "image_queries": [
-      "Legal professional speaking"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 88,
@@ -1039,11 +1007,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "Laptop with scattered papers"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 89,
@@ -1053,11 +1017,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "Digital data on screen"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 90,
@@ -1067,11 +1027,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "silhouette of person with question mark"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 91,
@@ -1081,11 +1037,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "people in a group looking confused"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 92,
@@ -1095,11 +1047,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "man with a knowing smirk"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 93,
@@ -1109,11 +1057,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "lightbulb illuminating above a head"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 94,
@@ -1123,11 +1067,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "silhouette of person with question mark"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 95,
@@ -1137,11 +1077,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "people in a group looking confused"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 96,
@@ -1151,11 +1087,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "man with a knowing smirk"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 97,
@@ -1165,11 +1097,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "lightbulb illuminating above a head"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 98,
@@ -1179,11 +1107,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "silhouette of person with question mark"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 99,
@@ -1193,11 +1117,7 @@
     "confidence": -0.5056211,
     "no_speech_prob": 9.412537e-12,
     "compression_ratio": 1.719697,
-    "words": [],
-    "image_queries": [
-      "people in a group looking confused"
-    ],
-    "has_images": true
+    "words": []
   },
   {
     "id": 100,
@@ -1323,7 +1243,7 @@
     "compression_ratio": 1.7288135,
     "words": [],
     "image_queries": [
-      "Justice Department building facade"
+      "Justice Department building exterior"
     ],
     "has_images": true
   },
@@ -1337,7 +1257,7 @@
     "compression_ratio": 1.7288135,
     "words": [],
     "image_queries": [
-      "Man giving a file"
+      "Presidential handshake with official"
     ],
     "has_images": true
   },
@@ -1351,7 +1271,7 @@
     "compression_ratio": 1.7288135,
     "words": [],
     "image_queries": [
-      "Passing a baton"
+      "Official receiving papers"
     ],
     "has_images": true
   },
@@ -1379,7 +1299,7 @@
     "compression_ratio": 1.7288135,
     "words": [],
     "image_queries": [
-      "Justice Department building facade"
+      "Justice Department building exterior"
     ],
     "has_images": true
   },
@@ -1393,7 +1313,7 @@
     "compression_ratio": 1.7288135,
     "words": [],
     "image_queries": [
-      "Man giving a file"
+      "Presidential handshake with official"
     ],
     "has_images": true
   },
@@ -1407,7 +1327,7 @@
     "compression_ratio": 1.7288135,
     "words": [],
     "image_queries": [
-      "Passing a baton"
+      "Official receiving papers"
     ],
     "has_images": true
   },
@@ -1435,7 +1355,7 @@
     "compression_ratio": 1.6160991,
     "words": [],
     "image_queries": [
-      "Justice Department building facade"
+      "Justice Department building exterior"
     ],
     "has_images": true
   },
@@ -1587,7 +1507,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Person silhouetted against a crowd"
+    ],
+    "has_images": true
   },
   {
     "id": 131,
@@ -1597,7 +1521,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Audience faces looking forward"
+    ],
+    "has_images": true
   },
   {
     "id": 132,
@@ -1607,7 +1535,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Man's mouth open in speech"
+    ],
+    "has_images": true
   },
   {
     "id": 133,
@@ -1617,7 +1549,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Speaking mouth detail"
+    ],
+    "has_images": true
   },
   {
     "id": 134,
@@ -1627,7 +1563,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Person silhouetted against a crowd"
+    ],
+    "has_images": true
   },
   {
     "id": 135,
@@ -1637,7 +1577,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Audience faces looking forward"
+    ],
+    "has_images": true
   },
   {
     "id": 136,
@@ -1647,7 +1591,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Man's mouth open in speech"
+    ],
+    "has_images": true
   },
   {
     "id": 137,
@@ -1657,7 +1605,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Speaking mouth detail"
+    ],
+    "has_images": true
   },
   {
     "id": 138,
@@ -1667,7 +1619,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Person silhouetted against a crowd"
+    ],
+    "has_images": true
   },
   {
     "id": 139,
@@ -1677,7 +1633,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "Audience faces looking forward"
+    ],
+    "has_images": true
   },
   {
     "id": 140,
@@ -1687,7 +1647,11 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "dimly lit study with leather books"
+    ],
+    "has_images": true
   },
   {
     "id": 141,
@@ -1697,6 +1661,10 @@
     "confidence": -0.16133781,
     "no_speech_prob": 5.751392e-12,
     "compression_ratio": 1.5641025,
-    "words": []
+    "words": [],
+    "image_queries": [
+      "parchment scroll detail"
+    ],
+    "has_images": true
   }
 ]

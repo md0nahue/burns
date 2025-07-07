@@ -23,12 +23,14 @@ class GeminiService
   def analyze_content_for_images(segments, options = {})
     puts "🧠 Analyzing content for image generation using Gemini..."
     
-    # Check for cached analysis
+    # Check for cached analysis (respect force option)
     cache_file = get_cache_file_path(segments, options)
-    if File.exist?(cache_file)
+    if File.exist?(cache_file) && !options[:force]
       puts "    📁 Using cached content analysis from: #{cache_file}"
       cached_data = JSON.parse(File.read(cache_file), symbolize_names: true)
       return cached_data
+    elsif options[:force]
+      puts "    🔄 Force mode enabled - bypassing cache"
     end
     
     # Process segments in smaller batches to avoid API limits

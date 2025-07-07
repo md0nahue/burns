@@ -1,0 +1,38 @@
+{
+  "id": 43,
+  "start_time": 235.722,
+  "end_time": 240.78201,
+  "text": " judicial ruling. He wasn't charged with the crime. This is what the special counsel wrote in part,",
+  "confidence": -0.08604036,
+  "no_speech_prob": 1.8833002e-12,
+  "compression_ratio": 1.7296296,
+  "words": [],
+  "image_queries": [
+    "lawyer presenting case in court"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5668481/pexels-photo-5668481.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5668481/pexels-photo-5668481.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "Close-up of a wooden judge's gavel on a black desk, symbolizing justice and law.",
+      "photographer": "Sora Shimazaki",
+      "photographer_url": "https://www.pexels.com/@sora-shimazaki",
+      "metadata": {
+        "id": 5668481,
+        "avg_color": "#3C3E3F",
+        "liked": false
+      },
+      "query": "lawyer presenting case in court",
+      "query_index": 0,
+      "segment_id": 43,
+      "start_time": 235.722,
+      "end_time": 240.78201,
+      "generated_at": "2025-07-06 21:25:04 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

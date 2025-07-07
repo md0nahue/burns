@@ -1,0 +1,38 @@
+{
+  "id": 73,
+  "start_time": 409.644,
+  "end_time": 413.944,
+  "text": " I just want to read real quick how RFK ended a speech he gave in 1962 when he was AG.",
+  "confidence": -0.088356584,
+  "no_speech_prob": 1.0899284e-12,
+  "compression_ratio": 1.5353535,
+  "words": [],
+  "image_queries": [
+    "Black and white photo RFK"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/2794868/pexels-photo-2794868.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/2794868/pexels-photo-2794868.jpeg",
+      "width": 5402,
+      "height": 4000,
+      "description": "Captivating black and white portrait showcasing a woman's elegance and grace.",
+      "photographer": "Martin Lopez",
+      "photographer_url": "https://www.pexels.com/@mediocrememories",
+      "metadata": {
+        "id": 2794868,
+        "avg_color": "#212121",
+        "liked": false
+      },
+      "query": "Black and white photo RFK",
+      "query_index": 0,
+      "segment_id": 73,
+      "start_time": 409.644,
+      "end_time": 413.944,
+      "generated_at": "2025-07-06 21:25:12 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

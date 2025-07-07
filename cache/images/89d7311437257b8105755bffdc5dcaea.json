@@ -1,0 +1,38 @@
+{
+  "id": 132,
+  "start_time": 615.346,
+  "end_time": 616.346,
+  "text": " EXPERIENCED FIRSTHAND.",
+  "confidence": -0.16133781,
+  "no_speech_prob": 5.751392e-12,
+  "compression_ratio": 1.5641025,
+  "words": [],
+  "image_queries": [
+    "Man's mouth open in speech"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6627457/pexels-photo-6627457.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6627457/pexels-photo-6627457.jpeg",
+      "width": 6720,
+      "height": 4480,
+      "description": "A patient receiving dental care while wearing protective eyewear in a clinic setting.",
+      "photographer": "Photo By: Kaboompics.com",
+      "photographer_url": "https://www.pexels.com/@karolina-grabowska",
+      "metadata": {
+        "id": 6627457,
+        "avg_color": "#828483",
+        "liked": false
+      },
+      "query": "Man's mouth open in speech",
+      "query_index": 0,
+      "segment_id": 132,
+      "start_time": 615.346,
+      "end_time": 616.346,
+      "generated_at": "2025-07-06 21:25:25 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}
