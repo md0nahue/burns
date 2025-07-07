@@ -1,0 +1,55 @@
+{
+  "id": 126,
+  "start_time": 544.532,
+  "end_time": 551.992,
+  "text": " Senator, I do want to ask you, because tonight we have breaking news that President Trump has fired the two Democratic members of the Federal Trade Commission.",
+  "confidence": -0.14607388,
+  "no_speech_prob": 1.6231385e-12,
+  "compression_ratio": 1.6375405,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Federal Trade Commission building exterior",
+      "category": "stock_image"
+    },
+    {
+      "query": "government building facade",
+      "category": "stock_image"
+    },
+    {
+      "query": "FTC logo close-up",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "US government agency building",
+    "official seal"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/109629/pexels-photo-109629.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/109629/pexels-photo-109629.jpeg",
+      "width": 6000,
+      "height": 3670,
+      "description": "German national flag waving in front of the Reichstag building in Berlin, a symbol of democracy.",
+      "photographer": "Ingo Joseph",
+      "photographer_url": "https://www.pexels.com/@ingo",
+      "metadata": {
+        "id": 109629,
+        "avg_color": "#918F96",
+        "liked": false
+      },
+      "query": "Federal Trade Commission building exterior",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 126,
+      "start_time": 544.532,
+      "end_time": 551.992,
+      "generated_at": "2025-07-07 10:16:03 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

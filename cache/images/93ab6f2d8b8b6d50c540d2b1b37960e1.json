@@ -1,0 +1,55 @@
+{
+  "id": 113,
+  "start_time": 515.132,
+  "end_time": 517.692,
+  "text": " and cut Medicaid, cut Social Security,",
+  "confidence": -0.1501202,
+  "no_speech_prob": 1.1555174e-12,
+  "compression_ratio": 1.7375,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Medicaid logo with a downward arrow",
+      "category": "stock_image"
+    },
+    {
+      "query": "Social Security building facade",
+      "category": "stock_image"
+    },
+    {
+      "query": "graphic showing budget cuts to social programs",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "empty hospital bed",
+    "elderly person looking concerned"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/29060134/pexels-photo-29060134.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/29060134/pexels-photo-29060134.jpeg",
+      "width": 8944,
+      "height": 6708,
+      "description": "A beach scene with 'Coffee' and 'One Way' signs in the sand near the ocean.",
+      "photographer": "Engin Akyurt",
+      "photographer_url": "https://www.pexels.com/@enginakyurt",
+      "metadata": {
+        "id": 29060134,
+        "avg_color": "#77787D",
+        "liked": false
+      },
+      "query": "Medicaid logo with a downward arrow",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 113,
+      "start_time": 515.132,
+      "end_time": 517.692,
+      "generated_at": "2025-07-07 10:15:49 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

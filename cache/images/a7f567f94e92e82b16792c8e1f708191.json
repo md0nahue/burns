@@ -1,0 +1,63 @@
+{
+  "id": 88,
+  "start_time": 421.248,
+  "end_time": 425.28802,
+  "text": " It's not. I know. Everyone's beating up on Chuck, and I strongly disagree with him,",
+  "confidence": -0.11239676,
+  "no_speech_prob": 5.017227e-12,
+  "compression_ratio": 1.650165,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Senator Chuck Schumer portrait",
+      "category": "famous_person"
+    },
+    {
+      "query": "Chuck Schumer speaking at podium",
+      "category": "famous_person"
+    },
+    {
+      "query": "close-up of Chuck Schumer",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "leader of the Senate",
+    "political figure in Washington"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/President_Joe_Biden_holds_a_bipartisan_meeting_on_Artificial_Intelligence_%28AI%29_with_Senators_Chuck_Schumer_%28D-NY%29%2C_Martin_Heinrich_%28D-MN%29%2C_Mike_Rounds_%28R-SD%29_and_Todd_Young_%28R-IN%29%2C_Tuesday%2C_October_31%2C_2023%2C_in_the_Oval_Office.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/President_Joe_Biden_holds_a_bipartisan_meeting_on_Artificial_Intelligence_%28AI%29_with_Senators_Chuck_Schumer_%28D-NY%29%2C_Martin_Heinrich_%28D-MN%29%2C_Mike_Rounds_%28R-SD%29_and_Todd_Young_%28R-IN%29%2C_Tuesday%2C_October_31%2C_2023%2C_in_the_Oval_Office.jpg",
+      "width": 3000,
+      "height": 2000,
+      "description": "President Joe Biden holds a bipartisan meeting on Artificial Intelligence (AI) with Senators Chuck Schumer (D-NY), Martin Heinrich (D-MN), Mike Rounds (R-SD) and Todd Young (R-IN), Tuesday, October 31, 2023, in the Oval Office. (Official White House Photo by Adam Schultz)",
+      "photographer": "The White House",
+      "photographer_url": null,
+      "metadata": {
+        "id": "143441886",
+        "license": "pd",
+        "categories": [
+          "Category:118th United States Congress",
+          "Category:Abraham Lincoln portrait (Oval Office)",
+          "Category:Charles Schumer in 2023",
+          "Category:George Washington portraits by Gilbert Stuart",
+          "Category:Joe Biden and Charles Schumer"
+        ],
+        "usage_restrictions": "",
+        "file_size": 1564571
+      },
+      "query": "Senator Chuck Schumer portrait",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 88,
+      "start_time": 421.248,
+      "end_time": 425.28802,
+      "generated_at": "2025-07-07 10:15:24 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

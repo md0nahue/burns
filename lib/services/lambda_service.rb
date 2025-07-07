@@ -1,4 +1,5 @@
 require 'aws-sdk-lambda'
+require 'aws-sdk-s3'
 require 'json'
 require 'concurrent'
 require_relative '../../config/services'
@@ -14,6 +15,14 @@ class LambdaService
       )
     )
     @function_name = Config::AWS_CONFIG[:lambda_function]
+    @s3_client = Aws::S3::Client.new(
+      region: @region,
+      credentials: Aws::Credentials.new(
+        Config::AWS_CONFIG[:access_key_id],
+        Config::AWS_CONFIG[:secret_access_key]
+      )
+    )
+    @bucket_name = Config::AWS_CONFIG[:s3_bucket]
   end
 
   # Generate Ken Burns video for a project
@@ -56,12 +65,13 @@ class LambdaService
   # @param options [Hash] Generation options
   # @return [Hash] Generation result
   def generate_video_segments_concurrently(project_id, segments, options = {})
+    total_start_time = Time.now
     puts "🚀 Generating video segments concurrently for project: #{project_id}"
     puts "  📝 Segments: #{segments.length}"
     
     # Calculate optimal concurrency based on segments
     max_concurrency = options[:max_concurrency] || calculate_optimal_concurrency(segments.length)
-    puts "  ⚡ Concurrency: #{max_concurrency} (unlimited Lambda scaling)"
+    puts "  ⚡ Concurrency: #{max_concurrency} (conservative to prevent Lambda /tmp issues)"
     
     begin
       # Create concurrent executor - can handle unlimited Lambda invocations
@@ -121,6 +131,26 @@ class LambdaService
       # Wait for all segments to complete
       puts "  ⏳ Waiting for #{futures.length} segments to complete..."
       results = futures.map(&:value)
+      total_time = Time.now - total_start_time
+      
+      # Performance analysis
+      cached_count = results.count { |r| r[:cached] }
+      successful_count = results.count { |r| r[:success] }
+      processing_times = results.select { |r| r[:processing_time] }.map { |r| r[:processing_time] }
+      lambda_times = results.select { |r| r[:lambda_time] }.map { |r| r[:lambda_time] }
+      
+      puts "  📊 PERFORMANCE SUMMARY:"
+      puts "    ⏱️  Total time: #{total_time.round(2)}s"
+      puts "    ✅ Successful: #{successful_count}/#{results.length}"
+      puts "    💾 Cached: #{cached_count}/#{results.length} (#{(cached_count.to_f/results.length*100).round(1)}%)"
+      if processing_times.any?
+        puts "    📈 Avg processing time: #{(processing_times.sum/processing_times.length).round(2)}s"
+        puts "    📈 Max processing time: #{processing_times.max.round(2)}s"
+      end
+      if lambda_times.any?
+        puts "    ⚡ Avg Lambda time: #{(lambda_times.sum/lambda_times.length).round(2)}s"
+        puts "    ⚡ Max Lambda time: #{lambda_times.max.round(2)}s"
+      end
       
       # Check for failures
       failed_segments = results.select { |r| !r[:success] }
@@ -153,8 +183,9 @@ class LambdaService
   # @param options [Hash] Generation options
   # @return [Hash] Segment generation result
   def generate_segment_video(project_id, segment_data, options = {})
+    segment_start_time = Time.now
     begin
-      puts "  📹 Processing segment #{segment_data[:segment_id]} (#{segment_data[:segment_index] + 1}/#{options[:total_segments]})"
+      puts "  📹 Processing segment #{segment_data[:segment_id]} (#{segment_data[:segment_index] + 1}/#{options[:total_segments]}) - Duration: #{segment_data[:duration].round(2)}s"
       
       # Prepare payload for segment processing
       payload = {
@@ -171,14 +202,39 @@ class LambdaService
       # Debug: Check for nil values in payload
       puts "    Debug - Payload: project_id=#{payload[:project_id]}, segment_id=#{payload[:segment_id]}, segment_index=#{payload[:segment_index]}, images=#{payload[:images].class}, duration=#{payload[:duration]}, start_time=#{payload[:start_time]}, end_time=#{payload[:end_time]}"
       
+      # Check if segment already exists in S3 cache
+      expected_s3_key = "segments/#{project_id}/#{segment_data[:segment_id]}_segment.mp4"
+      if segment_cached?(expected_s3_key)
+        segment_time = Time.now - segment_start_time
+        puts "    💾 Segment #{segment_data[:segment_id]} cached (#{segment_time.round(3)}s saved)"
+        return {
+          success: true,
+          segment_id: segment_data[:segment_id],
+          segment_s3_key: expected_s3_key,
+          duration: segment_data[:duration],
+          start_time: segment_data[:start_time],
+          end_time: segment_data[:end_time],
+          cached: true,
+          processing_time: segment_time
+        }
+      end
+      
       # Invoke Lambda function for this segment
+      lambda_start = Time.now
+      puts "    ⚡ Invoking Lambda for segment #{segment_data[:segment_id]} (#{payload[:images].length} images)..."
       response = invoke_lambda_function(payload)
+      lambda_time = Time.now - lambda_start
       
       if response[:success]
-        puts "    ✅ Segment #{segment_data[:segment_id]} completed"
+        segment_time = Time.now - segment_start_time
+        puts "    ✅ Segment #{segment_data[:segment_id]} completed in #{segment_time.round(2)}s (Lambda: #{lambda_time.round(2)}s)"
         puts "    📁 Segment file: #{response[:segment_s3_key]}"
+        response[:processing_time] = segment_time
+        response[:lambda_time] = lambda_time
       else
-        puts "    ❌ Segment #{segment_data[:segment_id]} failed: #{response[:error]}"
+        segment_time = Time.now - segment_start_time
+        puts "    ❌ Segment #{segment_data[:segment_id]} failed in #{segment_time.round(2)}s: #{response[:error]}"
+        response[:processing_time] = segment_time
       end
       
       response
@@ -429,18 +485,34 @@ class LambdaService
   # @return [Integer] Optimal concurrency level
   def calculate_optimal_concurrency(segment_count)
     # AWS Lambda can handle thousands of concurrent executions
-    # We can process ALL segments simultaneously if needed
+    # But each Lambda downloads images to /tmp, limited by disk space
+    # Reduce concurrency to prevent /tmp storage exhaustion
     
     if segment_count <= 10
       # Small projects: process all segments concurrently
       segment_count
     elsif segment_count <= 50
-      # Medium projects: process in batches of 25
-      [segment_count, 25].min
+      # Medium projects: process in batches of 15
+      [segment_count, 15].min
     else
-      # Large projects: process in batches of 50
-      # This prevents overwhelming the Ruby thread pool
-      [segment_count, 50].min
+      # Large projects: process in batches of 10
+      # Conservative limit to prevent /tmp disk space issues
+      [segment_count, 10].min
+    end
+  end
+
+  # Check if segment video already exists in S3
+  # @param s3_key [String] S3 object key
+  # @return [Boolean] True if segment exists
+  def segment_cached?(s3_key)
+    begin
+      @s3_client.head_object(bucket: @bucket_name, key: s3_key)
+      true
+    rescue Aws::S3::Errors::NotFound
+      false
+    rescue => e
+      puts "    ⚠️  Error checking S3 cache for #{s3_key}: #{e.message}"
+      false
     end
   end
 

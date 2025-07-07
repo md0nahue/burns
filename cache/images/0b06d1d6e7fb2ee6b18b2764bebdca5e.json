@@ -1,0 +1,55 @@
+{
+  "id": 81,
+  "start_time": 384.628,
+  "end_time": 390.188,
+  "text": " American people in so many ways to understand the critical moment that we're in and to get them to",
+  "confidence": -0.066435285,
+  "no_speech_prob": 3.0796954e-12,
+  "compression_ratio": 1.8030303,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "American flag waving in wind close-up",
+      "category": "stock_image"
+    },
+    {
+      "query": "iconic American landmarks montage",
+      "category": "stock_image"
+    },
+    {
+      "query": "diverse Americans looking hopeful",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "symbol of American unity",
+    "nation at a critical juncture"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/11988821/pexels-photo-11988821.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/11988821/pexels-photo-11988821.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "The American flag waves proudly against a cloudless blue sky, symbolizing freedom and patriotism.",
+      "photographer": "Connor McManus",
+      "photographer_url": "https://www.pexels.com/@alteredsnaps",
+      "metadata": {
+        "id": 11988821,
+        "avg_color": "#505781",
+        "liked": false
+      },
+      "query": "American flag waving in wind close-up",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 81,
+      "start_time": 384.628,
+      "end_time": 390.188,
+      "generated_at": "2025-07-07 10:15:18 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

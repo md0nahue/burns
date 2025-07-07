@@ -1,0 +1,55 @@
+{
+  "id": 134,
+  "start_time": 583.232,
+  "end_time": 586.21204,
+  "text": " and thanks for taking time out of the tour to join us here on CNN.",
+  "confidence": -0.13032146,
+  "no_speech_prob": 1.0743036e-11,
+  "compression_ratio": 1.4191617,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "CNN studio interview setting",
+      "category": "stock_image"
+    },
+    {
+      "query": "person on video call",
+      "category": "stock_image"
+    },
+    {
+      "query": "news broadcast graphic",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "CNN logo",
+    "television studio"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6919954/pexels-photo-6919954.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6919954/pexels-photo-6919954.jpeg",
+      "width": 6720,
+      "height": 4480,
+      "description": "A woman recording a podcast indoors with headphones and a microphone.",
+      "photographer": "Photo By: Kaboompics.com",
+      "photographer_url": "https://www.pexels.com/@karolina-grabowska",
+      "metadata": {
+        "id": 6919954,
+        "avg_color": "#A19B94",
+        "liked": false
+      },
+      "query": "CNN studio interview setting",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 134,
+      "start_time": 583.232,
+      "end_time": 586.21204,
+      "generated_at": "2025-07-07 10:16:11 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

@@ -1,0 +1,61 @@
+{
+  "id": 0,
+  "start_time": 0,
+  "end_time": 4.04,
+  "text": " My lead source tonight is the independent senator from Vermont, Bernie Sanders.",
+  "confidence": -0.11516774,
+  "no_speech_prob": 1.4214845e-12,
+  "compression_ratio": 1.4940711,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Bernie Sanders speaking at podium",
+      "category": "famous_person"
+    },
+    {
+      "query": "Vermont state capitol building",
+      "category": "stock_image"
+    },
+    {
+      "query": "independent senator portrait",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "Bernie Sanders close-up",
+    "US Senator from Vermont"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Bernie_Sanders_Presidential_Rally_2016_%281%29.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Bernie_Sanders_Presidential_Rally_2016_%281%29.jpg",
+      "width": 4512,
+      "height": 3000,
+      "description": "Bernie Sanders speaking at a podium at a Boise, Idaho rally for the 2016 presidential election",
+      "photographer": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Ashley.ding&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Ashley.ding (page does not exist)\">Ashley Ding</a>",
+      "photographer_url": null,
+      "metadata": {
+        "id": "104162046",
+        "license": "cc-by-sa-4.0",
+        "categories": [
+          "Category:Bernie Sanders in March 2016",
+          "Category:Bernie Sanders presidential campaign, 2016 in Idaho",
+          "Category:Boise, Idaho in the 2010s"
+        ],
+        "usage_restrictions": "",
+        "file_size": 5554250
+      },
+      "query": "Bernie Sanders speaking at podium",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 0,
+      "start_time": 0,
+      "end_time": 4.04,
+      "generated_at": "2025-07-07 10:14:06 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

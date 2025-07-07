@@ -1,0 +1,55 @@
+{
+  "id": 42,
+  "start_time": 193.084,
+  "end_time": 195.904,
+  "text": " that we are living in difficult times.",
+  "confidence": -0.18925563,
+  "no_speech_prob": 2.6652975e-12,
+  "compression_ratio": 1.6470588,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "global map with turbulent weather patterns",
+      "category": "stock_image"
+    },
+    {
+      "query": "people looking worried in a crowd",
+      "category": "stock_image"
+    },
+    {
+      "query": "abstract representation of difficult times",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "stormy seas landscape",
+    "city skyline under heavy rain"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5725589/pexels-photo-5725589.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5725589/pexels-photo-5725589.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A simple black and white silhouette of a world map emphasizing continents against a stark background.",
+      "photographer": "Tima Miroshnichenko",
+      "photographer_url": "https://www.pexels.com/@tima-miroshnichenko",
+      "metadata": {
+        "id": 5725589,
+        "avg_color": "#929292",
+        "liked": false
+      },
+      "query": "global map with turbulent weather patterns",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 42,
+      "start_time": 193.084,
+      "end_time": 195.904,
+      "generated_at": "2025-07-07 10:14:40 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

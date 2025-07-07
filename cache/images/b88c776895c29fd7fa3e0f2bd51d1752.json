@@ -1,0 +1,55 @@
+{
+  "id": 120,
+  "start_time": 534.972,
+  "end_time": 537.33203,
+  "text": " And certainly, I mean, we have seen this at your town halls",
+  "confidence": -0.1501202,
+  "no_speech_prob": 1.1555174e-12,
+  "compression_ratio": 1.7375,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Senator speaking at town hall",
+      "category": "famous_person"
+    },
+    {
+      "query": "crowd listening intently at town hall",
+      "category": "stock_image"
+    },
+    {
+      "query": "political rally audience reaction",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "politician addressing crowd",
+    "public forum discussion"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5711032/pexels-photo-5711032.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5711032/pexels-photo-5711032.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A supportive group therapy session in a sunlit room, highlighting connection and healing.",
+      "photographer": "Tima Miroshnichenko",
+      "photographer_url": "https://www.pexels.com/@tima-miroshnichenko",
+      "metadata": {
+        "id": 5711032,
+        "avg_color": "#63685B",
+        "liked": false
+      },
+      "query": "Senator speaking at town hall",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 120,
+      "start_time": 534.972,
+      "end_time": 537.33203,
+      "generated_at": "2025-07-07 10:15:56 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

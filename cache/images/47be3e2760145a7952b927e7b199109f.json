@@ -1,0 +1,55 @@
+{
+  "id": 38,
+  "start_time": 184.324,
+  "end_time": 186.784,
+  "text": " you should be impeached, you're terrible, etc.",
+  "confidence": -0.19238578,
+  "no_speech_prob": 4.566925e-12,
+  "compression_ratio": 1.5985402,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "person pointing finger accusingly",
+      "category": "stock_image"
+    },
+    {
+      "query": "a gavel striking a sound block",
+      "category": "stock_image"
+    },
+    {
+      "query": "a hand writing on a document",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "accusatory gesture",
+    "legal proceedings"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/652355/pexels-photo-652355.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/652355/pexels-photo-652355.jpeg",
+      "width": 4928,
+      "height": 3264,
+      "description": "A businessman in a dark suit points forward, emphasizing focus and professionalism.",
+      "photographer": "Lukas",
+      "photographer_url": "https://www.pexels.com/@goumbik",
+      "metadata": {
+        "id": 652355,
+        "avg_color": "#565E64",
+        "liked": false
+      },
+      "query": "person pointing finger accusingly",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 38,
+      "start_time": 184.324,
+      "end_time": 186.784,
+      "generated_at": "2025-07-07 10:14:37 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

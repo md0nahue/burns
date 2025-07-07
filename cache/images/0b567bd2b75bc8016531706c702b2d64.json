@@ -1,0 +1,55 @@
+{
+  "id": 67,
+  "start_time": 304.368,
+  "end_time": 311.828,
+  "text": " strategy. And that is failure. We are not interested in hearing that you are in the minority.",
+  "confidence": -0.10755496,
+  "no_speech_prob": 4.9573067e-12,
+  "compression_ratio": 1.6928571,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "political strategists in meeting",
+      "category": "stock_image"
+    },
+    {
+      "query": "people looking confused at strategy",
+      "category": "general"
+    },
+    {
+      "query": "team discussing failed plan",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "lack of coordination graphic",
+    "strategy session failure"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/15434151/pexels-photo-15434151.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/15434151/pexels-photo-15434151.jpeg",
+      "width": 4000,
+      "height": 3000,
+      "description": "Vibrant interior of a parliament hall with a grand dome and intricate architecture.",
+      "photographer": "Czapp Árpád",
+      "photographer_url": "https://www.pexels.com/@czapp-arpad-3647289",
+      "metadata": {
+        "id": 15434151,
+        "avg_color": "#7D6951",
+        "liked": false
+      },
+      "query": "political strategists in meeting",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 67,
+      "start_time": 304.368,
+      "end_time": 311.828,
+      "generated_at": "2025-07-07 10:15:03 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

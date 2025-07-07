@@ -1,0 +1,55 @@
+{
+  "id": 114,
+  "start_time": 518.052,
+  "end_time": 520.192,
+  "text": " cut veterans programs and nutrition.",
+  "confidence": -0.1501202,
+  "no_speech_prob": 1.1555174e-12,
+  "compression_ratio": 1.7375,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "veterans saluting American flag",
+      "category": "stock_image"
+    },
+    {
+      "query": "graphic of a nutrition program being cut",
+      "category": "stock_image"
+    },
+    {
+      "query": "military medal with a red X",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "food bank shelves emptying",
+    "veteran looking distressed"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/935499/pexels-photo-935499.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/935499/pexels-photo-935499.jpeg",
+      "width": 4928,
+      "height": 3264,
+      "description": "Patriotic American flag beside a tombstone under clear blue skies in Redondo Beach cemetery.",
+      "photographer": "D0N MIL04K",
+      "photographer_url": "https://www.pexels.com/@d0nmil0",
+      "metadata": {
+        "id": 935499,
+        "avg_color": "#647474",
+        "liked": false
+      },
+      "query": "veterans saluting American flag",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 114,
+      "start_time": 518.052,
+      "end_time": 520.192,
+      "generated_at": "2025-07-07 10:15:50 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

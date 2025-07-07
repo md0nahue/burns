@@ -1,0 +1,55 @@
+{
+  "id": 13,
+  "start_time": 72.06,
+  "end_time": 77.46,
+  "text": " So they are immune from these types of attack and they can be objective in their judgment.",
+  "confidence": -0.1679366,
+  "no_speech_prob": 8.9313344e-13,
+  "compression_ratio": 1.5559845,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "shield protecting scales of justice",
+      "category": "stock_image"
+    },
+    {
+      "query": "blindfolded lady justice statue",
+      "category": "stock_image"
+    },
+    {
+      "query": "judge in chambers looking thoughtful",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "objective judgment concept",
+    "impartiality symbol"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/10474990/pexels-photo-10474990.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/10474990/pexels-photo-10474990.jpeg",
+      "width": 5258,
+      "height": 3505,
+      "description": "A security officer in uniform standing behind bars in a dimly lit room, evoking themes of law enforcement and confinement.",
+      "photographer": "Ron Lach",
+      "photographer_url": "https://www.pexels.com/@ron-lach",
+      "metadata": {
+        "id": 10474990,
+        "avg_color": "#313536",
+        "liked": false
+      },
+      "query": "shield protecting scales of justice",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 13,
+      "start_time": 72.06,
+      "end_time": 77.46,
+      "generated_at": "2025-07-07 10:14:17 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

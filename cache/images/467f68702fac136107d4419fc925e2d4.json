@@ -1,0 +1,55 @@
+{
+  "id": 132,
+  "start_time": 576.932,
+  "end_time": 579.472,
+  "text": " And the American people have got to stand up and stop him.",
+  "confidence": -0.13032146,
+  "no_speech_prob": 1.0743036e-11,
+  "compression_ratio": 1.4191617,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "crowd of diverse Americans standing",
+      "category": "stock_image"
+    },
+    {
+      "query": "people raising hands in protest",
+      "category": "stock_image"
+    },
+    {
+      "query": "American flag waving defiantly",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "citizens uniting against injustice",
+    "protest march"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/9610323/pexels-photo-9610323.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/9610323/pexels-photo-9610323.jpeg",
+      "width": 5760,
+      "height": 3840,
+      "description": "A cheerful group of friends standing together, smiling in front of a large wooden door.",
+      "photographer": "Sadock Kaisi",
+      "photographer_url": "https://www.pexels.com/@sadockkaisibalaam",
+      "metadata": {
+        "id": 9610323,
+        "avg_color": "#82786F",
+        "liked": false
+      },
+      "query": "crowd of diverse Americans standing",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 132,
+      "start_time": 576.932,
+      "end_time": 579.472,
+      "generated_at": "2025-07-07 10:16:10 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

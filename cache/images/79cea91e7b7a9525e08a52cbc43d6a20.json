@@ -1,0 +1,55 @@
+{
+  "id": 32,
+  "start_time": 168.164,
+  "end_time": 170.324,
+  "text": " But what we have to worry about",
+  "confidence": -0.19238578,
+  "no_speech_prob": 4.566925e-12,
+  "compression_ratio": 1.5985402,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "person looking worriedly into distance",
+      "category": "stock_image"
+    },
+    {
+      "query": "a furrowed brow of concern",
+      "category": "stock_image"
+    },
+    {
+      "query": "a person with hands clasped",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "face of apprehension",
+    "contemplating a threat"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/3952201/pexels-photo-3952201.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/3952201/pexels-photo-3952201.jpeg",
+      "width": 5929,
+      "height": 3953,
+      "description": "A worried person standing in front of a transparent barrier with 'Coronavirus' sign, illustrating pandemic anxiety.",
+      "photographer": "cottonbro studio",
+      "photographer_url": "https://www.pexels.com/@cottonbro",
+      "metadata": {
+        "id": 3952201,
+        "avg_color": "#C37768",
+        "liked": false
+      },
+      "query": "person looking worriedly into distance",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 32,
+      "start_time": 168.164,
+      "end_time": 170.324,
+      "generated_at": "2025-07-07 10:14:32 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

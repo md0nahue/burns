@@ -1,0 +1,55 @@
+{
+  "id": 91,
+  "start_time": 431.248,
+  "end_time": 432.008,
+  "text": " It's not the caucus.",
+  "confidence": -0.2021305,
+  "no_speech_prob": 1.164554e-12,
+  "compression_ratio": 1.55,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "empty political podium",
+      "category": "stock_image"
+    },
+    {
+      "query": "closed caucus room door",
+      "category": "stock_image"
+    },
+    {
+      "query": "political debate stage empty",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political meeting cancelled",
+    "unoccupied assembly hall"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/4666/berlin-eu-european-union-federal-chancellery.jpg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/4666/berlin-eu-european-union-federal-chancellery.jpg",
+      "width": 2048,
+      "height": 1536,
+      "description": "Empty podiums with German and EU flags in Federal Chancellery, Berlin.",
+      "photographer": "Wikimedia Commons",
+      "photographer_url": "https://www.pexels.com/@wikimedia-commons",
+      "metadata": {
+        "id": 4666,
+        "avg_color": "#6E6A69",
+        "liked": false
+      },
+      "query": "empty political podium",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 91,
+      "start_time": 431.248,
+      "end_time": 432.008,
+      "generated_at": "2025-07-07 10:15:27 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

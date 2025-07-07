@@ -1,0 +1,55 @@
+{
+  "id": 87,
+  "start_time": 416.46802,
+  "end_time": 419.168,
+  "text": " do you think Senator Chuck Schumer is the right person to lead it?",
+  "confidence": -0.11239676,
+  "no_speech_prob": 5.017227e-12,
+  "compression_ratio": 1.650165,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "United States Capitol building exterior",
+      "category": "stock_image"
+    },
+    {
+      "query": "Senate chamber interior during session",
+      "category": "stock_image"
+    },
+    {
+      "query": "government building facade",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political decision-making process",
+    "legislative body at work"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/1771262/pexels-photo-1771262.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/1771262/pexels-photo-1771262.jpeg",
+      "width": 4235,
+      "height": 2823,
+      "description": "A stunning view of an illuminated capitol building dome against the night sky.",
+      "photographer": "Brett Sayles",
+      "photographer_url": "https://www.pexels.com/@brett-sayles",
+      "metadata": {
+        "id": 1771262,
+        "avg_color": "#2B2930",
+        "liked": false
+      },
+      "query": "United States Capitol building exterior",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 87,
+      "start_time": 416.46802,
+      "end_time": 419.168,
+      "generated_at": "2025-07-07 10:15:23 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

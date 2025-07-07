@@ -1,0 +1,55 @@
+{
+  "id": 52,
+  "start_time": 220.004,
+  "end_time": 222.164,
+  "text": " who make sure they get the benefits that they deserve.",
+  "confidence": -0.18925563,
+  "no_speech_prob": 2.6652975e-12,
+  "compression_ratio": 1.6470588,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "veteran receiving benefits check",
+      "category": "stock_image"
+    },
+    {
+      "query": "hand receiving official document",
+      "category": "stock_image"
+    },
+    {
+      "query": "symbol of government benefits",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "military veteran receiving award",
+    "paperwork and official seals"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/7362961/pexels-photo-7362961.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/7362961/pexels-photo-7362961.jpeg",
+      "width": 6643,
+      "height": 4429,
+      "description": "Delivery worker checks packages in a van on a city street, ensuring orders are ready for shipping.",
+      "photographer": "RDNE Stock project",
+      "photographer_url": "https://www.pexels.com/@rdne",
+      "metadata": {
+        "id": 7362961,
+        "avg_color": "#757379",
+        "liked": false
+      },
+      "query": "veteran receiving benefits check",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 52,
+      "start_time": 220.004,
+      "end_time": 222.164,
+      "generated_at": "2025-07-07 10:14:49 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

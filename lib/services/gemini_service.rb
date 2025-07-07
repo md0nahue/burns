@@ -612,8 +612,14 @@ class GeminiService
     return segments unless content
     
     begin
+      # Clean up markdown code blocks if present
+      cleaned_content = content.strip
+      # Remove markdown code blocks
+      cleaned_content = cleaned_content.gsub(/^```json\s*/, '').gsub(/\s*```$/, '')
+      cleaned_content = cleaned_content.strip
+      
       # Try to parse as JSON
-      parsed = JSON.parse(content.strip, symbolize_names: true)
+      parsed = JSON.parse(cleaned_content, symbolize_names: true)
       
       # Check if we have the new format with segments
       if parsed[:segments] && parsed[:segments].is_a?(Array)

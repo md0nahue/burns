@@ -1,0 +1,55 @@
+{
+  "id": 102,
+  "start_time": 487.032,
+  "end_time": 489.412,
+  "text": " And people are saying she should primary Schumer.",
+  "confidence": -0.16177201,
+  "no_speech_prob": 1.3721936e-12,
+  "compression_ratio": 1.7180328,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Alexandria Ocasio-Cortez speaking passionately",
+      "category": "famous_person"
+    },
+    {
+      "query": "political rally with signs",
+      "category": "stock_image"
+    },
+    {
+      "query": "voters discussing politics",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political debate stage",
+    "crowd cheering for candidate"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/8638300/pexels-photo-8638300.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/8638300/pexels-photo-8638300.jpeg",
+      "width": 5760,
+      "height": 3840,
+      "description": "Woman in white shirt holding megaphone against a pink background, confidently speaking.",
+      "photographer": "Pavel Danilyuk",
+      "photographer_url": "https://www.pexels.com/@pavel-danilyuk",
+      "metadata": {
+        "id": 8638300,
+        "avg_color": "#C89399",
+        "liked": false
+      },
+      "query": "Alexandria Ocasio-Cortez speaking passionately",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 102,
+      "start_time": 487.032,
+      "end_time": 489.412,
+      "generated_at": "2025-07-07 10:15:37 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

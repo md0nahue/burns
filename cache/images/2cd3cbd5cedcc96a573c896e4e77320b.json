@@ -1,0 +1,55 @@
+{
+  "id": 46,
+  "start_time": 203.444,
+  "end_time": 205.384,
+  "text": " running the United States government,",
+  "confidence": -0.18925563,
+  "no_speech_prob": 2.6652975e-12,
+  "compression_ratio": 1.6470588,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "United States Capitol building exterior",
+      "category": "stock_image"
+    },
+    {
+      "query": "government building facade with flags",
+      "category": "stock_image"
+    },
+    {
+      "query": "abstract representation of government control",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "American flag waving",
+    "congressional hearing room"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/1000738/pexels-photo-1000738.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/1000738/pexels-photo-1000738.jpeg",
+      "width": 4608,
+      "height": 3072,
+      "description": "Low angle view of a historic capitol building with a dome, columns, and surrounding trees.",
+      "photographer": "Brett Sayles",
+      "photographer_url": "https://www.pexels.com/@brett-sayles",
+      "metadata": {
+        "id": 1000738,
+        "avg_color": "#928C92",
+        "liked": false
+      },
+      "query": "United States Capitol building exterior",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 46,
+      "start_time": 203.444,
+      "end_time": 205.384,
+      "generated_at": "2025-07-07 10:14:44 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

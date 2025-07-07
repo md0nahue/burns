@@ -1,0 +1,55 @@
+{
+  "id": 89,
+  "start_time": 425.78802,
+  "end_time": 429.90802,
+  "text": " strongly. No one is in the caucus more critical of Schumer than I am, but it's not Schumer.",
+  "confidence": -0.11239676,
+  "no_speech_prob": 5.017227e-12,
+  "compression_ratio": 1.650165,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Senator Chuck Schumer looking thoughtful",
+      "category": "famous_person"
+    },
+    {
+      "query": "political debate or disagreement",
+      "category": "stock_image"
+    },
+    {
+      "query": "people expressing strong opinions",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political criticism of leader",
+    "disagreement within a party"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/3330159/pexels-photo-3330159.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/3330159/pexels-photo-3330159.jpeg",
+      "width": 5184,
+      "height": 3456,
+      "description": "Black and white portrait of a woman in a hat smoking a cigarette, depicting solitude and contemplation.",
+      "photographer": "Marie Pankova",
+      "photographer_url": "https://www.pexels.com/@marie-pankova-1758508",
+      "metadata": {
+        "id": 3330159,
+        "avg_color": "#ADADAD",
+        "liked": false
+      },
+      "query": "Senator Chuck Schumer looking thoughtful",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 89,
+      "start_time": 425.78802,
+      "end_time": 429.90802,
+      "generated_at": "2025-07-07 10:15:26 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

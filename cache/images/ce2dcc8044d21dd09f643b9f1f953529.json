@@ -1,0 +1,57 @@
+{
+  "id": 2,
+  "start_time": 9.32,
+  "end_time": 14.88,
+  "text": " and basically said that you think President Trump needs to turn off Fox News and, quote, read the Constitution.",
+  "confidence": -0.11516774,
+  "no_speech_prob": 1.4214845e-12,
+  "compression_ratio": 1.4940711,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "President Trump watching TV",
+      "category": "famous_person"
+    },
+    {
+      "query": "Fox News logo on screen",
+      "category": "stock_image"
+    },
+    {
+      "query": "President Trump pointing finger",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "President Trump speaking",
+    "TV screen with news channel"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Baum--The_master_key.djvu",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Baum--The_master_key.djvu",
+      "width": 2522,
+      "height": 3906,
+      "description": "<div class=\"description\">\nScan of a book by L. Frank Baum</div>",
+      "photographer": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:L._Frank_Baum\" class=\"extiw\" title=\"w:en:L. Frank Baum\"><span title=\"American author of children's books (1856–1919)\">L. Frank Baum</span></a></bdi>",
+      "photographer_url": null,
+      "metadata": {
+        "id": "74947759",
+        "license": "pd",
+        "categories": [],
+        "usage_restrictions": "",
+        "file_size": 8027393
+      },
+      "query": "President Trump watching TV",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 2,
+      "start_time": 9.32,
+      "end_time": 14.88,
+      "generated_at": "2025-07-07 10:14:07 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

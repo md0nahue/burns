@@ -1,0 +1,55 @@
+{
+  "id": 18,
+  "start_time": 99.08,
+  "end_time": 105.02,
+  "text": " You had this horrible decision on Roe versus Wade, taking away women's rights to control their own bodies.",
+  "confidence": -0.13401936,
+  "no_speech_prob": 1.0770578e-12,
+  "compression_ratio": 1.632107,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "protestors outside Supreme Court",
+      "category": "stock_image"
+    },
+    {
+      "query": "crowd holding signs against court",
+      "category": "stock_image"
+    },
+    {
+      "query": "John Roberts looking concerned",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "public outcry against ruling",
+    "impeach Roberts protest"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/1619860/pexels-photo-1619860.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/1619860/pexels-photo-1619860.jpeg",
+      "width": 3929,
+      "height": 2057,
+      "description": "High-angle drone shot of a tennis match on a bright green court with shadows.",
+      "photographer": "Mudassir Ali",
+      "photographer_url": "https://www.pexels.com/@pixelcop",
+      "metadata": {
+        "id": 1619860,
+        "avg_color": "#728B57",
+        "liked": false
+      },
+      "query": "protestors outside Supreme Court",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 18,
+      "start_time": 99.08,
+      "end_time": 105.02,
+      "generated_at": "2025-07-07 10:14:21 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

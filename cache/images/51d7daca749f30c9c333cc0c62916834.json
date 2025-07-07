@@ -1,0 +1,55 @@
+{
+  "id": 109,
+  "start_time": 502.892,
+  "end_time": 504.552,
+  "text": " It's Democratic voter stuff, too, though.",
+  "confidence": -0.16177201,
+  "no_speech_prob": 1.3721936e-12,
+  "compression_ratio": 1.7180328,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "diverse group of people looking concerned",
+      "category": "stock_image"
+    },
+    {
+      "query": "people discussing everyday issues",
+      "category": "stock_image"
+    },
+    {
+      "query": "close-up of worried faces",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "people at a grocery store",
+    "family at home"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/7324573/pexels-photo-7324573.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/7324573/pexels-photo-7324573.jpeg",
+      "width": 6720,
+      "height": 4480,
+      "description": "Empowered diverse women lying on pink fabric, showing unity and beauty.",
+      "photographer": "KoolShooters",
+      "photographer_url": "https://www.pexels.com/@koolshooters",
+      "metadata": {
+        "id": 7324573,
+        "avg_color": "#70443E",
+        "liked": false
+      },
+      "query": "diverse group of people looking concerned",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 109,
+      "start_time": 502.892,
+      "end_time": 504.552,
+      "generated_at": "2025-07-07 10:15:45 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

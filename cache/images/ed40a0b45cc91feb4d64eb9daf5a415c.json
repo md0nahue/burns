@@ -1,0 +1,55 @@
+{
+  "id": 90,
+  "start_time": 430.30798,
+  "end_time": 431.068,
+  "text": " It's the caucus.",
+  "confidence": -0.2021305,
+  "no_speech_prob": 1.164554e-12,
+  "compression_ratio": 1.55,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Democratic Party caucus meeting",
+      "category": "stock_image"
+    },
+    {
+      "query": "political party symbol",
+      "category": "stock_image"
+    },
+    {
+      "query": "group of politicians debating",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political gathering",
+    "party convention"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/29251136/pexels-photo-29251136.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/29251136/pexels-photo-29251136.jpeg",
+      "width": 6240,
+      "height": 4160,
+      "description": "A top-down view of a dining table with elegant table setting and a glass of white wine.",
+      "photographer": "gravity cut",
+      "photographer_url": "https://www.pexels.com/@gravitycut",
+      "metadata": {
+        "id": 29251136,
+        "avg_color": "#646867",
+        "liked": false
+      },
+      "query": "Democratic Party caucus meeting",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 90,
+      "start_time": 430.30798,
+      "end_time": 431.068,
+      "generated_at": "2025-07-07 10:15:26 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

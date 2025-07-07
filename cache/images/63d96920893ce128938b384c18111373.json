@@ -1,0 +1,55 @@
+{
+  "id": 98,
+  "start_time": 466.932,
+  "end_time": 472.69202,
+  "text": " of bringing millions of young people, working class people, people of color, to demand that",
+  "confidence": -0.085865594,
+  "no_speech_prob": 3.0086055e-12,
+  "compression_ratio": 1.6557971,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "millions of young people protesting",
+      "category": "stock_image"
+    },
+    {
+      "query": "diverse group of young activists",
+      "category": "stock_image"
+    },
+    {
+      "query": "youthful political movement",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "student protest",
+    "generation Z activism"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6673412/pexels-photo-6673412.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6673412/pexels-photo-6673412.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A diverse group of adults engaging in an indoor peaceful protest with signs promoting unity and freedom.",
+      "photographer": "cottonbro studio",
+      "photographer_url": "https://www.pexels.com/@cottonbro",
+      "metadata": {
+        "id": 6673412,
+        "avg_color": "#252829",
+        "liked": false
+      },
+      "query": "millions of young people protesting",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 98,
+      "start_time": 466.932,
+      "end_time": 472.69202,
+      "generated_at": "2025-07-07 10:15:33 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

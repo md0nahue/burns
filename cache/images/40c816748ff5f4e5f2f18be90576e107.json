@@ -1,0 +1,55 @@
+{
+  "id": 86,
+  "start_time": 412.528,
+  "end_time": 416.288,
+  "text": " that works well for all. When it comes to that effort in the Senate,",
+  "confidence": -0.11239676,
+  "no_speech_prob": 5.017227e-12,
+  "compression_ratio": 1.650165,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "American flag superimposed on economic graph",
+      "category": "stock_image"
+    },
+    {
+      "query": "diverse group of Americans working together",
+      "category": "stock_image"
+    },
+    {
+      "query": "symbol of prosperous nation",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "thriving economy for all",
+    "nation's wealth and progress"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/4386346/pexels-photo-4386346.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/4386346/pexels-photo-4386346.jpeg",
+      "width": 6720,
+      "height": 4480,
+      "description": "From above of United States currency folded in roll placed on USA flag illustrating concept of business profit and wealth",
+      "photographer": "Photo By: Kaboompics.com",
+      "photographer_url": "https://www.pexels.com/@karolina-grabowska",
+      "metadata": {
+        "id": 4386346,
+        "avg_color": "#995F64",
+        "liked": false
+      },
+      "query": "American flag superimposed on economic graph",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 86,
+      "start_time": 412.528,
+      "end_time": 416.288,
+      "generated_at": "2025-07-07 10:15:22 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

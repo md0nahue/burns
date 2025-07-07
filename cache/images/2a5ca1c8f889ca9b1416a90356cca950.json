@@ -1,0 +1,55 @@
+{
+  "id": 95,
+  "start_time": 449.172,
+  "end_time": 455.69202,
+  "text": " that is heavily dominated by the billionaire class, run by consultants who are way out of",
+  "confidence": -0.11262999,
+  "no_speech_prob": 1.0899947e-12,
+  "compression_ratio": 1.7011952,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "billionaire class luxury lifestyle",
+      "category": "stock_image"
+    },
+    {
+      "query": "political consultants in meeting",
+      "category": "stock_image"
+    },
+    {
+      "query": "out of touch business people",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "corporate boardroom",
+    "elite social gathering"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/100650/pexels-photo-100650.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/100650/pexels-photo-100650.jpeg",
+      "width": 3936,
+      "height": 2216,
+      "description": "White BMW car parked on gravel path surrounded by greenery, showcasing luxury design.",
+      "photographer": "Mike Bird",
+      "photographer_url": "https://www.pexels.com/@mikebirdy",
+      "metadata": {
+        "id": 100650,
+        "avg_color": "#5C5D4C",
+        "liked": false
+      },
+      "query": "billionaire class luxury lifestyle",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 95,
+      "start_time": 449.172,
+      "end_time": 455.69202,
+      "generated_at": "2025-07-07 10:15:31 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

@@ -1,0 +1,55 @@
+{
+  "id": 48,
+  "start_time": 208.90399,
+  "end_time": 210.724,
+  "text": " massive attacks against veterans.",
+  "confidence": -0.18925563,
+  "no_speech_prob": 2.6652975e-12,
+  "compression_ratio": 1.6470588,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "veterans protesting government policy",
+      "category": "stock_image"
+    },
+    {
+      "query": "veteran looking distressed",
+      "category": "stock_image"
+    },
+    {
+      "query": "protest sign with veteran symbols",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "group of veterans marching",
+    "veteran receiving aid"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6172613/pexels-photo-6172613.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6172613/pexels-photo-6172613.jpeg",
+      "width": 4410,
+      "height": 2940,
+      "description": "Black woman giving a speech at a podium with an American flag in the background.",
+      "photographer": "RDNE Stock project",
+      "photographer_url": "https://www.pexels.com/@rdne",
+      "metadata": {
+        "id": 6172613,
+        "avg_color": "#B79FA2",
+        "liked": false
+      },
+      "query": "veterans protesting government policy",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 48,
+      "start_time": 208.90399,
+      "end_time": 210.724,
+      "generated_at": "2025-07-07 10:14:46 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

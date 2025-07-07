@@ -1,0 +1,55 @@
+{
+  "id": 3,
+  "start_time": 16.96,
+  "end_time": 22.5,
+  "text": " Look, you know, the guys who wrote the Constitution back in the 1790s were nobody's fools.",
+  "confidence": -0.11516774,
+  "no_speech_prob": 1.4214845e-12,
+  "compression_ratio": 1.4940711,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "US Constitution parchment document",
+      "category": "stock_image"
+    },
+    {
+      "query": "1790s historical figures portrait",
+      "category": "famous_person"
+    },
+    {
+      "query": "old quill pen writing document",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "historical document illustration",
+    "founding fathers group"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/8850753/pexels-photo-8850753.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/8850753/pexels-photo-8850753.jpeg",
+      "width": 6720,
+      "height": 4480,
+      "description": "Close-up of a 'We the People' scroll on an American flag cloth background.",
+      "photographer": "Tara Winstead",
+      "photographer_url": "https://www.pexels.com/@tara-winstead",
+      "metadata": {
+        "id": 8850753,
+        "avg_color": "#836160",
+        "liked": false
+      },
+      "query": "US Constitution parchment document",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 3,
+      "start_time": 16.96,
+      "end_time": 22.5,
+      "generated_at": "2025-07-07 10:14:08 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

@@ -1,0 +1,55 @@
+{
+  "id": 103,
+  "start_time": 489.532,
+  "end_time": 491.672,
+  "text": " Do you think she'd be a formidable opponent if she did?",
+  "confidence": -0.16177201,
+  "no_speech_prob": 1.3721936e-12,
+  "compression_ratio": 1.7180328,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Alexandria Ocasio-Cortez looking determined",
+      "category": "famous_person"
+    },
+    {
+      "query": "political challenger facing incumbent",
+      "category": "stock_image"
+    },
+    {
+      "query": "graphic of primary election ballot",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political campaign poster",
+    "opposing political candidates"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32815478/pexels-photo-32815478.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32815478/pexels-photo-32815478.jpeg",
+      "width": 5472,
+      "height": 3648,
+      "description": "",
+      "photographer": "Partha Dutta",
+      "photographer_url": "https://www.pexels.com/@parthapratimdutta7",
+      "metadata": {
+        "id": 32815478,
+        "avg_color": "#818181",
+        "liked": false
+      },
+      "query": "Alexandria Ocasio-Cortez looking determined",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 103,
+      "start_time": 489.532,
+      "end_time": 491.672,
+      "generated_at": "2025-07-07 10:15:39 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

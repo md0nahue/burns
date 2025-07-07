@@ -1,0 +1,55 @@
+{
+  "id": 62,
+  "start_time": 269.504,
+  "end_time": 271.984,
+  "text": " We're showing one of the pictures of you speaking here.",
+  "confidence": -0.11720072,
+  "no_speech_prob": 1.7345685e-12,
+  "compression_ratio": 1.6353791,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "politician speaking at podium close-up",
+      "category": "famous_person"
+    },
+    {
+      "query": "speaker addressing a large audience",
+      "category": "stock_image"
+    },
+    {
+      "query": "photo of politician giving speech",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "close-up of political speaker",
+    "man speaking at town hall"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6172597/pexels-photo-6172597.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6172597/pexels-photo-6172597.jpeg",
+      "width": 5920,
+      "height": 3947,
+      "description": "Confident woman in a black suit delivers a speech at a podium with an American flag backdrop.",
+      "photographer": "RDNE Stock project",
+      "photographer_url": "https://www.pexels.com/@rdne",
+      "metadata": {
+        "id": 6172597,
+        "avg_color": "#C0C5CB",
+        "liked": false
+      },
+      "query": "politician speaking at podium close-up",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 62,
+      "start_time": 269.504,
+      "end_time": 271.984,
+      "generated_at": "2025-07-07 10:15:00 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

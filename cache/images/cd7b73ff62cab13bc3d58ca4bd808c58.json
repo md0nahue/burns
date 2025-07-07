@@ -1,0 +1,55 @@
+{
+  "id": 127,
+  "start_time": 552.512,
+  "end_time": 556.772,
+  "text": " Usually the president's party has three seats. The opposing has two on that board.",
+  "confidence": -0.14607388,
+  "no_speech_prob": 1.6231385e-12,
+  "compression_ratio": 1.6375405,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "US Senate chamber interior",
+      "category": "stock_image"
+    },
+    {
+      "query": "political debate in Congress",
+      "category": "stock_image"
+    },
+    {
+      "query": "senator questioning during hearing",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "legislative session",
+    "government hearing"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/14525652/pexels-photo-14525652.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/14525652/pexels-photo-14525652.jpeg",
+      "width": 5184,
+      "height": 3456,
+      "description": "A stunning view of the Indiana State Capitol's elegant interior, showcasing its historic architecture.",
+      "photographer": "Lavdrim Mustafi",
+      "photographer_url": "https://www.pexels.com/@lavdrim-mustafi-337111893",
+      "metadata": {
+        "id": 14525652,
+        "avg_color": "#856E5C",
+        "liked": false
+      },
+      "query": "US Senate chamber interior",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 127,
+      "start_time": 552.512,
+      "end_time": 556.772,
+      "generated_at": "2025-07-07 10:16:04 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

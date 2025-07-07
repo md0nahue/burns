@@ -1,0 +1,55 @@
+{
+  "id": 55,
+  "start_time": 230.824,
+  "end_time": 235.104,
+  "text": " although they're cutting back on these Social Security offices all over this country.",
+  "confidence": -0.14652142,
+  "no_speech_prob": 3.0671702e-12,
+  "compression_ratio": 1.6805556,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "closed Social Security office sign",
+      "category": "stock_image"
+    },
+    {
+      "query": "empty government office interior",
+      "category": "stock_image"
+    },
+    {
+      "query": "sign indicating reduced hours",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "government building with boarded windows",
+    "empty waiting room"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/7207643/pexels-photo-7207643.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/7207643/pexels-photo-7207643.jpeg",
+      "width": 4896,
+      "height": 3264,
+      "description": "A minimalist white door with 'STAFF ONLY' signage, embodying simplicity and exclusivity.",
+      "photographer": "𝗛&𝗖𝗢 　",
+      "photographer_url": "https://www.pexels.com/@hngstrm",
+      "metadata": {
+        "id": 7207643,
+        "avg_color": "#BFBDBD",
+        "liked": false
+      },
+      "query": "closed Social Security office sign",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 55,
+      "start_time": 230.824,
+      "end_time": 235.104,
+      "generated_at": "2025-07-07 10:14:52 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

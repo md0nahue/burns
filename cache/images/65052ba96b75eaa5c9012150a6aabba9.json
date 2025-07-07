@@ -1,0 +1,55 @@
+{
+  "id": 84,
+  "start_time": 401.748,
+  "end_time": 408.368,
+  "text": " people, or paid family on medical leave, or have 8,800,000 people sleeping out on the street.",
+  "confidence": -0.11239676,
+  "no_speech_prob": 5.017227e-12,
+  "compression_ratio": 1.650165,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "person receiving medical care hospital",
+      "category": "stock_image"
+    },
+    {
+      "query": "healthcare access for all concept",
+      "category": "stock_image"
+    },
+    {
+      "query": "doctor examining patient close-up",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "universal healthcare symbol",
+    "medical professionals helping people"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/13009643/pexels-photo-13009643.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/13009643/pexels-photo-13009643.jpeg",
+      "width": 5955,
+      "height": 3969,
+      "description": "Detailed view of a blood donation procedure in progress, focusing on the needle insertion.",
+      "photographer": "Rahul Sapra",
+      "photographer_url": "https://www.pexels.com/@rsapmech",
+      "metadata": {
+        "id": 13009643,
+        "avg_color": "#686868",
+        "liked": false
+      },
+      "query": "person receiving medical care hospital",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 84,
+      "start_time": 401.748,
+      "end_time": 408.368,
+      "generated_at": "2025-07-07 10:15:21 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

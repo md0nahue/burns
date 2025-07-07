@@ -1,0 +1,55 @@
+{
+  "id": 61,
+  "start_time": 263.664,
+  "end_time": 269.384,
+  "text": " I mean, it's really notable to see the crowds and how many people are showing up.",
+  "confidence": -0.11720072,
+  "no_speech_prob": 1.7345685e-12,
+  "compression_ratio": 1.6353791,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "large enthusiastic political rally crowd",
+      "category": "stock_image"
+    },
+    {
+      "query": "people cheering at political event",
+      "category": "stock_image"
+    },
+    {
+      "query": "diverse crowd at public gathering",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "packed auditorium political speech",
+    "audience engaged in rally"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/31623193/pexels-photo-31623193.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/31623193/pexels-photo-31623193.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "Crowd at a public rally with Turkish flag, near an iconic Istanbul mosque.",
+      "photographer": "Faruk Yıldız",
+      "photographer_url": "https://www.pexels.com/@faruk-yildiz-1929755295",
+      "metadata": {
+        "id": 31623193,
+        "avg_color": "#B4A3A9",
+        "liked": false
+      },
+      "query": "large enthusiastic political rally crowd",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 61,
+      "start_time": 263.664,
+      "end_time": 269.384,
+      "generated_at": "2025-07-07 10:14:58 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

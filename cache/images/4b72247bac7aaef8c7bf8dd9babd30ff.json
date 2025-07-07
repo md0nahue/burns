@@ -1,0 +1,55 @@
+{
+  "id": 53,
+  "start_time": 222.164,
+  "end_time": 225.244,
+  "text": " You're now seeing a massive attack on Social Security.",
+  "confidence": -0.14652142,
+  "no_speech_prob": 3.0671702e-12,
+  "compression_ratio": 1.6805556,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Social Security Administration building",
+      "category": "stock_image"
+    },
+    {
+      "query": "icon of social security card",
+      "category": "stock_image"
+    },
+    {
+      "query": "graphic of government bureaucracy",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "old social security card",
+    "government office exterior"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/10303884/pexels-photo-10303884.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/10303884/pexels-photo-10303884.jpeg",
+      "width": 3999,
+      "height": 2666,
+      "description": "A close-up of a modern police station facade in Germany with clear signage.",
+      "photographer": "Markus Winkler",
+      "photographer_url": "https://www.pexels.com/@markus-winkler-1430818",
+      "metadata": {
+        "id": 10303884,
+        "avg_color": "#8A8774",
+        "liked": false
+      },
+      "query": "Social Security Administration building",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 53,
+      "start_time": 222.164,
+      "end_time": 225.244,
+      "generated_at": "2025-07-07 10:14:50 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

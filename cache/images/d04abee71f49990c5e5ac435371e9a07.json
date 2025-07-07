@@ -1,0 +1,55 @@
+{
+  "id": 64,
+  "start_time": 278.64398,
+  "end_time": 280.64398,
+  "text": " I know you have a lot more stops planned next week.",
+  "confidence": -0.10900813,
+  "no_speech_prob": 4.156957e-12,
+  "compression_ratio": 1.6150794,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "calendar with next week circled",
+      "category": "stock_image"
+    },
+    {
+      "query": "politician with busy schedule",
+      "category": "general"
+    },
+    {
+      "query": "travel itinerary planning graphic",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "upcoming political events calendar",
+    "planner with travel dates"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/11773871/pexels-photo-11773871.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/11773871/pexels-photo-11773871.jpeg",
+      "width": 4592,
+      "height": 3064,
+      "description": "Close-up shot of a hand marking a date on a calendar with a pen, emphasizing planning and scheduling.",
+      "photographer": "Towfiqu barbhuiya",
+      "photographer_url": "https://www.pexels.com/@towfiqu-barbhuiya-3440682",
+      "metadata": {
+        "id": 11773871,
+        "avg_color": "#A2A19C",
+        "liked": false
+      },
+      "query": "calendar with next week circled",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 64,
+      "start_time": 278.64398,
+      "end_time": 280.64398,
+      "generated_at": "2025-07-07 10:15:01 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

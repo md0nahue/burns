@@ -1,0 +1,55 @@
+{
+  "id": 14,
+  "start_time": 77.46,
+  "end_time": 78.64,
+  "text": " And just a word here.",
+  "confidence": -0.1679366,
+  "no_speech_prob": 8.9313344e-13,
+  "compression_ratio": 1.5559845,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "brief pause in speech",
+      "category": "stock_image"
+    },
+    {
+      "query": "close-up of thoughtful expression",
+      "category": "stock_image"
+    },
+    {
+      "query": "speaker looking directly at camera",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "moment of reflection",
+    "transition visual"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg",
+      "width": 5392,
+      "height": 3595,
+      "description": "Vibrant business seminar in São Paulo with a diverse audience engaged in a speaker's presentation.",
+      "photographer": "Matheus Bertelli",
+      "photographer_url": "https://www.pexels.com/@bertellifotografia",
+      "metadata": {
+        "id": 2608517,
+        "avg_color": "#584A45",
+        "liked": false
+      },
+      "query": "brief pause in speech",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 14,
+      "start_time": 77.46,
+      "end_time": 78.64,
+      "generated_at": "2025-07-07 10:14:17 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

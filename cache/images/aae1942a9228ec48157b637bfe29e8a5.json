@@ -1,0 +1,55 @@
+{
+  "id": 105,
+  "start_time": 493.032,
+  "end_time": 497.392,
+  "text": " Look, the issue right now is not worrying about a primary three years ago,",
+  "confidence": -0.16177201,
+  "no_speech_prob": 1.3721936e-12,
+  "compression_ratio": 1.7180328,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "person looking away, hesitant",
+      "category": "stock_image"
+    },
+    {
+      "query": "person with hands up, refusing",
+      "category": "stock_image"
+    },
+    {
+      "query": "abstract representation of avoidance",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "person turning their back",
+    "closed door"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/3757941/pexels-photo-3757941.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/3757941/pexels-photo-3757941.jpeg",
+      "width": 5760,
+      "height": 3840,
+      "description": "Fitness enthusiast in activewear checking in at a gym's reception desk with a smile.",
+      "photographer": "Andrea Piacquadio",
+      "photographer_url": "https://www.pexels.com/@olly",
+      "metadata": {
+        "id": 3757941,
+        "avg_color": "#8D7B68",
+        "liked": false
+      },
+      "query": "person looking away, hesitant",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 105,
+      "start_time": 493.032,
+      "end_time": 497.392,
+      "generated_at": "2025-07-07 10:15:42 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

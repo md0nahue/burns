@@ -1,0 +1,55 @@
+{
+  "id": 100,
+  "start_time": 477.952,
+  "end_time": 482.512,
+  "text": " very powerful corporate interests that have never had it so good. You've been out on the road",
+  "confidence": -0.085865594,
+  "no_speech_prob": 3.0086055e-12,
+  "compression_ratio": 1.6557971,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "powerful corporate interests skyscrapers",
+      "category": "stock_image"
+    },
+    {
+      "query": "wealthy executives in boardrooms",
+      "category": "stock_image"
+    },
+    {
+      "query": "money flowing into corporate coffers",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "opulent corporate offices",
+    "stock market ticker tape"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/18860536/pexels-photo-18860536.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/18860536/pexels-photo-18860536.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "Elegant luxury car parked in a modern cityscape with towering skyscrapers.",
+      "photographer": "Esmihel  Muhammed",
+      "photographer_url": "https://www.pexels.com/@esmihel",
+      "metadata": {
+        "id": 18860536,
+        "avg_color": "#676B6A",
+        "liked": false
+      },
+      "query": "powerful corporate interests skyscrapers",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 100,
+      "start_time": 477.952,
+      "end_time": 482.512,
+      "generated_at": "2025-07-07 10:15:35 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

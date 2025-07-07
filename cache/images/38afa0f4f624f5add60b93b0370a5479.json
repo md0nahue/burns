@@ -1,0 +1,55 @@
+{
+  "id": 74,
+  "start_time": 351.868,
+  "end_time": 356.628,
+  "text": " You know, real inflation accounted for wages have not gone up in 52 years,",
+  "confidence": -0.1425732,
+  "no_speech_prob": 1.818075e-12,
+  "compression_ratio": 1.7198275,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "inflation graph showing rising prices",
+      "category": "stock_image"
+    },
+    {
+      "query": "wage growth chart stagnant",
+      "category": "stock_image"
+    },
+    {
+      "query": "worker looking at empty wallet",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "grocery store prices increasing",
+    "economic hardship statistics"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/26841237/pexels-photo-26841237.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/26841237/pexels-photo-26841237.jpeg",
+      "width": 3000,
+      "height": 2001,
+      "description": "Close-up of euro banknotes with a digital stock market chart displaying a downward trend, symbolizing financial volatility.",
+      "photographer": "Jakub Zerdzicki",
+      "photographer_url": "https://www.pexels.com/@jakubzerdzicki",
+      "metadata": {
+        "id": 26841237,
+        "avg_color": "#837970",
+        "liked": false
+      },
+      "query": "inflation graph showing rising prices",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 74,
+      "start_time": 351.868,
+      "end_time": 356.628,
+      "generated_at": "2025-07-07 10:15:12 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

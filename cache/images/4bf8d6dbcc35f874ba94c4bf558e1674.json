@@ -1,0 +1,55 @@
+{
+  "id": 12,
+  "start_time": 69.38,
+  "end_time": 71.82,
+  "text": " That's why these guys have life terms.",
+  "confidence": -0.1679366,
+  "no_speech_prob": 8.9313344e-13,
+  "compression_ratio": 1.5559845,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Supreme Court building facade",
+      "category": "stock_image"
+    },
+    {
+      "query": "long hallway justice building",
+      "category": "stock_image"
+    },
+    {
+      "query": "Supreme Court justices seated",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "judicial life tenure concept",
+    "courtroom long view"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/6610670/pexels-photo-6610670.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/6610670/pexels-photo-6610670.jpeg",
+      "width": 5183,
+      "height": 3378,
+      "description": "The Supreme Court of the United States with iconic marble columns and statue, captured in natural light.",
+      "photographer": "Leandro Paes Leme",
+      "photographer_url": "https://www.pexels.com/@leandro-paes-leme-3903752",
+      "metadata": {
+        "id": 6610670,
+        "avg_color": "#9A8B70",
+        "liked": false
+      },
+      "query": "Supreme Court building facade",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 12,
+      "start_time": 69.38,
+      "end_time": 71.82,
+      "generated_at": "2025-07-07 10:14:16 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

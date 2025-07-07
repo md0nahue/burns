@@ -1,0 +1,55 @@
+{
+  "id": 50,
+  "start_time": 212.68399,
+  "end_time": 216.444,
+  "text": " they want to lay off some 80,000 people in the VA",
+  "confidence": -0.18925563,
+  "no_speech_prob": 2.6652975e-12,
+  "compression_ratio": 1.6470588,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "VA hospital exterior, overcast sky",
+      "category": "stock_image"
+    },
+    {
+      "query": "silhouette of government building",
+      "category": "stock_image"
+    },
+    {
+      "query": "veterans affairs building entrance",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "US Department of Veterans Affairs logo",
+    "government building facade"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32898665/pexels-photo-32898665.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32898665/pexels-photo-32898665.jpeg",
+      "width": 5472,
+      "height": 3648,
+      "description": "",
+      "photographer": "🇻🇳🇻🇳Nguyễn Tiến Thịnh 🇻🇳🇻🇳",
+      "photographer_url": "https://www.pexels.com/@nguy-n-ti-n-th-nh-2150376175",
+      "metadata": {
+        "id": 32898665,
+        "avg_color": "#A3A69F",
+        "liked": false
+      },
+      "query": "VA hospital exterior, overcast sky",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 50,
+      "start_time": 212.68399,
+      "end_time": 216.444,
+      "generated_at": "2025-07-07 10:14:47 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

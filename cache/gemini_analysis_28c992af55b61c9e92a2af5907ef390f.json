@@ -1,0 +1,27 @@
+[
+  {
+    "id": 0,
+    "start_time": 0,
+    "end_time": 4,
+    "text": "Bernie Sanders talking about politics",
+    "image_queries": [
+      {
+        "query": "Bernie Sanders speaking at podium",
+        "category": "famous_person"
+      },
+      {
+        "query": "crowd listening intently to speaker",
+        "category": "stock_image"
+      },
+      {
+        "query": "politician gesturing during speech",
+        "category": "famous_person"
+      }
+    ],
+    "backup_queries": [
+      "Bernie Sanders campaign rally",
+      "political debate stage"
+    ],
+    "has_images": true
+  }
+]

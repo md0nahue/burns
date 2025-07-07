@@ -1,0 +1,57 @@
+{
+  "id": 24,
+  "start_time": 127.82,
+  "end_time": 131.68,
+  "text": " decisions that the Supreme Court has made with John Roberts as the chief justice,",
+  "confidence": -0.1280085,
+  "no_speech_prob": 1.5371953e-12,
+  "compression_ratio": 1.7516556,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "John Roberts speaking at a podium",
+      "category": "famous_person"
+    },
+    {
+      "query": "Supreme Court building entrance",
+      "category": "stock_image"
+    },
+    {
+      "query": "Close-up of a Supreme Court justice",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "Abstract representation of criticism",
+    "News headline about Supreme Court decision"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Reagan_Contact_Sheet_C40112.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Reagan_Contact_Sheet_C40112.jpg",
+      "width": 2219,
+      "height": 3073,
+      "description": "President Ronald Reagan, Robert Orr, Steven Beering, George McNelly, and John Mutz (2-30) \n<p>At a podium with a robot speaking\n</p>\nPresident Ronald Reagan and Jim Kuhn (31-32)",
+      "photographer": "Terry Arthur",
+      "photographer_url": null,
+      "metadata": {
+        "id": "66959583",
+        "license": "pd",
+        "categories": [],
+        "usage_restrictions": "",
+        "file_size": 822819
+      },
+      "query": "John Roberts speaking at a podium",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 24,
+      "start_time": 127.82,
+      "end_time": 131.68,
+      "generated_at": "2025-07-07 10:14:26 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

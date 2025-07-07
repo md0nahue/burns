@@ -102,6 +102,20 @@ class WikimediaClient < BaseImageClient
       author = extract_author(extmetadata)
       author_url = extract_author_url(extmetadata)
       
+      # Skip video files - we only want static images
+      file_url = imageinfo['url']
+      if file_url&.match(/\.(webm|mp4|avi|mov|wmv|flv|mkv|ogv)$/i)
+        puts "    ⏭️  Skipping video file: #{File.basename(file_url)}"
+        next
+      end
+      
+      # Skip very large files (>50MB) - likely videos or high-res archives
+      file_size = imageinfo['size'].to_i
+      if file_size > 50_000_000  # 50MB limit
+        puts "    ⏭️  Skipping large file (#{(file_size/1024/1024).round}MB): #{File.basename(file_url)}"
+        next
+      end
+      
       # Check if image meets size requirements
       width = imageinfo['width'].to_i
       height = imageinfo['height'].to_i

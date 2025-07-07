@@ -1,0 +1,55 @@
+{
+  "id": 115,
+  "start_time": 520.572,
+  "end_time": 523.692,
+  "text": " And our job is to rally the people at the grassroots level,",
+  "confidence": -0.1501202,
+  "no_speech_prob": 1.1555174e-12,
+  "compression_ratio": 1.7375,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "people gathering at a town hall meeting",
+      "category": "stock_image"
+    },
+    {
+      "query": "grassroots activism protest sign",
+      "category": "stock_image"
+    },
+    {
+      "query": "diverse community members collaborating",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "hands reaching out to help",
+    "community organizing scene"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5710988/pexels-photo-5710988.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5710988/pexels-photo-5710988.jpeg",
+      "width": 5452,
+      "height": 3635,
+      "description": "A group therapy session indoors with diverse adults in a supportive environment.",
+      "photographer": "Tima Miroshnichenko",
+      "photographer_url": "https://www.pexels.com/@tima-miroshnichenko",
+      "metadata": {
+        "id": 5710988,
+        "avg_color": "#4E5953",
+        "liked": false
+      },
+      "query": "people gathering at a town hall meeting",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 115,
+      "start_time": 520.572,
+      "end_time": 523.692,
+      "generated_at": "2025-07-07 10:15:51 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

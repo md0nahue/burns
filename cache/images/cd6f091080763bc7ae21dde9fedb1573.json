@@ -1,0 +1,57 @@
+{
+  "id": 34,
+  "start_time": 174.584,
+  "end_time": 177.584,
+  "text": " Trump admires and loves people.",
+  "confidence": -0.19238578,
+  "no_speech_prob": 4.566925e-12,
+  "compression_ratio": 1.5985402,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Donald Trump speaking at rally",
+      "category": "famous_person"
+    },
+    {
+      "query": "close-up of Donald Trump smiling",
+      "category": "famous_person"
+    },
+    {
+      "query": "Donald Trump shaking hands with someone",
+      "category": "famous_person"
+    }
+  ],
+  "backup_queries": [
+    "portrait of Donald Trump",
+    "Donald Trump public appearance"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Donald_Trump%2C_Jr._%2843859963370%29.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Donald_Trump%2C_Jr._%2843859963370%29.jpg",
+      "width": 5760,
+      "height": 3840,
+      "description": "Donald Trump, Jr. speaking with supporters at a rally, along with Kimberly Guilfoyle, at the West Valley GOP Office in Sun City, Arizona.",
+      "photographer": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/22007612@N05\">Gage Skidmore</a> from Peoria, AZ, United States of America",
+      "photographer_url": null,
+      "metadata": {
+        "id": "74060693",
+        "license": "cc-by-sa-2.0",
+        "categories": [],
+        "usage_restrictions": "",
+        "file_size": 6050877
+      },
+      "query": "Donald Trump speaking at rally",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 34,
+      "start_time": 174.584,
+      "end_time": 177.584,
+      "generated_at": "2025-07-07 10:14:34 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

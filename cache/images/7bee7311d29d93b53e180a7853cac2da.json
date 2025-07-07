@@ -1,0 +1,55 @@
+{
+  "id": 118,
+  "start_time": 529.83203,
+  "end_time": 531.732,
+  "text": " for working class people, not the rich.",
+  "confidence": -0.1501202,
+  "no_speech_prob": 1.1555174e-12,
+  "compression_ratio": 1.7375,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "working class people in a factory",
+      "category": "stock_image"
+    },
+    {
+      "query": "contrast between wealthy and working class",
+      "category": "stock_image"
+    },
+    {
+      "query": "hands of laborers",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "people in everyday jobs",
+    "blue-collar workers"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/3970342/pexels-photo-3970342.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/3970342/pexels-photo-3970342.jpeg",
+      "width": 4500,
+      "height": 3600,
+      "description": "A welder at work with sparks flying in an industrial setting during night time.",
+      "photographer": "Nishant Aneja",
+      "photographer_url": "https://www.pexels.com/@nishantaneja",
+      "metadata": {
+        "id": 3970342,
+        "avg_color": "#6C5545",
+        "liked": false
+      },
+      "query": "working class people in a factory",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 118,
+      "start_time": 529.83203,
+      "end_time": 531.732,
+      "generated_at": "2025-07-07 10:15:54 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

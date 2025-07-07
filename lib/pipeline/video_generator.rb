@@ -302,6 +302,13 @@ class VideoGenerator
       end
       
       segments = manifest_result[:manifest]['segments']
+      
+      # Limit segments for testing if specified
+      if options[:max_segments] && options[:max_segments] < segments.length
+        segments = segments.first(options[:max_segments])
+        puts "    🧪 Testing mode: limiting to first #{segments.length} segments"
+      end
+      
       puts "    📝 Processing #{segments.length} segments concurrently..."
       
       # Generate video using Lambda service for parallel processing

@@ -92,13 +92,14 @@ generation_options = {
   resolution: '1080p',
   fps: 24,
   test_mode: false, # Set to false for production
+  max_segments: 10, # Limit segments for testing
   ken_burns_effect: true,
   smooth_transitions: true,
   image_duration: 3.0, # Seconds per image
   transition_duration: 1.0, # Seconds for transitions
   zoom_factor: 1.2, # Subtle zoom effect
   pan_speed: 0.5, # Slow panning
-  cache_images: true, # Enable image caching to avoid duplicate API requests
+  cache_images: false, # Disable image caching to regenerate with fixed filters
   cache_transcription: false, # Disable transcription caching for debugging
   cache_analysis: false, # Disable content analysis caching for debugging
   force: true # Force regeneration of all cached data

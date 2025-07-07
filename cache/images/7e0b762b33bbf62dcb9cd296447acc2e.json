@@ -1,0 +1,55 @@
+{
+  "id": 96,
+  "start_time": 455.69202,
+  "end_time": 460.872,
+  "text": " touch with reality. It has, the Democratic Party has virtually no grassroots support.",
+  "confidence": -0.11262999,
+  "no_speech_prob": 1.0899947e-12,
+  "compression_ratio": 1.7011952,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "disconnected from reality concept",
+      "category": "stock_image"
+    },
+    {
+      "query": "Democratic Party headquarters exterior",
+      "category": "stock_image"
+    },
+    {
+      "query": "lack of grassroots support visual",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political disconnect",
+    "unpopular political movement"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32831065/pexels-photo-32831065.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32831065/pexels-photo-32831065.jpeg",
+      "width": 6004,
+      "height": 4003,
+      "description": "woman use mobilephone after recive box from online shopping. selective focus",
+      "photographer": "saravut vanset",
+      "photographer_url": "https://www.pexels.com/@saravut-vanset-23514839",
+      "metadata": {
+        "id": 32831065,
+        "avg_color": "#93817D",
+        "liked": false
+      },
+      "query": "disconnected from reality concept",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 96,
+      "start_time": 455.69202,
+      "end_time": 460.872,
+      "generated_at": "2025-07-07 10:15:31 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

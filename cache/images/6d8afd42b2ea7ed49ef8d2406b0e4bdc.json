@@ -1,0 +1,55 @@
+{
+  "id": 29,
+  "start_time": 160.004,
+  "end_time": 164.384,
+  "text": " every Republican would have to vote for it. And I believe 14 Democrats.",
+  "confidence": -0.14072014,
+  "no_speech_prob": 1.8759167e-12,
+  "compression_ratio": 1.479638,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "US Capitol building dome",
+      "category": "stock_image"
+    },
+    {
+      "query": "Senators in a chamber",
+      "category": "famous_person"
+    },
+    {
+      "query": "Close-up of a voting ballot",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "Abstract representation of removal",
+    "Gavel on a desk"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/413878/pexels-photo-413878.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/413878/pexels-photo-413878.jpeg",
+      "width": 5849,
+      "height": 3899,
+      "description": "A smartphone captures the Capitol Building at twilight, highlighting iconic architecture and technology.",
+      "photographer": "Pixabay",
+      "photographer_url": "https://www.pexels.com/@pixabay",
+      "metadata": {
+        "id": 413878,
+        "avg_color": "#376479",
+        "liked": false
+      },
+      "query": "US Capitol building dome",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 29,
+      "start_time": 160.004,
+      "end_time": 164.384,
+      "generated_at": "2025-07-07 10:14:29 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

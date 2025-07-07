@@ -1,0 +1,55 @@
+{
+  "id": 9,
+  "start_time": 59.18,
+  "end_time": 60.88,
+  "text": " And now he's going after the courts.",
+  "confidence": -0.1679366,
+  "no_speech_prob": 8.9313344e-13,
+  "compression_ratio": 1.5559845,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "US Congress building exterior",
+      "category": "stock_image"
+    },
+    {
+      "query": "President Trump signing bill",
+      "category": "famous_person"
+    },
+    {
+      "query": "government spending chart",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "Capitol dome",
+    "Congress members debating"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/4386157/pexels-photo-4386157.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/4386157/pexels-photo-4386157.jpeg",
+      "width": 6720,
+      "height": 4480,
+      "description": "Close-up of the US Capitol illustration on American currency, showing detailed architectural design.",
+      "photographer": "Photo By: Kaboompics.com",
+      "photographer_url": "https://www.pexels.com/@karolina-grabowska",
+      "metadata": {
+        "id": 4386157,
+        "avg_color": "#81837E",
+        "liked": false
+      },
+      "query": "US Congress building exterior",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 9,
+      "start_time": 59.18,
+      "end_time": 60.88,
+      "generated_at": "2025-07-07 10:14:13 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

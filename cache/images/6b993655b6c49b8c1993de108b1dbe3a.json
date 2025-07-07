@@ -1,0 +1,57 @@
+{
+  "id": 7,
+  "start_time": 45.46,
+  "end_time": 50.72,
+  "text": " I think he called CNN illegal because I gather that now and then you criticize him.",
+  "confidence": -0.17117806,
+  "no_speech_prob": 1.2693126e-12,
+  "compression_ratio": 1.5745614000000001,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "President Trump speaking to press",
+      "category": "famous_person"
+    },
+    {
+      "query": "microphone with news cameras",
+      "category": "stock_image"
+    },
+    {
+      "query": "media attacking graphic",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "journalist group",
+    "press conference scene"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/President_Trump_Speaks_with_the_Press_%2848442587541%29.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/President_Trump_Speaks_with_the_Press_%2848442587541%29.jpg",
+      "width": 3000,
+      "height": 2000,
+      "description": "President Donald J. Trump speaks with reporters on the South Lawn driveway of the White House Friday, Aug. 2, 2019, prior to boarding Marine One to begin his weekend trip to Bedminster, N.J. (Official White House Photo by Joyce N. Boghosian)",
+      "photographer": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/148748355@N05\">The White House</a> from Washington, DC",
+      "photographer_url": null,
+      "metadata": {
+        "id": "80980863",
+        "license": "pd",
+        "categories": [],
+        "usage_restrictions": "",
+        "file_size": 1068549
+      },
+      "query": "President Trump speaking to press",
+      "category": "famous_person",
+      "query_index": 0,
+      "segment_id": 7,
+      "start_time": 45.46,
+      "end_time": 50.72,
+      "generated_at": "2025-07-07 10:14:11 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

@@ -1,0 +1,55 @@
+{
+  "id": 80,
+  "start_time": 379.248,
+  "end_time": 384.628,
+  "text": " works for them and not the few, which is what we have right now. So I hope we can rally the",
+  "confidence": -0.066435285,
+  "no_speech_prob": 3.0796954e-12,
+  "compression_ratio": 1.8030303,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "American people rallying together diverse crowd",
+      "category": "stock_image"
+    },
+    {
+      "query": "diverse group of Americans united",
+      "category": "stock_image"
+    },
+    {
+      "query": "crowd of citizens holding signs",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "unity of American people",
+    "people marching for change"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/2330138/pexels-photo-2330138.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/2330138/pexels-photo-2330138.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "Black and white photo of a diverse crowd with raised hands at an indoor event.",
+      "photographer": "Rodolfo Quirós",
+      "photographer_url": "https://www.pexels.com/@rquiros",
+      "metadata": {
+        "id": 2330138,
+        "avg_color": "#3B3B3B",
+        "liked": false
+      },
+      "query": "American people rallying together diverse crowd",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 80,
+      "start_time": 379.248,
+      "end_time": 384.628,
+      "generated_at": "2025-07-07 10:15:17 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

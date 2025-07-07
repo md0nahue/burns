@@ -1,0 +1,55 @@
+{
+  "id": 76,
+  "start_time": 360.728,
+  "end_time": 365.40802,
+  "text": " Our health care system is broken. Our housing system is broken.",
+  "confidence": -0.1425732,
+  "no_speech_prob": 1.818075e-12,
+  "compression_ratio": 1.7198275,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "broken stethoscope on medical chart",
+      "category": "stock_image"
+    },
+    {
+      "query": "hospital hallway with empty beds",
+      "category": "stock_image"
+    },
+    {
+      "query": "doctor looking concerned at patient",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "medical bills stacked high",
+    "healthcare system collapse"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg",
+      "width": 3000,
+      "height": 2000,
+      "description": "A stethoscope and pen resting on a medical report in a healthcare setting.",
+      "photographer": "Pixabay",
+      "photographer_url": "https://www.pexels.com/@pixabay",
+      "metadata": {
+        "id": 40568,
+        "avg_color": "#D2D5D5",
+        "liked": false
+      },
+      "query": "broken stethoscope on medical chart",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 76,
+      "start_time": 360.728,
+      "end_time": 365.40802,
+      "generated_at": "2025-07-07 10:15:14 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

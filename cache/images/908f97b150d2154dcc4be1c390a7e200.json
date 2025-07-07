@@ -1,0 +1,55 @@
+{
+  "id": 37,
+  "start_time": 181.284,
+  "end_time": 184.064,
+  "text": " But if you criticize them, you're acting illegally,",
+  "confidence": -0.19238578,
+  "no_speech_prob": 4.566925e-12,
+  "compression_ratio": 1.5985402,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "people nodding in agreement",
+      "category": "stock_image"
+    },
+    {
+      "query": "a group of people with similar expressions",
+      "category": "stock_image"
+    },
+    {
+      "query": "faces showing unanimous approval",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "conformity in a group",
+    "agreement among people"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "Close-up of professionals shaking hands over coffee in a modern office.",
+      "photographer": "fauxels",
+      "photographer_url": "https://www.pexels.com/@fauxels",
+      "metadata": {
+        "id": 3184465,
+        "avg_color": "#C1B2A7",
+        "liked": false
+      },
+      "query": "people nodding in agreement",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 37,
+      "start_time": 181.284,
+      "end_time": 184.064,
+      "generated_at": "2025-07-07 10:14:36 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

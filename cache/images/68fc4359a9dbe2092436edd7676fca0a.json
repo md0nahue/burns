@@ -1,0 +1,55 @@
+{
+  "id": 39,
+  "start_time": 186.924,
+  "end_time": 189.244,
+  "text": " You're a left-wing fanatic, whatever he calls people.",
+  "confidence": -0.19238578,
+  "no_speech_prob": 4.566925e-12,
+  "compression_ratio": 1.5985402,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "impeachment proceedings illustration",
+      "category": "stock_image"
+    },
+    {
+      "query": "a person being ostracized by a group",
+      "category": "stock_image"
+    },
+    {
+      "query": "a stern face with disapproval",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "political condemnation",
+    "public shaming"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32904796/pexels-photo-32904796.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32904796/pexels-photo-32904796.jpeg",
+      "width": 5472,
+      "height": 3648,
+      "description": "Vibrant abstract design with overlapping blue and yellow shapes creating a dynamic and modern visual effect.",
+      "photographer": "Landiva  Weber",
+      "photographer_url": "https://www.pexels.com/@diva",
+      "metadata": {
+        "id": 32904796,
+        "avg_color": "#6F7AB8",
+        "liked": false
+      },
+      "query": "impeachment proceedings illustration",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 39,
+      "start_time": 186.924,
+      "end_time": 189.244,
+      "generated_at": "2025-07-07 10:14:38 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

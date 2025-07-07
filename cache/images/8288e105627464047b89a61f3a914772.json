@@ -1,0 +1,55 @@
+{
+  "id": 119,
+  "start_time": 531.892,
+  "end_time": 534.412,
+  "text": " That's what we've got to do in this moment.",
+  "confidence": -0.1501202,
+  "no_speech_prob": 1.1555174e-12,
+  "compression_ratio": 1.7375,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "American flag with a determined expression",
+      "category": "stock_image"
+    },
+    {
+      "query": "close-up of a person with conviction",
+      "category": "stock_image"
+    },
+    {
+      "query": "symbol of a pivotal moment",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "clock ticking down",
+    "urgent call to action"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/7009827/pexels-photo-7009827.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/7009827/pexels-photo-7009827.jpeg",
+      "width": 5540,
+      "height": 3693,
+      "description": "Portrait of a young man holding an American flag with a determined expression in a studio setting.",
+      "photographer": "Tima Miroshnichenko",
+      "photographer_url": "https://www.pexels.com/@tima-miroshnichenko",
+      "metadata": {
+        "id": 7009827,
+        "avg_color": "#BAACA3",
+        "liked": false
+      },
+      "query": "American flag with a determined expression",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 119,
+      "start_time": 531.892,
+      "end_time": 534.412,
+      "generated_at": "2025-07-07 10:15:54 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

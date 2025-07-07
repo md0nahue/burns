@@ -1,0 +1,55 @@
+{
+  "id": 93,
+  "start_time": 433.648,
+  "end_time": 434.84802,
+  "text": " You've got to take a deep breath",
+  "confidence": -0.2021305,
+  "no_speech_prob": 1.164554e-12,
+  "compression_ratio": 1.55,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "person taking deep breath outdoors",
+      "category": "stock_image"
+    },
+    {
+      "query": "calm person meditating",
+      "category": "stock_image"
+    },
+    {
+      "query": "person exhaling slowly",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "moment of reflection",
+    "peaceful contemplation"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/810775/pexels-photo-810775.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/810775/pexels-photo-810775.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A man enjoys outdoor relaxation and mindfulness beneath a bright, cloudy sky, exuding calm and peace.",
+      "photographer": "Kelvin Valerio",
+      "photographer_url": "https://www.pexels.com/@kelvin809",
+      "metadata": {
+        "id": 810775,
+        "avg_color": "#A0A39A",
+        "liked": false
+      },
+      "query": "person taking deep breath outdoors",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 93,
+      "start_time": 433.648,
+      "end_time": 434.84802,
+      "generated_at": "2025-07-07 10:15:29 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

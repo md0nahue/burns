@@ -1,0 +1,55 @@
+{
+  "id": 130,
+  "start_time": 566.752,
+  "end_time": 572.83203,
+  "text": " Look, this is the guy, as I just mentioned a moment ago, he happens not to believe in the rule of law, not to believe in the Constitution.",
+  "confidence": -0.14607388,
+  "no_speech_prob": 1.6231385e-12,
+  "compression_ratio": 1.6375405,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "man defying rule of law",
+      "category": "stock_image"
+    },
+    {
+      "query": "person tearing constitution document",
+      "category": "stock_image"
+    },
+    {
+      "query": "abstract concept of lawlessness",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "unruly crowd",
+    "broken gavel"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/7715097/pexels-photo-7715097.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/7715097/pexels-photo-7715097.jpeg",
+      "width": 5127,
+      "height": 3845,
+      "description": "A police officer writes a ticket as the driver looks on from inside the car.",
+      "photographer": "Kindel Media",
+      "photographer_url": "https://www.pexels.com/@kindelmedia",
+      "metadata": {
+        "id": 7715097,
+        "avg_color": "#353034",
+        "liked": false
+      },
+      "query": "man defying rule of law",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 130,
+      "start_time": 566.752,
+      "end_time": 572.83203,
+      "generated_at": "2025-07-07 10:16:07 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

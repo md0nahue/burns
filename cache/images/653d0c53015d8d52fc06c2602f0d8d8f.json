@@ -1,0 +1,55 @@
+{
+  "id": 75,
+  "start_time": 356.768,
+  "end_time": 360.088,
+  "text": " while the very richest people have become much richer.",
+  "confidence": -0.1425732,
+  "no_speech_prob": 1.818075e-12,
+  "compression_ratio": 1.7198275,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "wealthy individuals on yacht",
+      "category": "stock_image"
+    },
+    {
+      "query": "stock market ticker with upward trend",
+      "category": "stock_image"
+    },
+    {
+      "query": "person counting money with a smile",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "mansions and luxury cars",
+    "rich people celebrating"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5488927/pexels-photo-5488927.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5488927/pexels-photo-5488927.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A sleek luxury yacht cruising through the ocean under a clear blue sky near Miami, Florida.",
+      "photographer": "Be The Observer",
+      "photographer_url": "https://www.pexels.com/@be-the-observer-2774093",
+      "metadata": {
+        "id": 5488927,
+        "avg_color": "#53819F",
+        "liked": false
+      },
+      "query": "wealthy individuals on yacht",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 75,
+      "start_time": 356.768,
+      "end_time": 360.088,
+      "generated_at": "2025-07-07 10:15:13 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

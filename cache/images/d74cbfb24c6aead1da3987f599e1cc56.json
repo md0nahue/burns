@@ -1,0 +1,55 @@
+{
+  "id": 36,
+  "start_time": 178.724,
+  "end_time": 181.024,
+  "text": " They're beautiful people when they agree with them.",
+  "confidence": -0.19238578,
+  "no_speech_prob": 4.566925e-12,
+  "compression_ratio": 1.5985402,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "beautiful landscape with clear sky",
+      "category": "stock_image"
+    },
+    {
+      "query": "a majestic mountain range",
+      "category": "stock_image"
+    },
+    {
+      "query": "a serene beach at sunset",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "picturesque scenery",
+    "idealized natural beauty"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32872813/pexels-photo-32872813.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32872813/pexels-photo-32872813.jpeg",
+      "width": 5695,
+      "height": 3797,
+      "description": "Majestic coastal cliff with azure waters under a bright, clear sky.",
+      "photographer": "Francesco Ungaro",
+      "photographer_url": "https://www.pexels.com/@francesco-ungaro",
+      "metadata": {
+        "id": 32872813,
+        "avg_color": "#31454C",
+        "liked": false
+      },
+      "query": "beautiful landscape with clear sky",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 36,
+      "start_time": 178.724,
+      "end_time": 181.024,
+      "generated_at": "2025-07-07 10:14:35 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

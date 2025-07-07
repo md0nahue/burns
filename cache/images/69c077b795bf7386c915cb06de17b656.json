@@ -1,0 +1,55 @@
+{
+  "id": 51,
+  "start_time": 216.444,
+  "end_time": 219.724,
+  "text": " who provide health care to our veterans,",
+  "confidence": -0.18925563,
+  "no_speech_prob": 2.6652975e-12,
+  "compression_ratio": 1.6470588,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "doctor examining veteran patient",
+      "category": "stock_image"
+    },
+    {
+      "query": "nurse tending to elderly patient",
+      "category": "stock_image"
+    },
+    {
+      "query": "healthcare professional in uniform",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "medical examination room",
+    "patient receiving care"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/4226264/pexels-photo-4226264.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/4226264/pexels-photo-4226264.jpeg",
+      "width": 6077,
+      "height": 4051,
+      "description": "Radiologist pointing at brain MRI scans showing detailed medical examination.",
+      "photographer": "Anna Shvets",
+      "photographer_url": "https://www.pexels.com/@shvetsa",
+      "metadata": {
+        "id": 4226264,
+        "avg_color": "#868E93",
+        "liked": false
+      },
+      "query": "doctor examining veteran patient",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 51,
+      "start_time": 216.444,
+      "end_time": 219.724,
+      "generated_at": "2025-07-07 10:14:48 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

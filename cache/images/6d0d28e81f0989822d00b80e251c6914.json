@@ -1,0 +1,55 @@
+{
+  "id": 20,
+  "start_time": 107.86,
+  "end_time": 113.68,
+  "text": " Supreme Court has its power. Judges have their power. And it should frighten every American,",
+  "confidence": -0.1280085,
+  "no_speech_prob": 1.5371953e-12,
+  "compression_ratio": 1.7516556,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Supreme Court building facade close-up",
+      "category": "stock_image"
+    },
+    {
+      "query": "Gavel striking a sounding block",
+      "category": "stock_image"
+    },
+    {
+      "query": "Judges in black robes looking stern",
+      "category": "stock_image"
+    }
+  ],
+  "backup_queries": [
+    "US Supreme Court interior",
+    "Scales of justice symbol"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32863809/pexels-photo-32863809.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32863809/pexels-photo-32863809.jpeg",
+      "width": 4000,
+      "height": 2250,
+      "description": "Close-up of the architectural details of the Reichstag Building in Berlin, Germany.",
+      "photographer": "Paul Schärf",
+      "photographer_url": "https://www.pexels.com/@paul-scharf-2152542633",
+      "metadata": {
+        "id": 32863809,
+        "avg_color": "#8E8B84",
+        "liked": false
+      },
+      "query": "Supreme Court building facade close-up",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 20,
+      "start_time": 107.86,
+      "end_time": 113.68,
+      "generated_at": "2025-07-07 10:14:22 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

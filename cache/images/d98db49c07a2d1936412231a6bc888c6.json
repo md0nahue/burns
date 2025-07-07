@@ -1,0 +1,55 @@
+{
+  "id": 128,
+  "start_time": 557.032,
+  "end_time": 558.532,
+  "text": " Do you believe that move is illegal?",
+  "confidence": -0.14607388,
+  "no_speech_prob": 1.6231385e-12,
+  "compression_ratio": 1.6375405,
+  "words": [],
+  "image_queries": [
+    {
+      "query": "Presidential seal graphic",
+      "category": "stock_image"
+    },
+    {
+      "query": "US government organizational chart",
+      "category": "stock_image"
+    },
+    {
+      "query": "political party symbols",
+      "category": "general"
+    }
+  ],
+  "backup_queries": [
+    "balance of power diagram",
+    "government structure"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/5849550/pexels-photo-5849550.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/5849550/pexels-photo-5849550.jpeg",
+      "width": 10800,
+      "height": 6334,
+      "description": "Decorative cardboard composition of stamp with Debtor title under black seal on blue background",
+      "photographer": "Monstera Production",
+      "photographer_url": "https://www.pexels.com/@gabby-k",
+      "metadata": {
+        "id": 5849550,
+        "avg_color": "#76A9C2",
+        "liked": false
+      },
+      "query": "Presidential seal graphic",
+      "category": "stock_image",
+      "query_index": 0,
+      "segment_id": 128,
+      "start_time": 557.032,
+      "end_time": 558.532,
+      "generated_at": "2025-07-07 10:16:05 -0700",
+      "is_duplicate": false
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}
