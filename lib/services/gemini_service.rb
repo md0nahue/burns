@@ -550,26 +550,42 @@ class GeminiService
 
         REQUIREMENTS:
         - Generate 2-3 queries PER SEGMENT PLUS backup options
+        - CATEGORIZE each query as either "famous_person", "stock_image", or "general"
+        - For FAMOUS PERSONS (politicians, celebrities, historical figures, public figures): Use category "famous_person"
+        - For STOCK IMAGES (landscapes, objects, generic scenes, concepts): Use category "stock_image"  
+        - For GENERAL CONTENT (mixed or unclear): Use category "general"
         - Generate queries that are HIGHLY specific and descriptive
         - Focus on concrete visual elements mentioned or implied in each segment's text
         - Consider the emotional tone and context of each segment
+        - TIMING AWARENESS: Consider each segment's position in the narrative flow
+        - Match images to the EXACT moment being described in each time segment
+        - For segments with multiple concepts, prioritize the most visually prominent element
         - Avoid generic terms, be specific about objects, scenes, or concepts
         - Each query should be 3-8 words for better specificity
         - Prioritize queries that would work well for Ken Burns effects (landscapes, objects, people, etc.)
         - Always include backup/fallback queries for each segment
         - Provide alternative search terms that could work if primary queries fail
+        - Ensure images can sustain viewer attention for 5-11 seconds without being repetitive
 
         RESPONSE FORMAT (JSON only):
         {
           "segments": [
             {
               "segment_id": 0,
-              "image_queries": ["primary specific query", "secondary query", "fallback query"],
+              "image_queries": [
+                {"query": "primary specific query", "category": "famous_person"},
+                {"query": "secondary query", "category": "stock_image"},
+                {"query": "fallback query", "category": "general"}
+              ],
               "backup_queries": ["alternative term 1", "alternative term 2"]
             },
             {
               "segment_id": 1,
-              "image_queries": ["primary specific query", "secondary query", "fallback query"],
+              "image_queries": [
+                {"query": "primary specific query", "category": "stock_image"},
+                {"query": "secondary query", "category": "general"},
+                {"query": "fallback query", "category": "famous_person"}
+              ],
               "backup_queries": ["alternative term 1", "alternative term 2"]
             }
           ],
@@ -578,7 +594,7 @@ class GeminiService
           "total_duration": #{total_duration.round(1)}
         }
 
-        Generate only the JSON response, no other text. Provide image_queries for each segment.
+        Generate only the JSON response, no other text. Provide image_queries for each segment with proper categorization.
       PROMPT
 
     prompt
@@ -606,11 +622,28 @@ class GeminiService
           segment_analysis = parsed[:segments].find { |s| s[:segment_id] == index }
           
           if segment_analysis && segment_analysis[:image_queries]
-            # Clean up the queries - remove any malformed JSON strings
-            clean_queries = segment_analysis[:image_queries].map do |query|
-              # Remove any JSON formatting artifacts
-              query.to_s.gsub(/^["\s]*/, '').gsub(/["\s]*$/, '').gsub(/^image_queries":\s*\[?"?/, '').gsub(/"?\s*,?\s*$/, '')
-            end.reject(&:empty?)
+            # Handle both old string format and new categorized format
+            processed_queries = segment_analysis[:image_queries].map do |query_item|
+              if query_item.is_a?(Hash) && query_item[:query] && query_item[:category]
+                # New categorized format
+                {
+                  query: query_item[:query].to_s.strip,
+                  category: query_item[:category].to_s.strip
+                }
+              elsif query_item.is_a?(String)
+                # Old string format - default to general category
+                {
+                  query: query_item.to_s.strip,
+                  category: 'general'
+                }
+              else
+                # Fallback
+                {
+                  query: query_item.to_s.strip,
+                  category: 'general'
+                }
+              end
+            end.reject { |q| q[:query].empty? }
             
             # Extract backup queries if available
             backup_queries = segment_analysis[:backup_queries] || []
@@ -619,9 +652,9 @@ class GeminiService
             end.reject(&:empty?)
             
             segment.merge({
-              image_queries: clean_queries,
+              image_queries: processed_queries,
               backup_queries: clean_backup_queries,
-              has_images: clean_queries.any?
+              has_images: processed_queries.any?
             })
           else
             # Fallback: generate queries for this segment

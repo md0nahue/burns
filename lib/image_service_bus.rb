@@ -29,13 +29,21 @@ class ImageServiceBus
     @logger.info("ImageServiceBus initialized with #{@clients.keys.length} clients")
   end
 
-  def get_images(query, count = 3, target_resolution = '1080p')
-    puts "    🔍 ImageServiceBus: Getting #{count} images for query '#{query}'"
+  def get_images(query, count = 3, target_resolution = '1080p', category = 'general')
+    puts "    🔍 ImageServiceBus: Getting #{count} images for query '#{query}' (category: #{category})"
     results = []
     
-    # Try primary clients first (those with higher quality images)
-    primary_clients = [:unsplash, :pexels, :pixabay]
-    fallback_clients = [:openverse, :wikimedia, :lorem_picsum]
+    # Determine client priority based on category
+    if category == 'famous_person'
+      # For famous persons, prioritize Wikimedia first, then regular sources
+      primary_clients = [:wikimedia]
+      fallback_clients = [:unsplash, :pexels, :pixabay, :openverse, :lorem_picsum]
+      puts "    👤 Famous person detected - prioritizing Wikimedia"
+    else
+      # For stock images and general content, use traditional priority
+      primary_clients = [:unsplash, :pexels, :pixabay]
+      fallback_clients = [:openverse, :wikimedia, :lorem_picsum]
+    end
     
     # For a single image, try multiple providers until we get a good result
     all_clients = primary_clients + fallback_clients
@@ -89,8 +97,8 @@ class ImageServiceBus
     results
   end
 
-  def get_single_image(query, target_resolution = '1080p')
-    result = get_images(query, 1, target_resolution)
+  def get_single_image(query, target_resolution = '1080p', category = 'general')
+    result = get_images(query, 1, target_resolution, category)
     result.first
   end
 

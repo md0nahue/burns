@@ -119,14 +119,32 @@ func processSegmentEnhanced(event Event) (map[string]interface{}, error) {
 	imageCount := len(imagesToUse)
 	timePerImage := event.Duration / float64(imageCount)
 	
-	// Ensure minimum time per image
-	if timePerImage < 2.0 {
+	// Ensure minimum time per image (5-11 seconds for better viewing)
+	minImageDuration := 5.0
+	maxImageDuration := 11.0
+	
+	if timePerImage < minImageDuration {
 		// If we have too many images for the duration, use fewer images
-		maxImages := int(event.Duration / 2.0)
+		maxImages := int(event.Duration / minImageDuration)
 		if maxImages < 1 {
 			maxImages = 1
 		}
 		imagesToUse = imagesToUse[:min(maxImages, len(imagesToUse))]
+		imageCount = len(imagesToUse)
+		timePerImage = event.Duration / float64(imageCount)
+	}
+	
+	// Cap maximum time per image to avoid too slow transitions
+	if timePerImage > maxImageDuration {
+		// Use more images if each would display too long
+		minImages := int(event.Duration / maxImageDuration)
+		if minImages > len(event.Images) {
+			// Repeat images if necessary
+			for len(imagesToUse) < minImages {
+				imagesToUse = append(imagesToUse, event.Images...)
+			}
+			imagesToUse = imagesToUse[:minImages]
+		}
 		imageCount = len(imagesToUse)
 		timePerImage = event.Duration / float64(imageCount)
 	}

@@ -2,10 +2,12 @@ require_relative '../image_service_bus'
 require_relative '../../config'
 require 'digest'
 require 'json'
+require 'set'
 
 class ImageGenerator
   def initialize(image_service_bus = nil)
     @image_service_bus = image_service_bus || ImageServiceBus.new(Config::IMAGE_SERVICE_CONFIG)
+    @used_image_urls = Set.new  # Track used URLs for deduplication
   end
 
   # Generate images for all segments in the enhanced audio result
@@ -117,35 +119,52 @@ class ImageGenerator
     
     puts "      Searching for ONE image with #{all_queries.length} query options"
     
-    all_queries.each_with_index do |query, query_index|
+    all_queries.each_with_index do |query_item, query_index|
       next if generated_images.any? # Stop once we have an image
       
-      puts "      Trying query #{query_index + 1}/#{all_queries.length}: '#{query}'"
+      # Handle both old string format and new categorized format
+      if query_item.is_a?(Hash)
+        query = query_item[:query]
+        category = query_item[:category] || 'general'
+      else
+        query = query_item.to_s
+        category = 'general'
+      end
+      
+      puts "      Trying query #{query_index + 1}/#{all_queries.length}: '#{query}' (category: #{category})"
       
       begin
-        # Use the image service bus to get ONE image
-        results = @image_service_bus.get_images(query, 1, resolution)
+        # Use the image service bus to get multiple images for better deduplication
+        results = @image_service_bus.get_images(query, 3, resolution, category)
         
         # Process results and take only the first image
         results.each do |result|
           if result && result[:images] && !result[:images].empty?
-            # Take only the first image from the first successful provider
-            image = result[:images].first
+            # Find first unused image from this provider
+            unused_image = result[:images].find { |img| !@used_image_urls.include?(img[:url]) }
+            
+            # Fall back to first image if all are used (better than no image)
+            image = unused_image || result[:images].first
             
             # Skip placeholder/low quality images
             next if is_placeholder_image?(image)
             
+            # Mark this URL as used for deduplication
+            @used_image_urls.add(image[:url])
+            
             enriched_image = image.merge({
               query: query,
+              category: category,
               query_index: query_index,
               segment_id: normalized_segment[:id],
               start_time: normalized_segment[:start_time],
               end_time: normalized_segment[:end_time],
-              generated_at: Time.now
+              generated_at: Time.now,
+              is_duplicate: unused_image.nil?  # Track if this was a fallback duplicate
             })
             
             generated_images << enriched_image
-            puts "      ✅ Found quality image from #{result[:provider]}: #{image[:url]}"
+            puts "      ✅ Found quality image from #{result[:provider]}: #{image[:url]}#{unused_image.nil? ? ' (duplicate fallback)' : ''}"
             break # Only take the first successful result
           end
         end
