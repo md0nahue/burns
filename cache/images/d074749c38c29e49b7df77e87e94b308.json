@@ -1,0 +1,38 @@
+{
+  "id": 69,
+  "start_time": 316.948,
+  "end_time": 322.568,
+  "text": " McConnell would have in the minority. Is that what you've been hearing out on the road, Senator?",
+  "confidence": -0.116430394,
+  "no_speech_prob": 9.554767e-12,
+  "compression_ratio": 1.6163793,
+  "words": [],
+  "image_queries": [
+    "political rally with banners"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/2246258/pexels-photo-2246258.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/2246258/pexels-photo-2246258.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "Crowded Algerian street protest captured with intensity and detail.",
+      "photographer": "Amine  M'siouri",
+      "photographer_url": "https://www.pexels.com/@mohamedelaminemsiouri",
+      "metadata": {
+        "id": 2246258,
+        "avg_color": "#5A5A5A",
+        "liked": false
+      },
+      "query": "political rally with banners",
+      "query_index": 0,
+      "segment_id": 69,
+      "start_time": 316.948,
+      "end_time": 322.568,
+      "generated_at": "2025-07-07 08:12:16 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

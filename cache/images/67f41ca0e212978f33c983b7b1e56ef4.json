@@ -1,0 +1,38 @@
+{
+  "id": 120,
+  "start_time": 584.552,
+  "end_time": 586.21204,
+  "text": " of the tour to join us here on CNN.",
+  "confidence": -0.10922746,
+  "no_speech_prob": 2.3344289e-12,
+  "compression_ratio": 1.6548042,
+  "words": [],
+  "image_queries": [
+    "CNN logo on screen"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/243925/pexels-photo-243925.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/243925/pexels-photo-243925.jpeg",
+      "width": 4272,
+      "height": 2848,
+      "description": "Smartphone with Snapchat logo on a desk with pencil and mug, emphasizing social media and technology.",
+      "photographer": "Anton",
+      "photographer_url": "https://www.pexels.com/@anton-8100",
+      "metadata": {
+        "id": 243925,
+        "avg_color": "#A7A99B",
+        "liked": false
+      },
+      "query": "CNN logo on screen",
+      "query_index": 0,
+      "segment_id": 120,
+      "start_time": 584.552,
+      "end_time": 586.21204,
+      "generated_at": "2025-07-07 08:12:25 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

@@ -1,0 +1,38 @@
+{
+  "id": 47,
+  "start_time": 205.68399,
+  "end_time": 208.584,
+  "text": " where you're seeing right now, with Musk and others,",
+  "confidence": -0.18925563,
+  "no_speech_prob": 2.6652975e-12,
+  "compression_ratio": 1.6470588,
+  "words": [],
+  "image_queries": [
+    "thoughtful expression close-up"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/32871589/pexels-photo-32871589.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/32871589/pexels-photo-32871589.jpeg",
+      "width": 3547,
+      "height": 1995,
+      "description": "",
+      "photographer": "Andy Lee",
+      "photographer_url": "https://www.pexels.com/@andy-lee-1453672476",
+      "metadata": {
+        "id": 32871589,
+        "avg_color": "#8D826E",
+        "liked": false
+      },
+      "query": "thoughtful expression close-up",
+      "query_index": 0,
+      "segment_id": 47,
+      "start_time": 205.68399,
+      "end_time": 208.584,
+      "generated_at": "2025-07-07 08:12:07 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

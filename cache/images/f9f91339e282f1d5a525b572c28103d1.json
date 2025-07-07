@@ -1,0 +1,38 @@
+{
+  "id": 63,
+  "start_time": 271.984,
+  "end_time": 278.64398,
+  "text": " And you've been going to all over, I know, to Colorado, to Wisconsin, all over the country.",
+  "confidence": -0.11711633,
+  "no_speech_prob": 9.808346e-13,
+  "compression_ratio": 1.6353791,
+  "words": [],
+  "image_queries": [
+    "energetic crowd at town hall"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/18588535/pexels-photo-18588535.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/18588535/pexels-photo-18588535.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A vibrant night festival in Huancavelica, Peru with fireworks and traditional celebrations.",
+      "photographer": "Erick Diaz Veliz",
+      "photographer_url": "https://www.pexels.com/@erick-diaz-veliz-704624766",
+      "metadata": {
+        "id": 18588535,
+        "avg_color": "#372F22",
+        "liked": false
+      },
+      "query": "energetic crowd at town hall",
+      "query_index": 0,
+      "segment_id": 63,
+      "start_time": 271.984,
+      "end_time": 278.64398,
+      "generated_at": "2025-07-07 08:12:11 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

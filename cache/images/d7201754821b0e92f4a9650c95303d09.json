@@ -1,0 +1,38 @@
+{
+  "id": 41,
+  "start_time": 190.804,
+  "end_time": 193.084,
+  "text": " Look, I don't have to tell anybody",
+  "confidence": -0.19227888,
+  "no_speech_prob": 4.8060713e-12,
+  "compression_ratio": 1.5985402,
+  "words": [],
+  "image_queries": [
+    "falling dominoes chain reaction"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/12969258/pexels-photo-12969258.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/12969258/pexels-photo-12969258.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A close-up of a hand stopping a row of falling dominoes to illustrate strategy and control.",
+      "photographer": "Alex P",
+      "photographer_url": "https://www.pexels.com/@freestockpro",
+      "metadata": {
+        "id": 12969258,
+        "avg_color": "#97848A",
+        "liked": false
+      },
+      "query": "falling dominoes chain reaction",
+      "query_index": 0,
+      "segment_id": 41,
+      "start_time": 190.804,
+      "end_time": 193.084,
+      "generated_at": "2025-07-07 08:12:02 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

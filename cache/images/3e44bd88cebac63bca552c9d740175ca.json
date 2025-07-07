@@ -1,0 +1,38 @@
+{
+  "id": 66,
+  "start_time": 286.984,
+  "end_time": 304.368,
+  "text": " it safe to say there a lot of despair in the country over what Democrats are doing how they responding to this You an independent but you caucus with the Democrats I want you to listen to what happened at a town hall tonight with Democratic Congressman Glenn Ivey You aren even working together on a shared",
+  "confidence": -0.10855084,
+  "no_speech_prob": 4.9573067e-12,
+  "compression_ratio": 1.6928571,
+  "words": [],
+  "image_queries": [
+    "people cheering at outdoor rally"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/13051750/pexels-photo-13051750.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/13051750/pexels-photo-13051750.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A lively group of young adults enthusiastically enjoy an outdoor music festival, raising their hands and having fun.",
+      "photographer": "Quyn Phạm",
+      "photographer_url": "https://www.pexels.com/@quyn-ph-m-255082234",
+      "metadata": {
+        "id": 13051750,
+        "avg_color": "#88888A",
+        "liked": false
+      },
+      "query": "people cheering at outdoor rally",
+      "query_index": 0,
+      "segment_id": 66,
+      "start_time": 286.984,
+      "end_time": 304.368,
+      "generated_at": "2025-07-07 08:12:14 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

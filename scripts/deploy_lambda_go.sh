@@ -29,7 +29,7 @@ echo "\n📦 Creating deployment package..."
 # Compile Go binary
 echo "🔧 Compiling Go binary..."
 cd lambda
-GOOS=linux GOARCH=amd64 go build -o ../$DEPLOY_DIR/bootstrap ken_burns_generator.go
+GOOS=linux GOARCH=amd64 go build -o ../$DEPLOY_DIR/bootstrap ken_burns_generator_improved.go
 cd ..
 chmod +x $DEPLOY_DIR/bootstrap
 

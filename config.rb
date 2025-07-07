@@ -8,7 +8,7 @@ module ImageServiceBusConfig
   # Pixabay: https://pixabay.com/api/docs/
   
   API_KEYS = {
-    unsplash: ENV['UNSPLASH_API_KEY'] || nil,
+    unsplash: ENV['UNSPLASH_ACCESS_KEY'] || nil,
     pexels: ENV['PEXELS_API_KEY'] || nil,
     pixabay: ENV['PIXABAY_API_KEY'] || nil
   }

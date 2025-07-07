@@ -4,6 +4,7 @@ class UnsplashClient < BaseImageClient
   def initialize(config = {})
     super(config)
     @base_url = 'https://api.unsplash.com'
+    @secret_key = config[:secret_key] || ENV['UNSPLASH_SECRET_KEY']
   end
 
   def search_images(query, target_resolution = '1080p')

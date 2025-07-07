@@ -1,0 +1,1869 @@
+
+=== Pipeline started at: 2025-07-07T06:41:28-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+✅ Found audio file: cooper.mp3
+📊 File size: 6.68 MB
+
+🚀 Initializing video generator...
+🎬 Local Video Service initialized
+  📁 Temp directory: /var/folders/h6/gt987qh93hs085p28xhy8z840000gn/T/d20250707-37765-gxk8pd
+  🎥 FFmpeg path: ffmpeg
+
+⚙️  Generation options:
+  📐 Resolution: 1080p
+  🎬 FPS: 24
+  🎭 Ken Burns Effect: true
+  🔄 Smooth Transitions: true
+  ⏱️  Image Duration: 3.0s
+  🌊 Transition Duration: 1.0s
+  🔍 Zoom Factor: 1.2x
+  📹 Pan Speed: 0.5
+  💾 Image Caching: true
+  💾 Transcription Caching: false
+  💾 Analysis Caching: false
+  🔄 Force Refresh: true
+
+============================================================
+🎬 STARTING KEN BURNS VIDEO GENERATION
+============================================================
+
+📝 Step 1: Processing audio and transcription...
+🎵 Transcribing audio content...
+🎬 Starting Ken Burns video generation
+  📁 Audio file: cooper.mp3
+  🆔 Project ID: cooper
+  ⚙️  Options: {:resolution=>"1080p", :fps=>24, :test_mode=>false, :ken_burns_effect=>true, :smooth_transitions=>true, :image_duration=>3.0, :transition_duration=>1.0, :zoom_factor=>1.2, :pan_speed=>0.5, :cache_images=>true, :cache_transcription=>false, :cache_analysis=>false, :force=>true}
+
+📝 Step 1: Transcribing audio to get text segments...
+  🎤 Processing audio with Whisper...
+  🎵 Processing audio file...
+    🎤 Processing audio with AudioProcessor...
+🎤 Processing audio file: cooper.mp3
+    📁 Using cached transcription from: cache/cooper.json
+✅ Transcription completed: 142 segments
+📊 Total duration: 629.086 seconds
+📝 Total words: 0
+📤 Uploading audio file: cooper.mp3
+✅ Audio file uploaded: s3://burns-videos/projects/cooper/audio/cooper.mp3
+  ✅ Transcription complete: 142 segments
+
+🎨 Step 2: Analyzing text content to generate image queries...
+  🧠 Analyzing content with Gemini to generate image queries...
+  🎨 Analyzing content for image generation...
+🎨 Analyzing content for image generation...
+🧠 Analyzing content for image generation using Gemini...
+    📁 Using cached content analysis from: cache/gemini_analysis_4cd505ea14f12cd2fe8acba3e0e7640a.json
+✅ Content analysis completed:
+  📊 Total segments: 142
+  🖼️  Segments with images: 62
+  🔍 Total image queries: 62
+  📈 Average confidence: -0.158
+  ✅ Analysis complete: 62 image queries generated
+
+🖼️  Step 3: Generating images using the queries...
+  🔍 Searching for images using image service providers...
+  🖼️  Generating images for segments...
+    📝 Processing segment: 0
+    📝 Processing segment: 0
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 1
+    📝 Processing segment: 1
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 2
+    📝 Processing segment: 2
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 3
+    📝 Processing segment: 3
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 4
+    📝 Processing segment: 4
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 5
+    📝 Processing segment: 5
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 6
+    📝 Processing segment: 6
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 7
+    📝 Processing segment: 7
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 8
+    📝 Processing segment: 8
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 9
+    📝 Processing segment: 9
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 10
+    📝 Processing segment: 10
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 11
+    📝 Processing segment: 11
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 12
+    📝 Processing segment: 12
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 13
+    📝 Processing segment: 13
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 14
+    📝 Processing segment: 14
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 15
+    📝 Processing segment: 15
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 16
+    📝 Processing segment: 16
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 17
+    📝 Processing segment: 17
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 18
+    📝 Processing segment: 18
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 19
+    📝 Processing segment: 19
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 20
+    📝 Processing segment: 20
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["colleagues in office meeting"]
+      Debug - final image_queries: ["colleagues in office meeting"]
+      💾 Using cached images for segment 20
+      ✅ Generated 1 images
+    📝 Processing segment: 21
+    📝 Processing segment: 21
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["professional workplace discussion"]
+      Debug - final image_queries: ["professional workplace discussion"]
+      💾 Using cached images for segment 21
+      ✅ Generated 1 images
+    📝 Processing segment: 22
+    📝 Processing segment: 22
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["official document stamp"]
+      Debug - final image_queries: ["official document stamp"]
+      💾 Using cached images for segment 22
+      ✅ Generated 1 images
+    📝 Processing segment: 23
+    📝 Processing segment: 23
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["legal code text"]
+      Debug - final image_queries: ["legal code text"]
+      💾 Using cached images for segment 23
+      ✅ Generated 1 images
+    📝 Processing segment: 24
+    📝 Processing segment: 24
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["colleagues in office meeting"]
+      Debug - final image_queries: ["colleagues in office meeting"]
+      💾 Using cached images for segment 24
+      ✅ Generated 1 images
+    📝 Processing segment: 25
+    📝 Processing segment: 25
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["professional workplace discussion"]
+      Debug - final image_queries: ["professional workplace discussion"]
+      💾 Using cached images for segment 25
+      ✅ Generated 1 images
+    📝 Processing segment: 26
+    📝 Processing segment: 26
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["official document stamp"]
+      Debug - final image_queries: ["official document stamp"]
+      💾 Using cached images for segment 26
+      ✅ Generated 1 images
+    📝 Processing segment: 27
+    📝 Processing segment: 27
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["legal code text"]
+      Debug - final image_queries: ["legal code text"]
+      💾 Using cached images for segment 27
+      ✅ Generated 1 images
+    📝 Processing segment: 28
+    📝 Processing segment: 28
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["colleagues in office meeting"]
+      Debug - final image_queries: ["colleagues in office meeting"]
+      💾 Using cached images for segment 28
+      ✅ Generated 1 images
+    📝 Processing segment: 29
+    📝 Processing segment: 29
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["professional workplace discussion"]
+      Debug - final image_queries: ["professional workplace discussion"]
+      💾 Using cached images for segment 29
+      ✅ Generated 1 images
+    📝 Processing segment: 30
+    📝 Processing segment: 30
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 31
+    📝 Processing segment: 31
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 32
+    📝 Processing segment: 32
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 33
+    📝 Processing segment: 33
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 34
+    📝 Processing segment: 34
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 35
+    📝 Processing segment: 35
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 36
+    📝 Processing segment: 36
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 37
+    📝 Processing segment: 37
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 38
+    📝 Processing segment: 38
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 39
+    📝 Processing segment: 39
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 40
+    📝 Processing segment: 40
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["political corruption investigation evidence"]
+      Debug - final image_queries: ["political corruption investigation evidence"]
+      💾 Using cached images for segment 40
+      ✅ Generated 1 images
+    📝 Processing segment: 41
+    📝 Processing segment: 41
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Capitol building exterior daytime"]
+      Debug - final image_queries: ["Capitol building exterior daytime"]
+      💾 Using cached images for segment 41
+      ✅ Generated 1 images
+    📝 Processing segment: 42
+    📝 Processing segment: 42
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["man found incompetent legal document"]
+      Debug - final image_queries: ["man found incompetent legal document"]
+      💾 Using cached images for segment 42
+      ✅ Generated 1 images
+    📝 Processing segment: 43
+    📝 Processing segment: 43
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["lawyer presenting case in court"]
+      Debug - final image_queries: ["lawyer presenting case in court"]
+      💾 Using cached images for segment 43
+      ✅ Generated 1 images
+    📝 Processing segment: 44
+    📝 Processing segment: 44
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["political corruption investigation evidence"]
+      Debug - final image_queries: ["political corruption investigation evidence"]
+      💾 Using cached images for segment 44
+      ✅ Generated 1 images
+    📝 Processing segment: 45
+    📝 Processing segment: 45
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Capitol building exterior daytime"]
+      Debug - final image_queries: ["Capitol building exterior daytime"]
+      💾 Using cached images for segment 45
+      ✅ Generated 1 images
+    📝 Processing segment: 46
+    📝 Processing segment: 46
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["man found incompetent legal document"]
+      Debug - final image_queries: ["man found incompetent legal document"]
+      💾 Using cached images for segment 46
+      ✅ Generated 1 images
+    📝 Processing segment: 47
+    📝 Processing segment: 47
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["lawyer presenting case in court"]
+      Debug - final image_queries: ["lawyer presenting case in court"]
+      💾 Using cached images for segment 47
+      ✅ Generated 1 images
+    📝 Processing segment: 48
+    📝 Processing segment: 48
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["political corruption investigation evidence"]
+      Debug - final image_queries: ["political corruption investigation evidence"]
+      💾 Using cached images for segment 48
+      ✅ Generated 1 images
+    📝 Processing segment: 49
+    📝 Processing segment: 49
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Capitol building exterior daytime"]
+      Debug - final image_queries: ["Capitol building exterior daytime"]
+      💾 Using cached images for segment 49
+      ✅ Generated 1 images
+    📝 Processing segment: 50
+    📝 Processing segment: 50
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 51
+    📝 Processing segment: 51
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 52
+    📝 Processing segment: 52
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 53
+    📝 Processing segment: 53
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 54
+    📝 Processing segment: 54
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 55
+    📝 Processing segment: 55
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 56
+    📝 Processing segment: 56
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 57
+    📝 Processing segment: 57
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 58
+    📝 Processing segment: 58
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 59
+    📝 Processing segment: 59
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 60
+    📝 Processing segment: 60
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 61
+    📝 Processing segment: 61
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 62
+    📝 Processing segment: 62
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 63
+    📝 Processing segment: 63
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 64
+    📝 Processing segment: 64
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 65
+    📝 Processing segment: 65
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 66
+    📝 Processing segment: 66
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 67
+    📝 Processing segment: 67
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 68
+    📝 Processing segment: 68
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 69
+    📝 Processing segment: 69
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 70
+    📝 Processing segment: 70
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Historic courtroom podium"]
+      Debug - final image_queries: ["Historic courtroom podium"]
+      💾 Using cached images for segment 70
+      ✅ Generated 1 images
+    📝 Processing segment: 71
+    📝 Processing segment: 71
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Government building interior"]
+      Debug - final image_queries: ["Government building interior"]
+      💾 Using cached images for segment 71
+      ✅ Generated 1 images
+    📝 Processing segment: 72
+    📝 Processing segment: 72
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Vintage photo Robert F. Kennedy"]
+      Debug - final image_queries: ["Vintage photo Robert F. Kennedy"]
+      💾 Using cached images for segment 72
+      ✅ Generated 1 images
+    📝 Processing segment: 73
+    📝 Processing segment: 73
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Black and white photo RFK"]
+      Debug - final image_queries: ["Black and white photo RFK"]
+      💾 Using cached images for segment 73
+      ✅ Generated 1 images
+    📝 Processing segment: 74
+    📝 Processing segment: 74
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Historic courtroom podium"]
+      Debug - final image_queries: ["Historic courtroom podium"]
+      💾 Using cached images for segment 74
+      ✅ Generated 1 images
+    📝 Processing segment: 75
+    📝 Processing segment: 75
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Government building interior"]
+      Debug - final image_queries: ["Government building interior"]
+      💾 Using cached images for segment 75
+      ✅ Generated 1 images
+    📝 Processing segment: 76
+    📝 Processing segment: 76
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Vintage photo Robert F. Kennedy"]
+      Debug - final image_queries: ["Vintage photo Robert F. Kennedy"]
+      💾 Using cached images for segment 76
+      ✅ Generated 1 images
+    📝 Processing segment: 77
+    📝 Processing segment: 77
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Black and white photo RFK"]
+      Debug - final image_queries: ["Black and white photo RFK"]
+      💾 Using cached images for segment 77
+      ✅ Generated 1 images
+    📝 Processing segment: 78
+    📝 Processing segment: 78
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Historic courtroom podium"]
+      Debug - final image_queries: ["Historic courtroom podium"]
+      💾 Using cached images for segment 78
+      ✅ Generated 1 images
+    📝 Processing segment: 79
+    📝 Processing segment: 79
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Government building interior"]
+      Debug - final image_queries: ["Government building interior"]
+      💾 Using cached images for segment 79
+      ✅ Generated 1 images
+    📝 Processing segment: 80
+    📝 Processing segment: 80
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 81
+    📝 Processing segment: 81
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 82
+    📝 Processing segment: 82
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 83
+    📝 Processing segment: 83
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 84
+    📝 Processing segment: 84
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 85
+    📝 Processing segment: 85
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 86
+    📝 Processing segment: 86
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 87
+    📝 Processing segment: 87
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 88
+    📝 Processing segment: 88
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 89
+    📝 Processing segment: 89
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 90
+    📝 Processing segment: 90
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 91
+    📝 Processing segment: 91
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 92
+    📝 Processing segment: 92
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 93
+    📝 Processing segment: 93
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 94
+    📝 Processing segment: 94
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 95
+    📝 Processing segment: 95
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 96
+    📝 Processing segment: 96
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 97
+    📝 Processing segment: 97
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 98
+    📝 Processing segment: 98
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 99
+    📝 Processing segment: 99
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 100
+    📝 Processing segment: 100
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 101
+    📝 Processing segment: 101
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 102
+    📝 Processing segment: 102
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 103
+    📝 Processing segment: 103
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 104
+    📝 Processing segment: 104
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 105
+    📝 Processing segment: 105
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 106
+    📝 Processing segment: 106
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 107
+    📝 Processing segment: 107
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 108
+    📝 Processing segment: 108
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 109
+    📝 Processing segment: 109
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: []
+      Debug - final image_queries: []
+      ⚠️  No image queries for segment
+      ✅ Generated 0 images
+    📝 Processing segment: 110
+    📝 Processing segment: 110
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["White House Oval Office interior"]
+      Debug - final image_queries: ["White House Oval Office interior"]
+      💾 Using cached images for segment 110
+      ✅ Generated 1 images
+    📝 Processing segment: 111
+    📝 Processing segment: 111
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Justice Department building exterior"]
+      Debug - final image_queries: ["Justice Department building exterior"]
+      💾 Using cached images for segment 111
+      ✅ Generated 1 images
+    📝 Processing segment: 112
+    📝 Processing segment: 112
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Presidential handshake with official"]
+      Debug - final image_queries: ["Presidential handshake with official"]
+      💾 Using cached images for segment 112
+      ✅ Generated 1 images
+    📝 Processing segment: 113
+    📝 Processing segment: 113
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Official receiving papers"]
+      Debug - final image_queries: ["Official receiving papers"]
+      💾 Using cached images for segment 113
+      ✅ Generated 1 images
+    📝 Processing segment: 114
+    📝 Processing segment: 114
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["White House Oval Office interior"]
+      Debug - final image_queries: ["White House Oval Office interior"]
+      💾 Using cached images for segment 114
+      ✅ Generated 1 images
+    📝 Processing segment: 115
+    📝 Processing segment: 115
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Justice Department building exterior"]
+      Debug - final image_queries: ["Justice Department building exterior"]
+      💾 Using cached images for segment 115
+      ✅ Generated 1 images
+    📝 Processing segment: 116
+    📝 Processing segment: 116
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Presidential handshake with official"]
+      Debug - final image_queries: ["Presidential handshake with official"]
+      💾 Using cached images for segment 116
+      ✅ Generated 1 images
+    📝 Processing segment: 117
+    📝 Processing segment: 117
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Official receiving papers"]
+      Debug - final image_queries: ["Official receiving papers"]
+      💾 Using cached images for segment 117
+      ✅ Generated 1 images
+    📝 Processing segment: 118
+    📝 Processing segment: 118
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["White House Oval Office interior"]
+      Debug - final image_queries: ["White House Oval Office interior"]
+      💾 Using cached images for segment 118
+      ✅ Generated 1 images
+    📝 Processing segment: 119
+    📝 Processing segment: 119
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Justice Department building exterior"]
+      Debug - final image_queries: ["Justice Department building exterior"]
+      💾 Using cached images for segment 119
+      ✅ Generated 1 images
+    📝 Processing segment: 120
+    📝 Processing segment: 120
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Close-up of a formal list document"]
+      Debug - final image_queries: ["Close-up of a formal list document"]
+      💾 Using cached images for segment 120
+      ✅ Generated 1 images
+    📝 Processing segment: 121
+    📝 Processing segment: 121
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Political figures in discussion"]
+      Debug - final image_queries: ["Political figures in discussion"]
+      💾 Using cached images for segment 121
+      ✅ Generated 1 images
+    📝 Processing segment: 122
+    📝 Processing segment: 122
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Single sheet of paper with text"]
+      Debug - final image_queries: ["Single sheet of paper with text"]
+      💾 Using cached images for segment 122
+      ✅ Generated 1 images
+    📝 Processing segment: 123
+    📝 Processing segment: 123
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Document with bullet points"]
+      Debug - final image_queries: ["Document with bullet points"]
+      💾 Using cached images for segment 123
+      ✅ Generated 1 images
+    📝 Processing segment: 124
+    📝 Processing segment: 124
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Close-up of a formal list document"]
+      Debug - final image_queries: ["Close-up of a formal list document"]
+      💾 Using cached images for segment 124
+      ✅ Generated 1 images
+    📝 Processing segment: 125
+    📝 Processing segment: 125
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Political figures in discussion"]
+      Debug - final image_queries: ["Political figures in discussion"]
+      💾 Using cached images for segment 125
+      ✅ Generated 1 images
+    📝 Processing segment: 126
+    📝 Processing segment: 126
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Single sheet of paper with text"]
+      Debug - final image_queries: ["Single sheet of paper with text"]
+      💾 Using cached images for segment 126
+      ✅ Generated 1 images
+    📝 Processing segment: 127
+    📝 Processing segment: 127
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Document with bullet points"]
+      Debug - final image_queries: ["Document with bullet points"]
+      💾 Using cached images for segment 127
+      ✅ Generated 1 images
+    📝 Processing segment: 128
+    📝 Processing segment: 128
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Close-up of a formal list document"]
+      Debug - final image_queries: ["Close-up of a formal list document"]
+      💾 Using cached images for segment 128
+      ✅ Generated 1 images
+    📝 Processing segment: 129
+    📝 Processing segment: 129
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Political figures in discussion"]
+      Debug - final image_queries: ["Political figures in discussion"]
+      💾 Using cached images for segment 129
+      ✅ Generated 1 images
+    📝 Processing segment: 130
+    📝 Processing segment: 130
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Person silhouetted against a crowd"]
+      Debug - final image_queries: ["Person silhouetted against a crowd"]
+      💾 Using cached images for segment 130
+      ✅ Generated 1 images
+    📝 Processing segment: 131
+    📝 Processing segment: 131
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Audience faces looking forward"]
+      Debug - final image_queries: ["Audience faces looking forward"]
+      💾 Using cached images for segment 131
+      ✅ Generated 1 images
+    📝 Processing segment: 132
+    📝 Processing segment: 132
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Man's mouth open in speech"]
+      Debug - final image_queries: ["Man's mouth open in speech"]
+      💾 Using cached images for segment 132
+      ✅ Generated 1 images
+    📝 Processing segment: 133
+    📝 Processing segment: 133
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Speaking mouth detail"]
+      Debug - final image_queries: ["Speaking mouth detail"]
+      💾 Using cached images for segment 133
+      ✅ Generated 1 images
+    📝 Processing segment: 134
+    📝 Processing segment: 134
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Person silhouetted against a crowd"]
+      Debug - final image_queries: ["Person silhouetted against a crowd"]
+      💾 Using cached images for segment 134
+      ✅ Generated 1 images
+    📝 Processing segment: 135
+    📝 Processing segment: 135
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Audience faces looking forward"]
+      Debug - final image_queries: ["Audience faces looking forward"]
+      💾 Using cached images for segment 135
+      ✅ Generated 1 images
+    📝 Processing segment: 136
+    📝 Processing segment: 136
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Man's mouth open in speech"]
+      Debug - final image_queries: ["Man's mouth open in speech"]
+      💾 Using cached images for segment 136
+      ✅ Generated 1 images
+    📝 Processing segment: 137
+    📝 Processing segment: 137
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Speaking mouth detail"]
+      Debug - final image_queries: ["Speaking mouth detail"]
+      💾 Using cached images for segment 137
+      ✅ Generated 1 images
+    📝 Processing segment: 138
+    📝 Processing segment: 138
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Person silhouetted against a crowd"]
+      Debug - final image_queries: ["Person silhouetted against a crowd"]
+      💾 Using cached images for segment 138
+      ✅ Generated 1 images
+    📝 Processing segment: 139
+    📝 Processing segment: 139
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["Audience faces looking forward"]
+      Debug - final image_queries: ["Audience faces looking forward"]
+      💾 Using cached images for segment 139
+      ✅ Generated 1 images
+    📝 Processing segment: 140
+    📝 Processing segment: 140
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["dimly lit study with leather books"]
+      Debug - final image_queries: ["dimly lit study with leather books"]
+      💾 Using cached images for segment 140
+      ✅ Generated 1 images
+    📝 Processing segment: 141
+    📝 Processing segment: 141
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :has_images]
+      Debug - image_queries: ["parchment scroll detail"]
+      Debug - final image_queries: ["parchment scroll detail"]
+      💾 Using cached images for segment 141
+      ✅ Generated 1 images
+  ✅ Image generation complete: 62 images found
+
+📋 Step 4: Creating project manifest with all data...
+  📋 Creating project manifest...
+📤 Uploading project manifest: cooper
+✅ Project manifest uploaded: s3://burns-videos/projects/cooper/manifest.json
+  ✅ Manifest created successfully
+
+🎥 Step 5: Generating final Ken Burns video...
+  🎥 Generating final video using AWS Lambda for parallel processing...
+📥 Getting project manifest: cooper
+✅ Project manifest retrieved: s3://burns-videos/projects/cooper/manifest.json
+    📝 Processing 142 segments concurrently...
+🚀 Generating video segments concurrently for project: cooper
+  📝 Segments: 142
+  ⚡ Concurrency: 50 (unlimited Lambda scaling)
+    Debug - Segment 0: id=0, start_time=0, end_time=3.86
+    Warning - Segment 0 has no images, skipping
+    Debug - Segment 1: id=1, start_time=3.86, end_time=8.54
+    Warning - Segment 1 has no images, skipping
+    Debug - Segment 2: id=2, start_time=9.1, end_time=13.38
+    Warning - Segment 2 has no images, skipping
+    Debug - Segment 3: id=3, start_time=13.38, end_time=17.6
+    Warning - Segment 3 has no images, skipping
+    Debug - Segment 4: id=4, start_time=17.72, end_time=22.66
+    Warning - Segment 4 has no images, skipping
+    Debug - Segment 5: id=5, start_time=22.66, end_time=27.6
+    Warning - Segment 5 has no images, skipping
+    Debug - Segment 6: id=6, start_time=27.6, end_time=31.94
+    Warning - Segment 6 has no images, skipping
+    Debug - Segment 7: id=7, start_time=31.94, end_time=36.06
+    Warning - Segment 7 has no images, skipping
+    Debug - Segment 8: id=8, start_time=36.06, end_time=40.8
+    Warning - Segment 8 has no images, skipping
+    Debug - Segment 9: id=9, start_time=40.8, end_time=45.76
+    Warning - Segment 9 has no images, skipping
+    Debug - Segment 10: id=10, start_time=45.76, end_time=50.24
+    Warning - Segment 10 has no images, skipping
+    Debug - Segment 11: id=11, start_time=50.24, end_time=56.26
+    Warning - Segment 11 has no images, skipping
+    Debug - Segment 12: id=12, start_time=56.26, end_time=61.72
+    Warning - Segment 12 has no images, skipping
+    Debug - Segment 13: id=13, start_time=62, end_time=68.94
+    Warning - Segment 13 has no images, skipping
+    Debug - Segment 14: id=14, start_time=68.94, end_time=75.72
+    Warning - Segment 14 has no images, skipping
+    Debug - Segment 15: id=15, start_time=75.92, end_time=81.4
+    Warning - Segment 15 has no images, skipping
+    Debug - Segment 16: id=16, start_time=82.26, end_time=84.78
+    Warning - Segment 16 has no images, skipping
+    Debug - Segment 17: id=17, start_time=84.92, end_time=89.26
+    Warning - Segment 17 has no images, skipping
+    Debug - Segment 18: id=18, start_time=89.86, end_time=93.24
+    Warning - Segment 18 has no images, skipping
+    Debug - Segment 19: id=19, start_time=93.58, end_time=97.56
+    Warning - Segment 19 has no images, skipping
+    Debug - Segment 20: id=20, start_time=97.56, end_time=101.6
+    Debug - Segment 21: id=21, start_time=101.66, end_time=106.18
+    Debug - Segment 22: id=22, start_time=106.18, end_time=112.14
+    Debug - Segment 23: id=23, start_time=112.4, end_time=122.18
+    Debug - Segment 24: id=24, start_time=123.32, end_time=125.9
+    Debug - Segment 25: id=25, start_time=126.04, end_time=129.96
+    Debug - Segment 26: id=26, start_time=130.6, end_time=137.44
+    Debug - Segment 27: id=27, start_time=137.74, end_time=142.52
+    Debug - Segment 28: id=28, start_time=142.52, end_time=148.6
+    Debug - Segment 29: id=29, start_time=149.28, end_time=166.142
+    Debug - Segment 30: id=30, start_time=166.142, end_time=171.742
+    Warning - Segment 30 has no images, skipping
+    Debug - Segment 31: id=31, start_time=172.302, end_time=177.12201
+    Warning - Segment 31 has no images, skipping
+    Debug - Segment 32: id=32, start_time=177.12201, end_time=181.462
+    Warning - Segment 32 has no images, skipping
+    Debug - Segment 33: id=33, start_time=181.462, end_time=185.822
+    Warning - Segment 33 has no images, skipping
+    Debug - Segment 34: id=34, start_time=187.34201, end_time=192.482
+    Warning - Segment 34 has no images, skipping
+    Debug - Segment 35: id=35, start_time=192.482, end_time=197.762
+    Warning - Segment 35 has no images, skipping
+    Debug - Segment 36: id=36, start_time=197.762, end_time=201.682
+    Warning - Segment 36 has no images, skipping
+    Debug - Segment 37: id=37, start_time=201.90201, end_time=206.84201
+    Warning - Segment 37 has no images, skipping
+    Debug - Segment 38: id=38, start_time=206.84201, end_time=210.802
+    Warning - Segment 38 has no images, skipping
+    Debug - Segment 39: id=39, start_time=210.802, end_time=217.182
+    Warning - Segment 39 has no images, skipping
+    Debug - Segment 40: id=40, start_time=217.182, end_time=223.002
+    Debug - Segment 41: id=41, start_time=223.04199, end_time=228.78201
+    Debug - Segment 42: id=42, start_time=228.78201, end_time=235.722
+    Debug - Segment 43: id=43, start_time=235.722, end_time=240.78201
+    Debug - Segment 44: id=44, start_time=240.802, end_time=244.022
+    Debug - Segment 45: id=45, start_time=244.582, end_time=248.702
+    Debug - Segment 46: id=46, start_time=248.702, end_time=253.382
+    Debug - Segment 47: id=47, start_time=253.382, end_time=263.342
+    Debug - Segment 48: id=48, start_time=264.242, end_time=268.782
+    Debug - Segment 49: id=49, start_time=268.782, end_time=276.842
+    Debug - Segment 50: id=50, start_time=276.842, end_time=282.162
+    Warning - Segment 50 has no images, skipping
+    Debug - Segment 51: id=51, start_time=282.162, end_time=291.162
+    Warning - Segment 51 has no images, skipping
+    Debug - Segment 52: id=52, start_time=291.482, end_time=295.242
+    Warning - Segment 52 has no images, skipping
+    Debug - Segment 53: id=53, start_time=295.242, end_time=308.28198
+    Warning - Segment 53 has no images, skipping
+    Debug - Segment 54: id=54, start_time=308.902, end_time=319.764
+    Warning - Segment 54 has no images, skipping
+    Debug - Segment 55: id=55, start_time=320.74402, end_time=326.364
+    Warning - Segment 55 has no images, skipping
+    Debug - Segment 56: id=56, start_time=326.444, end_time=331.724
+    Warning - Segment 56 has no images, skipping
+    Debug - Segment 57: id=57, start_time=332.204, end_time=336.544
+    Warning - Segment 57 has no images, skipping
+    Debug - Segment 58: id=58, start_time=336.544, end_time=341.864
+    Warning - Segment 58 has no images, skipping
+    Debug - Segment 59: id=59, start_time=342.004, end_time=345.984
+    Warning - Segment 59 has no images, skipping
+    Debug - Segment 60: id=60, start_time=345.984, end_time=351.504
+    Warning - Segment 60 has no images, skipping
+    Debug - Segment 61: id=61, start_time=351.504, end_time=357.864
+    Warning - Segment 61 has no images, skipping
+    Debug - Segment 62: id=62, start_time=357.924, end_time=362.864
+    Warning - Segment 62 has no images, skipping
+    Debug - Segment 63: id=63, start_time=363.204, end_time=367.484
+    Warning - Segment 63 has no images, skipping
+    Debug - Segment 64: id=64, start_time=367.564, end_time=370.024
+    Warning - Segment 64 has no images, skipping
+    Debug - Segment 65: id=65, start_time=370.24402, end_time=374.504
+    Warning - Segment 65 has no images, skipping
+    Debug - Segment 66: id=66, start_time=374.824, end_time=379.264
+    Warning - Segment 66 has no images, skipping
+    Debug - Segment 67: id=67, start_time=379.424, end_time=380.864
+    Warning - Segment 67 has no images, skipping
+    Debug - Segment 68: id=68, start_time=380.924, end_time=382.084
+    Warning - Segment 68 has no images, skipping
+    Debug - Segment 69: id=69, start_time=382.084, end_time=388.664
+    Warning - Segment 69 has no images, skipping
+    Debug - Segment 70: id=70, start_time=388.664, end_time=398.944
+    Debug - Segment 71: id=71, start_time=399.104, end_time=403.204
+    Debug - Segment 72: id=72, start_time=403.30402, end_time=409.584
+    Debug - Segment 73: id=73, start_time=409.644, end_time=413.944
+    Debug - Segment 74: id=74, start_time=413.944, end_time=419.504
+    Debug - Segment 75: id=75, start_time=419.924, end_time=424.644
+    Debug - Segment 76: id=76, start_time=425.004, end_time=427.424
+    Debug - Segment 77: id=77, start_time=427.724, end_time=435.464
+    Debug - Segment 78: id=78, start_time=435.644, end_time=438.64398
+    Debug - Segment 79: id=79, start_time=438.984, end_time=441.344
+    Debug - Segment 80: id=80, start_time=441.344, end_time=443.62402
+    Warning - Segment 80 has no images, skipping
+    Debug - Segment 81: id=81, start_time=443.944, end_time=447.424
+    Warning - Segment 81 has no images, skipping
+    Debug - Segment 82: id=82, start_time=447.844, end_time=450.284
+    Warning - Segment 82 has no images, skipping
+    Debug - Segment 83: id=83, start_time=450.364, end_time=453.404
+    Warning - Segment 83 has no images, skipping
+    Debug - Segment 84: id=84, start_time=453.404, end_time=457.004
+    Warning - Segment 84 has no images, skipping
+    Debug - Segment 85: id=85, start_time=457.004, end_time=460.784
+    Warning - Segment 85 has no images, skipping
+    Debug - Segment 86: id=86, start_time=461.18402, end_time=465.824
+    Warning - Segment 86 has no images, skipping
+    Debug - Segment 87: id=87, start_time=465.944, end_time=466.764
+    Warning - Segment 87 has no images, skipping
+    Debug - Segment 88: id=88, start_time=468.024, end_time=478.646
+    Warning - Segment 88 has no images, skipping
+    Debug - Segment 89: id=89, start_time=478.646, end_time=480.146
+    Warning - Segment 89 has no images, skipping
+    Debug - Segment 90: id=90, start_time=480.146, end_time=480.846
+    Warning - Segment 90 has no images, skipping
+    Debug - Segment 91: id=91, start_time=480.846, end_time=482.126
+    Warning - Segment 91 has no images, skipping
+    Debug - Segment 92: id=92, start_time=482.126, end_time=483.586
+    Warning - Segment 92 has no images, skipping
+    Debug - Segment 93: id=93, start_time=483.586, end_time=485.586
+    Warning - Segment 93 has no images, skipping
+    Debug - Segment 94: id=94, start_time=485.586, end_time=487.026
+    Warning - Segment 94 has no images, skipping
+    Debug - Segment 95: id=95, start_time=487.026, end_time=487.766
+    Warning - Segment 95 has no images, skipping
+    Debug - Segment 96: id=96, start_time=487.766, end_time=490.266
+    Warning - Segment 96 has no images, skipping
+    Debug - Segment 97: id=97, start_time=490.266, end_time=492.806
+    Warning - Segment 97 has no images, skipping
+    Debug - Segment 98: id=98, start_time=492.806, end_time=494.266
+    Warning - Segment 98 has no images, skipping
+    Debug - Segment 99: id=99, start_time=494.266, end_time=495.706
+    Warning - Segment 99 has no images, skipping
+    Debug - Segment 100: id=100, start_time=495.706, end_time=504.346
+    Warning - Segment 100 has no images, skipping
+    Debug - Segment 101: id=101, start_time=504.706, end_time=513.446
+    Warning - Segment 101 has no images, skipping
+    Debug - Segment 102: id=102, start_time=513.706, end_time=516.68604
+    Warning - Segment 102 has no images, skipping
+    Debug - Segment 103: id=103, start_time=516.986, end_time=520.74603
+    Warning - Segment 103 has no images, skipping
+    Debug - Segment 104: id=104, start_time=521.106, end_time=524.466
+    Warning - Segment 104 has no images, skipping
+    Debug - Segment 105: id=105, start_time=524.466, end_time=527.886
+    Warning - Segment 105 has no images, skipping
+    Debug - Segment 106: id=106, start_time=528.066, end_time=530.786
+    Warning - Segment 106 has no images, skipping
+    Debug - Segment 107: id=107, start_time=531.106, end_time=540.146
+    Warning - Segment 107 has no images, skipping
+    Debug - Segment 108: id=108, start_time=540.246, end_time=546.68604
+    Warning - Segment 108 has no images, skipping
+    Debug - Segment 109: id=109, start_time=546.826, end_time=549.506
+    Warning - Segment 109 has no images, skipping
+    Debug - Segment 110: id=110, start_time=549.506, end_time=561.446
+    Debug - Segment 111: id=111, start_time=562.726, end_time=563.866
+    Debug - Segment 112: id=112, start_time=563.866, end_time=568.766
+    Debug - Segment 113: id=113, start_time=568.926, end_time=569.626
+    Debug - Segment 114: id=114, start_time=569.766, end_time=570.506
+    Debug - Segment 115: id=115, start_time=570.726, end_time=576.026
+    Debug - Segment 116: id=116, start_time=576.106, end_time=577.166
+    Debug - Segment 117: id=117, start_time=577.366, end_time=577.926
+    Debug - Segment 118: id=118, start_time=578.006, end_time=579.06604
+    Debug - Segment 119: id=119, start_time=579.06604, end_time=587.18604
+    Debug - Segment 120: id=120, start_time=587.426, end_time=591.266
+    Debug - Segment 121: id=121, start_time=591.406, end_time=592.346
+    Debug - Segment 122: id=122, start_time=592.626, end_time=595.56604
+    Debug - Segment 123: id=123, start_time=595.626, end_time=596.866
+    Debug - Segment 124: id=124, start_time=597.06604, end_time=598.806
+    Debug - Segment 125: id=125, start_time=599.006, end_time=600.506
+    Debug - Segment 126: id=126, start_time=600.626, end_time=603.18604
+    Debug - Segment 127: id=127, start_time=603.286, end_time=608.346
+    Debug - Segment 128: id=128, start_time=608.346, end_time=610.346
+    Debug - Segment 129: id=129, start_time=610.346, end_time=612.346
+    Debug - Segment 130: id=130, start_time=612.346, end_time=614.346
+    Debug - Segment 131: id=131, start_time=614.346, end_time=615.346
+    Debug - Segment 132: id=132, start_time=615.346, end_time=616.346
+    Debug - Segment 133: id=133, start_time=616.346, end_time=618.346
+    Debug - Segment 134: id=134, start_time=618.346, end_time=619.346
+    Debug - Segment 135: id=135, start_time=619.346, end_time=621.346
+    Debug - Segment 136: id=136, start_time=621.346, end_time=622.346
+    Debug - Segment 137: id=137, start_time=622.346, end_time=624.346
+    Debug - Segment 138: id=138, start_time=624.346, end_time=625.346
+    Debug - Segment 139: id=139, start_time=625.346, end_time=627.346
+    Debug - Segment 140: id=140, start_time=627.346, end_time=628.346
+    Debug - Segment 141: id=141, start_time=628.346, end_time=629.086
+  ⏳ Waiting for 62 segments to complete...
+  📹 Processing segment 20 (1/62)
+    Debug - Payload: project_id=cooper, segment_id=20, segment_index=0, images=Array, duration=4.039999999999992, start_time=97.56, end_time=101.6
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 22 (3/62)
+    Debug - Payload: project_id=cooper, segment_id=22, segment_index=2, images=Array, duration=5.959999999999994, start_time=106.18, end_time=112.14
+  📹 Processing segment 24 (5/62)
+    Debug - Payload: project_id=cooper, segment_id=24, segment_index=4, images=Array, duration=2.5800000000000125, start_time=123.32, end_time=125.9
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 25 (6/62)
+    Debug - Payload: project_id=cooper, segment_id=25, segment_index=5, images=Array, duration=3.9200000000000017, start_time=126.04, end_time=129.96
+  📹 Processing segment 27 (8/62)
+    Debug - Payload: project_id=cooper, segment_id=27, segment_index=7, images=Array, duration=4.780000000000001, start_time=137.74, end_time=142.52
+  📹 Processing segment 29 (10/62)
+    Debug - Payload: project_id=cooper, segment_id=29, segment_index=9, images=Array, duration=16.861999999999995, start_time=149.28, end_time=166.142
+  📹 Processing segment 40 (11/62)
+    Debug - Payload: project_id=cooper, segment_id=40, segment_index=10, images=Array, duration=5.820000000000022, start_time=217.182, end_time=223.002
+  📹 Processing segment 41 (12/62)
+    Debug - Payload: project_id=cooper, segment_id=41, segment_index=11, images=Array, duration=5.740020000000015, start_time=223.04199, end_time=228.78201
+  📹 Processing segment 42 (13/62)
+    Debug - Payload: project_id=cooper, segment_id=42, segment_index=12, images=Array, duration=6.9399899999999946, start_time=228.78201, end_time=235.722  📹 Processing segment 46 (17/62)
+    Debug - Payload: project_id=cooper, segment_id=46, segment_index=16, images=Array, duration=4.680000000000007, start_time=248.702, end_time=253.382
+  📹 Processing segment 49 (20/62)
+    Debug - Payload: project_id=cooper, segment_id=49, segment_index=19, images=Array, duration=8.060000000000002, start_time=268.782, end_time=276.842
+  📹 Processing segment 73 (24/62)
+    Debug - Payload: project_id=cooper, segment_id=73, segment_index=23, images=Array, duration=4.300000000000011, start_time=409.644, end_time=413.944
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 121 (42/62)
+    Debug - Payload: project_id=cooper, segment_id=121, segment_index=41, images=Array, duration=0.9400000000000546, start_time=591.406, end_time=592.346
+  📹 Processing segment 122 (43/62)
+    Debug - Payload: project_id=cooper, segment_id=122, segment_index=42, images=Array, duration=2.9400400000000673, start_time=592.626, end_time=595.56604
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 123 (44/62)
+    Debug - Payload: project_id=cooper, segment_id=123, segment_index=43, images=Array, duration=1.240000000000009, start_time=595.626, end_time=596.866
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 125 (46/62)
+    Debug - Payload: project_id=cooper, segment_id=125, segment_index=45, images=Array, duration=1.5, start_time=599.006, end_time=600.506
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 127 (48/62)
+    Debug - Payload: project_id=cooper, segment_id=127, segment_index=47, images=Array, duration=5.060000000000059, start_time=603.286, end_time=608.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 128 (49/62)
+    Debug - Payload: project_id=cooper, segment_id=128, segment_index=48, images=Array, duration=2.0, start_time=608.346, end_time=610.346
+    Debug - Payload: project_id=cooper, segment_id=44, segment_index=14, images=Array, duration=3.219999999999999, start_time=240.802, end_time=244.022
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+bug - Payload: project_id=cooper, segment_id=42, segment_index=12, images=Array, duration=6.9399899999999946, start_time=228.78201, end_time=235.722
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload: project_id=cooper, segment_id=45, segment_index=15, images=Array, duration=4.1200000000000045, start_time=244.582, end_time=248.702
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload: project_id=cooper, segment_id=47, segment_index=17, images=Array, duration=9.95999999999998, start_time=253.382, end_time=263.342
+  📹 Processing segment 70 (21/62)-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 71 (22/62)
+    Debug - Payload: project_id=cooper, segment_id=71, segment_index=21, images=Array, duration=4.100000000000023, start_time=399.104, end_time=403.204
+  📹 Processing segment 72 (23/62)-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 74 (25/62)
+    Debug - Payload: project_id=cooper, segment_id=74, segment_index=24, images=Array, duration=5.560000000000002, start_time=413.944, end_time=419.504
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 75 (26/62)
+    Debug - Payload: project_id=cooper, segment_id=75, segment_index=25, images=Array, duration=4.720000000000027, start_time=419.924, end_time=424.644
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 76 (27/62)
+    Debug - Payload: project_id=cooper, segment_id=76, segment_index=26, images=Array, duration=2.419999999999959, start_time=425.004, end_time=427.424
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 77 (28/62)-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 78 (29/62)
+    Debug - Payload: project_id=cooper, segment_id=78, segment_index=28, images=Array, duration=2.9999799999999937, start_time=435.644, end_time=438.64398
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📹 Processing segment 79 (30/62), segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 79 (30/62)
+    Debug - Payload: project_id=cooper, segment_id=79, segment_index=29, images=Array, duration=2.3600000000000136, start_time=438.984, end_time=441.344
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 110 (31/62)tring, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 110 (31/62)
+  📹 Processing segment 113 (34/62)r, segment_id=110, segment_index=30, images=Array, duration=11.940000000000055, start_time=549.506, end_time=561.446
+  📹 Processing segment 113 (34/62)  📹 Processing segment 115 (36/62)  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+
+    Debug - Payload: project_id=cooper, segment_id=115, segment_index=35, images=Array, duration=5.2999999999999545, start_time=570.726, end_time=576.026
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+
+    Debug - Payload: project_id=cooper, segment_id=113, segment_index=33, images=Array, duration=0.6999999999999318, start_time=568.926, end_time=569.626
+  📹 Processing segment 116 (37/62)burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 116 (37/62)
+    Debug - Payload: project_id=cooper, segment_id=116, segment_index=36, images=Array, duration=1.0600000000000591, start_time=576.106, end_time=577.166
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 117 (38/62)
+    Debug - Payload: project_id=cooper, segment_id=117, segment_index=37, images=Array, duration=0.5600000000000591, start_time=577.366, end_time=577.926
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 119 (40/62)
+  📹 Processing segment 120 (41/62)r, segment_id=119, segment_index=39, images=Array, duration=8.120000000000005, start_time=579.06604, end_time=587.18604
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📹 Processing segment 120 (41/62)
+    Debug - Payload: project_id=cooper, segment_id=120, segment_index=40, images=Array, duration=3.839999999999918, start_time=587.426, end_time=591.266
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 124 (45/62)  📹 Processing segment 129 (50/62)    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+
+    Debug - Payload: project_id=cooper, segment_id=124, segment_index=44, images=Array, duration=1.7399599999999964, start_time=597.06604, end_time=598.806
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 21 (2/62)
+    Debug - Payload: project_id=cooper, segment_id=21, segment_index=1, images=Array, duration=4.52000000000001, start_time=101.66, end_time=106.18
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload: project_id=cooper, segment_id=129, segment_index=49, images=Array, duration=2.0, start_time=610.346, end_time=612.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go  📹 Processing segment 23 (4/62)
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+
+    Debug - Payload: project_id=cooper, segment_id=23, segment_index=3, images=Array, duration=9.780000000000001, start_time=112.4, end_time=122.18
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go  📹 Processing segment 26 (7/62)
+
+    Debug - Payload: project_id=cooper, segment_id=26, segment_index=6, images=Array, duration=6.840000000000003, start_time=130.6, end_time=137.44
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 28 (9/62)  📤 Invoking Lambda function: ken-burns-video-generator-go    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+
+    Debug - Payload: project_id=cooper, segment_id=28, segment_index=8, images=Array, duration=6.079999999999984, start_time=142.52, end_time=148.6
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-goloat, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload: project_id=cooper, segment_id=48, segment_index=18, images=Array, duration=4.539999999999964, start_time=264.242, end_time=268.782, segment_id=48, segment_index=18, images=Array, duration=4.539999999999964, start_time=264.242, end_time=268.782    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+
+  📹 Processing segment 72 (23/62)-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 72 (23/62)String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 72 (23/62)
+    Debug - Payload: project_id=cooper, segment_id=72, segment_index=22, images=Array, duration=6.279980000000023, start_time=403.30402, end_time=409.584
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📹 Processing segment 112 (33/62)
+    Debug - Payload: project_id=cooper, segment_id=112, segment_index=32, images=Array, duration=4.899999999999977, start_time=563.866, end_time=568.766
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 114 (35/62) segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 114 (35/62)tring, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 114 (35/62)
+    Debug - Payload: project_id=cooper, segment_id=114, segment_index=34, images=Array, duration=0.7400000000000091, start_time=569.766, end_time=570.506
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📹 Processing segment 43 (14/62), segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 43 (14/62)String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 43 (14/62)
+    Debug - Payload: project_id=cooper, segment_id=43, segment_index=13, images=Array, duration=5.0600100000000054, start_time=235.722, end_time=240.78201
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📹 Processing segment 111 (32/62)
+    Debug - Payload: project_id=cooper, segment_id=111, segment_index=31, images=Array, duration=1.1399999999999864, start_time=562.726, end_time=563.866
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 118 (39/62) segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 118 (39/62)tring, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 118 (39/62)
+    Debug - Payload: project_id=cooper, segment_id=118, segment_index=38, images=Array, duration=1.0600400000000718, start_time=578.006, end_time=579.06604
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📹 Processing segment 77 (28/62)
+    Debug - Payload: project_id=cooper, segment_id=77, segment_index=27, images=Array, duration=7.740000000000009, start_time=427.724, end_time=435.464
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 126 (47/62)tring, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📹 Processing segment 70 (21/62)
+    Debug - Payload: project_id=cooper, segment_id=70, segment_index=20, images=Array, duration=10.28000000000003, start_time=388.664, end_time=398.944
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+  📹 Processing segment 126 (47/62) segment_id, segment_index, images, duration, start_time, end_time, options
+  📹 Processing segment 126 (47/62)tring, Integer, Array, Float, Float, Float, Hash  📹 Processing segment 126 (47/62)
+    Debug - Payload: project_id=cooper, segment_id=126, segment_index=46, images=Array, duration=2.560040000000072, start_time=600.626, end_time=603.18604
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to download any images: stream error: stream ID 1; INTERNAL_ERROR; received from peer
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 126 failed: Lambda function error: failed to download any images: stream error: stream ID 1; INTERNAL_ERROR; received from peer
+  📹 Processing segment 130 (51/62)
+    Debug - Payload: project_id=cooper, segment_id=130, segment_index=50, images=Array, duration=2.0, start_time=612.346, end_time=614.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 117 completed
+    📁 Segment file: segments/cooper/117_segment.mp4
+  📹 Processing segment 131 (52/62)
+    Debug - Payload: project_id=cooper, segment_id=131, segment_index=51, images=Array, duration=1.0, start_time=614.346, end_time=615.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 113 completed
+    📁 Segment file: segments/cooper/113_segment.mp4
+  📹 Processing segment 132 (53/62)
+    Debug - Payload: project_id=cooper, segment_id=132, segment_index=52, images=Array, duration=1.0, start_time=615.346, end_time=616.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 114 completed
+    📁 Segment file: segments/cooper/114_segment.mp4
+  📹 Processing segment 133 (54/62)
+    Debug - Payload: project_id=cooper, segment_id=133, segment_index=53, images=Array, duration=2.0, start_time=616.346, end_time=618.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 121 completed
+    📁 Segment file: segments/cooper/121_segment.mp4
+  📹 Processing segment 134 (55/62)
+    Debug - Payload: project_id=cooper, segment_id=134, segment_index=54, images=Array, duration=1.0, start_time=618.346, end_time=619.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 118 completed
+    📁 Segment file: segments/cooper/118_segment.mp4
+  📹 Processing segment 135 (56/62)
+    Debug - Payload: project_id=cooper, segment_id=135, segment_index=55, images=Array, duration=2.0, start_time=619.346, end_time=621.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 116 completed
+    📁 Segment file: segments/cooper/116_segment.mp4
+  📹 Processing segment 136 (57/62)
+    Debug - Payload: project_id=cooper, segment_id=136, segment_index=56, images=Array, duration=1.0, start_time=621.346, end_time=622.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 111 completed
+    📁 Segment file: segments/cooper/111_segment.mp4
+  📹 Processing segment 137 (58/62)
+    Debug - Payload: project_id=cooper, segment_id=137, segment_index=57, images=Array, duration=2.0, start_time=622.346, end_time=624.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 130 completed
+    📁 Segment file: segments/cooper/130_segment.mp4
+  📹 Processing segment 138 (59/62)
+    Debug - Payload: project_id=cooper, segment_id=138, segment_index=58, images=Array, duration=1.0, start_time=624.346, end_time=625.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 123 completed
+    📁 Segment file: segments/cooper/123_segment.mp4
+  📹 Processing segment 139 (60/62)
+    Debug - Payload: project_id=cooper, segment_id=139, segment_index=59, images=Array, duration=2.0, start_time=625.346, end_time=627.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 125 completed
+    📁 Segment file: segments/cooper/125_segment.mp4
+  📹 Processing segment 140 (61/62)
+    Debug - Payload: project_id=cooper, segment_id=140, segment_index=60, images=Array, duration=1.0, start_time=627.346, end_time=628.346
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 124 completed
+    📁 Segment file: segments/cooper/124_segment.mp4
+  📹 Processing segment 141 (62/62)
+    Debug - Payload: project_id=cooper, segment_id=141, segment_index=61, images=Array, duration=0.7400000000000091, start_time=628.346, end_time=629.086
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 134 completed
+    📁 Segment file: segments/cooper/134_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 131 completed
+    📁 Segment file: segments/cooper/131_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 132 completed
+    📁 Segment file: segments/cooper/132_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 128 completed
+    📁 Segment file: segments/cooper/128_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 138 completed
+    📁 Segment file: segments/cooper/138_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 129 completed
+    📁 Segment file: segments/cooper/129_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 136 completed
+    📁 Segment file: segments/cooper/136_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 76 completed
+    📁 Segment file: segments/cooper/76_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 79 completed
+    📁 Segment file: segments/cooper/79_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 141 completed
+    📁 Segment file: segments/cooper/141_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 24 completed
+    📁 Segment file: segments/cooper/24_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 140 completed
+    📁 Segment file: segments/cooper/140_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 122 completed
+    📁 Segment file: segments/cooper/122_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 133 completed
+    📁 Segment file: segments/cooper/133_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 78 completed
+    📁 Segment file: segments/cooper/78_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 135 completed
+    📁 Segment file: segments/cooper/135_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 44 completed
+    📁 Segment file: segments/cooper/44_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 73 completed
+    📁 Segment file: segments/cooper/73_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 139 completed
+    ✅ Segment 137 completed
+    📁 Segment file: segments/cooper/139_segment.mp4
+    📁 Segment file: segments/cooper/137_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 45 completed
+    📁 Segment file: segments/cooper/45_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 120 completed
+    📁 Segment file: segments/cooper/120_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 20 completed
+    📁 Segment file: segments/cooper/20_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 25 completed
+    📁 Segment file: segments/cooper/25_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 71 completed
+    📁 Segment file: segments/cooper/71_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 46 completed
+    📁 Segment file: segments/cooper/46_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 48 completed
+    📁 Segment file: segments/cooper/48_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 21 completed
+    📁 Segment file: segments/cooper/21_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 75 completed
+    📁 Segment file: segments/cooper/75_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 43 completed
+    📁 Segment file: segments/cooper/43_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 127 completed
+    📁 Segment file: segments/cooper/127_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 74 completed
+    📁 Segment file: segments/cooper/74_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 27 completed
+    📁 Segment file: segments/cooper/27_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 112 completed
+    📁 Segment file: segments/cooper/112_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 22 completed
+    📁 Segment file: segments/cooper/22_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 115 completed
+    📁 Segment file: segments/cooper/115_segment.mp4
+    ✅ Segment 41 completed
+    📁 Segment file: segments/cooper/41_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 40 completed
+    📁 Segment file: segments/cooper/40_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 28 completed
+    📁 Segment file: segments/cooper/28_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 72 completed
+    📁 Segment file: segments/cooper/72_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 77 completed
+    📁 Segment file: segments/cooper/77_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 26 completed
+    📁 Segment file: segments/cooper/26_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 42 completed
+    📁 Segment file: segments/cooper/42_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 49 completed
+    📁 Segment file: segments/cooper/49_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 119 completed
+    📁 Segment file: segments/cooper/119_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 70 completed
+    📁 Segment file: segments/cooper/70_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 47 completed
+    📁 Segment file: segments/cooper/47_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 23 completed
+    📁 Segment file: segments/cooper/23_segment.mp4
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 110 completed
+    📁 Segment file: segments/cooper/110_segment.mp4
+    ❌ Lambda invocation error: Net::ReadTimeout with #<TCPSocket:(closed)>
+    ❌ Error class: Seahorse::Client::NetworkingError
+    ❌ Segment 29 failed: Lambda invocation failed: Net::ReadTimeout with #<TCPSocket:(closed)>
+❌ 2 segments failed to process
+  ❌ Segment : Lambda invocation failed: Net::ReadTimeout with #<TCPSocket:(closed)>
+  ❌ Segment : Lambda function error: failed to download any images: stream error: stream ID 1; INTERNAL_ERROR; received from peer
+
+============================================================
+❌ VIDEO GENERATION FAILED
+============================================================
+Error: Step 5 failed - Video generation: Lambda video generation failed: Some segments failed to process
+
+🔧 Troubleshooting tips:
+  • Check your API keys are properly configured
+  • Ensure AWS services are accessible
+  • Verify the audio file is in a supported format
+  • Check network connectivity
+  • Try running with test_mode: true for debugging
+============================================================

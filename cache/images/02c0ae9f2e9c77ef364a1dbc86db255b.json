@@ -1,0 +1,38 @@
+{
+  "id": 67,
+  "start_time": 304.368,
+  "end_time": 311.828,
+  "text": " strategy. And that is failure. We are not interested in hearing that you are in the minority.",
+  "confidence": -0.10855084,
+  "no_speech_prob": 4.9573067e-12,
+  "compression_ratio": 1.6928571,
+  "words": [],
+  "image_queries": [
+    "energetic crowd at town hall"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/18588535/pexels-photo-18588535.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/18588535/pexels-photo-18588535.jpeg",
+      "width": 6000,
+      "height": 4000,
+      "description": "A vibrant night festival in Huancavelica, Peru with fireworks and traditional celebrations.",
+      "photographer": "Erick Diaz Veliz",
+      "photographer_url": "https://www.pexels.com/@erick-diaz-veliz-704624766",
+      "metadata": {
+        "id": 18588535,
+        "avg_color": "#372F22",
+        "liked": false
+      },
+      "query": "energetic crowd at town hall",
+      "query_index": 0,
+      "segment_id": 67,
+      "start_time": 304.368,
+      "end_time": 311.828,
+      "generated_at": "2025-07-07 08:12:14 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}

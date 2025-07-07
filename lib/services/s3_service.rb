@@ -530,6 +530,39 @@ class S3Service
     upload_project_manifest(project_id, manifest, bucket_name)
   end
 
+  # Download video from S3 to local path
+  # @param s3_key [String] S3 object key
+  # @param local_path [String] Local file path to download to
+  # @return [Hash] Download result
+  def download_video(s3_key, local_path)
+    puts "📥 Downloading video from S3: #{s3_key}"
+    
+    begin
+      bucket_name = Config::AWS_CONFIG[:s3_bucket]
+      bucket = @s3_resource.bucket(bucket_name)
+      obj = bucket.object(s3_key)
+      
+      # Create directory if it doesn't exist
+      require 'fileutils'
+      FileUtils.mkdir_p(File.dirname(local_path))
+      
+      # Download the video
+      obj.download_file(local_path)
+      
+      puts "✅ Video downloaded successfully: #{local_path}"
+      {
+        success: true,
+        local_path: local_path,
+        file_size: File.size(local_path),
+        s3_key: s3_key
+      }
+      
+    rescue => e
+      puts "❌ Error downloading video: #{e.message}"
+      { success: false, error: e.message }
+    end
+  end
+
   private
 
   # Configure bucket settings after creation
@@ -605,32 +638,4 @@ class S3Service
   # @param s3_key [String] S3 key of the video
   # @param local_path [String] Local path to save the video
   # @return [Hash] Download result
-  def download_video(s3_key, local_path)
-    puts "📥 Downloading video from S3: #{s3_key}"
-    
-    begin
-      bucket_name = Config::AWS_CONFIG[:s3_bucket]
-      bucket = @s3_resource.bucket(bucket_name)
-      obj = bucket.object(s3_key)
-      
-      # Create directory if it doesn't exist
-      require 'fileutils'
-      FileUtils.mkdir_p(File.dirname(local_path))
-      
-      # Download the video
-      obj.download_file(local_path)
-      
-      puts "✅ Video downloaded successfully: #{local_path}"
-      {
-        success: true,
-        local_path: local_path,
-        file_size: File.size(local_path),
-        s3_key: s3_key
-      }
-      
-    rescue => e
-      puts "❌ Error downloading video: #{e.message}"
-      { success: false, error: e.message }
-    end
-  end
 end 

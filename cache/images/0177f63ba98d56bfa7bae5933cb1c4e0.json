@@ -1,0 +1,38 @@
+{
+  "id": 109,
+  "start_time": 537.572,
+  "end_time": 541.652,
+  "text": " people who haven't been watching where you've been going, I mean, it's your stops across the",
+  "confidence": -0.07115824,
+  "no_speech_prob": 4.3105107e-12,
+  "compression_ratio": 1.6584616,
+  "words": [],
+  "image_queries": [
+    "person shrugging with uncertainty"
+  ],
+  "has_images": true,
+  "generated_images": [
+    {
+      "url": "https://images.pexels.com/photos/764880/pexels-photo-764880.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "download_url": "https://images.pexels.com/photos/764880/pexels-photo-764880.jpeg",
+      "width": 4096,
+      "height": 2732,
+      "description": "Black and white photo of a man walking through shadows on a deserted pavement, creating a moody silhouette.",
+      "photographer": "Bob  Price",
+      "photographer_url": "https://www.pexels.com/@bob-price-252175",
+      "metadata": {
+        "id": 764880,
+        "avg_color": "#2D2D2D",
+        "liked": false
+      },
+      "query": "person shrugging with uncertainty",
+      "query_index": 0,
+      "segment_id": 109,
+      "start_time": 537.572,
+      "end_time": 541.652,
+      "generated_at": "2025-07-07 08:12:24 -0700"
+    }
+  ],
+  "images_generated": 1,
+  "generation_success": true
+}
