@@ -1,0 +1,60 @@
+
+=== Pipeline started at: 2025-07-07T11:08:43-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+🔍 Checking for existing video in S3...
+🆕 No existing video found in S3, generating new video...
+✅ Found audio file: b3.mp3
+📊 File size: 5.31 MB
+
+🚀 Initializing video generator...
+🎬 Local Video Service initialized
+  📁 Temp directory: /var/folders/h6/gt987qh93hs085p28xhy8z840000gn/T/d20250707-44747-3c3u5t
+  🎥 FFmpeg path: ffmpeg
+
+⚙️  Generation options:
+  📐 Resolution: 1080p
+  🎬 FPS: 24
+  🎭 Ken Burns Effect: true
+  🔄 Smooth Transitions: true
+  ⏱️  Image Duration: 3.0s
+  🌊 Transition Duration: 1.0s
+  🔍 Zoom Factor: 1.2x
+  📹 Pan Speed: 0.5
+  💾 Image Caching: true
+  💾 Transcription Caching: false
+  💾 Analysis Caching: false
+  🔄 Force Refresh: true
+
+============================================================
+🎬 STARTING KEN BURNS VIDEO GENERATION
+============================================================
+
+📝 Step 1: Processing audio and transcription...
+🎵 Transcribing audio content...
+⏱️  Step 1 started at: 11:08:45
+🎬 Starting Ken Burns video generation
+  📁 Audio file: b3.mp3
+  🆔 Project ID: b3
+  ⚙️  Options: {:resolution=>"1080p", :fps=>24, :test_mode=>false, :ken_burns_effect=>true, :smooth_transitions=>true, :image_duration=>3.0, :transition_duration=>1.0, :zoom_factor=>1.2, :pan_speed=>0.5, :cache_images=>true, :cache_transcription=>false, :cache_analysis=>false, :force=>true}
+
+📝 Step 1: Transcribing audio to get text segments...
+  🎤 Processing audio with Whisper...
+  🎵 Processing audio file...
+    🎤 Processing audio with AudioProcessor...
+🎤 Processing audio file: b3.mp3
+⏱️  Step 1 completed at: 11:08:48
+⏱️  Step 1 runtime: 2.86 seconds
+
+============================================================
+❌ VIDEO GENERATION FAILED
+============================================================
+Error: Step 1 failed - Audio transcription: Audio processing error: API request failed with status 500: {"error":{"message":"Internal Server Error","type":"internal_server_error"}}
+
+🔧 Troubleshooting tips:
+  • Check your API keys are properly configured
+  • Ensure AWS services are accessible
+  • Verify the audio file is in a supported format
+  • Check network connectivity
+  • Try running with test_mode: true for debugging
+============================================================

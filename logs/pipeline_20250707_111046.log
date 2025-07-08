@@ -1,0 +1,103 @@
+
+=== Pipeline started at: 2025-07-07T11:10:46-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+🔍 Checking for existing video in S3...
+🆕 No existing video found in S3, generating new video...
+✅ Found audio file: b3.mp3
+📊 File size: 5.31 MB
+
+🚀 Initializing video generator...
+🎬 Local Video Service initialized
+  📁 Temp directory: /var/folders/h6/gt987qh93hs085p28xhy8z840000gn/T/d20250707-45183-r1003u
+  🎥 FFmpeg path: ffmpeg
+
+⚙️  Generation options:
+  📐 Resolution: 1080p
+  🎬 FPS: 24
+  🎭 Ken Burns Effect: true
+  🔄 Smooth Transitions: true
+  ⏱️  Image Duration: 3.0s
+  🌊 Transition Duration: 1.0s
+  🔍 Zoom Factor: 1.2x
+  📹 Pan Speed: 0.5
+  💾 Image Caching: true
+  💾 Transcription Caching: true
+  💾 Analysis Caching: false
+  🔄 Force Refresh: true
+
+============================================================
+🎬 STARTING KEN BURNS VIDEO GENERATION
+============================================================
+
+📝 Step 1: Processing audio and transcription...
+🎵 Transcribing audio content...
+⏱️  Step 1 started at: 11:10:47
+🎬 Starting Ken Burns video generation
+  📁 Audio file: b3.mp3
+  🆔 Project ID: b3
+  ⚙️  Options: {:resolution=>"1080p", :fps=>24, :test_mode=>false, :ken_burns_effect=>true, :smooth_transitions=>true, :image_duration=>3.0, :transition_duration=>1.0, :zoom_factor=>1.2, :pan_speed=>0.5, :cache_images=>true, :cache_transcription=>true, :cache_analysis=>false, :force=>true}
+
+📝 Step 1: Transcribing audio to get text segments...
+  🎤 Processing audio with Whisper...
+  🎵 Processing audio file...
+    🎤 Processing audio with AudioProcessor...
+🎤 Processing audio file: b3.mp3
+    📁 Using cached transcription from: cache/b3.json
+✅ Transcription completed: 0 segments
+📊 Total duration: 0 seconds
+📝 Total words: 0
+📤 Uploading audio file: b3.mp3
+✅ Audio file uploaded: s3://burns-videos/projects/b3/audio/b3.mp3
+  ✅ Transcription complete: 0 segments
+
+🎨 Step 2: Analyzing text content to generate image queries...
+  🧠 Analyzing content with Gemini to generate image queries...
+  🎨 Analyzing content for image generation...
+🎨 Analyzing content for image generation...
+🧠 Analyzing content for image generation using Gemini...
+  📝 Analyzing 0 segments in batches of 10...
+    💾 Caching content analysis to: cache/gemini_analysis_2a8a43b4f13c0cbe9693f8a7d8b98a9b.json
+✅ Content analysis completed: 0 segments processed
+✅ Content analysis completed:
+  📊 Total segments: 0
+  🖼️  Segments with images: 0
+  🔍 Total image queries: 0
+  📈 Average confidence: 0
+  ✅ Analysis complete: 0 image queries generated
+
+🖼️  Step 3: Generating images using the queries...
+  🔍 Searching for images using image service providers...
+  🖼️  Generating images for segments...
+  ✅ Image generation complete: 0 images found
+
+📋 Step 4: Creating project manifest with all data...
+  📋 Creating project manifest...
+📤 Uploading project manifest: b3
+✅ Project manifest uploaded: s3://burns-videos/projects/b3/manifest.json
+  ✅ Manifest created successfully
+
+🎥 Step 5: Generating final Ken Burns video...
+  🎥 Generating final video using AWS Lambda for parallel processing...
+📥 Getting project manifest: b3
+✅ Project manifest retrieved: s3://burns-videos/projects/b3/manifest.json
+    📝 Processing 0 segments concurrently...
+🚀 Generating video segments concurrently for project: b3
+  📝 Segments: 0
+  ⚡ Concurrency: 0 (conservative to prevent Lambda /tmp issues)
+❌ Error in concurrent video generation: number of threads must be greater than zero
+⏱️  Step 1 completed at: 11:10:50
+⏱️  Step 1 runtime: 3.7 seconds
+
+============================================================
+❌ VIDEO GENERATION FAILED
+============================================================
+Error: Step 5 failed - Video generation: Lambda video generation failed: number of threads must be greater than zero
+
+🔧 Troubleshooting tips:
+  • Check your API keys are properly configured
+  • Ensure AWS services are accessible
+  • Verify the audio file is in a supported format
+  • Check network connectivity
+  • Try running with test_mode: true for debugging
+============================================================

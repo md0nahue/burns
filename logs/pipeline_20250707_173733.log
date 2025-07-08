@@ -1,0 +1,9 @@
+
+=== Pipeline started at: 2025-07-07T17:37:33-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+🔍 Checking for existing video in S3...
+📥 Found existing video in S3, downloading...
+✅ Downloaded existing video from S3!
+📹 Video file size: 54.43 MB
+📺 Video path: completed/fireship_ken_burns_video.mp4

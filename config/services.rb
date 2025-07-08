@@ -3,7 +3,7 @@ module Config
   GROQ_CONFIG = {
     api_key: ENV['GROQ_API_KEY'],
     base_url: 'https://api.groq.com/openai/v1',
-    default_model: 'whisper-large-v3-turbo',
+    default_model: 'whisper-large-v3',
     default_language: 'en'
   }
 

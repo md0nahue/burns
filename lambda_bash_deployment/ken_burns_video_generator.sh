@@ -58,7 +58,7 @@ download_image() {
     log "Downloaded image: $local_path"
 }
 
-# Generate Ken Burns video from image
+# Generate Ken Burns video from image with variety of effects
 generate_ken_burns_video() {
     local input_image="$1"
     local output_video="$2"
@@ -66,16 +66,88 @@ generate_ken_burns_video() {
     
     log "Generating Ken Burns video: $input_image -> $output_video"
     
-    # Create Ken Burns effect: zoom from 1.3x to 1.0x
+    # Get random Ken Burns effect
+    local ken_burns_filter=$(get_random_ken_burns_effect "$duration")
+    
+    # Create smooth Ken Burns effect with higher quality settings
+    # Start with higher resolution input and smooth zoom
     ffmpeg -i "$input_image" \
-        -filter_complex "scale=$DEFAULT_RESOLUTION:force_original_aspect_ratio=decrease,pad=$DEFAULT_RESOLUTION:(ow-iw)/2:(oh-ih)/2,zoompan=z='min(zoom+0.0015,1.5)':d=$((duration * DEFAULT_FPS)):x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=$DEFAULT_RESOLUTION" \
+        -filter_complex "
+        scale=2560x1440:force_original_aspect_ratio=increase:flags=lanczos,
+        crop=$DEFAULT_RESOLUTION,
+        $ken_burns_filter
+        " \
         -t "$duration" \
         -c:v libx264 \
-        -preset fast \
-        -crf 23 \
+        -preset medium \
+        -crf 18 \
+        -profile:v high \
+        -level 4.1 \
+        -pix_fmt yuv420p \
+        -g $((DEFAULT_FPS * 2)) \
+        -movflags +faststart \
         -y "$output_video" || return 1
     
     log "Generated video: $output_video"
+}
+
+# Get random Ken Burns effect for variety
+get_random_ken_burns_effect() {
+    local duration="$1"
+    local frames=$((duration * DEFAULT_FPS))
+    
+    # Array of different Ken Burns effects
+    local effects=(
+        # 1. Classic zoom in from center
+        "zoompan=z='zoom+0.0008':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 2. Zoom out from center
+        "zoompan=z='if(lte(zoom,1.0),1.5,max(1.00,zoom-0.0008))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 3. Zoom in + pan left to right
+        "zoompan=z='zoom+0.0006':x='(iw/2-(iw/zoom/2))+on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 4. Zoom in + pan right to left
+        "zoompan=z='zoom+0.0006':x='(iw/2-(iw/zoom/2))-on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 5. Zoom in + pan top to bottom
+        "zoompan=z='zoom+0.0006':x='iw/2-(iw/zoom/2)':y='(ih/2-(ih/zoom/2))+on*1.2':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 6. Zoom in + pan bottom to top
+        "zoompan=z='zoom+0.0006':x='iw/2-(iw/zoom/2)':y='(ih/2-(ih/zoom/2))-on*1.2':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 7. Zoom out + pan left to right
+        "zoompan=z='if(lte(zoom,1.0),1.4,max(1.00,zoom-0.0006))':x='(iw/2-(iw/zoom/2))+on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 8. Zoom out + pan right to left
+        "zoompan=z='if(lte(zoom,1.0),1.4,max(1.00,zoom-0.0006))':x='(iw/2-(iw/zoom/2))-on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 9. Diagonal pan (top-left to bottom-right) + zoom in
+        "zoompan=z='zoom+0.0005':x='on*1.8':y='on*1.4':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 10. Diagonal pan (bottom-right to top-left) + zoom out
+        "zoompan=z='if(lte(zoom,1.0),1.5,max(1.00,zoom-0.0005))':x='iw-(on*1.8+iw/zoom)':y='ih-(on*1.4+ih/zoom)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 11. Slow zoom in from center (cinematic)
+        "zoompan=z='zoom+0.0004':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 12. Fast zoom in from center (dynamic)
+        "zoompan=z='zoom+0.0012':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 13. Circular motion + zoom in
+        "zoompan=z='zoom+0.0006':x='(iw/2-(iw/zoom/2))+sin(on/20)*100':y='(ih/2-(ih/zoom/2))+cos(on/20)*100':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 14. Focus shift: start top-left, end bottom-right
+        "zoompan=z='zoom+0.0007':x='on*2.5':y='on*2':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+        
+        # 15. Focus shift: start bottom-left, end top-right
+        "zoompan=z='zoom+0.0007':x='on*2.5':y='ih-(on*2+ih/zoom)':d=1:s=$DEFAULT_RESOLUTION:fps=$DEFAULT_FPS"
+    )
+    
+    # Get random effect
+    local effect_count=${#effects[@]}
+    local random_index=$((RANDOM % effect_count))
+    echo "${effects[$random_index]}"
 }
 
 # Combine videos with audio

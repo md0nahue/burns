@@ -250,10 +250,32 @@ class WhisperService
     case response_format
     when 'json', 'verbose_json'
       # Return standardized format expected by pipeline
+      segments = data['segments'] || []
+      
+      # Extract words from segments if available
+      words = []
+      segments.each do |segment|
+        if segment['words']
+          words.concat(segment['words'])
+        else
+          # Fallback: estimate words from segment text
+          segment_words = segment['text'].split(/\s+/).map.with_index do |word, index|
+            {
+              'word' => word,
+              'start' => segment['start'],
+              'end' => segment['end'],
+              'confidence' => segment.dig('avg_logprob') || 0.0
+            }
+          end
+          words.concat(segment_words)
+        end
+      end
+      
       {
         success: true,
         text: data['text'],
-        segments: data['segments'] || [],
+        segments: segments,
+        words: words,
         duration: data['duration'],
         language: data['language'],
         task: data['task']

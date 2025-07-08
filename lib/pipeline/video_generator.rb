@@ -337,6 +337,30 @@ class VideoGenerator
           fps: video_result[:fps],
           generated_at: video_result[:generated_at]
         }
+      elsif video_result[:fallback_needed] || video_result[:timeout]
+        puts "    ⚠️  Lambda failed, attempting local fallback completion..."
+        
+        # Use local video service as fallback
+        fallback_result = @local_video_service.complete_video_from_segments(project_id, video_result[:segment_results] || [])
+        
+        if fallback_result[:success]
+          puts "    ✅ Local fallback video completion successful"
+          puts "    📺 Local video: #{fallback_result[:video_path]}"
+          puts "    ⏱️  Duration: #{fallback_result[:duration]} seconds"
+          
+          {
+            success: true,
+            video_url: fallback_result[:video_url],
+            video_s3_key: fallback_result[:video_s3_key],
+            duration: fallback_result[:duration],
+            resolution: fallback_result[:resolution] || '1920x1080',
+            fps: fallback_result[:fps] || 24,
+            generated_at: Time.now.iso8601,
+            fallback_used: true
+          }
+        else
+          { success: false, error: "Both Lambda and local fallback failed: #{fallback_result[:error]}" }
+        end
       else
         { success: false, error: "Lambda video generation failed: #{video_result[:error]}" }
       end

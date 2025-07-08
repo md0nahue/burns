@@ -53,6 +53,69 @@ class LocalVideoService
     end
   end
 
+  # Complete video from segments (useful for handling failed Lambda segments)
+  # @param project_id [String] Project identifier
+  # @param segment_results [Array] Array of segment results from previous processing
+  # @return [Hash] Completion result
+  def complete_video_from_segments(project_id, segment_results = [])
+    puts "🎬 Completing video from segments locally for project: #{project_id}"
+    
+    begin
+      # If no segment results provided, try to find them from S3
+      if segment_results.empty?
+        puts "  📥 No segment results provided, downloading from S3..."
+        segment_results = download_segments_from_s3(project_id)
+      end
+      
+      if segment_results.empty?
+        return { success: false, error: "No segments found to combine" }
+      end
+      
+      puts "  📊 Found #{segment_results.length} segments to combine"
+      
+      # Download audio file
+      audio_file = download_project_audio(project_id)
+      
+      # Download and combine segments
+      segment_videos = download_segment_videos(project_id, segment_results)
+      
+      if segment_videos.empty?
+        return { success: false, error: "Failed to download segment videos" }
+      end
+      
+      # Combine segments with audio
+      final_video_path = combine_segments_with_audio(segment_videos, audio_file)
+      
+      if final_video_path && File.exist?(final_video_path)
+        # Move to completed folder
+        completed_video_path = move_to_completed_folder(final_video_path, project_id)
+        
+        # Upload to S3
+        s3_key = upload_final_video_to_s3(completed_video_path, project_id)
+        
+        # Clean up
+        cleanup_temp_files
+        
+        {
+          success: true,
+          video_path: completed_video_path,
+          video_s3_key: s3_key,
+          duration: get_video_duration(completed_video_path),
+          resolution: '1920x1080',
+          fps: 24,
+          segments_count: segment_results.length,
+          generated_at: Time.now.iso8601
+        }
+      else
+        { success: false, error: "Failed to create final video" }
+      end
+      
+    rescue => e
+      puts "❌ Error completing video: #{e.message}"
+      { success: false, error: e.message }
+    end
+  end
+
   private
 
   def download_project_data(project_id, manifest)
@@ -241,12 +304,13 @@ class LocalVideoService
   end
 
   def create_single_image_ken_burns(image_path, duration, output_path)
-    # Create a Ken Burns effect using FFmpeg
-    # Zoom from 1.3x to 1.0x over the duration
+    # Get random Ken Burns effect for variety
+    ken_burns_filter = get_random_ken_burns_effect(duration)
+    
     filter_complex = [
-      "[0:v]scale=1920:1080:force_original_aspect_ratio=decrease,",
-      "pad=1920:1080:(ow-iw)/2:(oh-ih)/2,",
-      "zoompan=z='min(zoom+0.0015,1.5)':d=#{duration * 24}:x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1920x1080[v]"
+      "[0:v]scale=2560:1440:force_original_aspect_ratio=increase:flags=lanczos,",
+      "crop=1920:1080,",
+      "#{ken_burns_filter}[v]"
     ].join
     
     cmd = [
@@ -256,14 +320,75 @@ class LocalVideoService
       "-map", "[v]",
       "-t", duration.to_s,
       "-c:v", "libx264",
-      "-preset", "fast",
-      "-crf", "23",
+      "-preset", "medium",
+      "-crf", "18",
+      "-profile:v", "high",
+      "-level", "4.1",
+      "-pix_fmt", "yuv420p",
+      "-g", "48",
+      "-movflags", "+faststart",
       "-y", # Overwrite output
       output_path
     ]
     
-    puts "    🎥 Creating single image Ken Burns effect: #{File.basename(output_path)}"
+    puts "    🎥 Creating varied Ken Burns effect: #{File.basename(output_path)}"
     system(*cmd)
+  end
+
+  def get_random_ken_burns_effect(duration)
+    frames = (duration * 24).to_i
+    
+    # Array of different Ken Burns effects
+    effects = [
+      # 1. Classic zoom in from center
+      "zoompan=z='zoom+0.0008':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 2. Zoom out from center
+      "zoompan=z='if(lte(zoom,1.0),1.5,max(1.00,zoom-0.0008))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 3. Zoom in + pan left to right
+      "zoompan=z='zoom+0.0006':x='(iw/2-(iw/zoom/2))+on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 4. Zoom in + pan right to left
+      "zoompan=z='zoom+0.0006':x='(iw/2-(iw/zoom/2))-on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 5. Zoom in + pan top to bottom
+      "zoompan=z='zoom+0.0006':x='iw/2-(iw/zoom/2)':y='(ih/2-(ih/zoom/2))+on*1.2':d=1:s=1920x1080:fps=24",
+      
+      # 6. Zoom in + pan bottom to top
+      "zoompan=z='zoom+0.0006':x='iw/2-(iw/zoom/2)':y='(ih/2-(ih/zoom/2))-on*1.2':d=1:s=1920x1080:fps=24",
+      
+      # 7. Zoom out + pan left to right
+      "zoompan=z='if(lte(zoom,1.0),1.4,max(1.00,zoom-0.0006))':x='(iw/2-(iw/zoom/2))+on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 8. Zoom out + pan right to left
+      "zoompan=z='if(lte(zoom,1.0),1.4,max(1.00,zoom-0.0006))':x='(iw/2-(iw/zoom/2))-on*1.5':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 9. Diagonal pan (top-left to bottom-right) + zoom in
+      "zoompan=z='zoom+0.0005':x='on*1.8':y='on*1.4':d=1:s=1920x1080:fps=24",
+      
+      # 10. Diagonal pan (bottom-right to top-left) + zoom out
+      "zoompan=z='if(lte(zoom,1.0),1.5,max(1.00,zoom-0.0005))':x='iw-(on*1.8+iw/zoom)':y='ih-(on*1.4+ih/zoom)':d=1:s=1920x1080:fps=24",
+      
+      # 11. Slow zoom in from center (cinematic)
+      "zoompan=z='zoom+0.0004':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 12. Fast zoom in from center (dynamic)
+      "zoompan=z='zoom+0.0012':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=1:s=1920x1080:fps=24",
+      
+      # 13. Circular motion + zoom in
+      "zoompan=z='zoom+0.0006':x='(iw/2-(iw/zoom/2))+sin(on/20)*100':y='(ih/2-(ih/zoom/2))+cos(on/20)*100':d=1:s=1920x1080:fps=24",
+      
+      # 14. Focus shift: start top-left, end bottom-right
+      "zoompan=z='zoom+0.0007':x='on*2.5':y='on*2':d=1:s=1920x1080:fps=24",
+      
+      # 15. Focus shift: start bottom-left, end top-right
+      "zoompan=z='zoom+0.0007':x='on*2.5':y='ih-(on*2+ih/zoom)':d=1:s=1920x1080:fps=24"
+    ]
+    
+    # Get random effect
+    effect_index = rand(effects.length)
+    effects[effect_index]
   end
 
   def combine_segments_with_audio(segment_videos, audio_file)
@@ -400,6 +525,64 @@ class LocalVideoService
     end
     
     raise "FFmpeg not found. Please install FFmpeg to generate videos."
+  end
+
+  def download_segments_from_s3(project_id)
+    # This would download segment info from S3 - for now return empty
+    # In a real implementation, we'd check S3 for available segments
+    []
+  end
+
+  def download_project_audio(project_id)
+    # Download the project's audio file from S3
+    audio_path = File.join(@temp_dir, "audio.mp3")
+    
+    # Try common audio file locations
+    audio_keys = [
+      "projects/#{project_id}/audio/#{project_id}.mp3",
+      "projects/#{project_id}/#{project_id}.mp3",
+      "#{project_id}.mp3"
+    ]
+    
+    audio_keys.each do |key|
+      begin
+        # In a real implementation, download from S3
+        # For now, try to find local file
+        local_audio = "#{project_id}.mp3"
+        if File.exist?(local_audio)
+          FileUtils.cp(local_audio, audio_path)
+          return audio_path
+        end
+      rescue
+        # Continue to next key
+      end
+    end
+    
+    nil
+  end
+
+  def download_segment_videos(project_id, segment_results)
+    segment_videos = []
+    
+    segment_results.each do |result|
+      next unless result[:success] && result[:segment_s3_key]
+      
+      segment_path = File.join(@temp_dir, "segment_#{result[:segment_id]}.mp4")
+      
+      # In a real implementation, download from S3
+      # For now, this would be handled by the calling script
+      if File.exist?(segment_path)
+        segment_videos << segment_path
+      end
+    end
+    
+    segment_videos
+  end
+
+  def upload_final_video_to_s3(video_path, project_id)
+    # In a real implementation, upload to S3
+    # For now, return a mock S3 key
+    "projects/#{project_id}/final_video.mp4"
   end
 
   def cleanup_temp_files

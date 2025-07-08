@@ -45,10 +45,10 @@ class ImageServiceBus
       fallback_clients = [:openverse, :wikimedia, :lorem_picsum]
     end
     
-    # For a single image, try multiple providers until we get a good result
+    # For speed optimization: limit attempts and reduce delays
     all_clients = primary_clients + fallback_clients
     attempts = 0
-    max_attempts = all_clients.length * 2 # Allow retries
+    max_attempts = [all_clients.length, 6].min # Limit max attempts for speed
     
     while results.empty? && attempts < max_attempts
       client_name = all_clients[attempts % all_clients.length]
@@ -60,8 +60,8 @@ class ImageServiceBus
       puts "    🔍 ImageServiceBus: Attempting #{client_name} (attempt #{attempts}/#{max_attempts})"
       
       begin
-        # Add delay for rate limiting
-        sleep(0.3) if attempts > 1
+        # Reduced delay for faster processing
+        sleep(0.1) if attempts > 1
         
         result = client.search_images(query, target_resolution)
         
@@ -123,8 +123,8 @@ class ImageServiceBus
     
     url = image[:url]
     
-    # Skip placeholder patterns
-    placeholder_patterns = [
+    # Skip placeholder patterns and low-quality indicators
+    low_quality_patterns = [
       /placeholder/i,
       /default/i,
       /notfound/i,
@@ -132,14 +132,61 @@ class ImageServiceBus
       /missing/i,
       /unavailable/i,
       /lorem/i,
-      /picsum\.photos.*\?blur/i # Skip blurred Lorem Picsum images
+      /picsum\.photos.*\?blur/i, # Skip blurred Lorem Picsum images
+      /thumb/i,                   # Skip thumbnail versions
+      /small/i,                   # Skip small versions
+      /compressed/i,              # Skip heavily compressed
+      /preview/i,                 # Skip preview versions
+      /low.*res/i,               # Skip low resolution indicators
+      /grainy/i,                 # Skip explicitly grainy images
+      /pixelated/i,              # Skip pixelated images
+      /\?w=\d{1,3}[&$]/,         # Skip URLs with small width parameters (< 1000px)
+      /\?h=\d{1,3}[&$]/,         # Skip URLs with small height parameters (< 1000px)
+      /size=small/i,             # Skip small size parameters
+      /quality=low/i             # Skip low quality parameters
     ]
     
-    return false if placeholder_patterns.any? { |pattern| url.match?(pattern) }
+    return false if low_quality_patterns.any? { |pattern| url.match?(pattern) }
     
-    # Check minimum dimensions if available
+    # STRICT minimum dimensions for high-quality Ken Burns effects
     if image[:width] && image[:height]
-      return false if image[:width] < 800 || image[:height] < 600
+      # Require MUCH higher resolution - Ken Burns needs room to zoom and pan
+      min_width = 2560   # Minimum 2560px width for smooth 1080p output
+      min_height = 1440  # Minimum 1440px height for smooth 1080p output
+      
+      return false if image[:width] < min_width || image[:height] < min_height
+      
+      # Reject images with poor aspect ratios that might be low quality
+      aspect_ratio = image[:width].to_f / image[:height].to_f
+      return false if aspect_ratio < 0.5 || aspect_ratio > 3.0  # Reject extreme ratios
+      
+      # Prefer larger images - they usually have better quality
+      total_pixels = image[:width] * image[:height]
+      return false if total_pixels < 3_686_400  # Minimum ~3.7MP (2560x1440)
+    end
+    
+    # Additional URL-based quality checks
+    # Prefer images from URLs that indicate high quality
+    quality_indicators = [
+      /\d{4,}x\d{4,}/,           # URLs containing large dimensions
+      /hd/i,                     # HD indicator
+      /high.*res/i,              # High resolution indicator
+      /full.*res/i,              # Full resolution indicator
+      /original/i,               # Original size indicator
+      /large/i,                  # Large size indicator
+      /4k/i,                     # 4K indicator
+      /uhd/i,                    # Ultra HD indicator
+      /raw/i,                    # Raw/uncompressed indicator
+      /uncompressed/i            # Uncompressed indicator
+    ]
+    
+    # Boost score for quality indicators but don't require them
+    has_quality_indicator = quality_indicators.any? { |pattern| url.match?(pattern) }
+    
+    # For Ken Burns, we need the highest possible quality
+    # If dimensions aren't available, be more strict about URL quality indicators
+    if !image[:width] || !image[:height]
+      return has_quality_indicator  # Require quality indicators if no dimensions
     end
     
     true
@@ -152,15 +199,21 @@ class ImageServiceBus
   def get_images_relaxed(query, target_resolution)
     results = []
     
-    # Try each client once more with any result accepted
+    # Try each client once more with relaxed but still reasonable minimums
     @clients.each do |client_name, client|
       begin
         result = client.search_images(query, target_resolution)
         
         if result && result[:images] && !result[:images].empty?
-          results << result
-          puts "    ✅ ImageServiceBus: Accepted relaxed quality from #{client_name}"
-          break # Take first available result
+          # Apply relaxed quality filter - still require decent resolution
+          relaxed_quality_images = result[:images].select { |img| is_relaxed_quality_image?(img) }
+          
+          if relaxed_quality_images.any?
+            filtered_result = result.merge(images: relaxed_quality_images)
+            results << filtered_result
+            puts "    ✅ ImageServiceBus: Accepted relaxed quality from #{client_name} (#{relaxed_quality_images.length} images)"
+            break # Take first available result
+          end
         end
         
       rescue => e
@@ -169,5 +222,47 @@ class ImageServiceBus
     end
     
     results
+  end
+  
+  # Check if image meets relaxed quality requirements
+  def is_relaxed_quality_image?(image)
+    return false unless image && image[:url]
+    
+    url = image[:url]
+    
+    # Skip obvious low-quality patterns (more permissive than strict)
+    low_quality_patterns = [
+      /placeholder/i,
+      /default/i,
+      /notfound/i,
+      /404/i,
+      /missing/i,
+      /unavailable/i,
+      /grainy/i,                 # Still reject explicitly grainy images
+      /pixelated/i,              # Still reject pixelated images
+      /\?w=\d{1,2}[&$]/,         # Reject very small width parameters (< 100px)
+      /\?h=\d{1,2}[&$]/,         # Reject very small height parameters (< 100px)
+      /quality=low/i             # Still reject explicitly low quality
+    ]
+    
+    return false if low_quality_patterns.any? { |pattern| url.match?(pattern) }
+    
+    # Relaxed but still decent minimum dimensions for Ken Burns
+    if image[:width] && image[:height]
+      min_width = 1920   # Still require Full HD minimum for relaxed
+      min_height = 1080  # Still require Full HD minimum for relaxed
+      
+      return false if image[:width] < min_width || image[:height] < min_height
+      
+      # Still reject extreme aspect ratios
+      aspect_ratio = image[:width].to_f / image[:height].to_f
+      return false if aspect_ratio < 0.3 || aspect_ratio > 4.0  # More permissive but still reasonable
+      
+      # Minimum pixel count for relaxed quality
+      total_pixels = image[:width] * image[:height]
+      return false if total_pixels < 2_073_600  # Minimum ~2MP (1920x1080)
+    end
+    
+    true
   end
 end 

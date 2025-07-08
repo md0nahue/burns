@@ -56,7 +56,7 @@ unless File.exist?(audio_file)
   exit 1
 end
 
-# Check if completed video already exists
+# Check if completed video already exists locally
 audio_basename = File.basename(audio_file, File.extname(audio_file))
 completed_video_path = "completed/#{audio_basename}_ken_burns_video.mp4"
 
@@ -78,6 +78,29 @@ if File.exist?(completed_video_path)
     puts "⚠️  Video file appears to be corrupted or invalid."
     puts "🔄 Will regenerate the video..."
   end
+else
+  # Check if video exists in S3 and try to download it
+  puts "🔍 Checking for existing video in S3..."
+  project_id = audio_basename
+  
+  # Check if final video exists in S3
+  video_s3_key = "projects/#{project_id}/final_video.mp4"
+  if system("aws s3 ls s3://burns-videos/#{video_s3_key} > /dev/null 2>&1")
+    puts "📥 Found existing video in S3, downloading..."
+    FileUtils.mkdir_p('completed')
+    
+    download_result = system("aws s3 cp s3://burns-videos/#{video_s3_key} '#{completed_video_path}' 2>/dev/null")
+    if download_result && File.exist?(completed_video_path)
+      puts "✅ Downloaded existing video from S3!"
+      puts "📹 Video file size: #{(File.size(completed_video_path) / 1024.0 / 1024.0).round(2)} MB"
+      puts "📺 Video path: #{completed_video_path}"
+      exit 0
+    else
+      puts "⚠️  Failed to download video from S3, will regenerate..."
+    end
+  else
+    puts "🆕 No existing video found in S3, generating new video..."
+  end
 end
 
 puts "✅ Found audio file: #{audio_file}"
@@ -92,17 +115,16 @@ generation_options = {
   resolution: '1080p',
   fps: 24,
   test_mode: false, # Set to false for production
-  max_segments: 10, # Limit segments for testing
   ken_burns_effect: true,
   smooth_transitions: true,
-  image_duration: 3.0, # Seconds per image
+  image_duration: 4.0, # Seconds per image (longer for smoother motion)
   transition_duration: 1.0, # Seconds for transitions
-  zoom_factor: 1.2, # Subtle zoom effect
-  pan_speed: 0.5, # Slow panning
-  cache_images: false, # Disable image caching to regenerate with fixed filters
-  cache_transcription: false, # Disable transcription caching for debugging
-  cache_analysis: false, # Disable content analysis caching for debugging
-  force: true # Force regeneration of all cached data
+  zoom_factor: 1.4, # More pronounced zoom effect for better Ken Burns
+  pan_speed: 0.3, # Slower panning for smoother motion
+  cache_images: true, # Enable image caching to avoid duplicate API requests
+  cache_transcription: true, # Enable transcription caching since it works
+  cache_analysis: true, # Enable content analysis caching for speed
+  force: false # Don't force regeneration - use caching for speed
 }
 
 puts "\n⚙️  Generation options:"
@@ -127,6 +149,7 @@ puts "=" * 60
 step_start = Time.now
 puts "\n📝 Step 1: Processing audio and transcription..."
 puts "🎵 Transcribing audio content..."
+puts "⏱️  Step 1 started at: #{step_start.strftime('%H:%M:%S')}"
 
 begin
   result = generator.generate_video(audio_file, generation_options)
@@ -140,6 +163,10 @@ rescue => e
   puts "  • Backtrace: #{e.backtrace.first(5).join("\n    ")}"
   exit 1
 end
+
+step_end = Time.now
+puts "⏱️  Step 1 completed at: #{step_end.strftime('%H:%M:%S')}"
+puts "⏱️  Step 1 runtime: #{(step_end - step_start).round(2)} seconds"
 
 if result[:success]
   puts "\n" + "=" * 60
@@ -159,6 +186,52 @@ if result[:success]
   
   puts "\n🎉 Your beautiful Ken Burns video is ready!"
   puts "📺 Watch it at: #{result[:video_url]}"
+  
+  # Download the final video to completed directory
+  if result[:video_url] && !result[:video_url].empty?
+    download_start = Time.now
+    puts "\n📥 Downloading final video to completed directory..."
+    puts "⏱️  Download started at: #{download_start.strftime('%H:%M:%S')}"
+    FileUtils.mkdir_p('completed')
+    
+    # Extract S3 key from URL or use result data
+    video_s3_key = result[:video_s3_key] || "projects/#{result[:project_id]}/final_video.mp4"
+    
+    # Debug S3 access
+    puts "🔍 Checking S3 access..."
+    puts "    • S3 Key: #{video_s3_key}"
+    puts "    • Target path: #{completed_video_path}"
+    
+    # Check if file exists in S3 first
+    s3_check_command = "aws s3 ls s3://burns-videos/#{video_s3_key}"
+    puts "    • Checking S3: #{s3_check_command}"
+    
+    if system("#{s3_check_command} > /dev/null 2>&1")
+      puts "    ✅ File exists in S3"
+      
+      download_command = "aws s3 cp s3://burns-videos/#{video_s3_key} '#{completed_video_path}'"
+      puts "    💾 Downloading: #{download_command}"
+      
+      if system("#{download_command}")
+        download_end = Time.now
+        puts "    ✅ Video downloaded successfully!"
+        puts "    📁 Local path: #{completed_video_path}"
+        puts "    📹 File size: #{(File.size(completed_video_path) / 1024.0 / 1024.0).round(2)} MB"
+        puts "    ⏱️  Download completed at: #{download_end.strftime('%H:%M:%S')}"
+        puts "    ⏱️  Download runtime: #{(download_end - download_start).round(2)} seconds"
+      else
+        puts "    ❌ Failed to download video from S3"
+        puts "    🔗 Video is still available at: #{result[:video_url]}"
+        puts "    🔧 Debug: Check AWS credentials and network connectivity"
+      end
+    else
+      puts "    ❌ File does not exist in S3 at key: #{video_s3_key}"
+      puts "    🔗 Video is still available at: #{result[:video_url]}"
+      puts "    🔧 Debug: Check if the S3 key is correct"
+    end
+  else
+    puts "    ⚠️  No video URL provided in result"
+  end
   
   # Step 2: Get detailed project status
   puts "\n" + "=" * 50
@@ -210,27 +283,7 @@ else
   exit 1
 end
 
-# Add timing for each major step
-step_end = Time.now
-puts "⏱️  Step 1 runtime: #{(step_end - step_start).round(2)} seconds"
-
-step_start = Time.now
-puts "\n🖼️  Step 2: Generating images for segments..."
-# ...
-step_end = Time.now
-puts "⏱️  Step 2 runtime: #{(step_end - step_start).round(2)} seconds"
-
-step_start = Time.now
-puts "\n📋 Step 3: Creating project manifest..."
-# ...
-step_end = Time.now
-puts "⏱️  Step 3 runtime: #{(step_end - step_start).round(2)} seconds"
-
-step_start = Time.now
-puts "\n🎥 Step 4: Generating final Ken Burns video..."
-# ...
-step_end = Time.now
-puts "⏱️  Step 4 runtime: #{(step_end - step_start).round(2)} seconds"
+# Note: Individual step timing is now integrated above
 
 # Log pipeline end time and total runtime
 pipeline_end = Time.now

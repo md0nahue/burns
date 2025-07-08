@@ -2,6 +2,7 @@ require 'aws-sdk-lambda'
 require 'aws-sdk-s3'
 require 'json'
 require 'concurrent'
+require 'timeout'
 require_relative '../../config/services'
 
 class LambdaService
@@ -68,6 +69,16 @@ class LambdaService
     total_start_time = Time.now
     puts "🚀 Generating video segments concurrently for project: #{project_id}"
     puts "  📝 Segments: #{segments.length}"
+    
+    # Handle empty segments case
+    if segments.empty?
+      puts "⚠️  No segments to process - audio transcription resulted in empty segments"
+      return {
+        success: false,
+        error: "No segments to process. This may indicate an issue with audio transcription or segmentation.",
+        suggestion: "Check if the audio file contains speech and is in a supported format"
+      }
+    end
     
     # Calculate optimal concurrency based on segments
     max_concurrency = options[:max_concurrency] || calculate_optimal_concurrency(segments.length)
@@ -165,6 +176,11 @@ class LambdaService
       # Combine segments into final video
       puts "  🎬 Combining #{results.length} segments into final video..."
       final_result = combine_segments_into_video(project_id, results, options)
+      
+      # If combination failed but segments were successful, mark for fallback
+      if !final_result[:success] && final_result[:fallback_needed]
+        final_result[:segment_results] = results
+      end
       
       executor.shutdown
       executor.wait_for_termination
@@ -266,11 +282,26 @@ class LambdaService
         options: options.merge(video_combination: true)
       }
       
-      # Invoke Lambda function for video combination
+      # Invoke Lambda function for video combination with timeout handling
       puts "  🔧 Payload for combination: #{payload.keys.join(', ')}"
       puts "  📊 Segment results count: #{segment_results.length}"
+      puts "  📤 Invoking Lambda function: #{@function_name}"
+      puts "    Debug - Payload keys: #{payload.keys.join(', ')}"
+      puts "    Debug - Payload values: #{payload.values.map(&:class).join(', ')}"
       
-      response = invoke_lambda_function(payload)
+      # Set a timeout for the Lambda call
+      lambda_timeout = 60 # 60 seconds timeout for combination
+      response = nil
+      
+      begin
+        # Use timeout wrapper for Lambda invocation
+        Timeout::timeout(lambda_timeout) do
+          response = invoke_lambda_function(payload)
+        end
+      rescue Timeout::Error
+        puts "⚠️  Lambda combination timed out after #{lambda_timeout}s, falling back to local completion..."
+        return { success: false, error: "Lambda timeout", fallback_needed: true, timeout: true }
+      end
       
       if response[:success]
         puts "✅ Final video combination completed!"
@@ -279,13 +310,16 @@ class LambdaService
         puts "  🎬 Segments combined: #{segment_results.length}"
       else
         puts "❌ Final video combination failed: #{response[:error]}"
+        puts "  🔄 Will attempt local fallback completion..."
+        response[:fallback_needed] = true
       end
       
       response
       
     rescue => e
       puts "❌ Error combining segments: #{e.message}"
-      { success: false, error: e.message }
+      puts "  🔄 Will attempt local fallback completion..."
+      { success: false, error: e.message, fallback_needed: true }
     end
   end
 
@@ -485,19 +519,20 @@ class LambdaService
   # @return [Integer] Optimal concurrency level
   def calculate_optimal_concurrency(segment_count)
     # AWS Lambda can handle thousands of concurrent executions
-    # But each Lambda downloads images to /tmp, limited by disk space
-    # Reduce concurrency to prevent /tmp storage exhaustion
+    # Optimize for speed while maintaining reliability
     
-    if segment_count <= 10
-      # Small projects: process all segments concurrently
+    # Handle edge case of 0 segments
+    return 1 if segment_count <= 0
+    
+    if segment_count <= 15
+      # Small projects: process all segments concurrently for speed
       segment_count
-    elsif segment_count <= 50
-      # Medium projects: process in batches of 15
-      [segment_count, 15].min
+    elsif segment_count <= 60
+      # Medium projects: aggressive concurrency for speed
+      [segment_count, 25].min  # Increased from 15 to 25
     else
-      # Large projects: process in batches of 10
-      # Conservative limit to prevent /tmp disk space issues
-      [segment_count, 10].min
+      # Large projects: balanced approach
+      [segment_count, 20].min  # Increased from 10 to 20
     end
   end
 

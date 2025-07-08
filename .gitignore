@@ -1,3 +1,7 @@
 *.zip
 *ffmpeg
 *ffprobe
+completed/*
+cache/*
+*.mp3
+*.mp4

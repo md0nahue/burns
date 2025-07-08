@@ -1,0 +1,1383 @@
+
+=== Pipeline started at: 2025-07-07T17:56:48-07:00 ===
+🎬 Burns - Audio to Ken Burns Video Pipeline
+============================================================
+🔍 Checking for existing video in S3...
+🆕 No existing video found in S3, generating new video...
+✅ Found audio file: vibe3.mp3
+📊 File size: 3.08 MB
+
+🚀 Initializing video generator...
+🎬 Local Video Service initialized
+  📁 Temp directory: /var/folders/h6/gt987qh93hs085p28xhy8z840000gn/T/d20250707-54795-2a2sy3
+  🎥 FFmpeg path: ffmpeg
+
+⚙️  Generation options:
+  📐 Resolution: 1080p
+  🎬 FPS: 24
+  🎭 Ken Burns Effect: true
+  🔄 Smooth Transitions: true
+  ⏱️  Image Duration: 4.0s
+  🌊 Transition Duration: 1.0s
+  🔍 Zoom Factor: 1.4x
+  📹 Pan Speed: 0.3
+  💾 Image Caching: true
+  💾 Transcription Caching: true
+  💾 Analysis Caching: true
+  🔄 Force Refresh: false
+
+============================================================
+🎬 STARTING KEN BURNS VIDEO GENERATION
+============================================================
+
+📝 Step 1: Processing audio and transcription...
+🎵 Transcribing audio content...
+⏱️  Step 1 started at: 17:56:50
+🎬 Starting Ken Burns video generation
+  📁 Audio file: vibe3.mp3
+  🆔 Project ID: vibe3
+  ⚙️  Options: {:resolution=>"1080p", :fps=>24, :test_mode=>false, :ken_burns_effect=>true, :smooth_transitions=>true, :image_duration=>4.0, :transition_duration=>1.0, :zoom_factor=>1.4, :pan_speed=>0.3, :cache_images=>true, :cache_transcription=>true, :cache_analysis=>true, :force=>false}
+
+📝 Step 1: Transcribing audio to get text segments...
+  🎤 Processing audio with Whisper...
+  🎵 Processing audio file...
+    🎤 Processing audio with AudioProcessor...
+🎤 Processing audio file: vibe3.mp3
+    💾 Caching transcription to: cache/vibe3.json
+✅ Transcription completed: 57 segments
+📊 Total duration: 285.322 seconds
+📝 Total words: 1110
+📤 Uploading audio file: vibe3.mp3
+✅ Audio file uploaded: s3://burns-videos/projects/vibe3/audio/vibe3.mp3
+  ✅ Transcription complete: 57 segments
+
+🎨 Step 2: Analyzing text content to generate image queries...
+  🧠 Analyzing content with Gemini to generate image queries...
+  🎨 Analyzing content for image generation...
+🎨 Analyzing content for image generation...
+🧠 Analyzing content for image generation using Gemini...
+  📝 Analyzing 57 segments in batches of 10...
+    🔄 Processing batch 1/6 (10 segments)
+    🔄 Processing batch 2/6 (10 segments)
+    🔄 Processing batch 3/6 (10 segments)
+    🔄 Processing batch 4/6 (10 segments)
+    🔄 Processing batch 5/6 (10 segments)
+    🔄 Processing batch 6/6 (7 segments)
+    💾 Caching content analysis to: cache/gemini_analysis_52edadc294560b0ce7739f1300319727.json
+✅ Content analysis completed: 57 segments processed
+✅ Content analysis completed:
+  📊 Total segments: 57
+  🖼️  Segments with images: 57
+  🔍 Total image queries: 171
+  📈 Average confidence: -0.086
+  ✅ Analysis complete: 171 image queries generated
+
+🖼️  Step 3: Generating images using the queries...
+  🔍 Searching for images using image service providers...
+  🖼️  Generating images for segments...
+    📝 Processing segment: 0
+    📝 Processing segment: 0
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"glowing digital virus spreading globally", :category=>"stock_image"}, {:query=>"abstract representation of mind virus", :category=>"stock_image"}, {:query=>"futuristic cityscape with digital infection", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"glowing digital virus spreading globally", :category=>"stock_image"}, {:query=>"abstract representation of mind virus", :category=>"stock_image"}, {:query=>"futuristic cityscape with digital infection", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'glowing digital virus spreading globally' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'glowing digital virus spreading globally' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/4031905/pexels-photo-4031905.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 1
+    📝 Processing segment: 1
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person being infected by digital virus", :category=>"stock_image"}, {:query=>"abstract concept of mind virus infection", :category=>"stock_image"}, {:query=>"close-up of glowing digital code", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"person being infected by digital virus", :category=>"stock_image"}, {:query=>"abstract concept of mind virus infection", :category=>"stock_image"}, {:query=>"close-up of glowing digital code", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person being infected by digital virus' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person being infected by digital virus' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8376285/pexels-photo-8376285.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 2
+    📝 Processing segment: 2
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Andra Kaparthi portrait", :category=>"famous_person"}, {:query=>"ex-OpenAI wizard illustration", :category=>"general"}, {:query=>"portrait of a tech visionary", :category=>"famous_person"}]
+      Debug - final image_queries: [{:query=>"Andra Kaparthi portrait", :category=>"famous_person"}, {:query=>"ex-OpenAI wizard illustration", :category=>"general"}, {:query=>"portrait of a tech visionary", :category=>"famous_person"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'Andra Kaparthi portrait' (category: famous_person)
+    🔍 ImageServiceBus: Getting 3 images for query 'Andra Kaparthi portrait' (category: famous_person)
+    👤 Famous person detected - prioritizing Wikimedia
+    🔍 ImageServiceBus: Attempting wikimedia (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from wikimedia
+    🔍 ImageServiceBus: Attempting unsplash (attempt 2/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 3/6)
+    ✅ ImageServiceBus: Got 14 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8140288/pexels-photo-8140288.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 3
+    📝 Processing segment: 3
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person embracing exponential growth graph", :category=>"stock_image"}, {:query=>"abstract concept of giving in to vibes", :category=>"stock_image"}, {:query=>"forgetting code concept visual", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"person embracing exponential growth graph", :category=>"stock_image"}, {:query=>"abstract concept of giving in to vibes", :category=>"stock_image"}, {:query=>"forgetting code concept visual", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person embracing exponential growth graph' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person embracing exponential growth graph' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/9003434/pexels-photo-9003434.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 4
+    📝 Processing segment: 4
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"code influencer on social media", :category=>"stock_image"}, {:query=>"internet code influencers trending", :category=>"stock_image"}, {:query=>"digital world storm metaphor", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"code influencer on social media", :category=>"stock_image"}, {:query=>"internet code influencers trending", :category=>"stock_image"}, {:query=>"digital world storm metaphor", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'code influencer on social media' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'code influencer on social media' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/18610082/pexels-photo-18610082.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 5
+    📝 Processing segment: 5
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Peter Levels portrait", :category=>"famous_person"}, {:query=>"indie hacker following footsteps", :category=>"stock_image"}, {:query=>"apex indie hacker visual", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"Peter Levels portrait", :category=>"famous_person"}, {:query=>"indie hacker following footsteps", :category=>"stock_image"}, {:query=>"apex indie hacker visual", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'Peter Levels portrait' (category: famous_person)
+    🔍 ImageServiceBus: Getting 3 images for query 'Peter Levels portrait' (category: famous_person)
+    👤 Famous person detected - prioritizing Wikimedia
+    🔍 ImageServiceBus: Attempting wikimedia (attempt 1/6)
+    ⏭️  Skipping large file (89MB): St._Nicholas_%28serial%29_%28IA_stnicholasserial411dodg%29.pdf
+    ✅ ImageServiceBus: Got 4 quality images from wikimedia
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from wikimedia: https://upload.wikimedia.org/wikipedia/commons/1/1f/De_Vinne%2C_Invention_of_Printing_%281876%29.djvu
+      ✅ Generated 1 images
+    📝 Processing segment: 6
+    📝 Processing segment: 6
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"crappy real-time flight simulator MMO", :category=>"stock_image"}, {:query=>"JavaScript code for game development", :category=>"stock_image"}, {:query=>"indie game development scene", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"crappy real-time flight simulator MMO", :category=>"stock_image"}, {:query=>"JavaScript code for game development", :category=>"stock_image"}, {:query=>"indie game development scene", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'crappy real-time flight simulator MMO' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'crappy real-time flight simulator MMO' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/11513634/pexels-photo-11513634.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 7
+    📝 Processing segment: 7
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Twitter feed with in-game ads", :category=>"stock_image"}, {:query=>"large Twitter following icon", :category=>"stock_image"}, {:query=>"making money from online game", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"Twitter feed with in-game ads", :category=>"stock_image"}, {:query=>"large Twitter following icon", :category=>"stock_image"}, {:query=>"making money from online game", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'Twitter feed with in-game ads' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'Twitter feed with in-game ads' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/6153367/pexels-photo-6153367.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 8
+    📝 Processing segment: 8
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"tech bro genius concept art", :category=>"general"}, {:query=>"person with brilliant tech idea", :category=>"stock_image"}, {:query=>"respecting tech innovation", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"tech bro genius concept art", :category=>"general"}, {:query=>"person with brilliant tech idea", :category=>"stock_image"}, {:query=>"respecting tech innovation", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'tech bro genius concept art' (category: general)
+    🔍 ImageServiceBus: Getting 3 images for query 'tech bro genius concept art' (category: general)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/29751267/pexels-photo-29751267.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 9
+    📝 Processing segment: 9
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"crappy AI-generated games collage", :category=>"stock_image"}, {:query=>"internet flooded with AI slop", :category=>"stock_image"}, {:query=>"low-quality AI game screenshots", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"crappy AI-generated games collage", :category=>"stock_image"}, {:query=>"internet flooded with AI slop", :category=>"stock_image"}, {:query=>"low-quality AI game screenshots", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'crappy AI-generated games collage' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'crappy AI-generated games collage' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/4581613/pexels-photo-4581613.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 10
+    📝 Processing segment: 10
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"AI writing code on screen", :category=>"stock_image"}, {:query=>"futuristic AI coding interface", :category=>"stock_image"}, {:query=>"abstract representation of AI thought", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"AI writing code on screen", :category=>"stock_image"}, {:query=>"futuristic AI coding interface", :category=>"stock_image"}, {:query=>"abstract representation of AI thought", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'AI writing code on screen' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'AI writing code on screen' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 13 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/1933900/pexels-photo-1933900.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 11
+    📝 Processing segment: 11
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"coding error message on screen", :category=>"stock_image"}, {:query=>"frustrated programmer looking at code", :category=>"stock_image"}, {:query=>"glitched computer screen with code", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"coding error message on screen", :category=>"stock_image"}, {:query=>"frustrated programmer looking at code", :category=>"stock_image"}, {:query=>"glitched computer screen with code", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'coding error message on screen' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'coding error message on screen' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 12
+    📝 Processing segment: 12
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"news ticker with date March 26 2025", :category=>"stock_image"}, {:query=>"modern news studio with logo", :category=>"stock_image"}, {:query=>"digital display showing date and time", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"news ticker with date March 26 2025", :category=>"stock_image"}, {:query=>"modern news studio with logo", :category=>"stock_image"}, {:query=>"digital display showing date and time", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'news ticker with date March 26 2025' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'news ticker with date March 26 2025' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/29509454/pexels-photo-29509454.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 13
+    📝 Processing segment: 13
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"coding vs programming diagram", :category=>"general"}, {:query=>"abstract representation of logic flow", :category=>"general"}, {:query=>"two distinct paths diverging", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"coding vs programming diagram", :category=>"general"}, {:query=>"abstract representation of logic flow", :category=>"general"}, {:query=>"two distinct paths diverging", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'coding vs programming diagram' (category: general)
+    🔍 ImageServiceBus: Getting 3 images for query 'coding vs programming diagram' (category: general)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/25626437/pexels-photo-25626437.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 14
+    📝 Processing segment: 14
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"programmer typing code rapidly in Vim", :category=>"stock_image"}, {:query=>"close-up of hands typing code", :category=>"stock_image"}, {:query=>"abstract visualization of code translation", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"programmer typing code rapidly in Vim", :category=>"stock_image"}, {:query=>"close-up of hands typing code", :category=>"stock_image"}, {:query=>"abstract visualization of code translation", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'programmer typing code rapidly in Vim' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'programmer typing code rapidly in Vim' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7988087/pexels-photo-7988087.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 15
+    📝 Processing segment: 15
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"AI chatbot generating code snippet", :category=>"stock_image"}, {:query=>"comparison of human vs AI coding speed", :category=>"general"}, {:query=>"large language model interface", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"AI chatbot generating code snippet", :category=>"stock_image"}, {:query=>"comparison of human vs AI coding speed", :category=>"general"}, {:query=>"large language model interface", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'AI chatbot generating code snippet' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'AI chatbot generating code snippet' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 13 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/16629368/pexels-photo-16629368.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 16
+    📝 Processing segment: 16
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"broad landscape representing programming scope", :category=>"stock_image"}, {:query=>"complex interconnected network diagram", :category=>"general"}, {:query=>"abstract representation of problem-solving", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"broad landscape representing programming scope", :category=>"stock_image"}, {:query=>"complex interconnected network diagram", :category=>"general"}, {:query=>"abstract representation of problem-solving", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'broad landscape representing programming scope' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'broad landscape representing programming scope' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/15997883/pexels-photo-15997883.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 17
+    📝 Processing segment: 17
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"artist painting abstract code", :category=>"stock_image"}, {:query=>"scientist observing data patterns", :category=>"stock_image"}, {:query=>"brain with glowing neural pathways", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"artist painting abstract code", :category=>"stock_image"}, {:query=>"scientist observing data patterns", :category=>"stock_image"}, {:query=>"brain with glowing neural pathways", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'artist painting abstract code' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'artist painting abstract code' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7859026/pexels-photo-7859026.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 18
+    📝 Processing segment: 18
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"programmer deleting lines of code", :category=>"stock_image"}, {:query=>"refactoring code on a screen", :category=>"stock_image"}, {:query=>"clean code versus messy code comparison", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"programmer deleting lines of code", :category=>"stock_image"}, {:query=>"refactoring code on a screen", :category=>"stock_image"}, {:query=>"clean code versus messy code comparison", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'programmer deleting lines of code' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'programmer deleting lines of code' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/97077/pexels-photo-97077.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 19
+    📝 Processing segment: 19
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"programmer looking confused at code", :category=>"stock_image"}, {:query=>"abstract visualization of understanding code", :category=>"general"}, {:query=>"pathway with many branching options", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"programmer looking confused at code", :category=>"stock_image"}, {:query=>"abstract visualization of understanding code", :category=>"general"}, {:query=>"pathway with many branching options", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'programmer looking confused at code' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'programmer looking confused at code' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/4385446/pexels-photo-4385446.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 20
+    📝 Processing segment: 20
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"internet trolls attacking code", :category=>"stock_image"}, {:query=>"hacker breaking computer screen", :category=>"stock_image"}, {:query=>"angry online mob attacking success", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"internet trolls attacking code", :category=>"stock_image"}, {:query=>"hacker breaking computer screen", :category=>"stock_image"}, {:query=>"angry online mob attacking success", :category=>"general"}]
+      💾 Using cached images for segment 20
+      ✅ Generated 1 images
+    📝 Processing segment: 21
+    📝 Processing segment: 21
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"quotation marks graphic", :category=>"stock_image"}, {:query=>"speech bubble icon", :category=>"stock_image"}, {:query=>"dialogue symbol", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"quotation marks graphic", :category=>"stock_image"}, {:query=>"speech bubble icon", :category=>"stock_image"}, {:query=>"dialogue symbol", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'quotation marks graphic' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'quotation marks graphic' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/15319721/pexels-photo-15319721.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 22
+    📝 Processing segment: 22
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"maxed out API key usage graph", :category=>"stock_image"}, {:query=>"computer screen with error message", :category=>"stock_image"}, {:query=>"abstract digital chaos", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"maxed out API key usage graph", :category=>"stock_image"}, {:query=>"computer screen with error message", :category=>"stock_image"}, {:query=>"abstract digital chaos", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'maxed out API key usage graph' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'maxed out API key usage graph' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7887810/pexels-photo-7887810.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 23
+    📝 Processing segment: 23
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person confused by complex diagram", :category=>"stock_image"}, {:query=>"frustrated programmer at desk", :category=>"stock_image"}, {:query=>"overwhelmed person with many tasks", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"person confused by complex diagram", :category=>"stock_image"}, {:query=>"frustrated programmer at desk", :category=>"stock_image"}, {:query=>"overwhelmed person with many tasks", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person confused by complex diagram' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person confused by complex diagram' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7292895/pexels-photo-7292895.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 24
+    📝 Processing segment: 24
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"closed Popeyes restaurant sign", :category=>"stock_image"}, {:query=>"man begging on street", :category=>"stock_image"}, {:query=>"job application rejection letter", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"closed Popeyes restaurant sign", :category=>"stock_image"}, {:query=>"man begging on street", :category=>"stock_image"}, {:query=>"job application rejection letter", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'closed Popeyes restaurant sign' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'closed Popeyes restaurant sign' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/3813922/pexels-photo-3813922.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 25
+    📝 Processing segment: 25
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"sad person looking out window", :category=>"stock_image"}, {:query=>"group of people looking discouraged", :category=>"stock_image"}, {:query=>"cautionary tale illustration", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"sad person looking out window", :category=>"stock_image"}, {:query=>"group of people looking discouraged", :category=>"stock_image"}, {:query=>"cautionary tale illustration", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'sad person looking out window' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'sad person looking out window' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8419181/pexels-photo-8419181.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 26
+    📝 Processing segment: 26
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"vibrant energy flow abstract", :category=>"stock_image"}, {:query=>"successful startup team celebrating", :category=>"stock_image"}, {:query=>"positive business growth chart", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"vibrant energy flow abstract", :category=>"stock_image"}, {:query=>"successful startup team celebrating", :category=>"stock_image"}, {:query=>"positive business growth chart", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'vibrant energy flow abstract' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'vibrant energy flow abstract' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/16503708/pexels-photo-16503708.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 27
+    📝 Processing segment: 27
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"billion dollar stock market graph", :category=>"stock_image"}, {:query=>"futuristic city skyline at night", :category=>"stock_image"}, {:query=>"abstract representation of massive wealth", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"billion dollar stock market graph", :category=>"stock_image"}, {:query=>"futuristic city skyline at night", :category=>"stock_image"}, {:query=>"abstract representation of massive wealth", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'billion dollar stock market graph' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'billion dollar stock market graph' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/6801639/pexels-photo-6801639.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 28
+    📝 Processing segment: 28
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"AI coding interface v0", :category=>"stock_image"}, {:query=>"modern IDE software screenshot", :category=>"stock_image"}, {:query=>"futuristic developer workspace", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"AI coding interface v0", :category=>"stock_image"}, {:query=>"modern IDE software screenshot", :category=>"stock_image"}, {:query=>"futuristic developer workspace", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'AI coding interface v0' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'AI coding interface v0' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 13 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 29
+    📝 Processing segment: 29
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"React logo with code elements", :category=>"stock_image"}, {:query=>"Express.js logo with network lines", :category=>"stock_image"}, {:query=>"Tailwind CSS logo with design elements", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"React logo with code elements", :category=>"stock_image"}, {:query=>"Express.js logo with network lines", :category=>"stock_image"}, {:query=>"Tailwind CSS logo with design elements", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'React logo with code elements' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'React logo with code elements' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7500604/pexels-photo-7500604.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 30
+    📝 Processing segment: 30
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person frustrated with computer screen", :category=>"stock_image"}, {:query=>"abstract representation of bad vibes", :category=>"general"}, {:query=>"developer struggling with code", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"person frustrated with computer screen", :category=>"stock_image"}, {:query=>"abstract representation of bad vibes", :category=>"general"}, {:query=>"developer struggling with code", :category=>"stock_image"}]
+      💾 Using cached images for segment 30
+      ✅ Generated 1 images
+    📝 Processing segment: 31
+    📝 Processing segment: 31
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Svelte logo with coding background", :category=>"stock_image"}, {:query=>"Vue.js logo with dynamic animation", :category=>"stock_image"}, {:query=>"developer coding with positive energy", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"Svelte logo with coding background", :category=>"stock_image"}, {:query=>"Vue.js logo with dynamic animation", :category=>"stock_image"}, {:query=>"developer coding with positive energy", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'Svelte logo with coding background' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'Svelte logo with coding background' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/11035394/pexels-photo-11035394.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 32
+    📝 Processing segment: 32
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"broken rule sign with Git logo", :category=>"stock_image"}, {:query=>"person mastering Git commands", :category=>"stock_image"}, {:query=>"Git logo on a solid background", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"broken rule sign with Git logo", :category=>"stock_image"}, {:query=>"person mastering Git commands", :category=>"stock_image"}, {:query=>"Git logo on a solid background", :category=>"stock_image"}]
+      💾 Using cached images for segment 32
+      ✅ Generated 1 images
+    📝 Processing segment: 33
+    📝 Processing segment: 33
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"AI robot controlling computer code", :category=>"stock_image"}, {:query=>"abstract visualization of AI takeover", :category=>"general"}, {:query=>"digital code being deleted by AI", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"AI robot controlling computer code", :category=>"stock_image"}, {:query=>"abstract visualization of AI takeover", :category=>"general"}, {:query=>"digital code being deleted by AI", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'AI robot controlling computer code' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'AI robot controlling computer code' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8097228/pexels-photo-8097228.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 34
+    📝 Processing segment: 34
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"empty digital space where code was", :category=>"general"}, {:query=>"AI failing to regenerate code", :category=>"stock_image"}, {:query=>"abstract concept of lost data", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"empty digital space where code was", :category=>"general"}, {:query=>"AI failing to regenerate code", :category=>"stock_image"}, {:query=>"abstract concept of lost data", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'empty digital space where code was' (category: general)
+    🔍 ImageServiceBus: Getting 3 images for query 'empty digital space where code was' (category: general)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8534244/pexels-photo-8534244.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 35
+    📝 Processing segment: 35
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person safely storing code on cloud", :category=>"stock_image"}, {:query=>"Git stash icon with secure lock", :category=>"stock_image"}, {:query=>"developer looking relieved with backup", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"person safely storing code on cloud", :category=>"stock_image"}, {:query=>"Git stash icon with secure lock", :category=>"stock_image"}, {:query=>"developer looking relieved with backup", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person safely storing code on cloud' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person safely storing code on cloud' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 14 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 36
+    📝 Processing segment: 36
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"ClaudeCode logo with commit animation", :category=>"stock_image"}, {:query=>"AI committing code to repository", :category=>"stock_image"}, {:query=>"abstract visualization of code committing", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"ClaudeCode logo with commit animation", :category=>"stock_image"}, {:query=>"AI committing code to repository", :category=>"stock_image"}, {:query=>"abstract visualization of code committing", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'ClaudeCode logo with commit animation' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'ClaudeCode logo with commit animation' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/16034035/pexels-photo-16034035.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 37
+    📝 Processing segment: 37
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person learning Git from online course", :category=>"stock_image"}, {:query=>"hands typing Git commands on keyboard", :category=>"stock_image"}, {:query=>"Git tutorial interface on screen", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"person learning Git from online course", :category=>"stock_image"}, {:query=>"hands typing Git commands on keyboard", :category=>"stock_image"}, {:query=>"Git tutorial interface on screen", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person learning Git from online course' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person learning Git from online course' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7594221/pexels-photo-7594221.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 38
+    📝 Processing segment: 38
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"John F. Kennedy quote about asking", :category=>"famous_person"}, {:query=>"AI and human collaborating on project", :category=>"stock_image"}, {:query=>"abstract concept of mutual benefit", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"John F. Kennedy quote about asking", :category=>"famous_person"}, {:query=>"AI and human collaborating on project", :category=>"stock_image"}, {:query=>"abstract concept of mutual benefit", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'John F. Kennedy quote about asking' (category: famous_person)
+    🔍 ImageServiceBus: Getting 3 images for query 'John F. Kennedy quote about asking' (category: famous_person)
+    👤 Famous person detected - prioritizing Wikimedia
+    🔍 ImageServiceBus: Attempting wikimedia (attempt 1/6)
+    ⏭️  Skipping large file (60MB): Film_Fun_%28IA_filmfun346356lesl%29.pdf
+    ⏭️  Skipping video file: LBJ_and_Robert_F._Kennedy%2C_10-26-64._11.45P._Excerpt.webm
+    ⏭️  Skipping large file (157MB): The_Film_Daily%2C_Jul-Dec_1926.djvu
+    ⏭️  Skipping large file (131MB): The_Radio_Annual_and_Television_Yearbook%2C_1955_%28IA_radioannua00radi%29.pdf
+    ⚠️  ImageServiceBus: No results from wikimedia
+    🔍 ImageServiceBus: Attempting unsplash (attempt 2/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 3/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8383416/pexels-photo-8383416.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 39
+    📝 Processing segment: 39
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person acting as product manager", :category=>"stock_image"}, {:query=>"AI directing human workflow", :category=>"stock_image"}, {:query=>"abstract visualization of role reversal", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"person acting as product manager", :category=>"stock_image"}, {:query=>"AI directing human workflow", :category=>"stock_image"}, {:query=>"abstract visualization of role reversal", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person acting as product manager' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person acting as product manager' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/4195500/pexels-photo-4195500.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 40
+    📝 Processing segment: 40
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"breaking down complex task into steps", :category=>"stock_image"}, {:query=>"gears meshing together smoothly", :category=>"stock_image"}, {:query=>"flowchart of a process", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"breaking down complex task into steps", :category=>"stock_image"}, {:query=>"gears meshing together smoothly", :category=>"stock_image"}, {:query=>"flowchart of a process", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'breaking down complex task into steps' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'breaking down complex task into steps' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/6032775/pexels-photo-6032775.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 41
+    📝 Processing segment: 41
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"specific instructions on a whiteboard", :category=>"stock_image"}, {:query=>"problem-solving puzzle pieces fitting", :category=>"stock_image"}, {:query=>"contextual information displayed digitally", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"specific instructions on a whiteboard", :category=>"stock_image"}, {:query=>"problem-solving puzzle pieces fitting", :category=>"stock_image"}, {:query=>"contextual information displayed digitally", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'specific instructions on a whiteboard' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'specific instructions on a whiteboard' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7092372/pexels-photo-7092372.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 42
+    📝 Processing segment: 42
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"UI design mockups with annotations", :category=>"stock_image"}, {:query=>"technical documentation pages", :category=>"stock_image"}, {:query=>"developer working on code", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"UI design mockups with annotations", :category=>"stock_image"}, {:query=>"technical documentation pages", :category=>"stock_image"}, {:query=>"developer working on code", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'UI design mockups with annotations' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'UI design mockups with annotations' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8217430/pexels-photo-8217430.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 43
+    📝 Processing segment: 43
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person relying on intuition only", :category=>"stock_image"}, {:query=>"abstract concept of 'vibes'", :category=>"general"}, {:query=>"person making a guess", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"person relying on intuition only", :category=>"stock_image"}, {:query=>"abstract concept of 'vibes'", :category=>"general"}, {:query=>"person making a guess", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person relying on intuition only' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person relying on intuition only' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 14 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/5712699/pexels-photo-5712699.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 44
+    📝 Processing segment: 44
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Levels Flight Simulator screenshot", :category=>"general"}, {:query=>"plane in a storm", :category=>"stock_image"}, {:query=>"simulator cockpit with errors", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"Levels Flight Simulator screenshot", :category=>"general"}, {:query=>"plane in a storm", :category=>"stock_image"}, {:query=>"simulator cockpit with errors", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'Levels Flight Simulator screenshot' (category: general)
+    🔍 ImageServiceBus: Getting 3 images for query 'Levels Flight Simulator screenshot' (category: general)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/3091121/pexels-photo-3091121.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 45
+    📝 Processing segment: 45
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"experienced engineer examining blueprints", :category=>"stock_image"}, {:query=>"wise old mentor guiding student", :category=>"stock_image"}, {:query=>"foundation of a building", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"experienced engineer examining blueprints", :category=>"stock_image"}, {:query=>"wise old mentor guiding student", :category=>"stock_image"}, {:query=>"foundation of a building", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'experienced engineer examining blueprints' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'experienced engineer examining blueprints' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/8278900/pexels-photo-8278900.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 46
+    📝 Processing segment: 46
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"professional coder at desk", :category=>"stock_image"}, {:query=>"person confidently typing code", :category=>"stock_image"}, {:query=>"master craftsman creating", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"professional coder at desk", :category=>"stock_image"}, {:query=>"person confidently typing code", :category=>"stock_image"}, {:query=>"master craftsman creating", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'professional coder at desk' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'professional coder at desk' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/115655/pexels-photo-115655.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 47
+    📝 Processing segment: 47
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"professional writer at keyboard", :category=>"stock_image"}, {:query=>"person editing text on screen", :category=>"stock_image"}, {:query=>"pen writing elegantly", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"professional writer at keyboard", :category=>"stock_image"}, {:query=>"person editing text on screen", :category=>"stock_image"}, {:query=>"pen writing elegantly", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'professional writer at keyboard' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'professional writer at keyboard' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 14 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/6393024/pexels-photo-6393024.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 48
+    📝 Processing segment: 48
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Grammarly logo with AI icon", :category=>"general"}, {:query=>"AI writing assistant interface", :category=>"stock_image"}, {:query=>"person using writing software", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"Grammarly logo with AI icon", :category=>"general"}, {:query=>"AI writing assistant interface", :category=>"stock_image"}, {:query=>"person using writing software", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'Grammarly logo with AI icon' (category: general)
+    🔍 ImageServiceBus: Getting 3 images for query 'Grammarly logo with AI icon' (category: general)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/17153209/pexels-photo-17153209.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 49
+    📝 Processing segment: 49
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"professional communicating via app", :category=>"stock_image"}, {:query=>"seamless integration of tools", :category=>"stock_image"}, {:query=>"AI working within communication apps", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"professional communicating via app", :category=>"stock_image"}, {:query=>"seamless integration of tools", :category=>"stock_image"}, {:query=>"AI working within communication apps", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'professional communicating via app' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'professional communicating via app' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/4977480/pexels-photo-4977480.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 50
+    📝 Processing segment: 50
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Grammarly text box suggestion popup", :category=>"stock_image"}, {:query=>"computer screen with writing suggestions", :category=>"stock_image"}, {:query=>"close-up of digital text editing", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"Grammarly text box suggestion popup", :category=>"stock_image"}, {:query=>"computer screen with writing suggestions", :category=>"stock_image"}, {:query=>"close-up of digital text editing", :category=>"general"}]
+      💾 Using cached images for segment 50
+      ✅ Generated 1 images
+    📝 Processing segment: 51
+    📝 Processing segment: 51
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person typing quickly on laptop", :category=>"stock_image"}, {:query=>"speedometer showing fast writing", :category=>"stock_image"}, {:query=>"digital workflow optimization concept", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"person typing quickly on laptop", :category=>"stock_image"}, {:query=>"speedometer showing fast writing", :category=>"stock_image"}, {:query=>"digital workflow optimization concept", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person typing quickly on laptop' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person typing quickly on laptop' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/5237657/pexels-photo-5237657.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 52
+    📝 Processing segment: 52
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"AI chatbot interface with text", :category=>"stock_image"}, {:query=>"email composition screen with Grammarly", :category=>"stock_image"}, {:query=>"coding pull request description example", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"AI chatbot interface with text", :category=>"stock_image"}, {:query=>"email composition screen with Grammarly", :category=>"stock_image"}, {:query=>"coding pull request description example", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'AI chatbot interface with text' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'AI chatbot interface with text' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 13 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/16094052/pexels-photo-16094052.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 53
+    📝 Processing segment: 53
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"long Slack message on screen", :category=>"stock_image"}, {:query=>"boss talking to employee in office", :category=>"stock_image"}, {:query=>"overwhelmed person looking at phone", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"long Slack message on screen", :category=>"stock_image"}, {:query=>"boss talking to employee in office", :category=>"stock_image"}, {:query=>"overwhelmed person looking at phone", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'long Slack message on screen' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'long Slack message on screen' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/7439124/pexels-photo-7439124.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 54
+    📝 Processing segment: 54
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"person speaking naturally, not robotic", :category=>"stock_image"}, {:query=>"human face with genuine expression", :category=>"stock_image"}, {:query=>"robot vs human communication contrast", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"person speaking naturally, not robotic", :category=>"stock_image"}, {:query=>"human face with genuine expression", :category=>"stock_image"}, {:query=>"robot vs human communication contrast", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'person speaking naturally, not robotic' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'person speaking naturally, not robotic' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 13 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/9750947/pexels-photo-9750947.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 55
+    📝 Processing segment: 55
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"graph showing tone matching audience", :category=>"stock_image"}, {:query=>"diverse group of people communicating", :category=>"stock_image"}, {:query=>"writing with different emotional tones", :category=>"general"}]
+      Debug - final image_queries: [{:query=>"graph showing tone matching audience", :category=>"stock_image"}, {:query=>"diverse group of people communicating", :category=>"stock_image"}, {:query=>"writing with different emotional tones", :category=>"general"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'graph showing tone matching audience' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'graph showing tone matching audience' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/31169243/pexels-photo-31169243.jpeg
+      ✅ Generated 1 images
+    📝 Processing segment: 56
+    📝 Processing segment: 56
+      Debug - segment keys: [:id, :start_time, :end_time, :text, :confidence, :no_speech_prob, :compression_ratio, :words, :image_queries, :backup_queries, :has_images]
+      Debug - image_queries: [{:query=>"Grammarly logo with download button", :category=>"stock_image"}, {:query=>"person smiling while using laptop", :category=>"stock_image"}, {:query=>"website with signup and download options", :category=>"stock_image"}]
+      Debug - final image_queries: [{:query=>"Grammarly logo with download button", :category=>"stock_image"}, {:query=>"person smiling while using laptop", :category=>"stock_image"}, {:query=>"website with signup and download options", :category=>"stock_image"}]
+      Searching for ONE image with 5 query options
+      Trying query 1/5: 'Grammarly logo with download button' (category: stock_image)
+    🔍 ImageServiceBus: Getting 3 images for query 'Grammarly logo with download button' (category: stock_image)
+    🔍 ImageServiceBus: Attempting unsplash (attempt 1/6)
+    ⚠️  ImageServiceBus: No results from unsplash
+    🔍 ImageServiceBus: Attempting pexels (attempt 2/6)
+    ✅ ImageServiceBus: Got 15 quality images from pexels
+    🔍 ImageServiceBus: Returning 1 results
+      ✅ Found quality image from pexels: https://images.pexels.com/photos/6276002/pexels-photo-6276002.jpeg
+      ✅ Generated 1 images
+  ✅ Image generation complete: 57 images found
+
+📋 Step 4: Creating project manifest with all data...
+  📋 Creating project manifest...
+📤 Uploading project manifest: vibe3
+✅ Project manifest uploaded: s3://burns-videos/projects/vibe3/manifest.json
+  ✅ Manifest created successfully
+
+🎥 Step 5: Generating final Ken Burns video...
+  🎥 Generating final video using AWS Lambda for parallel processing...
+📥 Getting project manifest: vibe3
+✅ Project manifest retrieved: s3://burns-videos/projects/vibe3/manifest.json
+    📝 Processing 57 segments concurrently...
+🚀 Generating video segments concurrently for project: vibe3
+  📝 Segments: 57
+  ⚡ Concurrency: 25 (conservative to prevent Lambda /tmp issues)
+    Debug - Segment 0: id=0, start_time=0, end_time=5.56
+    Debug - Segment 1: id=1, start_time=5.68, end_time=9.98
+    Debug - Segment 2: id=2, start_time=9.98, end_time=15.22
+    Debug - Segment 3: id=3, start_time=15.22, end_time=19.8
+    Debug - Segment 4: id=4, start_time=19.8, end_time=24.52
+    Debug - Segment 5: id=5, start_time=24.62, end_time=29.72
+    Debug - Segment 6: id=6, start_time=29.72, end_time=33.7
+    Debug - Segment 7: id=7, start_time=33.7, end_time=38.32
+    Debug - Segment 8: id=8, start_time=38.32, end_time=43
+    Debug - Segment 9: id=9, start_time=43, end_time=48
+    Debug - Segment 10: id=10, start_time=48, end_time=52.52
+    Debug - Segment 11: id=11, start_time=52.52, end_time=57.18
+    Debug - Segment 12: id=12, start_time=57.18, end_time=59.98
+    Debug - Segment 13: id=13, start_time=60.26, end_time=63.8
+    Debug - Segment 14: id=14, start_time=63.94, end_time=80.014
+    Debug - Segment 15: id=15, start_time=80.014, end_time=84.093994
+    Debug - Segment 16: id=16, start_time=84.313995, end_time=89.054
+    Debug - Segment 17: id=17, start_time=89.054, end_time=93.214
+    Debug - Segment 18: id=18, start_time=93.214, end_time=97.294
+    Debug - Segment 19: id=19, start_time=97.514, end_time=103.554
+    Debug - Segment 20: id=20, start_time=103.794, end_time=107.654
+    Debug - Segment 21: id=21, start_time=107.934, end_time=108.254
+    Debug - Segment 22: id=22, start_time=108.37399, end_time=114.694
+    Debug - Segment 23: id=23, start_time=114.993996, end_time=117.274
+    Debug - Segment 24: id=24, start_time=117.414, end_time=121.774
+    Debug - Segment 25: id=25, start_time=121.774, end_time=125.953995
+    Debug - Segment 26: id=26, start_time=125.953995, end_time=130.71399
+    Debug - Segment 27: id=27, start_time=130.71399, end_time=136.314
+    Debug - Segment 28: id=28, start_time=136.314, end_time=149.588
+    Debug - Segment 29: id=29, start_time=149.68799, end_time=156.388
+    Debug - Segment 30: id=30, start_time=156.708, end_time=161.62799
+    Debug - Segment 31: id=31, start_time=161.808, end_time=167.668
+    Debug - Segment 32: id=32, start_time=167.668, end_time=172.588
+    Debug - Segment 33: id=33, start_time=172.728, end_time=177.12799
+    Debug - Segment 34: id=34, start_time=177.228, end_time=180.508
+    Debug - Segment 35: id=35, start_time=180.808, end_time=185.368
+    Debug - Segment 36: id=36, start_time=185.46799, end_time=188.948
+    Debug - Segment 37: id=37, start_time=189.008, end_time=191.48799
+    Debug - Segment 38: id=38, start_time=191.48799, end_time=197.568
+    Debug - Segment 39: id=39, start_time=197.668, end_time=200.108
+    Debug - Segment 40: id=40, start_time=200.108, end_time=204.46799
+    Debug - Segment 41: id=41, start_time=204.46799, end_time=208.708
+    Debug - Segment 42: id=42, start_time=208.708, end_time=222.90201
+    Debug - Segment 43: id=43, start_time=223.002, end_time=227.702
+    Debug - Segment 44: id=44, start_time=227.702, end_time=231.622
+    Debug - Segment 45: id=45, start_time=231.622, end_time=235.202
+    Debug - Segment 46: id=46, start_time=235.242, end_time=239.082
+    Debug - Segment 47: id=47, start_time=239.082, end_time=244.142
+    Debug - Segment 48: id=48, start_time=244.142, end_time=249.40201
+    Debug - Segment 49: id=49, start_time=249.40201, end_time=253.62201
+    Debug - Segment 50: id=50, start_time=253.862, end_time=258.022
+    Debug - Segment 51: id=51, start_time=258.022, end_time=262.642
+    Debug - Segment 52: id=52, start_time=262.642, end_time=267.422
+    Debug - Segment 53: id=53, start_time=267.422, end_time=271.342
+    Debug - Segment 54: id=54, start_time=271.342, end_time=275.962
+    Debug - Segment 55: id=55, start_time=275.962, end_time=280.162
+    Debug - Segment 56: id=56, start_time=280.162, end_time=285.322
+  ⏳ Waiting for 57 segments to complete...
+  📹 Processing segment 0 (1/57) - Duration: 5.56s
+    Debug - Payload: project_id=vibe3, segment_id=0, segment_index=0, images=Array, duration=5.56, start_time=0.0, end_time=5.56
+  📹 Processing segment 2 (3/57) - Duration: 5.24s
+  📹 Processing segment 3 (4/57) - Duration: 4.58s
+    Debug - Payload: project_id=vibe3, segment_id=3, segment_index=3, images=Array, duration=4.58, start_time=15.22, end_time=19.8
+  📹 Processing segment 4 (5/57) - Duration: 4.72s
+    Debug - Payload: project_id=vibe3, segment_id=4, segment_index=4, images=Array, duration=4.719999999999999, start_time=19.8, end_time=24.52
+  📹 Processing segment 5 (6/57) - Duration: 5.1s
+    Debug - Payload: project_id=vibe3, segment_id=5, segment_index=5, images=Array, duration=5.099999999999998, start_time=24.62, end_time=29.72
+  📹 Processing segment 6 (7/57) - Duration: 3.98s
+    Debug - Payload: project_id=vibe3, segment_id=6, segment_index=6, images=Array, duration=3.980000000000004, start_time=29.72, end_time=33.7
+  📹 Processing segment 7 (8/57) - Duration: 4.62s
+    Debug - Payload: project_id=vibe3, segment_id=7, segment_index=7, images=Array, duration=4.619999999999997, start_time=33.7, end_time=38.32
+  📹 Processing segment 8 (9/57) - Duration: 4.68s
+    Debug - Payload: project_id=vibe3, segment_id=8, segment_index=8, images=Array, duration=4.68, start_time=38.32, end_time=43.0
+  📹 Processing segment 9 (10/57) - Duration: 5.0s
+    Debug - Payload: project_id=vibe3, segment_id=9, segment_index=9, images=Array, duration=5.0, start_time=43.0, end_time=48.0
+  📹 Processing segment 10 (11/57) - Duration: 4.52s
+    Debug - Payload: project_id=vibe3, segment_id=10, segment_index=10, images=Array, duration=4.520000000000003, start_time=48.0, end_time=52.52
+  📹 Processing segment 11 (12/57) - Duration: 4.66s
+    Debug - Payload: project_id=vibe3, segment_id=11, segment_index=11, images=Array, duration=4.659999999999997, start_time=52.52, end_time=57.18
+  📹 Processing segment 12 (13/57) - Duration: 2.8s
+    Debug - Payload: project_id=vibe3, segment_id=12, segment_index=12, images=Array, duration=2.799999999999997, start_time=57.18, end_time=59.98
+  📹 Processing segment 13 (14/57) - Duration: 3.54s
+    Debug - Payload: project_id=vibe3, segment_id=13, segment_index=13, images=Array, duration=3.539999999999999, start_time=60.26, end_time=63.8
+  📹 Processing segment 14 (15/57) - Duration: 16.07s
+    Debug - Payload: project_id=vibe3, segment_id=14, segment_index=14, images=Array, duration=16.073999999999998, start_time=63.94, end_time=80.014
+  📹 Processing segment 15 (16/57) - Duration: 4.08s
+    Debug - Payload: project_id=vibe3, segment_id=15, segment_index=15, images=Array, duration=4.079993999999999, start_time=80.014, end_time=84.093994
+  📹 Processing segment 16 (17/57) - Duration: 4.74s
+    Debug - Payload: project_id=vibe3, segment_id=16, segment_index=16, images=Array, duration=4.7400049999999965, start_time=84.313995, end_time=89.054
+  📹 Processing segment 17 (18/57) - Duration: 4.16s
+    Debug - Payload: project_id=vibe3, segment_id=17, segment_index=17, images=Array, duration=4.159999999999997, start_time=89.054, end_time=93.214
+  📹 Processing segment 18 (19/57) - Duration: 4.08s
+  📹 Processing segment 19 (20/57) - Duration: 6.04s
+    Debug - Payload: project_id=vibe3, segment_id=19, segment_index=19, images=Array, duration=6.040000000000006, start_time=97.514, end_time=103.554
+  📹 Processing segment 20 (21/57) - Duration: 3.86s
+    Debug - Payload: project_id=vibe3, segment_id=20, segment_index=20, images=Array, duration=3.8599999999999994, start_time=103.794, end_time=107.654
+  📹 Processing segment 21 (22/57) - Duration: 0.32s
+    Debug - Payload: project_id=vibe3, segment_id=21, segment_index=21, images=Array, duration=0.3200000000000074, start_time=107.934, end_time=108.254
+  📹 Processing segment 22 (23/57) - Duration: 6.32s
+    Debug - Payload: project_id=vibe3, segment_id=22, segment_index=22, images=Array, duration=6.320009999999996, start_time=108.37399, end_time=114.694
+  📹 Processing segment 23 (24/57) - Duration: 2.28s
+    Debug - Payload: project_id=vibe3, segment_id=23, segment_index=23, images=Array, duration=2.2800040000000052, start_time=114.993996, end_time=117.274
+  📹 Processing segment 24 (25/57) - Duration: 4.36s
+  📹 Processing segment 1 (2/57) - Duration: 4.3s
+    Debug - Payload: project_id=vibe3, segment_id=1, segment_index=1, images=Array, duration=4.300000000000001, start_time=5.68, end_time=9.98
+    Debug - Payload: project_id=vibe3, segment_id=2, segment_index=2, images=Array, duration=5.24, start_time=9.98, end_time=15.22
+    Debug - Payload: project_id=vibe3, segment_id=18, segment_index=18, images=Array, duration=4.079999999999998, start_time=93.214, end_time=97.294
+    Debug - Payload: project_id=vibe3, segment_id=24, segment_index=24, images=Array, duration=4.359999999999999, start_time=117.414, end_time=121.774
+    ⚡ Invoking Lambda for segment 0 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 6 (1 images)...
+    ⚡ Invoking Lambda for segment 7 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, optionssegment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, optionsgo
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 5 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 16 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 21 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 4 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 12 (1 images)...
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 1 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 17 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    ⚡ Invoking Lambda for segment 9 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 3 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    ⚡ Invoking Lambda for segment 18 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 15 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 10 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 8 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 19 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 24 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 11 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 13 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 22 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    ⚡ Invoking Lambda for segment 23 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 2 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 14 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 21 completed in 7.87s (Lambda: 7.52s)
+    📁 Segment file: segments/vibe3/21_segment.mp4
+  📹 Processing segment 25 (26/57) - Duration: 4.18s
+    Debug - Payload: project_id=vibe3, segment_id=25, segment_index=25, images=Array, duration=4.179995000000005, start_time=121.774, end_time=125.953995
+    ⚡ Invoking Lambda for segment 25 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to generate enhanced video: signal: killed
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 13 failed in 12.74s: Lambda function error: failed to generate enhanced video: signal: killed
+  📹 Processing segment 26 (27/57) - Duration: 4.76s
+    Debug - Payload: project_id=vibe3, segment_id=26, segment_index=26, images=Array, duration=4.759994999999989, start_time=125.953995, end_time=130.71399
+    ⚡ Invoking Lambda for segment 26 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to generate enhanced video: signal: killed
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 11 failed in 13.77s: Lambda function error: failed to generate enhanced video: signal: killed
+  📹 Processing segment 27 (28/57) - Duration: 5.6s
+    Debug - Payload: project_id=vibe3, segment_id=27, segment_index=27, images=Array, duration=5.6000099999999975, start_time=130.71399, end_time=136.314
+    ⚡ Invoking Lambda for segment 27 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 20 completed in 17.88s (Lambda: 17.53s)
+    📁 Segment file: segments/vibe3/20_segment.mp4
+  📹 Processing segment 28 (29/57) - Duration: 13.27s
+    Debug - Payload: project_id=vibe3, segment_id=28, segment_index=28, images=Array, duration=13.274000000000001, start_time=136.314, end_time=149.588
+    ⚡ Invoking Lambda for segment 28 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to generate enhanced video: signal: killed
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 15 failed in 18.68s: Lambda function error: failed to generate enhanced video: signal: killed
+  📹 Processing segment 29 (30/57) - Duration: 6.7s
+    Debug - Payload: project_id=vibe3, segment_id=29, segment_index=29, images=Array, duration=6.700009999999992, start_time=149.68799, end_time=156.388
+    ⚡ Invoking Lambda for segment 29 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to generate enhanced video: signal: killed
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 0 failed in 19.31s: Lambda function error: failed to generate enhanced video: signal: killed
+  📹 Processing segment 30 (31/57) - Duration: 4.92s
+    Debug - Payload: project_id=vibe3, segment_id=30, segment_index=30, images=Array, duration=4.919990000000013, start_time=156.708, end_time=161.62799
+    ⚡ Invoking Lambda for segment 30 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 23 completed in 20.59s (Lambda: 20.23s)
+    📁 Segment file: segments/vibe3/23_segment.mp4
+  📹 Processing segment 31 (32/57) - Duration: 5.86s
+    Debug - Payload: project_id=vibe3, segment_id=31, segment_index=31, images=Array, duration=5.860000000000014, start_time=161.808, end_time=167.668
+    ⚡ Invoking Lambda for segment 31 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to generate enhanced video: signal: killed
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 8 failed in 20.9s: Lambda function error: failed to generate enhanced video: signal: killed
+  📹 Processing segment 32 (33/57) - Duration: 4.92s
+    Debug - Payload: project_id=vibe3, segment_id=32, segment_index=32, images=Array, duration=4.9199999999999875, start_time=167.668, end_time=172.588
+    ⚡ Invoking Lambda for segment 32 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to generate enhanced video: signal: killed
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 9 failed in 22.16s: Lambda function error: failed to generate enhanced video: signal: killed
+  📹 Processing segment 33 (34/57) - Duration: 4.4s
+    Debug - Payload: project_id=vibe3, segment_id=33, segment_index=33, images=Array, duration=4.3999900000000025, start_time=172.728, end_time=177.12799
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 12 completed in 22.19s (Lambda: 21.83s)
+    📁 Segment file: segments/vibe3/12_segment.mp4
+  📹 Processing segment 34 (35/57) - Duration: 3.28s
+    Debug - Payload: project_id=vibe3, segment_id=34, segment_index=34, images=Array, duration=3.280000000000001, start_time=177.228, end_time=180.508
+    ⚡ Invoking Lambda for segment 33 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 34 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 18 completed in 24.63s (Lambda: 24.27s)
+    📁 Segment file: segments/vibe3/18_segment.mp4
+  📹 Processing segment 35 (36/57) - Duration: 4.56s
+    Debug - Payload: project_id=vibe3, segment_id=35, segment_index=35, images=Array, duration=4.560000000000002, start_time=180.808, end_time=185.368
+    ⚡ Invoking Lambda for segment 35 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 1 completed in 29.56s (Lambda: 29.18s)
+    📁 Segment file: segments/vibe3/1_segment.mp4
+  📹 Processing segment 36 (37/57) - Duration: 3.48s
+    Debug - Payload: project_id=vibe3, segment_id=36, segment_index=36, images=Array, duration=3.4800100000000214, start_time=185.46799, end_time=188.948
+    ⚡ Invoking Lambda for segment 36 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 10 completed in 29.88s (Lambda: 29.51s)
+    📁 Segment file: segments/vibe3/10_segment.mp4
+  📹 Processing segment 37 (38/57) - Duration: 2.48s
+    Debug - Payload: project_id=vibe3, segment_id=37, segment_index=37, images=Array, duration=2.4799899999999866, start_time=189.008, end_time=191.48799
+    ⚡ Invoking Lambda for segment 37 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: errorMessage, errorType
+    Debug - Lambda error: failed to generate enhanced video: signal: killed
+    Debug - Error type: errorString
+    Debug - Stack trace: 
+    ❌ Segment 28 failed in 12.47s: Lambda function error: failed to generate enhanced video: signal: killed
+  📹 Processing segment 38 (39/57) - Duration: 6.08s
+    Debug - Payload: project_id=vibe3, segment_id=38, segment_index=38, images=Array, duration=6.080010000000016, start_time=191.48799, end_time=197.568
+    ⚡ Invoking Lambda for segment 38 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 4 completed in 31.06s (Lambda: 30.69s)
+    📁 Segment file: segments/vibe3/4_segment.mp4
+  📹 Processing segment 39 (40/57) - Duration: 2.44s
+    Debug - Payload: project_id=vibe3, segment_id=39, segment_index=39, images=Array, duration=2.4399999999999977, start_time=197.668, end_time=200.108
+    ⚡ Invoking Lambda for segment 39 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 3 completed in 31.93s (Lambda: 31.55s)
+    📁 Segment file: segments/vibe3/3_segment.mp4
+  📹 Processing segment 40 (41/57) - Duration: 4.36s
+    Debug - Payload: project_id=vibe3, segment_id=40, segment_index=40, images=Array, duration=4.359989999999982, start_time=200.108, end_time=204.46799
+    ⚡ Invoking Lambda for segment 40 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 7 completed in 32.65s (Lambda: 32.3s)
+    📁 Segment file: segments/vibe3/7_segment.mp4
+  📹 Processing segment 41 (42/57) - Duration: 4.24s
+    Debug - Payload: project_id=vibe3, segment_id=41, segment_index=41, images=Array, duration=4.240010000000012, start_time=204.46799, end_time=208.708
+    ⚡ Invoking Lambda for segment 41 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 6 completed in 33.16s (Lambda: 32.81s)
+    📁 Segment file: segments/vibe3/6_segment.mp4
+  📹 Processing segment 42 (43/57) - Duration: 14.19s
+    Debug - Payload: project_id=vibe3, segment_id=42, segment_index=42, images=Array, duration=14.194009999999992, start_time=208.708, end_time=222.90201
+    ⚡ Invoking Lambda for segment 42 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 16 completed in 33.81s (Lambda: 33.46s)
+    📁 Segment file: segments/vibe3/16_segment.mp4
+  📹 Processing segment 43 (44/57) - Duration: 4.7s
+    Debug - Payload: project_id=vibe3, segment_id=43, segment_index=43, images=Array, duration=4.699999999999989, start_time=223.002, end_time=227.702
+    ⚡ Invoking Lambda for segment 43 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 17 completed in 35.65s (Lambda: 35.29s)
+    📁 Segment file: segments/vibe3/17_segment.mp4
+  📹 Processing segment 44 (45/57) - Duration: 3.92s
+    Debug - Payload: project_id=vibe3, segment_id=44, segment_index=44, images=Array, duration=3.920000000000016, start_time=227.702, end_time=231.622
+    ⚡ Invoking Lambda for segment 44 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 2 completed in 36.06s (Lambda: 35.67s)
+    📁 Segment file: segments/vibe3/2_segment.mp4
+  📹 Processing segment 45 (46/57) - Duration: 3.58s
+    Debug - Payload: project_id=vibe3, segment_id=45, segment_index=45, images=Array, duration=3.579999999999984, start_time=231.622, end_time=235.202
+    ⚡ Invoking Lambda for segment 45 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 34 completed in 14.63s (Lambda: 14.3s)
+    📁 Segment file: segments/vibe3/34_segment.mp4
+  📹 Processing segment 46 (47/57) - Duration: 3.84s
+    Debug - Payload: project_id=vibe3, segment_id=46, segment_index=46, images=Array, duration=3.8400000000000034, start_time=235.242, end_time=239.082
+    ⚡ Invoking Lambda for segment 46 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 25 completed in 30.11s (Lambda: 29.81s)
+    📁 Segment file: segments/vibe3/25_segment.mp4
+  📹 Processing segment 47 (48/57) - Duration: 5.06s
+    Debug - Payload: project_id=vibe3, segment_id=47, segment_index=47, images=Array, duration=5.060000000000002, start_time=239.082, end_time=244.142
+    Debug - Response status: 200
+    Debug - Response body keys: statusCode, body
+    ✅ Segment 24 completed in 38.02s (Lambda: 37.66s)
+    📁 Segment file: segments/vibe3/24_segment.mp4
+  📹 Processing segment 48 (49/57) - Duration: 5.26s
+    Debug - Payload: project_id=vibe3, segment_id=48, segment_index=48, images=Array, duration=5.260009999999994, start_time=244.142, end_time=249.40201
+    ⚡ Invoking Lambda for segment 47 (1 images)...
+  📤 Invoking Lambda function: ken-burns-video-generator-go
+    Debug - Payload keys: project_id, segment_id, segment_index, images, duration, start_time, end_time, options
+    Debug - Payload values: String, String, Integer, Array, Float, Float, Float, Hash
+    ⚡ Invoking Lambda for segment 48 (1 images)...
