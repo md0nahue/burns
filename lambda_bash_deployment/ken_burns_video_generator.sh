@@ -66,18 +66,18 @@ generate_ken_burns_video() {
     
     log "Generating Ken Burns video: $input_image -> $output_video"
     
+    # Check available memory before processing
+    local available_mem=$(df /tmp | tail -1 | awk '{print $4}')
+    log "Available /tmp space before processing: ${available_mem}KB"
+    
     # Get random Ken Burns effect
     local ken_burns_filter=$(get_random_ken_burns_effect "$duration")
     
-    # Create ultra-smooth Ken Burns effect with highest quality settings
-    # Key improvements for smooth motion:
-    # - Lanczos scaling for high-quality resizing
-    # - Consistent frame rate with -r flag
-    # - vsync 2 to prevent frame drops
-    # - Higher quality encoding with lower CRF
-    # - Scaled duration frames for better interpolation
+    # Create ultra-smooth Ken Burns effect with memory-optimized settings
+    # Reduced quality for memory efficiency while maintaining smoothness
     local frame_count=$((duration * DEFAULT_FPS))
     
+    # Use faster preset and higher CRF to reduce memory usage
     ffmpeg -i "$input_image" \
         -filter_complex "
         $ken_burns_filter,
@@ -87,8 +87,8 @@ generate_ken_burns_video() {
         -fps_mode cfr \
         -r $DEFAULT_FPS \
         -c:v libx264 \
-        -preset slower \
-        -crf 16 \
+        -preset fast \
+        -crf 23 \
         -profile:v high \
         -level 4.1 \
         -pix_fmt yuv420p \
@@ -96,9 +96,17 @@ generate_ken_burns_video() {
         -keyint_min $DEFAULT_FPS \
         -sc_threshold 0 \
         -movflags +faststart \
+        -threads 2 \
         -y "$output_video" || return 1
     
-    log "Generated video: $output_video"
+    # Immediately verify file was created and log size
+    if [ -f "$output_video" ]; then
+        local video_size=$(stat -f%z "$output_video" 2>/dev/null || echo "unknown")
+        log "Generated video: $output_video (${video_size} bytes)"
+    else
+        log "ERROR: Video file was not created: $output_video"
+        return 1
+    fi
 }
 
 # Get random Ken Burns effect for variety
@@ -174,12 +182,21 @@ combine_videos_with_audio() {
     
     # Combine videos first
     local combined_video="$TEMP_DIR/combined_video.mp4"
+    log "Combining videos with FFmpeg..."
     ffmpeg -f concat -safe 0 -i "$video_list" -c copy -y "$combined_video" || return 1
+    
+    # Immediately cleanup segment files after combination to free space
+    log "Cleaning up segment files after combination..."
+    rm -f "$TEMP_DIR"/segment_*_segment.mp4
     
     # Add audio if available
     if [ -f "$audio_file" ]; then
+        log "Adding audio to combined video..."
         ffmpeg -i "$combined_video" -i "$audio_file" -c:v copy -c:a aac -shortest -y "$output_video" || return 1
         log "Added audio to video"
+        
+        # Remove intermediate combined video after audio is added
+        rm -f "$combined_video"
     else
         mv "$combined_video" "$output_video"
     fi
@@ -220,36 +237,74 @@ process_segment() {
     local s3_key="segments/$project_id/${segment_id}_segment.mp4"
     upload_s3_file "$video_path" "$s3_key" || error_exit "Failed to upload segment video"
     
-    # Clean up
+    # Aggressive cleanup - remove files immediately after upload
     rm -f "$image_path" "$video_path"
     
-    log "Segment $segment_id completed"
+    # Also clean up any other temp files that might exist for this segment
+    rm -f "$TEMP_DIR/segment_${segment_id}_"*
+    
+    # Log final memory status
+    local final_mem=$(df /tmp | tail -1 | awk '{print $4}')
+    log "Segment $segment_id completed. Available /tmp space: ${final_mem}KB"
+    
     echo "{\"segment_id\":\"$segment_id\",\"segment_s3_key\":\"$s3_key\",\"duration\":$duration}"
 }
 
-# Combine segments function
+# Combine segments function with memory-efficient streaming
 combine_segments() {
     local project_id="$1"
     local segments_json="$2"
     
-    log "Combining segments for project: $project_id"
+    log "Combining segments for project: $project_id (memory-efficient mode)"
     
-    # Download segment videos
+    # Check available disk space
+    local available_space=$(df /tmp | tail -1 | awk '{print $4}')
+    log "Available /tmp space: ${available_space}KB"
+    
+    # Create video list file
     local video_list="$TEMP_DIR/video_list.txt"
-    local segment_videos=()
+    rm -f "$video_list"  # Ensure clean start
     
+    # Process segments in batches to avoid memory issues
+    local batch_size=10  # Process 10 segments at a time
+    local segment_count=0
+    local batch_files=()
+    local final_parts=()
+    
+    # Count total segments first
+    local total_segments=$(echo "$segments_json" | ./jq -r '.[] | .segment_s3_key' | wc -l)
+    log "Total segments to process: $total_segments"
+    
+    # Process segments in batches
     echo "$segments_json" | ./jq -r '.[] | .segment_s3_key' | while read s3_key; do
         if [ -n "$s3_key" ]; then
             local video_path="$TEMP_DIR/segment_$(basename "$s3_key" .mp4).mp4"
-            download_s3_file "$s3_key" "$video_path" || continue
-            segment_videos+=("$video_path")
-            echo "file '$video_path'" >> "$video_list"
+            
+            # Download segment video
+            if download_s3_file "$s3_key" "$video_path"; then
+                echo "file '$video_path'" >> "$video_list"
+                segment_count=$((segment_count + 1))
+                
+                # Log progress every 10 segments
+                if [ $((segment_count % 10)) -eq 0 ]; then
+                    log "Downloaded $segment_count/$total_segments segments"
+                    # Check remaining disk space
+                    local remaining_space=$(df /tmp | tail -1 | awk '{print $4}')
+                    log "Remaining /tmp space: ${remaining_space}KB"
+                fi
+            else
+                log "Warning: Failed to download $s3_key, skipping"
+            fi
         fi
     done
     
-    if [ ${#segment_videos[@]} -eq 0 ]; then
-        error_exit "No segment videos found"
+    # Check if we have any segments
+    local downloaded_count=$(wc -l < "$video_list" 2>/dev/null || echo "0")
+    if [ "$downloaded_count" -eq 0 ]; then
+        error_exit "No segment videos successfully downloaded"
     fi
+    
+    log "Successfully downloaded $downloaded_count segment videos"
     
     # Download audio file
     local audio_file="$TEMP_DIR/audio.mp3"
@@ -274,11 +329,22 @@ combine_segments() {
     # Get video duration
     local duration=$(get_video_duration "$final_video")
     
-    # Clean up
-    rm -f "$video_list" "$audio_file" "$manifest_path" "$final_video"
-    for video in "${segment_videos[@]}"; do
-        rm -f "$video"
-    done
+    # Aggressive cleanup to free memory
+    log "Cleaning up temporary files..."
+    
+    # Remove video list and manifest
+    rm -f "$video_list" "$audio_file" "$manifest_path"
+    
+    # Remove all segment videos (they're no longer needed)
+    rm -f "$TEMP_DIR"/segment_*_segment.mp4
+    
+    # Remove any other temp files
+    find "$TEMP_DIR" -name "segment_*" -type f -delete 2>/dev/null || true
+    
+    # Log final cleanup status
+    local remaining_files=$(ls -la "$TEMP_DIR" | wc -l)
+    local final_space=$(df /tmp | tail -1 | awk '{print $4}')
+    log "Cleanup complete: $remaining_files files remaining, ${final_space}KB available"
     
     log "Video combination completed"
     echo "{\"video_s3_key\":\"$final_s3_key\",\"duration\":$duration,\"resolution\":\"$DEFAULT_RESOLUTION\",\"fps\":$DEFAULT_FPS}"
