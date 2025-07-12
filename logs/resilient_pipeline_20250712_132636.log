@@ -1,0 +1,4 @@
+[2025-07-12T13:26:36-07:00] INFO: === RESILIENT PIPELINE STARTED ===
+[2025-07-12T13:26:36-07:00] INFO: Audio file: second.m4a
+[2025-07-12T13:26:36-07:00] INFO: Enhanced features: Retry logic, local fallback, partial recovery
+[2025-07-12T13:26:36-07:00] INFO: Starting video generation with resilient options...

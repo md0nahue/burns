@@ -10,8 +10,8 @@ HANDLER="ken_burns_video_generator.sh"
 ROLE_NAME="ken-burns-lambda-role"
 POLICY_NAME="ken-burns-lambda-policy"
 REGION="us-east-1"
-TIMEOUT=300
-MEMORY_SIZE=1024
+TIMEOUT=900
+MEMORY_SIZE=3008
 
 echo "🚀 Deploying Bash-based Lambda function for Ken Burns video generation..."
 echo "  📝 Function: $FUNCTION_NAME"

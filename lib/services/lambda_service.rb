@@ -163,14 +163,33 @@ class LambdaService
         puts "    ⚡ Max Lambda time: #{lambda_times.max.round(2)}s"
       end
       
-      # Check for failures
+      # Check for failures and categorize them
       failed_segments = results.select { |r| !r[:success] }
+      fallback_segments = results.select { |r| r[:used_fallback] || r[:used_local_fallback] }
+      
       if failed_segments.any?
         puts "❌ #{failed_segments.length} segments failed to process"
         failed_segments.each do |failure|
           puts "  ❌ Segment #{failure[:segment_id]}: #{failure[:error]}"
         end
-        return { success: false, error: "Some segments failed to process" }
+        
+        # If we have some successful segments, try to continue with partial video
+        successful_segments = results.select { |r| r[:success] }
+        if successful_segments.length >= (results.length * 0.6) # At least 60% success
+          puts "⚠️  Continuing with #{successful_segments.length}/#{results.length} segments (#{(successful_segments.length.to_f/results.length*100).round(1)}% success rate)"
+          puts "🔄 Will attempt to create video with available segments..."
+        else
+          return { 
+            success: false, 
+            error: "Too many segments failed (#{failed_segments.length}/#{results.length}). Success rate: #{(successful_segments.length.to_f/results.length*100).round(1)}%",
+            partial_results: results,
+            fallback_needed: true
+          }
+        end
+      end
+      
+      if fallback_segments.any?
+        puts "🏠 #{fallback_segments.length} segments used local fallback processing"
       end
       
       # Combine segments into final video
@@ -193,6 +212,103 @@ class LambdaService
     end
   end
 
+  # Generate a single video segment locally as fallback
+  # @param project_id [String] Project identifier
+  # @param segment_data [Hash] Segment information
+  # @param options [Hash] Generation options
+  # @return [Hash] Segment generation result
+  def generate_segment_locally(project_id, segment_data, options = {})
+    puts "    🏠 Generating segment #{segment_data[:segment_id]} locally..."
+    
+    begin
+      # Use the local video service for fallback
+      require_relative 'local_video_service'
+      local_service = LocalVideoService.new
+      
+      # Get the first image URL from segment data
+      images = segment_data[:images] || []
+      if images.empty?
+        return {
+          success: false,
+          error: "No images available for local processing",
+          segment_id: segment_data[:segment_id]
+        }
+      end
+      
+      first_image_url = images[0][:url] || images[0]['url']
+      duration = segment_data[:duration] || 5.0
+      
+      # Download image to temp location
+      require 'net/http'
+      require 'uri'
+      require 'tempfile'
+      
+      temp_image = Tempfile.new(['segment_image', '.jpg'])
+      uri = URI(first_image_url)
+      
+      Net::HTTP.start(uri.host, uri.port, use_ssl: uri.scheme == 'https') do |http|
+        response = http.get(uri.path)
+        temp_image.write(response.body)
+        temp_image.flush
+      end
+      
+      # Create output path
+      temp_video = Tempfile.new(['segment_video', '.mp4'])
+      temp_video.close
+      
+      # Generate Ken Burns video locally
+      success = local_service.create_single_image_ken_burns(
+        temp_image.path,
+        duration,
+        temp_video.path
+      )
+      
+      if success && File.exist?(temp_video.path)
+        # Upload to S3
+        s3_key = "segments/#{project_id}/#{segment_data[:segment_id]}_segment.mp4"
+        
+        require_relative 's3_service'
+        s3_service = S3Service.new
+        s3_service.instance_variable_get(:@s3_client).put_object(
+          bucket: Config::AWS_CONFIG[:s3_bucket],
+          key: s3_key,
+          body: File.read(temp_video.path)
+        )
+        
+        # Clean up
+        temp_image.unlink
+        temp_video.unlink
+        
+        {
+          success: true,
+          segment_id: segment_data[:segment_id],
+          segment_s3_key: s3_key,
+          duration: duration,
+          start_time: segment_data[:start_time],
+          end_time: segment_data[:end_time],
+          used_local_fallback: true
+        }
+      else
+        temp_image.unlink
+        temp_video.unlink
+        
+        {
+          success: false,
+          error: "Local video generation failed",
+          segment_id: segment_data[:segment_id]
+        }
+      end
+      
+    rescue => e
+      puts "    ❌ Local fallback failed for segment #{segment_data[:segment_id]}: #{e.message}"
+      {
+        success: false,
+        error: "Local fallback failed: #{e.message}",
+        segment_id: segment_data[:segment_id]
+      }
+    end
+  end
+  
   # Generate a single video segment
   # @param project_id [String] Project identifier
   # @param segment_data [Hash] Segment information
@@ -235,10 +351,10 @@ class LambdaService
         }
       end
       
-      # Invoke Lambda function for this segment
+      # Invoke Lambda function for this segment with retry logic and fallback
       lambda_start = Time.now
       puts "    ⚡ Invoking Lambda for segment #{segment_data[:segment_id]} (#{payload[:images].length} images)..."
-      response = invoke_lambda_function(payload)
+      response = invoke_lambda_function_with_retry(payload, segment_data[:segment_id])
       lambda_time = Time.now - lambda_start
       
       if response[:success]
@@ -247,6 +363,24 @@ class LambdaService
         puts "    📁 Segment file: #{response[:segment_s3_key]}"
         response[:processing_time] = segment_time
         response[:lambda_time] = lambda_time
+      elsif response[:needs_fallback]
+        # Lambda failed, try local fallback
+        puts "    🔄 Lambda failed for segment #{segment_data[:segment_id]}, attempting local fallback..."
+        fallback_response = generate_segment_locally(project_id, segment_data, options)
+        
+        if fallback_response[:success]
+          segment_time = Time.now - segment_start_time
+          puts "    ✅ Segment #{segment_data[:segment_id]} completed locally in #{segment_time.round(2)}s (Lambda failed)"
+          puts "    📁 Segment file: #{fallback_response[:segment_s3_key]}"
+          fallback_response[:processing_time] = segment_time
+          fallback_response[:lambda_time] = lambda_time
+          fallback_response[:used_fallback] = true
+          response = fallback_response
+        else
+          segment_time = Time.now - segment_start_time
+          puts "    ❌ Segment #{segment_data[:segment_id]} failed both Lambda and local in #{segment_time.round(2)}s"
+          response[:processing_time] = segment_time
+        end
       else
         segment_time = Time.now - segment_start_time
         puts "    ❌ Segment #{segment_data[:segment_id]} failed in #{segment_time.round(2)}s: #{response[:error]}"
@@ -484,6 +618,145 @@ class LambdaService
       puts "❌ Error listing invocations: #{e.message}"
       { success: false, error: e.message }
     end
+  end
+
+  # Invoke Lambda function with comprehensive retry logic and fallback
+  # @param payload [Hash] Function payload
+  # @param segment_id [String] Segment identifier for logging
+  # @param max_retries [Integer] Maximum number of retry attempts
+  # @return [Hash] Invocation result
+  def invoke_lambda_function_with_retry(payload, segment_id, max_retries = 5)
+    retries = 0
+    last_error = nil
+    
+    begin
+      # First attempt: Try with current payload
+      result = invoke_lambda_function(payload)
+      
+      # If successful, return immediately
+      return result if result[:success]
+      
+      # If failed but not retryable, return immediately
+      unless retryable_error_from_result?(result)
+        puts "    ❌ Non-retryable error for segment #{segment_id}: #{result[:error]}"
+        return result.merge(needs_fallback: true)
+      end
+      
+      # Store error for potential retry
+      last_error = result[:error]
+      raise StandardError.new(result[:error])
+      
+    rescue => e
+      last_error = e.message
+      
+      if retries < max_retries && retryable_error?(e)
+        retries += 1
+        backoff_seconds = calculate_backoff_time(retries)
+        puts "    🔄 Retry #{retries}/#{max_retries} for segment #{segment_id} in #{backoff_seconds}s (#{e.message})"
+        sleep(backoff_seconds)
+        
+        # Modify payload for retry (simplify Ken Burns effect to reduce complexity)
+        if retries >= 2
+          payload = simplify_payload_for_retry(payload, retries)
+          puts "    🎯 Using simplified payload for retry #{retries}"
+        end
+        
+        retry
+      else
+        puts "    💥 Max retries exceeded for segment #{segment_id}: #{last_error}"
+        {
+          success: false,
+          error: "Lambda invocation failed after #{max_retries} retries: #{last_error}",
+          segment_id: segment_id,
+          retries: retries,
+          needs_fallback: true
+        }
+      end
+    end
+  end
+
+  # Check if an error is retryable
+  # @param error [Exception] The error to check
+  # @return [Boolean] True if error is retryable
+  def retryable_error?(error)
+    retryable_patterns = [
+      /signal: killed/i,              # Memory/timeout kills
+      /net::readtimeout/i,            # Network timeouts
+      /net::connecttimeout/i,         # Connection timeouts
+      /timeout/i,                     # General timeouts
+      /throttle/i,                    # Rate limiting
+      /serviceexception/i,            # AWS service exceptions
+      /internalfailure/i,             # Internal AWS failures
+      /temporarilythrottled/i,        # Temporary throttling
+      /requesttimeout/i,              # Request timeouts
+      /connectionerror/i,             # Connection errors
+      /failed to generate enhanced video/i, # FFmpeg failures
+      /error when evaluating/i,       # FFmpeg filter errors
+      /failed to configure input pad/i, # FFmpeg configuration errors
+      /conversion failed/i,           # FFmpeg conversion errors
+      /bash script failed/i           # Script execution errors
+    ]
+    
+    error_message = error.message.to_s.downcase
+    retryable_patterns.any? { |pattern| error_message.match?(pattern) }
+  end
+  
+  # Check if a result contains a retryable error
+  # @param result [Hash] The result to check
+  # @return [Boolean] True if error is retryable
+  def retryable_error_from_result?(result)
+    return false if result[:success]
+    return false unless result[:error]
+    
+    mock_error = StandardError.new(result[:error])
+    retryable_error?(mock_error)
+  end
+  
+  # Calculate exponential backoff time with jitter
+  # @param retry_count [Integer] Current retry attempt
+  # @return [Integer] Backoff time in seconds
+  def calculate_backoff_time(retry_count)
+    base_delay = [2 ** retry_count, 60].min  # Cap at 60 seconds
+    jitter = rand(1..5)  # Add randomness to prevent thundering herd
+    base_delay + jitter
+  end
+  
+  # Simplify payload for retry attempts (reduce complexity)
+  # @param payload [Hash] Original payload
+  # @param retry_count [Integer] Current retry attempt
+  # @return [Hash] Simplified payload
+  def simplify_payload_for_retry(payload, retry_count)
+    modified_payload = payload.dup
+    
+    # Add retry-specific options to make processing simpler
+    if modified_payload[:options]
+      modified_payload[:options] = modified_payload[:options].dup
+      
+      # Progressively simplify for each retry
+      case retry_count
+      when 2
+        # First retry: Reduce quality slightly
+        modified_payload[:options][:simple_ken_burns] = true
+        modified_payload[:options][:retry_attempt] = retry_count
+      when 3
+        # Second retry: Use basic zoom only
+        modified_payload[:options][:basic_zoom_only] = true
+        modified_payload[:options][:reduce_quality] = true
+        modified_payload[:options][:retry_attempt] = retry_count
+      when 4, 5
+        # Final retries: Minimum viable processing
+        modified_payload[:options][:minimal_processing] = true
+        modified_payload[:options][:static_image_fallback] = true
+        modified_payload[:options][:retry_attempt] = retry_count
+      end
+    else
+      modified_payload[:options] = {
+        simple_ken_burns: true,
+        retry_attempt: retry_count
+      }
+    end
+    
+    modified_payload
   end
 
   private
